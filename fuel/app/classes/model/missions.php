@@ -227,7 +227,7 @@ class Missions extends \Model {
 
     }
 
-    public static function interface($task) {
+    public static function do_interface($task) {
         $tVars = array();
         $mission = &$task['data']['mission'];
         $do_save = false;

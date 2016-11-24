@@ -9,7 +9,7 @@ return array(
     'phpseclib\\' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'Thunder\\Shortcode\\Tests\\' => array($vendorDir . '/thunderer/shortcode/tests'),
     'Thunder\\Shortcode\\' => array($vendorDir . '/thunderer/shortcode/src'),
-    'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Golonka\\BBCode\\' => array($vendorDir . '/golonka/bbcodeparser/src'),
     'Fuel\\Upload\\' => array($vendorDir . '/fuelphp/upload/src'),
     'Composer\\Installers\\' => array($vendorDir . '/composer/installers/src/Composer/Installers'),

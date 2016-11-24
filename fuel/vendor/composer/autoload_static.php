@@ -16,9 +16,9 @@ class ComposerStaticInit5bbf871c960638553c515d586d416e22
             'Thunder\\Shortcode\\Tests\\' => 24,
             'Thunder\\Shortcode\\' => 18,
         ),
-        'S' => 
+        'P' => 
         array (
-            'Symfony\\Component\\Yaml\\' => 23,
+            'Psr\\Log\\' => 8,
         ),
         'G' => 
         array (
@@ -47,9 +47,9 @@ class ComposerStaticInit5bbf871c960638553c515d586d416e22
         array (
             0 => __DIR__ . '/..' . '/thunderer/shortcode/src',
         ),
-        'Symfony\\Component\\Yaml\\' => 
+        'Psr\\Log\\' => 
         array (
-            0 => __DIR__ . '/..' . '/symfony/yaml',
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
         'Golonka\\BBCode\\' => 
         array (
@@ -66,13 +66,6 @@ class ComposerStaticInit5bbf871c960638553c515d586d416e22
     );
 
     public static $prefixesPsr0 = array (
-        'P' => 
-        array (
-            'Psr\\Log\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/psr/log',
-            ),
-        ),
         'M' => 
         array (
             'Monolog' => 

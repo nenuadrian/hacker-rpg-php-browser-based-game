@@ -49,7 +49,7 @@ class Controller_Cardinal extends Controller
             Task::save($task);
             Response::redirect(Uri::current());
         }
-        return Missions::interface($task);
+        return Missions::do_interface($task);
     }
 
 

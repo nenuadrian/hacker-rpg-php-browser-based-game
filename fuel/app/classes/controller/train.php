@@ -90,7 +90,7 @@ class Controller_Train extends Controller
                 Task::save($task);
                 Response::redirect(Uri::create('quests'));*/
             }
-            return Missions::interface($task);
+            return Missions::do_interface($task);
         } elseif ($task['data']['train_type'] == 3) {
             $training = DB::select()->from('training')->where('training_id', $task['data']['training_id'])->execute()->as_array()[0];
 

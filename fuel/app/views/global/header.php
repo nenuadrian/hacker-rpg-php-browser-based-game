@@ -91,10 +91,11 @@
 			<h2 class="level">
 			  L<?php echo Auth::get('level'); ?>
 			</h2>
+			<!--
 			<div class="experience">
 			  <div style="width:<?php echo Auth::get('experience') / (\Model\Hacker::experience(Auth::get('level') + 1) / 100); ?>%">
 			  </div>
-			</div>
+			</div>-->
 
 			<div class="toolbar-bottom">
 			  ID: <a href="<?php echo Uri::create('hacker/access/' . Auth::get('username')); ?>"><?php echo Auth::get('username'); ?></a>
