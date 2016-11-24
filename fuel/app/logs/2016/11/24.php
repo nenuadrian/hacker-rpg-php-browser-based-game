@@ -291,3 +291,9 @@ ERROR - 2016-11-24 22:15:39 --> Notice - Undefined offset: 0 in /Applications/MA
 ERROR - 2016-11-24 22:19:14 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
 ERROR - 2016-11-24 22:29:02 --> Error - syntax error, unexpected ')' in /Applications/MAMP/htdocs/SecretAlpha/fuel/app/classes/controller/train.php on line 82
 ERROR - 2016-11-24 22:29:04 --> Error - syntax error, unexpected ')' in /Applications/MAMP/htdocs/SecretAlpha/fuel/app/classes/controller/train.php on line 82
+ERROR - 2016-11-24 22:38:37 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
+ERROR - 2016-11-24 22:39:00 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
+ERROR - 2016-11-24 22:39:05 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
+ERROR - 2016-11-24 22:39:10 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
+ERROR - 2016-11-24 22:39:12 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
+ERROR - 2016-11-24 22:40:17 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413

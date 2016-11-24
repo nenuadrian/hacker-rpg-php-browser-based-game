@@ -6,7 +6,7 @@ echo View::forge('global/header'); ?>
     <div class="col-md-3"></div>
       <div class="col-md-6">
 	<div class="text-center">
-    <h1><?php echo Auth::get('username'); ?></h1>
+    <h1><a href="<?php echo Uri::create('hacker/access/' . Auth::get('username')); ?>"><?php echo Auth::get('username'); ?></a></h1>
 	<h4>LEVEL <?php echo Auth::get('level'); ?></h4><br/>
   <div style="max-width:200px; display:inline-block">
 	<?php echo View::forge('components/progress-bar', array(
@@ -16,10 +16,9 @@ echo View::forge('global/header'); ?>
 		'id' => 'exp_container'
 		)); ?>
 
-	<a href="<?php echo Uri::create('world'); ?>" class="btn">world</a>
 </div>
 </div>
-
+<br/><br/>
 <h3 class="text-right">hackery quote</h3>
 <blockquote>
   <?php echo $quote['content']; ?>

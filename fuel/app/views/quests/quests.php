@@ -5,11 +5,11 @@
 		<?php foreach($groups as $g): ?>
 			<div class="col-md-6 col-sm-6 ">
 	        <div class="box-layout">
-	            <div class="box-layout-icon ">
+	            <a class="box-layout-icon " href="<?php echo Uri::create('quests/group/' . $g['quest_group_id']);?>">
 	                <div class="front-content">
 	                    <h3><?php echo $g['name']; ?></h3>
 	                </div>
-	            </div>
+	            </a>
 	            <a class="box-layout-content" href="<?php echo Uri::create('quests/group/' . $g['quest_group_id']);?>">
 	                <h3><?php echo $g['name']; ?></h3>
 	                <p><?php echo $g['description']; ?></p>

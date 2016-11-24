@@ -7,25 +7,21 @@
 		<title><?php echo isset($title) ? $title . ' - ' : ''; ?><?php echo Config::get('title'); ?></title>
 		<link rel="shortcut icon" href="<?php echo Uri::create('assets/img/favicon.ico'); ?>" type="image/x-icon">
 		<?php if (!Auth::check()): ?>
-		<meta name="description" content="An online hacking simulation Massive Multiplayer Online Role Playing Game based on your browser. We aim to provide something new, a fresh browser gameplay experience. The hacker game for you.">
-		<meta name="revisit" content="After 3 days">
-		<meta name="Expires" content="never">
-		<meta name="robots" content="INDEX,FOLLOW">
-		<meta name="language" content="en">
-		<meta name="page-type" content="browser game, browsergame">
-		<meta name="author" content="Secret Republic">
-		<meta name="publisher" content="Secret Republic">
-		<meta name="copyright" content="Secret Republic">
-		<meta name="page-topic" content="free online hacking economical social and simulation browser based game"> <meta name="audience" content="all">
-
-	<?php endif; ?>
+			<meta name="description" content="An online hacking simulation Massive Multiplayer Online Role Playing Game based on your browser. We aim to provide something new, a fresh browser gameplay experience. The hacker game for you.">
+			<meta name="revisit" content="After 3 days">
+			<meta name="Expires" content="never">
+			<meta name="robots" content="INDEX,FOLLOW">
+			<meta name="language" content="en">
+			<meta name="page-type" content="browser game, browsergame">
+			<meta name="author" content="Secret Republic">
+			<meta name="publisher" content="Secret Republic">
+			<meta name="copyright" content="Secret Republic">
+			<meta name="page-topic" content="free online hacking economical social and simulation browser based game"> <meta name="audience" content="all">
+		<?php endif; ?>
 	 <?php echo Asset::css('reset.css'); ?>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<script src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<!--
-		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A300%2C300italic%2C600%2C600italic&amp;ver=4.6" type="text/css" media="all">
-		<link href="http://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css">-->
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Josefin+Sans%3A300italic%2C300&amp;ver=4.6" type="text/css" media="all">
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
@@ -78,14 +74,10 @@
 
 			      </ul>
 			      <ul class="nav navbar-nav navbar-right text-center">
-			    <!--  <li <?php echo $convs ? 'class="active"' : ''; ?>><a href="<?php echo Uri::create('conversations'); ?>"><i class="fa fa-envelope-o" aria-hidden="true"></i><?php echo $convs ? ' <small>('.$convs.')</small>' : ''; ?></a></li>-->
 			        <li <?php echo $rewards ? 'class="active"' : ''; ?>><a href="<?php echo Uri::create('rewards'); ?>"><i class="fa fa-gift" aria-hidden="true"></i><?php echo $rewards ? ' <small>('.$rewards.')</small>' : ''; ?></a></li>
 
 			      <li><a href="<?php echo Uri::create('rankings'); ?>"><i class="fa fa-trophy" aria-hidden="true"></i> <small>(<?php echo number_format(Auth::get('ranking')); ?>)</small></a></li>
-			  		<!--<<li><a href="<?php echo Uri::create('premium'); ?>"><i class="fa fa-fire" aria-hidden="true"></i></a></li>-->
-			      <!--	<li><a href="<?php echo Uri::create('affiliate'); ?>"><i class="fa fa-link" aria-hidden="true"></i></a></li>-->
 			        <li><a href="<?php echo Uri::create('dna'); ?>"><i class="fa fa-user-secret" aria-hidden="true"></i></a></li>
-			        <!--<li><a href="<?php echo Uri::create('database'); ?>"><i class="fa fa-search" aria-hidden="true"></i></a></li>-->
 
 			        <?php if (Auth::get('group') == 2): ?>
 				        	 <li><a href="<?php echo Uri::create('cardinal'); ?>"><i class="fa fa-bolt" aria-hidden="true"></i></a></li>
@@ -107,9 +99,9 @@
 			<div class="toolbar-bottom">
 			  ID: <a href="<?php echo Uri::create('hacker/access/' . Auth::get('username')); ?>"><?php echo Auth::get('username'); ?></a>
 			</div>
-			<!--<div class="toolbar-bottom-right">
+		 <div class="toolbar-bottom-right">
 			  <i class="fa fa-cube"></i> <?php echo number_format(Auth::get('money')); ?>
-			</div>-->
+			</div>
 
 		<?php endif; ?>
-		<div class="container-fluid" style="min-height:500px; padding-top:50px;">
+		<div class="container-fluid" style="min-height:500px; padding-top:20px;">

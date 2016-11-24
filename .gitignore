@@ -1,0 +1,6 @@
+document_errors/**
+logs/**
+cgi-bin/**
+private/**
+stats/**
+public_shtml/**

@@ -13,6 +13,7 @@
     text-align: center;
     transition: all .5s ease;
     background-color: #0771c3;
+    display: block;
 }
 
 .box-layout-content{

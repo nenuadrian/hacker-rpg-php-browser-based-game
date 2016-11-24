@@ -2,12 +2,13 @@
 echo View::forge('global/header'); ?>
 
 <h1 class="text-center"><?php echo $hacker['username']; ?></h1>
-<h2 class="text-center">L<?php echo $hacker['level']; ?></h2>
-
+<h4 class="text-center">LEVEL <?php echo Auth::get('level'); ?></h4>
+<br/><br/>
 <div class="row">
 <div class="col-md-6"></div>
 <div class="col-md-6">
-
+  <h2 class="text-center">achievements</h2>
+<Br/>
 <div class="row">
 <?php foreach(Achievements::$achievements as $id => $a): ?>
 <div class="col-md-3 text-center">
