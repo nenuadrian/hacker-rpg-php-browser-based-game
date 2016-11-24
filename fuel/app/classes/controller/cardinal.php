@@ -158,9 +158,9 @@ class Controller_Cardinal extends Controller
         if (Input::post('objective_id')) {
             $data = Input::post();
             if (Input::post('type')) {
-                $data['data'] = implode(':', array_filter(array(Input::post('data_entity'), Input::post('data_service'))));
+                $data['data'] = implode(':', array_filter(array(Input::post('data_entity'), Input::post('data_user'))));
                 if (isset($data['data_entity'])) unset($data['data_entity']);
-                if (isset($data['data_service'])) unset($data['data_service']);
+                if (isset($data['data_user'])) unset($data['data_user']);
             }
             DB::update('quest_objective')->set($data)->where('objective_id', Input::post('objective_id'))->execute();
             Response::redirect(Uri::current() . '?objective_id=' . Input::post('objective_id'));
@@ -172,15 +172,19 @@ class Controller_Cardinal extends Controller
         }
 
         $objectives = DB::select()->from('quest_objective')->where('quest_id', $quest_id)->order_by('objective_order', 'asc')->execute()->as_array('objective_id');
-        $services = DB::select('qss.*', 'qs.hostname', 'qss.users')->from(array('quest_server_service', 'qss'))->join(array('quest_server', 'qs'),'left outer')->on('qs.quest_server_id', '=', 'qss.quest_server_id')->where('qss.quest_id', $quest_id)->execute()->as_array();
-        $entities = DB::select('que.*', 'qs.hostname', 'qss.port')->from(array('quest_user_entity', 'que'))
+        $services = DB::select('qss.*', 'qs.hostname', 'qss.users')->from(array('quest_server_service', 'qss'))->join(array('quest_server', 'qs'),'left outer')->on('qs.quest_server_id', '=', 'qss.quest_server_id')->where('qss.quest_id', $quest_id)->execute()->as_array('service_id');
+        $users = DB::select('qsu.*', 'qs.hostname', 'qss.port')->from(array('quest_service_user', 'qsu'))
+          ->join(array('quest_server_service', 'qss'), 'left outer')->on('qss.service_id', '=', 'qsu.service_id')
+          ->join(array('quest_server', 'qs'))->on('qs.quest_server_id', '=', 'qss.quest_server_id')->execute()->as_array('user_id');
+        $entities = DB::select('que.*', 'qs.hostname', 'qss.port', 'qsu.username')->from(array('quest_user_entity', 'que'))
           ->join(array('quest_service_user', 'qsu'), 'left outer')->on('qsu.user_id', '=', 'que.user_id')
           ->join(array('quest_server_service', 'qss'), 'left outer')->on('qss.service_id', '=', 'qsu.service_id')
           ->join(array('quest_server', 'qs'))->on('qs.quest_server_id', '=', 'qss.quest_server_id')
-          ->where('que.quest_id', $quest_id)->execute()->as_array();
+          ->where('que.quest_id', $quest_id)->execute()->as_array('entity_id');
 
         $tVars['quest'] = $quest;
         $tVars['objectives'] = $objectives;
+        $tVars['users'] = $users;
         $tVars['services'] = $services;
         $tVars['entities'] = $entities;
         return View::forge('cardinal/mission/cardinal_quest_objectives', $tVars);

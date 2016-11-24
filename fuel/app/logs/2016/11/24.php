@@ -116,3 +116,24 @@ ERROR - 2016-11-24 18:31:56 --> Fatal Error - Method Fuel\Core\View::__toString(
 ERROR - 2016-11-24 18:32:02 --> Fatal Error - Method Fuel\Core\View::__toString() must not throw an exception in /Applications/MAMP/htdocs/SecretAlpha/fuel/app/views/missions/missions_interface.php on line 0
 ERROR - 2016-11-24 18:32:13 --> Fatal Error - Method Fuel\Core\View::__toString() must not throw an exception in /Applications/MAMP/htdocs/SecretAlpha/fuel/app/views/missions/missions_interface.php on line 0
 ERROR - 2016-11-24 18:37:40 --> Notice - Undefined variable: user in /Applications/MAMP/htdocs/SecretAlpha/fuel/app/views/missions/mission_entity_1.php on line 45
+ERROR - 2016-11-24 19:20:41 --> Fatal Error - Method Fuel\Core\View::__toString() must not throw an exception in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/response.php on line 0
+ERROR - 2016-11-24 19:20:43 --> Fatal Error - Method Fuel\Core\View::__toString() must not throw an exception in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/response.php on line 0
+ERROR - 2016-11-24 19:21:27 --> Fatal Error - Method Fuel\Core\View::__toString() must not throw an exception in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/response.php on line 0
+ERROR - 2016-11-24 19:21:34 --> Notice - Undefined variable: users in /Applications/MAMP/htdocs/SecretAlpha/fuel/app/views/cardinal/mission/cardinal_quest_objectives.php on line 74
+ERROR - 2016-11-24 19:23:31 --> Notice - Undefined variable: users in /Applications/MAMP/htdocs/SecretAlpha/fuel/app/views/cardinal/mission/cardinal_quest_objectives.php on line 74
+ERROR - 2016-11-24 19:23:32 --> Notice - Undefined variable: users in /Applications/MAMP/htdocs/SecretAlpha/fuel/app/views/cardinal/mission/cardinal_quest_objectives.php on line 74
+ERROR - 2016-11-24 19:27:20 --> Notice - Undefined index: username in /Applications/MAMP/htdocs/SecretAlpha/fuel/app/views/cardinal/mission/cardinal_quest_objectives.php on line 65
+ERROR - 2016-11-24 19:55:26 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
+ERROR - 2016-11-24 19:55:31 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
+ERROR - 2016-11-24 19:55:32 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
+ERROR - 2016-11-24 19:55:36 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
+ERROR - 2016-11-24 19:58:30 --> Warning - in_array() expects parameter 2 to be array, string given in /Applications/MAMP/htdocs/SecretAlpha/fuel/app/views/cardinal/mission/cardinal_mission_entities.php on line 5
+ERROR - 2016-11-24 20:10:24 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
+ERROR - 2016-11-24 20:10:50 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
+ERROR - 2016-11-24 20:10:52 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
+ERROR - 2016-11-24 20:10:55 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
+ERROR - 2016-11-24 20:10:56 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
+ERROR - 2016-11-24 20:10:59 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
+ERROR - 2016-11-24 20:11:11 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
+ERROR - 2016-11-24 20:11:13 --> Notice - Undefined index: owner in /Applications/MAMP/htdocs/SecretAlpha/fuel/app/classes/model/missions.php on line 279
+ERROR - 2016-11-24 20:11:30 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413

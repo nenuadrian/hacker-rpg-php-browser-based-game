@@ -3,14 +3,14 @@ use \Model\Cardinal;
 
  echo View::forge('global/header'); ?>
 
-<?php 
+<?php
 
 $objective_expanded = Input::get('objective_id');
 if ($objective_expanded) {
 	if ($objectives[$objective_expanded]['parent_objective_id']) {
 		$objective_expanded = $objectives[$objective_expanded]['parent_objective_id'];
 	}
-}	
+}
 ?>
 
 <div class="container">
@@ -22,7 +22,7 @@ if ($objective_expanded) {
 	<?php foreach($objectives as $objective_id => $o): ?>
 		<?php if ($o['parent_objective_id']) continue; ?>
 		<button class="btn btn-default btn-block" data-toggle="collapse" data-target="#objective_<?php echo $objective_id; ?>">
-			<?php echo $o['objective_order']; ?> | <?php echo $o['name']; ?> | <?php echo $objective_id; ?>
+			O(<?php echo $o['objective_order']; ?>) | <?php echo $o['name']; ?> | ID(<?php echo $objective_id; ?>)
 		</button>
 
 		<div class="well well-dark collapse <?php echo $objective_expanded == $objective_id ? 'in' : ''; ?>" id="objective_<?php echo $objective_id; ?>">
@@ -39,7 +39,7 @@ if ($objective_expanded) {
 		<button class="btn btn-default" type="submit" name="objective_id" value="<?php echo $objective_id; ?>">update</button>
 		<button class="btn btn-default" type="submit" name="add_side" value="<?php echo $objective_id; ?>">add side-obj</button>
 		<button class="btn btn-danger" type="submit" name="delete" value="<?php echo $objective_id; ?>">erase</button>
-		
+
 		</form>
 			<?php foreach($objectives as $side_o):  ?>
 				<?php if ($objective_id != $side_o['parent_objective_id']) continue; $side_type = Cardinal::$objective_types[$side_o['type']]; ?>
@@ -53,34 +53,31 @@ if ($objective_expanded) {
 						<?php endforeach; ?>
 					</select>
 					</div>
-						<?php 
+						<?php
 						$data = explode(':', $side_o['data']);
 						$selected_entity = $data[0];
-						$selected_service = count($data) == 2 ? $data[1] : $data[0];
-						if (in_array($side_type['data_type'], array('entity', 'entity_service'))): ?>
-						<div class="col-xs-4"> 
+						$selected_user = count($data) == 2 ? $data[1] : $data[0];
+						if (in_array($side_type['data_type'], array('entity', 'entity_user'))): ?>
+						<div class="col-xs-4">
 							<select name="data_entity" class="form-control">
 							<option>NONE</option>
-							<?php foreach($entities as $e): ?>
-								<option value="<?php echo $e['entity_id']; ?>" <?php echo $e['entity_id'] == $selected_entity ? 'selected' : ''; ?>><?php echo $e['hostname']; ?> : <?php echo $e['port']; ?> : <?php echo $e['title']; ?></option>
+							<?php foreach($entities as $e_id => $e): ?>
+								<option value="<?php echo $e_id; ?>" <?php echo $e_id == $selected_entity ? 'selected' : ''; ?>><?php echo $e['title']; ?> - <?php echo $e['username']; ?> @ <?php echo $e['hostname']; ?>:<?php echo $e['port']; ?></option>
 							<?php endforeach;?>
 							</select>
 							</div>
 						<?php endif; ?>
-						<?php if (in_array($side_type['data_type'], array('service', 'entity_service'))): ?>
-							<div class="col-xs-4"> 
-							<select name="data_service" class="form-control">
+						<?php if (in_array($side_type['data_type'], array('user', 'entity_user'))): ?>
+							<div class="col-xs-4">
+							<select name="data_user" class="form-control">
 							<option>NONE</option>
-							<?php foreach($services as $s): 
-								$users = explode(';', html_entity_decode($s['users'], ENT_QUOTES));
-								foreach($users as $u): $u = explode(':', $u); $value = $u[0] . ':' . $s['service_id']; ?>
-								<option value="<?php echo $value; ?>" <?php echo $value == $selected_service ? 'selected' : ''; ?>><?php echo $u[0]; ?> @ <?php echo $s['hostname']; ?> : <?php echo $s['port']; ?></option>
-								<?php endforeach;?>
+							<?php foreach($users as $u_id => $u): ?>
+								<option value="<?php echo $u_id; ?>" <?php echo $u_id == $selected_user ? 'selected' : ''; ?>><?php echo $u['username']; ?> @ <?php echo $u['hostname']; ?>:<?php echo $u['port']; ?></option>
 							<?php endforeach;?>
 							</select>
 							</div>
 						<?php endif; ?>
-					
+
 					</div>
 				<button class="btn btn-default" type="submit" name="objective_id" value="<?php echo $side_o['objective_id']; ?>">update</button>
 				<button class="btn btn-danger" type="submit" name="delete" value="<?php echo $side_o['objective_id']; ?>">erase</button>

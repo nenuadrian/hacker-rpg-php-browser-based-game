@@ -2,32 +2,25 @@
 <?php
 
 $expanded = array(
-	'service' => false,
-	'entity' => array(),
+	'service' => Input::get('service_id'),
+	'entity' => Input::get('entity_id'),
 	'server' => Input::get('quest_server_id'),
-	'user' => false
+	'user' => Input::get('user_id')
 );
 
+if (Input::get('user_id')) {
+	$expanded['service'] = $users[$expanded['user']]['service_id'];
+	$expanded['server'] = $services[$expanded['service']]['quest_server_id'];
+}
 
 if (Input::get('service_id')) {
-	$expanded['service'] = Input::get('service_id');
-	if (isset($services[$expanded['service']]))
 	$expanded['server'] = $services[$expanded['service']]['quest_server_id'];
 }
 
 if (Input::get('entity_id')) {
-	$expanded['entity'][] = Input::get('entity_id');
-
-	if (isset($entities[Input::get('entity_id')])) {
-		$expanded['user'] = $entities[Input::get('entity_id')]['user_id'];
-	/*	if ($entities[Input::get('entity_id')]['parent_entity_id']) {
-			$expanded['service'] = $entities[$entities[Input::get('entity_id')]['parent_entity_id']]['service_id'];
-			$expanded['entity'][] = $entities[Input::get('entity_id')]['parent_entity_id'];
-		} else {
-			$expanded['service'] = $entities[Input::get('entity_id')]['service_id'];
-		}
-		$expanded['server'] = $services[$expanded['service']]['quest_server_id'];*/
-	}
+	$expanded['user'] = $entities[Input::get('entity_id')]['user_id'];
+	$expanded['service'] = $users[$expanded['user']]['service_id'];
+	$expanded['server'] = $services[$expanded['service']]['quest_server_id'];
 }
 
 ?>
@@ -38,7 +31,7 @@ if (Input::get('entity_id')) {
 		</form>
 	<?php foreach($servers as $server_id => $s): ?>
 		<button id="anchor_server_<?php echo $server_id; ?>" class="btn btn-default btn-block" data-toggle="collapse" data-target="#server_<?php echo $server_id; ?>">
-  			<?php echo $s['hostname']; ?> | <?php echo $s['discovered'] ? 'discovered' : 'not discovered'; ?> | n<?php echo $s['network']; ?> | <?php echo $server_id; ?>
+  			<?php echo $s['hostname']; ?> | <?php echo $s['discovered'] ? 'discovered' : 'not discovered'; ?> | N(<?php echo $s['network']; ?>) | ID(<?php echo $server_id; ?>)
 		</button>
 
 		<div class="collapse well <?php echo $expanded['server'] == $server_id ? 'in' : ''; ?>" id="server_<?php echo $server_id; ?>" >

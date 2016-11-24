@@ -2,7 +2,7 @@
   <button id="anchor_entity_<?php echo $entity_id; ?>" class="btn btn-default btn-block" data-toggle="collapse" data-target="#entity_<?php echo $entity_id; ?>">
       <?php echo $e['title']; ?> | S<?php echo $e['security']; ?> | <?php echo $entity_id; ?>
   </button>
-  <div class="collapse well <?php echo in_array($entity_id, $expanded['entity']) ? 'in' : ''; ?>" id="entity_<?php echo $entity_id; ?>" >
+  <div class="collapse well <?php echo $entity_id == $expanded['entity'] ? 'in' : ''; ?>" id="entity_<?php echo $entity_id; ?>" >
     <form method="post" action="#anchor_entity_<?php echo $entity_id; ?>">
     <input type="hidden" name="entity_id" value="<?php echo $entity_id; ?>" />
 

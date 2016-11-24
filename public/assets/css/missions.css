@@ -1,0 +1,33 @@
+.mission {
+
+  background-color: rgba(255, 255, 255, 0.05);
+padding: 25px;
+border-bottom: 5px solid rgb(17, 141, 236);
+padding-left: 40px;
+cursor:pointer;
+}
+.mission .name {
+  font-size:30px;
+}
+
+.mission-content {
+  background-color: rgb(17, 141, 236);
+
+}
+.mission-content div {
+    padding:20px;
+}
+.mission p {margin:0; color: #8c8c8c;}
+
+form {margin:0;}
+
+.mission-content a {
+  color:white;margin:0;
+}
+
+.mission-content a:hover,.mission-content a:active,.mission-content a:focus {
+  color:black;
+  border:none;
+  background:none;
+  box-shadow:none;
+}

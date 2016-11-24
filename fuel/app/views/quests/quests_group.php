@@ -1,19 +1,25 @@
 <?php echo View::forge('global/header'); ?>
+<?php echo Asset::css('missions.css'); ?>
 
-<div style="padding:40px;">
-	<div class="row">
-	<?php foreach($quests as $q): ?>
-		<div class="col-md-6">
-		<div class="well well-dark">
-		  	<h3 class="text-center"><?php echo $q['name']; ?></h3>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+		<?php foreach($quests as $q): ?>
+    <div class="mission" onclick="$('#mission').collapse('toggle');$('#description').collapse('toggle')">
+        <div class="name"><?php echo $q['name']; ?></div>
+        <p id="description" class="collapse in"><?php echo html_entity_decode($q['summary']); ?></p>
+    </div>
 
-		  	<a href="<?php echo Uri::create('quests/play/' . $q['quest_id']);?>">play</a>
-		<?php echo html_entity_decode($q['summary']); ?>
-		  	</div>
-
-		
+		<div class="collapse mission-content" id="mission">
+		  <div>
+		    <?php echo html_entity_decode($q['summary']); ?>
+		    <form method="post" class="text-center">
+		      <a href="<?php echo Uri::create('quests/play/' . $q['quest_id']);?>" class="btn">accept mission</a>
+		    </form>
+		  </div>
 		</div>
-	<?php endforeach; ?>
-	</div>
+		<?php endforeach; ?>
+  </div>
 </div>
+
 <?php echo View::forge('global/footer'); ?>

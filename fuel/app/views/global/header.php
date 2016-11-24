@@ -64,31 +64,30 @@
 
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav text-center">
-			        <!--<li><a href="<?php echo Uri::create('dashboard'); ?>"><i class="fa fa-tachometer" aria-hidden="true"></i></a></li>
-							<li><a href="<?php echo Uri::create('demo'); ?>"><i class="fa fa-crosshairs" aria-hidden="true"></i></a></li>
+			        <li><a href="<?php echo Uri::create('dashboard'); ?>"><i class="fa fa-tachometer" aria-hidden="true"></i></a></li>
+							<li><a href="<?php echo Uri::create('quests'); ?>"><i class="fa fa-crosshairs" aria-hidden="true"></i></a></li>
 			        <li><a href="<?php echo Uri::create('skills'); ?>"><i class="fa fa-diamond" aria-hidden="true"></i></a></li>
 			        <li><a href="<?php echo Uri::create('knowledge'); ?>"><i class="fa fa-book" aria-hidden="true"></i></a></li>
 			        <li><a href="<?php echo Uri::create('train'); ?>"><i class="fa fa-calculator" aria-hidden="true"></i></a></li>
-			        <li><a href="<?php echo Uri::create('servers'); ?>"><i class="fa fa-server" aria-hidden="true"></i></a></li>
-			        <li><a href="<?php echo Uri::create('shop'); ?>"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
-			        <li><a href="<?php echo Uri::create('group'); ?>"><i class="fa fa-users" aria-hidden="true"></i></a></li>-->
+			        <!--<li><a href="<?php echo Uri::create('servers'); ?>"><i class="fa fa-server" aria-hidden="true"></i></a></li>
+			        <li><a href="<?php echo Uri::create('shop'); ?>"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>-->
+			        <li><a href="<?php echo Uri::create('group'); ?>"><i class="fa fa-users" aria-hidden="true"></i></a></li>
 
 
 			      </ul>
 			      <ul class="nav navbar-nav navbar-right text-center">
-			      <!--  <li <?php echo $convs ? 'class="active"' : ''; ?>><a href="<?php echo Uri::create('conversations'); ?>"><i class="fa fa-envelope-o" aria-hidden="true"></i><?php echo $convs ? ' <small>('.$convs.')</small>' : ''; ?></a></li>
+			      <li <?php echo $convs ? 'class="active"' : ''; ?>><a href="<?php echo Uri::create('conversations'); ?>"><i class="fa fa-envelope-o" aria-hidden="true"></i><?php echo $convs ? ' <small>('.$convs.')</small>' : ''; ?></a></li>
 			        <li <?php echo $rewards ? 'class="active"' : ''; ?>><a href="<?php echo Uri::create('rewards'); ?>"><i class="fa fa-gift" aria-hidden="true"></i><?php echo $rewards ? ' <small>('.$rewards.')</small>' : ''; ?></a></li>
 
 			      <li><a href="<?php echo Uri::create('rankings'); ?>"><i class="fa fa-trophy" aria-hidden="true"></i> <small>(<?php echo number_format(Auth::get('ranking')); ?>)</small></a></li>
-			    -->    <!--<li><a href="<?php echo Uri::create('premium'); ?>"><i class="fa fa-fire" aria-hidden="true"></i></a></li>-->
-			        <!--<li><a href="http://forum.secretrepublic.net" target="_blank"><i class="fa fa-wifi" aria-hidden="true"></i></a></li>
+			  		<!--<<li><a href="<?php echo Uri::create('premium'); ?>"><i class="fa fa-fire" aria-hidden="true"></i></a></li>-->
 			      	<li><a href="<?php echo Uri::create('affiliate'); ?>"><i class="fa fa-link" aria-hidden="true"></i></a></li>
 			        <li><a href="<?php echo Uri::create('dna'); ?>"><i class="fa fa-user-secret" aria-hidden="true"></i></a></li>
-			        <li><a href="<?php echo Uri::create('database'); ?>"><i class="fa fa-search" aria-hidden="true"></i></a></li>
+			        <!--<li><a href="<?php echo Uri::create('database'); ?>"><i class="fa fa-search" aria-hidden="true"></i></a></li>-->
 
 			        <?php if (Auth::get('group') == 2): ?>
-		        	 <li><a href="<?php echo Uri::create('cardinal'); ?>"><i class="fa fa-bolt" aria-hidden="true"></i></a></li>
-					<?php endif; ?>	-->
+				        	 <li><a href="<?php echo Uri::create('cardinal'); ?>"><i class="fa fa-bolt" aria-hidden="true"></i></a></li>
+							<?php endif; ?>
 			      </ul>
 			    </div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->

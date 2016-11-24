@@ -170,7 +170,7 @@ class Missions extends \Model {
                         }
                         $entity['running'] = true;
                         static::objective_check($task, $mission, 4, $entity_id);
-                        static::objective_check($task, $mission, 7, $entity_id . ':' . $mission['connected']['username'] . ':' . $mission['connected']['service_id']);
+                        static::objective_check($task, $mission, 7, $entity_id . ':' . $mission['connected']['user_id']);
                     }
                     if (\Input::post('action') == 'erase') {
                         static::objective_check($task, $mission, 3, $entity_id);
@@ -276,7 +276,6 @@ class Missions extends \Model {
         foreach($mission['entities'] as &$entity) {
             $entity['content'] = static::do_shortcode($mission, $entity['content']);
             $entity['title'] = static::do_shortcode($mission, $entity['title']);
-            $entity['owner'] = static::do_shortcode($mission, $entity['owner']);
         }
 
         if (isset($mission['connected'])) {

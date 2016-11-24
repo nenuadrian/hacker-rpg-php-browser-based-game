@@ -8,7 +8,7 @@
     <form method="post" action="#anchor_user_<?php echo $user_id; ?>">
       <input type="hidden" name="user_id" value="<?php echo $user_id; ?>" />
       <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-4">
         <input type="text" name="username" class="form-control" value="<?php echo $u['username']; ?>" placeholder="Username"/>
         </div>
         <div class="col-xs-4">

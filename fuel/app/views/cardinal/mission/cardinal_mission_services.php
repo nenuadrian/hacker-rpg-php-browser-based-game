@@ -1,7 +1,7 @@
 <?php foreach($services as $service_id => $service): if ($service['quest_server_id'] != $server_id) continue; ?>
 	<?php $type = Config::get('service_types')[$service['type']]; ?>
 	<button id="anchor_service_<?php echo $service_id; ?>" class="btn btn-default btn-block" data-toggle="collapse" data-target="#service_<?php echo $service_id; ?>">
-			Service <?php echo $service['port']; ?> | <?php echo $type['name']; ?> | <?php echo $service_id; ?>
+			Service <?php echo $service['port']; ?> | <?php echo $type['name']; ?> | ID(<?php echo $service_id; ?>)
 	</button>
 	<div class="collapse <?php echo $expanded['service'] == $service_id ? 'in' : ''; ?>" id="service_<?php echo $service_id; ?>" >
 		<div class ="well">
