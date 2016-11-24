@@ -21,22 +21,38 @@ class Knowledge extends \Model {
                             );
                     },
                 ),
-            2 => array(
-                    'name' => 'knowledge 2',
-                    'skills' => function($level) {
-                        return array(
-                                2 => $level * 2
-                            );
-                    },
-                    'requires' => function($level) {
-                        return array(
-                                'level' => $level * 1,
-                                'knows' => array(
-                                //        2 => $level
-                                    )
-                            );
-                    },
-                )
+                2 => array(
+                        'name' => 'knowledge 2',
+                        'skills' => function($level) {
+                            return array(
+                                    2 => $level * 2
+                                );
+                        },
+                        'requires' => function($level) {
+                            return array(
+                                    'level' => $level * 1,
+                                    'knows' => array(
+                                    //        2 => $level
+                                        )
+                                );
+                        },
+                    ),
+                3 => array(
+                            'name' => 'knowledge 3',
+                            'skills' => function($level) {
+                                return array(
+                                        2 => $level * 2
+                                    );
+                            },
+                            'requires' => function($level) {
+                                return array(
+                                        'level' => $level * 1,
+                                        'knows' => array(
+                                        //        2 => $level
+                                            )
+                                    );
+                            },
+                        )
         );
     }
 
@@ -57,7 +73,7 @@ class Knowledge extends \Model {
             foreach ($user_knows[$k_id]['requires']['knows'] as $r_k_id => &$r_k) {
                 $r_k = array('level' => $r_k, 'fulfilled' => $user_knows[$r_k_id]['level'] >= $r_k);
                 if (!$r_k['fulfilled']) $fulfilled = false;
-            } 
+            }
             $user_knows[$k_id]['requires']['fulfilled'] = $fulfilled;
 
         }
@@ -70,5 +86,5 @@ class Knowledge extends \Model {
         $knowsData = json_encode($knowsData);
         \DB::update('users')->set(array('knowledge' => $knowsData))->where('id', $user_id)->execute();
     }
-    
+
 }

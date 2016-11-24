@@ -11,19 +11,19 @@
  */
 
 return array(
-
+  'title' => 'Hacktivism',
 	'apps' => array(
 			1 => array(
 					'name' => 'Grid scanner 1',
 					'ram' => 20,
-					'cpu' => 5, 
+					'cpu' => 5,
 					'ssd' => 10,
 					'grid_scanner' => 10
 				),
 			2 => array(
 					'name' => 'Firewall 1',
 					'ram' => 20,
-					'cpu' => 5, 
+					'cpu' => 5,
 					'ssd' => 10,
 					'firewall' => 10
 				),
@@ -31,7 +31,7 @@ return array(
 			3 => array(
 					'name' => 'Antivirus 1',
 					'ram' => 20,
-					'cpu' => 5, 
+					'cpu' => 5,
 					'ssd' => 10,
 					'antivirus' => 10
 				),
@@ -39,15 +39,15 @@ return array(
 			4 => array(
 					'name' => 'Money stealer 1',
 					'ram' => 20,
-					'cpu' => 5, 
+					'cpu' => 5,
 					'ssd' => 10,
 					'money_steal' => 10
 				),
-			
+
 			5 => array(
 					'name' => 'Money making app planter 1',
 					'ram' => 20,
-					'cpu' => 5, 
+					'cpu' => 5,
 					'ssd' => 10,
 					'money_maker_planter' => 10,
 					'plants' => 6
@@ -56,7 +56,7 @@ return array(
 			6 => array(
 					'name' => 'Money making app 1',
 					'ram' => 20,
-					'cpu' => 5, 
+					'cpu' => 5,
 					'ssd' => 10,
 					'user_run' => true,
 					'money_maker' => 10
@@ -95,7 +95,7 @@ return array(
 		1 => array(
 			'name' => 'Decryption'
 			),
-		
+
 		),
 
 	'service_types' => array(
@@ -375,7 +375,7 @@ return array(
 		 * );
 		 */
 		 'packages'  => array(
-			'auth', 
+			'auth',
 			'messages',
 		 ),
 

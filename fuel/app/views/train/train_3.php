@@ -2,12 +2,16 @@
 
 
 <div class="container">
-	<div class="text-center">
-		<div style="display:inline-block; max-width:100px;margin-top:50px">
-		<?php echo View::forge('components/countdown', array('start_value' => $task['task_start'], 'remaining' => $task['remaining'], 'duration' => $task['task_duration'])); ?>
+	<div class="row">
+		<div class="col-md-4">
+		<?php echo View::forge('components/countdown', array('start_value' => $task['task_start'], 'remaining' => $task['remaining'], 'duration' => $task['task_duration'], 'max_width' => '100px')); ?>
+	</div>
+	<div class="col-md-8">
+		<div class="well">
+			<?php echo html_entity_decode($instructions); ?>
 		</div>
 	</div>
-
+</div>
 
 		<?php if (isset($output)): ?>
 			<?php if (is_array($output)): ?>
@@ -40,6 +44,6 @@
 		<button type="submit" class="btn btn-default">Execute CQL query</button>
 		</form>
 
-	
+
 </div>
 <?php echo View::forge('global/footer'); ?>

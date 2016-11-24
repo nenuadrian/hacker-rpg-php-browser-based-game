@@ -16,9 +16,9 @@ class Controller_Train extends Controller
     public function __construct() {
         if (!Auth::check()) Response::redirect(Uri::base());
     }
-    
-    
-	public function action_index() 
+
+
+	public function action_index()
     {
     	if (Task::get_one(Auth::get('id'), 2)) Response::redirect(Uri::create('train/train'));
 
@@ -47,7 +47,7 @@ class Controller_Train extends Controller
                 else File::update($sql_path, $sql_filename, '');
 
                 $data['sql_file'] = $sql_file;
-                
+
                    $db = new MyDB($sql_file);
 
                    $sql = DB::select()->from('training')->where('type', 3)->where('min_level', '<=', $train['level'])->where('max_level', '>=', $train['level'])
@@ -64,6 +64,8 @@ class Controller_Train extends Controller
                     $cc = explode('|', $cc);
 
                 $data['completion_conditions'] = $completion_conditions;
+
+                $data['training_id'] = $sql['training_id'];
             }
     		Task::create(Auth::get('id'), 2, 1000, $data);
              Response::redirect(Uri::create('train/train'));
@@ -77,11 +79,12 @@ class Controller_Train extends Controller
     	$tVars = array();
     	$task = Task::get_one(Auth::get('id'), 2);
     	if (!$task) Response::redirect(Uri::create('train'));
+
         if ($task['data']['train_type'] == 1) {
     	} elseif ($task['data']['train_type'] == 2) {
 
             if (isset($task['data']['mission']['completed'])) {
-                
+
                /* $task['complete'] = time();
                 $task['complete_status'] = 1;
                 Task::save($task);
@@ -89,6 +92,7 @@ class Controller_Train extends Controller
             }
             return Missions::interface($task);
         } elseif ($task['data']['train_type'] == 3) {
+            $training = DB::select()->from('training')->where('training_id', $task['data']['training_id'])->execute()->as_array()[0];
 
             if (Input::post('query')) {
                 $db = new MyDB($task['data']['sql_file']);
@@ -109,7 +113,7 @@ class Controller_Train extends Controller
                         } elseif ($type == 'update') {
                             $tVars['output'] = 'done';
                         }
-                        
+
                         //$ret;
                         // verify if conditions are met
                         $done = true;
@@ -126,8 +130,8 @@ class Controller_Train extends Controller
                         }
 
                     } else $tVars['output'] = "The Cardinal Query Language of this instance accepts only SELECT, INSERT and UPDATE commands.";
-                   
-                    /* 
+
+                    /*
                     while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
       echo "ADDRESS = ". $row['ADDRESS'] ."\n";
       echo "SALARY =  ".$row['SALARY'] ."\n\n";
@@ -136,11 +140,12 @@ class Controller_Train extends Controller
                 } catch (Exception $ex) {
                     $tVars['output'] = $db->lastErrorMsg();
                 }
-                
+
                 $db->close();
             }
         }
         $tVars['task'] = $task;
+        $tVars['instructions'] = $training['instructions'];
     	return View::forge('train/train_' . $task['data']['train_type'], $tVars);
     }
 }

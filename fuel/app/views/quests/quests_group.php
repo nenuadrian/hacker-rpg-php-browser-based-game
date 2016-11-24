@@ -1,9 +1,7 @@
 <?php echo View::forge('global/header'); ?>
 <?php echo Asset::css('missions.css'); ?>
 
-<div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-6">
+<div class="container">
 		<?php foreach($quests as $q): ?>
     <div class="mission" onclick="$('#mission').collapse('toggle');$('#description').collapse('toggle')">
         <div class="name"><?php echo $q['name']; ?></div>
@@ -19,7 +17,5 @@
 		  </div>
 		</div>
 		<?php endforeach; ?>
-  </div>
 </div>
-
 <?php echo View::forge('global/footer'); ?>

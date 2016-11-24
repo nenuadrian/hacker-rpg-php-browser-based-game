@@ -18,6 +18,8 @@ footer {
     -o-transition: color,border,background,opacity 500ms ease-out 0s;
     transition: color,border,background,opacity 500ms ease-out 0s;
 }
+
+
 .modal-title {
 	text-align:center;
 	    letter-spacing: 5px;
@@ -182,8 +184,14 @@ hr {
 	border-color:white;
 }
 
+.navbar-toggle {
+	margin-top: 0px;
+}
+.navbar-default .navbar-toggle {
+	border:none;
+}
 .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
-    background-color: rgba(255, 255, 255, 0.11);
+    background-color: rgba(255, 255, 255, 0);
 }
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
 	border:0;
@@ -192,6 +200,12 @@ hr {
 .navbar-default .navbar-toggle .icon-bar {
     background-color: white;
 }
+
+.navbar-toggle .icon-bar {
+    width: 28px;
+    height: 3px;
+}
+
 .navbar-default .navbar-nav>li>a {
     color: #209eff;
     font-size:20px;

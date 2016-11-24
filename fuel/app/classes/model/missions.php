@@ -341,7 +341,7 @@ class Missions extends \Model {
 
         static::parse_shortcodes($mission);
 
-        //$mission['skills_influence'] = Skills::influence_total(\Auth::get('skills'));
+        $mission['skills_influence'] = Skills::influence_total(\Auth::get('skills'));
 
         return $mission;
     }

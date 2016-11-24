@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<title>Hacktivism</title>
+		<title><?php echo isset($title) ? $title . ' - ' : ''; ?><?php echo Config::get('title'); ?></title>
 		<link rel="shortcut icon" href="<?php echo Uri::create('assets/img/favicon.ico'); ?>" type="image/x-icon">
 		<?php if (!Auth::check()): ?>
 		<meta name="description" content="An online hacking simulation Massive Multiplayer Online Role Playing Game based on your browser. We aim to provide something new, a fresh browser gameplay experience. The hacker game for you.">
@@ -19,6 +19,7 @@
 		<meta name="page-topic" content="free online hacking economical social and simulation browser based game"> <meta name="audience" content="all">
 
 	<?php endif; ?>
+	 <?php echo Asset::css('reset.css'); ?>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<script src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -32,6 +33,7 @@
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
 		<?php echo Asset::css('style.css'); ?>
 		<?php echo Asset::js('progressbar.min.js'); ?>
+
 		<?php echo Asset::js('countdown.custom.js'); ?>
 	</head>
 	<body>
@@ -40,7 +42,7 @@
 				DB::update('users')->set(array('last_active' => time()))->where('id', Auth::get('id'))->execute();
 				Session::set('last_active_update', time());
 			}
-			/*
+
 		 	echo View::forge('tutorial/tutorial-handler');
 
 			 $convs = DB::select(DB::expr('count(*) as count'))->where('parent_conversation_id', 'IS', NULL)->from('conversation')->where('unseen', 1)->where('last_replier_id', '!=', Auth::get('id'))->where(function($conv) {
@@ -48,7 +50,7 @@
 				})->execute()->as_array()[0]['count'];
 
 			 $rewards = DB::select(DB::expr('count(*) as count'))->from('reward')->where('user_id', Auth::get('id'))->where('claimed', 'IS', NULL)->execute()->as_array()[0]['count'];
-		*/ $convs = 0; $rewards=0;	?>
+		?>
 			<br/>
 			<nav class="navbar navbar-default">
 			  <div class="container">
@@ -76,12 +78,12 @@
 
 			      </ul>
 			      <ul class="nav navbar-nav navbar-right text-center">
-			      <li <?php echo $convs ? 'class="active"' : ''; ?>><a href="<?php echo Uri::create('conversations'); ?>"><i class="fa fa-envelope-o" aria-hidden="true"></i><?php echo $convs ? ' <small>('.$convs.')</small>' : ''; ?></a></li>
+			    <!--  <li <?php echo $convs ? 'class="active"' : ''; ?>><a href="<?php echo Uri::create('conversations'); ?>"><i class="fa fa-envelope-o" aria-hidden="true"></i><?php echo $convs ? ' <small>('.$convs.')</small>' : ''; ?></a></li>-->
 			        <li <?php echo $rewards ? 'class="active"' : ''; ?>><a href="<?php echo Uri::create('rewards'); ?>"><i class="fa fa-gift" aria-hidden="true"></i><?php echo $rewards ? ' <small>('.$rewards.')</small>' : ''; ?></a></li>
 
 			      <li><a href="<?php echo Uri::create('rankings'); ?>"><i class="fa fa-trophy" aria-hidden="true"></i> <small>(<?php echo number_format(Auth::get('ranking')); ?>)</small></a></li>
 			  		<!--<<li><a href="<?php echo Uri::create('premium'); ?>"><i class="fa fa-fire" aria-hidden="true"></i></a></li>-->
-			      	<li><a href="<?php echo Uri::create('affiliate'); ?>"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+			      <!--	<li><a href="<?php echo Uri::create('affiliate'); ?>"><i class="fa fa-link" aria-hidden="true"></i></a></li>-->
 			        <li><a href="<?php echo Uri::create('dna'); ?>"><i class="fa fa-user-secret" aria-hidden="true"></i></a></li>
 			        <!--<li><a href="<?php echo Uri::create('database'); ?>"><i class="fa fa-search" aria-hidden="true"></i></a></li>-->
 

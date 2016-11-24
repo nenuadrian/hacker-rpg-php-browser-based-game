@@ -1,8 +1,8 @@
-<?php 
+<?php
 use \Model\Skills;
 use \Model\Missions;
 use \Model\Servers;
-echo View::forge('global/header'); 
+echo View::forge('global/header');
 ?>
 
 <div class="container">
@@ -22,13 +22,7 @@ Upgrade your abilities as fast as you can to gain more skill points. Your skills
 		<?php echo View::forge('components/modal', array('id' => 'skill-' . $skill_id, 'title' => $s['name'], 'content' => View::forge('skills/skill_modal', array('s' => $s, 'user_skill' => $skills[$skill_id])))); ?>
 
 		<a style="    display: block;
-    margin-left: 25px;
-    margin-right: 25px;
-    background-color: rgba(66, 66, 66, 0.12);
-    border: 2px solid rgba(43, 43, 43, 0.78);
-    padding: 25px;
-    border-top-left-radius: 25px;
-    border-bottom-right-radius: 25px;" class="" data-toggle="modal" data-target="#skill-<?php echo $skill_id; ?>">
+    margin-left: 25px;" class="" data-toggle="modal" data-target="#skill-<?php echo $skill_id; ?>">
 		<h3><?php echo $s['name']; ?></h3>
 
 		<div style="margin-top:40px; margin-bottom:40px">

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3307
--- Generation Time: Nov 24, 2016 at 03:51 AM
+-- Generation Time: Nov 24, 2016 at 10:32 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -762,15 +762,16 @@ CREATE TABLE `quest_group` (
   `live` tinyint(1) NOT NULL DEFAULT '0',
   `type` tinyint(1) NOT NULL DEFAULT '1',
   `level` int(11) NOT NULL DEFAULT '0',
-  `group_order` int(11) NOT NULL DEFAULT '0'
+  `group_order` int(11) NOT NULL DEFAULT '0',
+  `description` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `quest_group`
 --
 
-INSERT INTO `quest_group` (`quest_group_id`, `name`, `required_quest_id`, `live`, `type`, `level`, `group_order`) VALUES
-(5, 'Demo', 0, 1, 1, 0, 0);
+INSERT INTO `quest_group` (`quest_group_id`, `name`, `required_quest_id`, `live`, `type`, `level`, `group_order`, `description`) VALUES
+(5, 'Demo', 0, 1, 1, 0, 0, 'test description');
 
 -- --------------------------------------------------------
 
@@ -788,7 +789,7 @@ CREATE TABLE `quest_objective` (
   `data` varchar(255) DEFAULT NULL,
   `quest_id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `quest_objective`
@@ -796,7 +797,8 @@ CREATE TABLE `quest_objective` (
 
 INSERT INTO `quest_objective` (`objective_id`, `parent_objective_id`, `story`, `objective_order`, `optional`, `type`, `data`, `quest_id`, `name`) VALUES
 (33, NULL, 'Objective 1', 1, NULL, 1, NULL, 9, 'Objective 1'),
-(35, 33, NULL, 0, NULL, 1, NULL, 9, NULL);
+(35, 33, NULL, 0, NULL, 7, 'NONE', 9, NULL),
+(36, NULL, NULL, 2, NULL, 1, NULL, 9, 'Untitled');
 
 -- --------------------------------------------------------
 
@@ -812,14 +814,16 @@ CREATE TABLE `quest_server` (
   `bounces` int(11) NOT NULL DEFAULT '3',
   `network` int(11) NOT NULL DEFAULT '10',
   `hide_hn` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `quest_server`
 --
 
 INSERT INTO `quest_server` (`quest_server_id`, `quest_id`, `hostname`, `discovered`, `bounces`, `network`, `hide_hn`) VALUES
-(19, 9, 'untitled', 0, 3, 10, 0);
+(19, 9, 'untitled1', 1, 3, 10, 0),
+(20, 9, 'untitled', 1, 3, 10, 0),
+(21, 9, 'untitled', 0, 3, 10, 0);
 
 -- --------------------------------------------------------
 
@@ -844,7 +848,7 @@ CREATE TABLE `quest_server_service` (
 --
 
 INSERT INTO `quest_server_service` (`service_id`, `port`, `type`, `quest_server_id`, `discovered`, `welcome`, `quest_id`, `users`, `required_objective`) VALUES
-(14, 22, 1, 19, 0, '', 9, 'root::60', 0),
+(14, 22, 1, 19, 1, '', 9, 'root::60', 0),
 (15, 22, 1, 19, 0, NULL, 9, 'root::60', 0),
 (16, 22, 1, 19, 0, NULL, 9, 'root::60', 0),
 (17, 22, 1, 19, 0, NULL, 9, 'root::60', 0);
@@ -859,17 +863,18 @@ CREATE TABLE `quest_service_user` (
   `user_id` int(11) NOT NULL,
   `service_id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `password` int(11) DEFAULT NULL,
-  `quest_id` int(11) NOT NULL
+  `password` varchar(255) DEFAULT NULL,
+  `quest_id` int(11) NOT NULL,
+  `security` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `quest_service_user`
 --
 
-INSERT INTO `quest_service_user` (`user_id`, `service_id`, `username`, `password`, `quest_id`) VALUES
-(2, 14, 'user1479955190', NULL, 9),
-(3, 14, 'user1479955296', NULL, 9);
+INSERT INTO `quest_service_user` (`user_id`, `service_id`, `username`, `password`, `quest_id`, `security`) VALUES
+(2, 14, 'user1479955190', '', 9, 0),
+(3, 14, 'user1479955296', '', 9, 0);
 
 -- --------------------------------------------------------
 
@@ -888,7 +893,6 @@ CREATE TABLE `quest_user_entity` (
   `parent_entity_id` int(11) NOT NULL DEFAULT '0',
   `type` tinyint(1) NOT NULL DEFAULT '1',
   `password` varchar(255) NOT NULL,
-  `owner` varchar(255) NOT NULL,
   `required_running` varchar(500) NOT NULL,
   `required_objective` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
@@ -897,22 +901,22 @@ CREATE TABLE `quest_user_entity` (
 -- Dumping data for table `quest_user_entity`
 --
 
-INSERT INTO `quest_user_entity` (`entity_id`, `title`, `user_id`, `security`, `content`, `quest_id`, `sender_receiver`, `parent_entity_id`, `type`, `password`, `owner`, `required_running`, `required_objective`) VALUES
-(1, 'test file2', 1, 2, 'a', 1, NULL, 0, 0, '', 'root2', '', 0),
-(2, '4', 1, 2, '', 1, NULL, 0, 0, '', 'root', '', 0),
-(3, 'test', 4, 0, '', 1, 'owen@alpha.co', 0, 0, '', 'cool@test.com', '', 0),
-(4, 'users', 5, 0, 'id|salary', 1, NULL, 0, 0, '', '', '', 0),
-(5, '1|test', NULL, 0, 'sdf', 1, NULL, 4, 0, '', '', '', 0),
-(6, 'run.me', 6, 0, '', 2, NULL, 0, 1, '', 'root', '', 0),
-(7, 'root.readme', 7, 0, 'This file can only be seen by root.', 3, NULL, 0, 0, '', 'root', '', 0),
-(8, 'admin.readme', 7, 0, 'This file can only be seen by admin.', 3, NULL, 0, 0, '', 'admin', '', 0),
-(9, 'exec-needs-exec2', 1, 0, '', 1, NULL, 0, 1, '', 'root', '10:1', 0),
-(10, 'exec2', 1, 0, '', 1, NULL, 0, 1, '', 'root', '', 0),
-(11, 'Carpe Diem ', 11, 0, 'Well, hi <strong>[username]</strong>,\r\n\r\nWe''ve heard of you recent progress in the industry. Our agents have been researching specific individuals since their first contact with a computer until their latest keystrokes.\r\n\r\nYou, amongst others, stand out from the masses. \r\n\r\nAllow me to be short.\r\n\r\nI want to offer you.. a contract. You will provide a service and I will pay more or less handsomely.\r\n\r\nThe service we need from you is infiltrating into the entities we specify and either retrieve the information we require or inflicting irreparable damage.\r\n\r\nYou might be wondering who we are by now.\r\n\r\nOur name is Cobra and we are delighted to make your acquaintance, [username].\r\n\r\nUntil we talk again,\r\nW.\r\n', 7, 'unknown@anonymous.contractor.co', 0, 1, '', '[username]@hell-of-a-cat.alpha', '', 0),
-(12, 'index.php', 12, 100, '<?php\r\nif (isset($_POST[''email'']) && filter_var($_POST[''email''], FILTER_VALIDATE_EMAIL)) {\r\n   file_put_contents(''to_contact.txt'', $_POST[''email''].PHP_EOL, FILE_APPEND | LOCK_EX);\r\n}\r\n?>\r\n<html lang="en">\r\n  <head>\r\n    <meta charset="utf-8">\r\n    <meta http-equiv="X-UA-Compatible" content="IE=edge">\r\n    <meta name="viewport" content="width=device-width, initial-scale=1">\r\n    <link rel="icon" href="favicon.ico">\r\n    <title>Revolution of Bio Technology</title>\r\n    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">\r\n  </head>\r\n  <body>\r\n    <div class="container">\r\n      <div class="page-header">\r\n        <h1>A new formula for bio engineering</h1>\r\n      </div>\r\n      <p class="lead">Our team is working on the next generation of bio engineered cells.</p>\r\n      <p>We are recruiting bright talent from the industry. Contact us and we''ll get back to you for your CV and references.</p>\r\n      <p>\r\n         <form method="post">\r\n            <input type="email" name="email" placeholder="Your email" />\r\n            <button type="submit" class="btn btn-block">Send</button>\r\n         </form>\r\n      </p>\r\n    </div>\r\n    <div class="footer">\r\n      <div class="container">\r\n        <p class="text-muted">Bio-Keltech</p>\r\n      </div>\r\n    </div>\r\n  </body>\r\n</html>', 7, NULL, 0, 2, '', 'root', '', 0),
-(13, 'to_contact.txt', 12, 100, '', 7, NULL, 0, 0, '', 'root', '', 0),
-(14, 'site.backup', 13, 100, '', 7, NULL, 0, 0, '', 'root', '', 0),
-(15, 'untitled', 2, 0, 'sdfsdf', 9, NULL, 0, 1, '', '', '', 0);
+INSERT INTO `quest_user_entity` (`entity_id`, `title`, `user_id`, `security`, `content`, `quest_id`, `sender_receiver`, `parent_entity_id`, `type`, `password`, `required_running`, `required_objective`) VALUES
+(1, 'test file2', 1, 2, 'a', 1, NULL, 0, 0, '', '', 0),
+(2, '4', 1, 2, '', 1, NULL, 0, 0, '', '', 0),
+(3, 'test', 4, 0, '', 1, 'owen@alpha.co', 0, 0, '', '', 0),
+(4, 'users', 5, 0, 'id|salary', 1, NULL, 0, 0, '', '', 0),
+(5, '1|test', NULL, 0, 'sdf', 1, NULL, 4, 0, '', '', 0),
+(6, 'run.me', 6, 0, '', 2, NULL, 0, 1, '', '', 0),
+(7, 'root.readme', 7, 0, 'This file can only be seen by root.', 3, NULL, 0, 0, '', '', 0),
+(8, 'admin.readme', 7, 0, 'This file can only be seen by admin.', 3, NULL, 0, 0, '', '', 0),
+(9, 'exec-needs-exec2', 1, 0, '', 1, NULL, 0, 1, '', '10:1', 0),
+(10, 'exec2', 1, 0, '', 1, NULL, 0, 1, '', '', 0),
+(11, 'Carpe Diem ', 11, 0, 'Well, hi <strong>[username]</strong>,\r\n\r\nWe''ve heard of you recent progress in the industry. Our agents have been researching specific individuals since their first contact with a computer until their latest keystrokes.\r\n\r\nYou, amongst others, stand out from the masses. \r\n\r\nAllow me to be short.\r\n\r\nI want to offer you.. a contract. You will provide a service and I will pay more or less handsomely.\r\n\r\nThe service we need from you is infiltrating into the entities we specify and either retrieve the information we require or inflicting irreparable damage.\r\n\r\nYou might be wondering who we are by now.\r\n\r\nOur name is Cobra and we are delighted to make your acquaintance, [username].\r\n\r\nUntil we talk again,\r\nW.\r\n', 7, 'unknown@anonymous.contractor.co', 0, 1, '', '', 0),
+(12, 'index.php', 12, 100, '<?php\r\nif (isset($_POST[''email'']) && filter_var($_POST[''email''], FILTER_VALIDATE_EMAIL)) {\r\n   file_put_contents(''to_contact.txt'', $_POST[''email''].PHP_EOL, FILE_APPEND | LOCK_EX);\r\n}\r\n?>\r\n<html lang="en">\r\n  <head>\r\n    <meta charset="utf-8">\r\n    <meta http-equiv="X-UA-Compatible" content="IE=edge">\r\n    <meta name="viewport" content="width=device-width, initial-scale=1">\r\n    <link rel="icon" href="favicon.ico">\r\n    <title>Revolution of Bio Technology</title>\r\n    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">\r\n  </head>\r\n  <body>\r\n    <div class="container">\r\n      <div class="page-header">\r\n        <h1>A new formula for bio engineering</h1>\r\n      </div>\r\n      <p class="lead">Our team is working on the next generation of bio engineered cells.</p>\r\n      <p>We are recruiting bright talent from the industry. Contact us and we''ll get back to you for your CV and references.</p>\r\n      <p>\r\n         <form method="post">\r\n            <input type="email" name="email" placeholder="Your email" />\r\n            <button type="submit" class="btn btn-block">Send</button>\r\n         </form>\r\n      </p>\r\n    </div>\r\n    <div class="footer">\r\n      <div class="container">\r\n        <p class="text-muted">Bio-Keltech</p>\r\n      </div>\r\n    </div>\r\n  </body>\r\n</html>', 7, NULL, 0, 2, '', '', 0),
+(13, 'to_contact.txt', 12, 100, '', 7, NULL, 0, 0, '', '', 0),
+(14, 'site.backup', 13, 100, '', 7, NULL, 0, 0, '', '', 0),
+(15, 'untitled', 2, 0, 'sdfsdf', 9, NULL, 0, 1, '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -1010,17 +1014,14 @@ CREATE TABLE `task` (
   `server_id` int(11) DEFAULT NULL,
   `data_id` int(11) DEFAULT NULL,
   `complete_status` tinyint(4) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `task`
 --
 
 INSERT INTO `task` (`task_id`, `user_id`, `task_start`, `created_at`, `task_duration`, `task_type`, `data`, `complete`, `server_id`, `data_id`, `complete_status`) VALUES
-(45, 1, 1473779137, '2016-09-13 15:05:37', 30000, 100, '{"mission":{"servers":{"8":{"quest_server_id":"8","quest_id":"7","hostname":"my.email.server","discovered":"1","bounces":"3","network":"10","hide_hn":"0","ip":"72.108.59.183"},"9":{"quest_server_id":"9","quest_id":"7","hostname":"company","discovered":"0","bounces":"3","network":"10","hide_hn":"0","ip":"17.59.246.154"},"10":{"quest_server_id":"10","quest_id":"7","hostname":"backup.server","discovered":"0","bounces":"3","network":"10","hide_hn":"0","ip":"40.147.24.144"},"-7":{"hostname":"new server","ip":"244.157.70.106","bounces":3,"discovered":true,"network":0,"hide_hn":false},"-8":{"hostname":"new server","ip":"76.216.68.11","bounces":3,"discovered":true,"network":0,"hide_hn":false}},"services":{"12":{"service_id":"12","port":"22","type":"1","quest_server_id":"9","discovered":"0","welcome":"","quest_id":"7","users":{"root":{"security":"100","password":false}}},"13":{"service_id":"13","port":"22","type":"1","quest_server_id":"10","discovered":"0","welcome":"Backup server.","quest_id":"7","users":{"root":{"security":"60","password":false}}},"11":{"service_id":"11","port":"365","type":"2","quest_server_id":"8","discovered":"1","welcome":"Glad you have you back, sir cardinal.","quest_id":"7","users":{"cardinal@hell-of-a-cat.alpha":{"security":false,"password":false}}},"-7":{"quest_server_id":-7,"type":1,"discovered":true,"users":{"cardinal":{"security":false,"password":false}},"port":30,"welcome":""},"-8":{"quest_server_id":-8,"type":1,"discovered":true,"users":{"cardinal":{"security":false,"password":false}},"port":22,"welcome":""}},"entities":{"11":{"entity_id":"11","title":"Carpe Diem ","service_id":"11","security":"0","content":"Well, hi <strong>cardinal<\\/strong>,\\r\\n\\r\\nWe''ve heard of you recent progress in the industry. Our agents have been researching specific individuals since their first contact with a computer until their latest keystrokes.\\r\\n\\r\\nYou, amongst others, stand out from the masses. \\r\\n\\r\\nAllow me to be short.\\r\\n\\r\\nI want to offer you.. a contract. You will provide a service and I will pay more or less handsomely.\\r\\n\\r\\nThe service we need from you is infiltrating into the entities we specify and either retrieve the information we require or inflicting irreparable damage.\\r\\n\\r\\nYou might be wondering who we are by now.\\r\\n\\r\\nOur name is Cobra and we are delighted to make your acquaintance, cardinal.\\r\\n\\r\\nUntil we talk again,\\r\\nW.\\r\\n","quest_id":"7","sender_receiver":"unknown@anonymous.contractor.co","parent_entity_id":"0","type":"1","password":"","owner":"cardinal@hell-of-a-cat.alpha","required_running":""},"12":{"entity_id":"12","title":"index.php","service_id":"12","security":"100","content":"<?php\\r\\nif (isset($_POST[''email'']) && filter_var($_POST[''email''], FILTER_VALIDATE_EMAIL)) {\\r\\n   file_put_contents(''to_contact.txt'', $_POST[''email''].PHP_EOL, FILE_APPEND | LOCK_EX);\\r\\n}\\r\\n?>\\r\\n<html lang=\\"en\\">\\r\\n  <head>\\r\\n    <meta charset=\\"utf-8\\">\\r\\n    <meta http-equiv=\\"X-UA-Compatible\\" content=\\"IE=edge\\">\\r\\n    <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">\\r\\n    <link rel=\\"icon\\" href=\\"favicon.ico\\">\\r\\n    <title>Revolution of Bio Technology<\\/title>\\r\\n    <link href=\\"https:\\/\\/maxcdn.bootstrapcdn.com\\/bootstrap\\/3.3.7\\/css\\/bootstrap.min.css\\" rel=\\"stylesheet\\">\\r\\n  <\\/head>\\r\\n  <body>\\r\\n    <div class=\\"container\\">\\r\\n      <div class=\\"page-header\\">\\r\\n        <h1>A new formula for bio engineering<\\/h1>\\r\\n      <\\/div>\\r\\n      <p class=\\"lead\\">Our team is working on the next generation of bio engineered cells.<\\/p>\\r\\n      <p>We are recruiting bright talent from the industry. Contact us and we''ll get back to you for your CV and references.<\\/p>\\r\\n      <p>\\r\\n         <form method=\\"post\\">\\r\\n            <input type=\\"email\\" name=\\"email\\" placeholder=\\"Your email\\" \\/>\\r\\n            <button type=\\"submit\\" class=\\"btn btn-block\\">Send<\\/button>\\r\\n         <\\/form>\\r\\n      <\\/p>\\r\\n    <\\/div>\\r\\n    <div class=\\"footer\\">\\r\\n      <div class=\\"container\\">\\r\\n        <p class=\\"text-muted\\">Bio-Keltech<\\/p>\\r\\n      <\\/div>\\r\\n    <\\/div>\\r\\n  <\\/body>\\r\\n<\\/html>","quest_id":"7","sender_receiver":null,"parent_entity_id":"0","type":"2","password":"","owner":"root","required_running":""},"14":{"entity_id":"14","title":"site.backup","service_id":"13","security":"100","content":"","quest_id":"7","sender_receiver":null,"parent_entity_id":"0","type":"0","password":"","owner":"root","required_running":""},"13":{"entity_id":"13","title":"to_contact.txt","service_id":"12","security":"100","content":"","quest_id":"7","sender_receiver":null,"parent_entity_id":"0","type":"0","password":"","owner":"root","required_running":""}},"objective":{"objective_id":"20","parent_objective_id":null,"story":"I''ve been avoiding this email in my Inbox for the past few days.\\r\\n\\r\\nI think it might be worth checking it out.\\r\\n\\r\\nIf I recall correctly, I saved it on one of my proxy email servers: 72.108.59.183. The email service should be configured to run on port 325. It hosts one of my personal addresses: cardinal@hell-of-a-cat.alpha.\\r\\n\\r\\nI''ll go and take a closer look at what these guys are all about.\\r\\n","objective_order":"0","optional":null,"type":"1","data":null,"quest_id":"7","name":"A strange email","sides":[{"objective_id":"23","parent_objective_id":"20","story":null,"objective_order":"0","optional":null,"type":"5","data":"11","quest_id":"7","name":null}]},"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"bouncers":[],"connected":{"service_id":-8,"username":"cardinal"}}}', 1473843035, NULL, 7, NULL),
-(46, 1, 1473782764, '2016-09-13 16:06:04', 300, 1, '{"mission":{"servers":{"4":{"quest_server_id":"4","quest_id":"3","hostname":"training.secretrepublic.net","discovered":"1","bounces":"3","network":"10","hide_hn":"0","ip":"1.248.42.161"},"5":{"quest_server_id":"5","quest_id":"3","hostname":"training2.secretrepublic.net","discovered":"0","bounces":"3","network":"10","hide_hn":"0","ip":"68.125.177.111"},"-7":{"hostname":"new server","ip":"244.157.70.106","bounces":3,"discovered":true,"network":0,"hide_hn":false},"-8":{"hostname":"new server","ip":"76.216.68.11","bounces":3,"discovered":true,"network":0,"hide_hn":false}},"services":{"7":{"service_id":"7","port":"22","type":"1","quest_server_id":"4","discovered":"1","welcome":"Welcome, user.","quest_id":"3","users":{"admin":{"security":false,"password":"admin"},"root":{"security":"5","password":false}}},"9":{"service_id":"9","port":"25","type":"1","quest_server_id":"5","discovered":"0","welcome":"","quest_id":"3","users":{"root":{"security":"10","password":false}}},"-7":{"quest_server_id":-7,"type":1,"discovered":true,"users":{"cardinal":{"security":false,"password":false}},"port":30,"welcome":""},"-8":{"quest_server_id":-8,"type":1,"discovered":true,"users":{"cardinal":{"security":false,"password":false}},"port":22,"welcome":""}},"entities":{"8":{"entity_id":"8","title":"admin.readme","service_id":"7","security":"0","content":"This file can only be seen by admin.","quest_id":"3","sender_receiver":null,"parent_entity_id":"0","type":"0","password":"","owner":"admin","required_running":""},"7":{"entity_id":"7","title":"root.readme","service_id":"7","security":"0","content":"This file can only be seen by root.","quest_id":"3","sender_receiver":null,"parent_entity_id":"0","type":"0","password":"","owner":"root","required_running":""}},"objective":{"objective_id":"7","parent_objective_id":null,"story":"Howdy, newborns.\\r\\n\\r\\nThe Cardinal Operating System has been designed by Alpha Co to fulfill any needs of the market, from research (the Iris orbital research space stations runs entirely on COS) to personal use. Different flavors have been built by third-parties to accommodate hacking and other miscellaneous uses.\\r\\n\\r\\nA computer (more generally referred to as a server, since most of them are connected to the Global Grid and running one service or another) running CardinalOS usually runs one or more services.\\r\\n\\r\\nServices are applications, software with a specific function. The most popular ones are:\\r\\n<ul>\\r\\n<li>SSH\\/FILES services - user\\/password restricted access to any kind of files (text, images, encrypted, etc.)<\\/li>\\r\\n<li>SMTP\\/EMAIL services - email\\/password restrict access to emails<\\/li>\\r\\n<li>DB\\/SQL services - databases running on the Cardinal Query Language - more or less: tables of data; we shall discuss this in further lessons<\\/li>\\r\\n<\\/ul>\\r\\n\\r\\nI won''t keep you much longer. You should see our training on your screen. If you try to access it you will note that an SSH service is running on port 22 of this server.\\r\\n\\r\\nEvery service requires a username and password authentication. \\r\\n\\r\\nSome servers may be too well protected to be cracked so you will have no other choice than to find passwords through other means (e.g. hacking into other systems first). \\r\\n\\r\\nIn this instance, I shall give you the password for the server running on port 22. The password for the admin account is <strong>admin<\\/strong>. Please connect to this server.\\r\\n\\r\\n","objective_order":"0","optional":null,"type":"1","data":null,"quest_id":"3","name":"Cardinal OS","sides":[{"objective_id":"8","parent_objective_id":"7","story":null,"objective_order":"0","optional":null,"type":"1","data":"admin@7","quest_id":"3","name":null}]},"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"bouncers":[],"connected":{"service_id":7,"username":"admin"}}}', 1473783068, NULL, 3, NULL),
-(47, 1, 1475003020, '2016-09-27 19:03:40', 300, 1, '{"mission":{"bouncers":[],"servers":{"4":{"quest_server_id":"4","quest_id":"3","hostname":"training.secretrepublic.net","discovered":"1","bounces":"3","network":"10","hide_hn":"0","ip":"24.177.80.254"},"5":{"quest_server_id":"5","quest_id":"3","hostname":"training2.secretrepublic.net","discovered":"0","bounces":"3","network":"10","hide_hn":"0","ip":"78.139.173.154"},"-7":{"hostname":"new server","ip":"244.157.70.106","bounces":3,"discovered":true,"network":0,"hide_hn":false},"-8":{"hostname":"new server","ip":"76.216.68.11","bounces":3,"discovered":true,"network":0,"hide_hn":false}},"services":{"7":{"service_id":"7","port":"22","type":"1","quest_server_id":"4","discovered":"1","welcome":"Welcome, user.","quest_id":"3","users":{"admin":{"security":"999999","password":"admin"},"root":{"security":"5","password":false}}},"9":{"service_id":"9","port":"25","type":"1","quest_server_id":"5","discovered":"0","welcome":"","quest_id":"3","users":{"root":{"security":"10","password":false}}},"-7":{"quest_server_id":-7,"type":1,"discovered":true,"users":{"cardinal":{"security":false,"password":false}},"port":25,"welcome":""},"-8":{"quest_server_id":-8,"type":1,"discovered":true,"users":{"cardinal":{"security":false,"password":false}},"port":27,"welcome":""}},"entities":{"8":{"entity_id":"8","title":"admin.readme","service_id":"7","security":"0","content":"This file can only be seen by admin.","quest_id":"3","sender_receiver":null,"parent_entity_id":"0","type":"0","password":"","owner":"admin","required_running":""},"7":{"entity_id":"7","title":"root.readme","service_id":"7","security":"0","content":"This file can only be seen by root.","quest_id":"3","sender_receiver":null,"parent_entity_id":"0","type":"0","password":"","owner":"root","required_running":""}},"objective":{"objective_id":"7","parent_objective_id":null,"story":"Howdy, newborns.\\r\\n\\r\\nThe Cardinal Operating System has been designed by Alpha Co to fulfill any needs of the market, from research (the Iris orbital research space stations runs entirely on COS) to personal use. Different flavors have been built by third-parties to accommodate hacking and other miscellaneous uses.\\r\\n\\r\\nA computer (more generally referred to as a server, since most of them are connected to the Global Grid and running one service or another) running CardinalOS usually runs one or more services.\\r\\n\\r\\nServices are applications, software with a specific function. The most popular ones are:\\r\\n<ul>\\r\\n<li>SSH\\/FILES services - user\\/password restricted access to any kind of files (text, images, encrypted, etc.)<\\/li>\\r\\n<li>SMTP\\/EMAIL services - email\\/password restrict access to emails<\\/li>\\r\\n<li>DB\\/SQL services - databases running on the Cardinal Query Language - more or less: tables of data; we shall discuss this in further lessons<\\/li>\\r\\n<\\/ul>\\r\\n\\r\\nI won''t keep you much longer. You should see our training on your screen. If you try to access it you will note that an SSH service is running on port 22 of this server.\\r\\n\\r\\nEvery service requires a username and password authentication. \\r\\n\\r\\nSome servers may be too well protected to be cracked so you will have no other choice than to find passwords through other means (e.g. hacking into other systems first). \\r\\n\\r\\nIn this instance, I shall give you the password for the server running on port 22. The password for the admin account is <strong>admin<\\/strong>. Please connect to this server.\\r\\n\\r\\n","objective_order":"0","optional":null,"type":"1","data":null,"quest_id":"3","name":"Cardinal OS","sides":{"8":{"objective_id":"8","parent_objective_id":"7","story":null,"objective_order":"0","optional":null,"type":"1","data":"admin@7","quest_id":"3","name":null}}},"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2}}}', 1479840090, NULL, 3, NULL),
-(48, 1, 1475003038, '2016-09-27 19:03:58', 1000, 2, '{"train_type":3,"sql_file":"\\/Applications\\/MAMP\\/htdocs\\/hg\\/fuel\\/app\\/tmp\\/train_1.db","completion_conditions":[["select count(*) from company","1"]]}', 1479840090, NULL, NULL, NULL);
+(59, 1, 1480022956, '2016-11-24 21:29:16', 1000, 2, '{"train_type":3,"sql_file":"\\/Applications\\/MAMP\\/htdocs\\/SecretAlpha\\/fuel\\/app\\/tmp\\/train_1.db","completion_conditions":[["select count(*) from company","1"]],"training_id":"1"}', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1112,7 +1113,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `profile_fields`, `group`, `last_login`, `login_hash`, `created_at`, `updated_at`, `level`, `experience`, `skills`, `knowledge`, `skill_points`, `train`, `hacker_group_id`, `achievements`, `ranking_points`, `ranking`, `money`, `main_server`, `last_active`, `emergency_logout`, `tutorial_enabled`, `tutorial_step`, `referrer`, `premium`, `premium_until`) VALUES
-(1, 'cardinal', '+Q4xRcof2M/nQvTu/cJcvTerZl+Jfl63ZoZ5mzBlcBk=', 'cardinal@test.com', 'a:0:{}', 2, 1479950825, '57f6d809d7685591106919e98eeaf6368b54e0da', 1473138490, 0, 1, 15, '{"1":{"level":1,"exp":8},"2":{"level":1,"exp":2},"3":{"level":1,"exp":0},"4":{"level":1,"exp":0},"5":{"level":1,"exp":0},"6":{"level":1,"exp":0}}', '{"1":{"level":1},"2":{"level":0}}', 0, NULL, 2, NULL, 1, 1, 73010, 7, 1479955867, '', 1, 2, NULL, NULL, NULL),
+(1, 'cardinal', '+Q4xRcof2M/nQvTu/cJcvTerZl+Jfl63ZoZ5mzBlcBk=', 'cardinal@test.com', 'a:0:{}', 2, 1480018287, '0176d824646fc9a11e6376a5a13b1a670bf0acc9', 1473138490, 0, 1, 15, '{"1":{"level":1,"exp":8},"2":{"level":1,"exp":3},"3":{"level":1,"exp":0},"4":{"level":1,"exp":0},"5":{"level":1,"exp":0},"6":{"level":1,"exp":0}}', '{"1":{"level":1},"2":{"level":0}}', 1, NULL, 2, NULL, 1, 1, 73010, 7, 1480023097, '', 1, 2, NULL, NULL, NULL),
 (2, 'card2', 'M0r4butKb0sfOhJq5ihAmLAnEBp2hksKzOltcGOeG50=', 'card2@gmail.com', 'a:0:{}', 1, 0, '', 1473170010, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, '', 1, 1, NULL, NULL, NULL),
 (3, 'card3', 'dNG43NZPc0C7lwHY1AsyBQHKgTOi3XU6g9JjcOtA/G0=', 'card3@gmail.com', 'a:0:{}', 1, 1473170038, 'a872cc3b660ad3c067215350a9bec2440e2d3c8c', 1473170038, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, '', 1, 1, NULL, NULL, NULL);
 
@@ -1306,12 +1307,12 @@ ALTER TABLE `quest_group`
 -- AUTO_INCREMENT for table `quest_objective`
 --
 ALTER TABLE `quest_objective`
-  MODIFY `objective_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
+  MODIFY `objective_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `quest_server`
 --
 ALTER TABLE `quest_server`
-  MODIFY `quest_server_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+  MODIFY `quest_server_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `quest_server_service`
 --
@@ -1346,7 +1347,7 @@ ALTER TABLE `server_app`
 -- AUTO_INCREMENT for table `task`
 --
 ALTER TABLE `task`
-  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=49;
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=60;
 --
 -- AUTO_INCREMENT for table `training`
 --
