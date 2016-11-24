@@ -2,7 +2,6 @@
 	<input type="hidden" name="service_id" value="<?php echo $service_id; ?>" />
 
 <input type="number" name="port" class="form-control" value="<?php echo $service['port']; ?>" />
-<input type="text" name="users" class="form-control" value="<?php echo htmlspecialchars($service['users']); ?>" />
 <select name="required_objective" class="form-control">
 <option value="0">No required objective</option>
 <?php foreach($objectives as $o_id => $o):?>
@@ -21,7 +20,7 @@
 <textarea class="form-control" name="welcome" placeholder="Welcome message"><?php echo $service['welcome']; ?></textarea>
 <div class="text-center">
 <button class="btn btn-default " type="submit">update</button>
-<button class="btn btn-default" type="submit" name="add_entity" value="true">add entity</button>
+<button class="btn btn-default" type="submit" name="add_user" value="true">add user</button>
 <button class="btn btn-danger" type="submit" name="delete" value="true">erase</button>
 </div>
 </form>

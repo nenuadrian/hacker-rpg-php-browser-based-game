@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3307
--- Generation Time: Nov 22, 2016 at 05:58 PM
+-- Generation Time: Nov 24, 2016 at 03:51 AM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -740,21 +740,14 @@ CREATE TABLE `quest` (
   `type` tinyint(1) NOT NULL DEFAULT '1',
   `default_connection` varchar(255) DEFAULT NULL,
   `one_time_only` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `quest`
 --
 
 INSERT INTO `quest` (`quest_id`, `name`, `required_quest_id`, `quest_group_id`, `live`, `quest_group_order`, `level`, `summary`, `type`, `default_connection`, `one_time_only`) VALUES
-(1, 'Test quest', 0, 1, 0, 0, 1, 'test', 1, '0', 1),
-(2, 'Coincidence? Only by design.', 0, 2, 1, 0, 0, 'Deciding to join THE competition is a very bold move on your part. Everyone has been relentlessly talking about it all around you and it is finally time to find out yourself exactly what all this fuss is about. Is it worth sacrificing it all for this?\r\n\r\nLet me tell you that it is not going to be an easy journey. It will, in fact, be <strong>the longest and most gratifying journey of your lifetime</strong>.', 1, '6', 0),
-(3, 'The Cardinal OS Architecture && Beginner Hacking', 2, 2, 1, 0, 0, 'The Alpha Computer Science Crash Course presents you the basics of the Cardinal Operating System, also known as CardinalOS or COS. We are also going to scratch the surface of hacking techniques.', 1, '0', 0),
-(4, 'New quest', 0, 2, 0, 0, 0, '', 1, NULL, 0),
-(5, 'New quest', 0, 2, 0, 0, 0, '', 1, NULL, 0),
-(6, 'New quest', 0, 3, 1, 0, 0, '', 1, '0', 0),
-(7, 'An unexpected contract', 0, 4, 1, 0, 0, 'They unexpectedly make contact for a suspicious proposal. I''ve heard of them before, this may be good\r\n', 1, '0', 0),
-(8, 'Roads untraveled', 7, 4, 1, 1, 0, 'Cobra has yet another request. About time. I was getting bored.', 1, '0', 0);
+(9, 'Demo 1', 0, 5, 1, 0, 0, '', 1, '0', 1);
 
 -- --------------------------------------------------------
 
@@ -770,17 +763,14 @@ CREATE TABLE `quest_group` (
   `type` tinyint(1) NOT NULL DEFAULT '1',
   `level` int(11) NOT NULL DEFAULT '0',
   `group_order` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `quest_group`
 --
 
 INSERT INTO `quest_group` (`quest_group_id`, `name`, `required_quest_id`, `live`, `type`, `level`, `group_order`) VALUES
-(1, 'Test group 1', 0, 1, 1, 1, 0),
-(2, 'Computer Science School', 0, 1, 1, 0, 1),
-(3, 'Training', 0, 1, 99, 0, 2),
-(4, 'A pit of cobras', 0, 1, 2, 2, 0);
+(5, 'Demo', 0, 1, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -798,35 +788,15 @@ CREATE TABLE `quest_objective` (
   `data` varchar(255) DEFAULT NULL,
   `quest_id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `quest_objective`
 --
 
 INSERT INTO `quest_objective` (`objective_id`, `parent_objective_id`, `story`, `objective_order`, `optional`, `type`, `data`, `quest_id`, `name`) VALUES
-(1, NULL, 'test story2', 0, NULL, 0, NULL, 1, 'Hello world2'),
-(3, 1, NULL, 0, NULL, 3, '1', 1, NULL),
-(4, NULL, '*aha ha ha* So you''re the new bunch, aren''t you? *smirk*\r\n\r\nFresh meat has arrived people.\r\n\r\n<em>This guy is irritating me and he''s barely started speaking. This is going to be such a long day, I can feel it.</em>\r\n\r\nI don''t know what made you want to be part of this mess. If it''s your friends who signed you up, you might want to withdraw, NOW! Believe me, there will come a time when it''s too late and you''ll find yourself trapped and regretting not listening to your nasty instructor *cough* ME *cough* in the first lesson.\r\n\r\nThe world you''re about to enter will swallow you completely and even when you feel like you''re the one changing the world it''s the world that changes you really.\r\n\r\n<em>He makes it sound so majestic. Luckily I know better.</em>\r\n\r\nI''m not sure how much history you know but we''ll cover that later on as you will start your Computer Science crash course. For now, I will only share a few details about the tech competition, which you might already be aware of but we must follow protocols...\r\n\r\nWell, first off we all know Alpha. Our corporation is now the main provider of technology and services for the entire planet and beyond it as well. \r\n\r\nOnly the brightest of the brightest are employed and the man at the top of the food chain is a mystery in itself. However, it''s been publicly announced that he will soon want to retire (for no apparent official reason, rumours say he is sick but who are we to say for sure) and he''s designed an entire system to select that one individual, male or female, of any zone, to take his place after his early demise. \r\n\r\nEmilia is the Artificial Intelligence entity controlling the Grid and more or less the entirety of Alpha''s system and as such the world. The president of Alpha has hence designed the Cardinal, a complementary entity to Emilia. The Cardinal has the job of supervising the competition and enforcing its rules. \r\n\r\nNow, what the competition is about. To put it in one word: hacking. The Cardinal Mainframe has access to all the systems Emilia has but is subordinated to her. However, he can observe and analyze everything everyone is doing and evaluates the progress of competitors based on their innovative hacking skills.\r\n\r\nYou might be aware that the competition has since degenerated to street fight and even ... murder at times. Some would do anything to be in control of Alpha and for good reason. Alpha has singlehandedly transformed the world into a hacker''s playground. There are even parents who educate their children with the only purpose of participating and winning their competition when they grow up.\r\n\r\nThe reward for this game is whatever remains of the world in the end.\r\n\r\nThat''s it for our short intro. I will leave you to our instructors now. \r\n\r\nSimply execute the only file available on the server I have currently connect you to. I am sure you can manage on your own by using the interface provided by the CardinalOS.\r\n\r\n', 0, NULL, 0, NULL, 2, 'On point'),
-(5, 4, NULL, 0, NULL, 4, '6', 2, NULL),
-(7, NULL, 'Howdy, newborns.\r\n\r\nThe Cardinal Operating System has been designed by Alpha Co to fulfill any needs of the market, from research (the Iris orbital research space stations runs entirely on COS) to personal use. Different flavors have been built by third-parties to accommodate hacking and other miscellaneous uses.\r\n\r\nA computer (more generally referred to as a server, since most of them are connected to the Global Grid and running one service or another) running CardinalOS usually runs one or more services.\r\n\r\nServices are applications, software with a specific function. The most popular ones are:\r\n<ul>\r\n<li>SSH/FILES services - user/password restricted access to any kind of files (text, images, encrypted, etc.)</li>\r\n<li>SMTP/EMAIL services - email/password restrict access to emails</li>\r\n<li>DB/SQL services - databases running on the Cardinal Query Language - more or less: tables of data; we shall discuss this in further lessons</li>\r\n</ul>\r\n\r\nI won''t keep you much longer. You should see our training on your screen. If you try to access it you will note that an SSH service is running on port 22 of this server.\r\n\r\nEvery service requires a username and password authentication. \r\n\r\nSome servers may be too well protected to be cracked so you will have no other choice than to find passwords through other means (e.g. hacking into other systems first). \r\n\r\nIn this instance, I shall give you the password for the server running on port 22. The password for the admin account is <strong>admin</strong>. Please connect to this server.\r\n\r\n', 0, NULL, 1, NULL, 3, 'Cardinal OS'),
-(8, 7, NULL, 0, NULL, 1, 'admin@7', 3, NULL),
-(9, NULL, 'The set of files available to the admin user is now visible on-screen. To gain access to files owned by other users you will have to obtain access to their individual accounts.\r\n\r\nDisconnect from this service and attempt to crack the password of the root user.\r\n\r\nPick the root user from the username list, leave the password field empty and initiate the cracking procedure.\r\n\r\nOnce the cracking is complete, you will be allowed to connect with a username without providing a password, just hit connect after selecting the appropriate username.\r\n', 1, NULL, 1, NULL, 3, 'Authentication'),
-(10, NULL, 'As you can see, a completely separate set of files is available to you depending on the permissions each of these users has.\r\n\r\nDisconnect from this service.\r\n\r\nYou may ping servers for them to be added to your known hosts list as the training server was added by default.\r\n\r\nPing: training2.secretrepublic.net\r\n\r\nNow you can use the <strong>nmap</strong> tool to discover services running on a server. This tool will scan the ports (open gateways of the server through which software communicates with the Global Grid) of the server and given you back the types of services available.\r\n\r\nScan for service available on training2.\r\n\r\nNow gain access, hacker.', 2, NULL, 1, NULL, 3, 'Hacking'),
-(11, 9, NULL, 0, NULL, 1, 'root@7', 3, NULL),
-(14, 10, NULL, 0, NULL, 1, 'root@9', 3, NULL),
-(16, NULL, NULL, 0, NULL, 1, NULL, 6, NULL),
-(18, 1, NULL, 0, NULL, 6, '2:root@10', 1, NULL),
-(20, NULL, 'I''ve been avoiding this email in my Inbox for the past few days.\r\n\r\nI think it might be worth checking it out.\r\n\r\nIf I recall correctly, I saved it on one of my proxy email servers: [ip hn="my.email.server"]. The email service should be configured to run on port 325. It hosts one of my personal addresses: [user attr="username"]@hell-of-a-cat.alpha.\r\n\r\nI''ll go and take a closer look at what these guys are all about.\r\n', 0, NULL, 1, NULL, 7, 'A strange email'),
-(21, NULL, 'I remember reading about the Cobra on a couple of… lesser known forums. They’re some elite agency used by rich corporations in their schemes to take down their competition. State of the art corporate espionage is their specialty. They''ve also been accused of hacktivism, border-line corporate terrorists.\r\n\r\nI''ve never heard of them recruiting people lacking experience as much as me... but you never hear from actual individuals who work for them... only rumors.\r\n\r\nI guess I have nothing to lose so the hell with it.\r\n\r\nIt''s time to taste the venom of a cobra.\r\n\r\nI’ll delete the email first, my software will make sure there are no traces left. With my monthly hard-drive hammering, I should be good.\r\n', 1, NULL, 1, NULL, 7, 'Cobra?'),
-(22, NULL, 'What is this?\r\n\r\nAs soon as I deleted the email my Glass Device blinked. I got a message from the operating system itself. These guys are good, no kidding.\r\n<em>\r\nWe are very glad indeed to have you on our team. We''ll start you off with an easy task we need to be completed right away for a valuable client.\r\n\r\nYour orders are to make your way into the following server''s SSH service and delete all the files you find in there in order to temporarily disable the company''s website. We have no information as to the port the service is running on.\r\n\r\n[ip hn="company"]</em>', 2, NULL, 1, NULL, 7, 'Orders?!'),
-(23, 20, NULL, 0, NULL, 5, '11', 7, NULL),
-(24, 21, NULL, 0, NULL, 3, '11', 7, NULL),
-(25, 22, NULL, 0, NULL, 3, '12', 7, NULL),
-(26, 22, NULL, 0, NULL, 3, '13', 7, NULL),
-(29, NULL, '<em>Nice one!\r\n\r\nWe need them to be down for a while, so please head over to their backup server as well and clean things up.\r\n\r\n[ip hn="backup.server"]\r\n</em>', 3, NULL, 1, NULL, 7, 'Last detail'),
-(31, 29, NULL, 0, NULL, 3, '14', 7, NULL),
-(32, NULL, NULL, 0, NULL, 1, NULL, 8, NULL);
+(33, NULL, 'Objective 1', 1, NULL, 1, NULL, 9, 'Objective 1'),
+(35, 33, NULL, 0, NULL, 1, NULL, 9, NULL);
 
 -- --------------------------------------------------------
 
@@ -842,30 +812,14 @@ CREATE TABLE `quest_server` (
   `bounces` int(11) NOT NULL DEFAULT '3',
   `network` int(11) NOT NULL DEFAULT '10',
   `hide_hn` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `quest_server`
 --
 
 INSERT INTO `quest_server` (`quest_server_id`, `quest_id`, `hostname`, `discovered`, `bounces`, `network`, `hide_hn`) VALUES
-(1, 1, 'server1.com', 1, 3, 10, 0),
-(2, 1, 'server2.com', 1, 3, 10, 0),
-(3, 2, 'training.secretrepublic.net', 1, 3, 10, 0),
-(4, 3, 'training.secretrepublic.net', 1, 3, 10, 0),
-(5, 3, 'training2.secretrepublic.net', 0, 3, 10, 0),
-(7, 6, '', 0, 3, 10, 0),
-(8, 7, 'my.email.server', 1, 3, 10, 0),
-(9, 7, 'company', 0, 3, 10, 0),
-(10, 7, 'backup.server', 0, 3, 10, 0),
-(11, 8, 'untitled', 0, 3, 10, 0),
-(12, 8, 'untitled', 0, 3, 10, 0),
-(13, 8, 'untitled', 0, 3, 10, 0),
-(14, 8, 'untitled', 0, 3, 10, 0),
-(15, 8, 'untitled', 0, 3, 10, 0),
-(16, 8, 'untitled', 0, 3, 10, 0),
-(17, 8, 'untitled', 0, 3, 10, 0),
-(18, 8, 'untitled', 0, 3, 10, 0);
+(19, 9, 'untitled', 0, 3, 10, 0);
 
 -- --------------------------------------------------------
 
@@ -883,36 +837,50 @@ CREATE TABLE `quest_server_service` (
   `quest_id` int(11) NOT NULL,
   `users` varchar(255) NOT NULL DEFAULT 'root::60',
   `required_objective` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `quest_server_service`
 --
 
 INSERT INTO `quest_server_service` (`service_id`, `port`, `type`, `quest_server_id`, `discovered`, `welcome`, `quest_id`, `users`, `required_objective`) VALUES
-(1, 23, 1, 1, 1, 'Welcome to SSH', 1, 'root::9;root2:root', 0),
-(2, 0, 1, 1, 0, NULL, 0, '', 0),
-(3, 0, 1, 1, 0, NULL, 0, '', 0),
-(4, 25, 2, 1, 1, 'Welcome to SMTP.', 1, 'cool@test.com::10;[user attr="username"]@t.com::;[username]@tt.com', 0),
-(5, 335, 3, 1, 1, 'Welcome to DB', 1, 'root::10', 0),
-(6, 22, 1, 3, 1, 'Welcome to the training server. All files are for training purposes only.', 2, 'root', 0),
-(7, 22, 1, 4, 1, 'Welcome, user.', 3, 'admin:admin:999999;root::5', 0),
-(9, 25, 1, 5, 0, '', 3, 'root::10', 0),
-(10, 22, 1, 2, 1, '', 1, 'root', 0),
-(11, 365, 2, 8, 1, 'Glad you have you back, sir [username].', 7, '[username]@hell-of-a-cat.alpha::', 0),
-(12, 22, 1, 9, 0, '', 7, 'root::100', 0),
-(13, 22, 1, 10, 0, 'Backup server.', 7, 'root::60', 0);
+(14, 22, 1, 19, 0, '', 9, 'root::60', 0),
+(15, 22, 1, 19, 0, NULL, 9, 'root::60', 0),
+(16, 22, 1, 19, 0, NULL, 9, 'root::60', 0),
+(17, 22, 1, 19, 0, NULL, 9, 'root::60', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quest_service_entity`
+-- Table structure for table `quest_service_user`
 --
 
-CREATE TABLE `quest_service_entity` (
+CREATE TABLE `quest_service_user` (
+  `user_id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` int(11) DEFAULT NULL,
+  `quest_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `quest_service_user`
+--
+
+INSERT INTO `quest_service_user` (`user_id`, `service_id`, `username`, `password`, `quest_id`) VALUES
+(2, 14, 'user1479955190', NULL, 9),
+(3, 14, 'user1479955296', NULL, 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quest_user_entity`
+--
+
+CREATE TABLE `quest_user_entity` (
   `entity_id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL DEFAULT 'untitled',
-  `service_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `security` int(11) NOT NULL DEFAULT '0',
   `content` longtext,
   `quest_id` int(11) NOT NULL,
@@ -923,13 +891,13 @@ CREATE TABLE `quest_service_entity` (
   `owner` varchar(255) NOT NULL,
   `required_running` varchar(500) NOT NULL,
   `required_objective` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `quest_service_entity`
+-- Dumping data for table `quest_user_entity`
 --
 
-INSERT INTO `quest_service_entity` (`entity_id`, `title`, `service_id`, `security`, `content`, `quest_id`, `sender_receiver`, `parent_entity_id`, `type`, `password`, `owner`, `required_running`, `required_objective`) VALUES
+INSERT INTO `quest_user_entity` (`entity_id`, `title`, `user_id`, `security`, `content`, `quest_id`, `sender_receiver`, `parent_entity_id`, `type`, `password`, `owner`, `required_running`, `required_objective`) VALUES
 (1, 'test file2', 1, 2, 'a', 1, NULL, 0, 0, '', 'root2', '', 0),
 (2, '4', 1, 2, '', 1, NULL, 0, 0, '', 'root', '', 0),
 (3, 'test', 4, 0, '', 1, 'owen@alpha.co', 0, 0, '', 'cool@test.com', '', 0),
@@ -943,7 +911,8 @@ INSERT INTO `quest_service_entity` (`entity_id`, `title`, `service_id`, `securit
 (11, 'Carpe Diem ', 11, 0, 'Well, hi <strong>[username]</strong>,\r\n\r\nWe''ve heard of you recent progress in the industry. Our agents have been researching specific individuals since their first contact with a computer until their latest keystrokes.\r\n\r\nYou, amongst others, stand out from the masses. \r\n\r\nAllow me to be short.\r\n\r\nI want to offer you.. a contract. You will provide a service and I will pay more or less handsomely.\r\n\r\nThe service we need from you is infiltrating into the entities we specify and either retrieve the information we require or inflicting irreparable damage.\r\n\r\nYou might be wondering who we are by now.\r\n\r\nOur name is Cobra and we are delighted to make your acquaintance, [username].\r\n\r\nUntil we talk again,\r\nW.\r\n', 7, 'unknown@anonymous.contractor.co', 0, 1, '', '[username]@hell-of-a-cat.alpha', '', 0),
 (12, 'index.php', 12, 100, '<?php\r\nif (isset($_POST[''email'']) && filter_var($_POST[''email''], FILTER_VALIDATE_EMAIL)) {\r\n   file_put_contents(''to_contact.txt'', $_POST[''email''].PHP_EOL, FILE_APPEND | LOCK_EX);\r\n}\r\n?>\r\n<html lang="en">\r\n  <head>\r\n    <meta charset="utf-8">\r\n    <meta http-equiv="X-UA-Compatible" content="IE=edge">\r\n    <meta name="viewport" content="width=device-width, initial-scale=1">\r\n    <link rel="icon" href="favicon.ico">\r\n    <title>Revolution of Bio Technology</title>\r\n    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">\r\n  </head>\r\n  <body>\r\n    <div class="container">\r\n      <div class="page-header">\r\n        <h1>A new formula for bio engineering</h1>\r\n      </div>\r\n      <p class="lead">Our team is working on the next generation of bio engineered cells.</p>\r\n      <p>We are recruiting bright talent from the industry. Contact us and we''ll get back to you for your CV and references.</p>\r\n      <p>\r\n         <form method="post">\r\n            <input type="email" name="email" placeholder="Your email" />\r\n            <button type="submit" class="btn btn-block">Send</button>\r\n         </form>\r\n      </p>\r\n    </div>\r\n    <div class="footer">\r\n      <div class="container">\r\n        <p class="text-muted">Bio-Keltech</p>\r\n      </div>\r\n    </div>\r\n  </body>\r\n</html>', 7, NULL, 0, 2, '', 'root', '', 0),
 (13, 'to_contact.txt', 12, 100, '', 7, NULL, 0, 0, '', 'root', '', 0),
-(14, 'site.backup', 13, 100, '', 7, NULL, 0, 0, '', 'root', '', 0);
+(14, 'site.backup', 13, 100, '', 7, NULL, 0, 0, '', 'root', '', 0),
+(15, 'untitled', 2, 0, 'sdfsdf', 9, NULL, 0, 1, '', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -1050,8 +1019,8 @@ CREATE TABLE `task` (
 INSERT INTO `task` (`task_id`, `user_id`, `task_start`, `created_at`, `task_duration`, `task_type`, `data`, `complete`, `server_id`, `data_id`, `complete_status`) VALUES
 (45, 1, 1473779137, '2016-09-13 15:05:37', 30000, 100, '{"mission":{"servers":{"8":{"quest_server_id":"8","quest_id":"7","hostname":"my.email.server","discovered":"1","bounces":"3","network":"10","hide_hn":"0","ip":"72.108.59.183"},"9":{"quest_server_id":"9","quest_id":"7","hostname":"company","discovered":"0","bounces":"3","network":"10","hide_hn":"0","ip":"17.59.246.154"},"10":{"quest_server_id":"10","quest_id":"7","hostname":"backup.server","discovered":"0","bounces":"3","network":"10","hide_hn":"0","ip":"40.147.24.144"},"-7":{"hostname":"new server","ip":"244.157.70.106","bounces":3,"discovered":true,"network":0,"hide_hn":false},"-8":{"hostname":"new server","ip":"76.216.68.11","bounces":3,"discovered":true,"network":0,"hide_hn":false}},"services":{"12":{"service_id":"12","port":"22","type":"1","quest_server_id":"9","discovered":"0","welcome":"","quest_id":"7","users":{"root":{"security":"100","password":false}}},"13":{"service_id":"13","port":"22","type":"1","quest_server_id":"10","discovered":"0","welcome":"Backup server.","quest_id":"7","users":{"root":{"security":"60","password":false}}},"11":{"service_id":"11","port":"365","type":"2","quest_server_id":"8","discovered":"1","welcome":"Glad you have you back, sir cardinal.","quest_id":"7","users":{"cardinal@hell-of-a-cat.alpha":{"security":false,"password":false}}},"-7":{"quest_server_id":-7,"type":1,"discovered":true,"users":{"cardinal":{"security":false,"password":false}},"port":30,"welcome":""},"-8":{"quest_server_id":-8,"type":1,"discovered":true,"users":{"cardinal":{"security":false,"password":false}},"port":22,"welcome":""}},"entities":{"11":{"entity_id":"11","title":"Carpe Diem ","service_id":"11","security":"0","content":"Well, hi <strong>cardinal<\\/strong>,\\r\\n\\r\\nWe''ve heard of you recent progress in the industry. Our agents have been researching specific individuals since their first contact with a computer until their latest keystrokes.\\r\\n\\r\\nYou, amongst others, stand out from the masses. \\r\\n\\r\\nAllow me to be short.\\r\\n\\r\\nI want to offer you.. a contract. You will provide a service and I will pay more or less handsomely.\\r\\n\\r\\nThe service we need from you is infiltrating into the entities we specify and either retrieve the information we require or inflicting irreparable damage.\\r\\n\\r\\nYou might be wondering who we are by now.\\r\\n\\r\\nOur name is Cobra and we are delighted to make your acquaintance, cardinal.\\r\\n\\r\\nUntil we talk again,\\r\\nW.\\r\\n","quest_id":"7","sender_receiver":"unknown@anonymous.contractor.co","parent_entity_id":"0","type":"1","password":"","owner":"cardinal@hell-of-a-cat.alpha","required_running":""},"12":{"entity_id":"12","title":"index.php","service_id":"12","security":"100","content":"<?php\\r\\nif (isset($_POST[''email'']) && filter_var($_POST[''email''], FILTER_VALIDATE_EMAIL)) {\\r\\n   file_put_contents(''to_contact.txt'', $_POST[''email''].PHP_EOL, FILE_APPEND | LOCK_EX);\\r\\n}\\r\\n?>\\r\\n<html lang=\\"en\\">\\r\\n  <head>\\r\\n    <meta charset=\\"utf-8\\">\\r\\n    <meta http-equiv=\\"X-UA-Compatible\\" content=\\"IE=edge\\">\\r\\n    <meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1\\">\\r\\n    <link rel=\\"icon\\" href=\\"favicon.ico\\">\\r\\n    <title>Revolution of Bio Technology<\\/title>\\r\\n    <link href=\\"https:\\/\\/maxcdn.bootstrapcdn.com\\/bootstrap\\/3.3.7\\/css\\/bootstrap.min.css\\" rel=\\"stylesheet\\">\\r\\n  <\\/head>\\r\\n  <body>\\r\\n    <div class=\\"container\\">\\r\\n      <div class=\\"page-header\\">\\r\\n        <h1>A new formula for bio engineering<\\/h1>\\r\\n      <\\/div>\\r\\n      <p class=\\"lead\\">Our team is working on the next generation of bio engineered cells.<\\/p>\\r\\n      <p>We are recruiting bright talent from the industry. Contact us and we''ll get back to you for your CV and references.<\\/p>\\r\\n      <p>\\r\\n         <form method=\\"post\\">\\r\\n            <input type=\\"email\\" name=\\"email\\" placeholder=\\"Your email\\" \\/>\\r\\n            <button type=\\"submit\\" class=\\"btn btn-block\\">Send<\\/button>\\r\\n         <\\/form>\\r\\n      <\\/p>\\r\\n    <\\/div>\\r\\n    <div class=\\"footer\\">\\r\\n      <div class=\\"container\\">\\r\\n        <p class=\\"text-muted\\">Bio-Keltech<\\/p>\\r\\n      <\\/div>\\r\\n    <\\/div>\\r\\n  <\\/body>\\r\\n<\\/html>","quest_id":"7","sender_receiver":null,"parent_entity_id":"0","type":"2","password":"","owner":"root","required_running":""},"14":{"entity_id":"14","title":"site.backup","service_id":"13","security":"100","content":"","quest_id":"7","sender_receiver":null,"parent_entity_id":"0","type":"0","password":"","owner":"root","required_running":""},"13":{"entity_id":"13","title":"to_contact.txt","service_id":"12","security":"100","content":"","quest_id":"7","sender_receiver":null,"parent_entity_id":"0","type":"0","password":"","owner":"root","required_running":""}},"objective":{"objective_id":"20","parent_objective_id":null,"story":"I''ve been avoiding this email in my Inbox for the past few days.\\r\\n\\r\\nI think it might be worth checking it out.\\r\\n\\r\\nIf I recall correctly, I saved it on one of my proxy email servers: 72.108.59.183. The email service should be configured to run on port 325. It hosts one of my personal addresses: cardinal@hell-of-a-cat.alpha.\\r\\n\\r\\nI''ll go and take a closer look at what these guys are all about.\\r\\n","objective_order":"0","optional":null,"type":"1","data":null,"quest_id":"7","name":"A strange email","sides":[{"objective_id":"23","parent_objective_id":"20","story":null,"objective_order":"0","optional":null,"type":"5","data":"11","quest_id":"7","name":null}]},"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"bouncers":[],"connected":{"service_id":-8,"username":"cardinal"}}}', 1473843035, NULL, 7, NULL),
 (46, 1, 1473782764, '2016-09-13 16:06:04', 300, 1, '{"mission":{"servers":{"4":{"quest_server_id":"4","quest_id":"3","hostname":"training.secretrepublic.net","discovered":"1","bounces":"3","network":"10","hide_hn":"0","ip":"1.248.42.161"},"5":{"quest_server_id":"5","quest_id":"3","hostname":"training2.secretrepublic.net","discovered":"0","bounces":"3","network":"10","hide_hn":"0","ip":"68.125.177.111"},"-7":{"hostname":"new server","ip":"244.157.70.106","bounces":3,"discovered":true,"network":0,"hide_hn":false},"-8":{"hostname":"new server","ip":"76.216.68.11","bounces":3,"discovered":true,"network":0,"hide_hn":false}},"services":{"7":{"service_id":"7","port":"22","type":"1","quest_server_id":"4","discovered":"1","welcome":"Welcome, user.","quest_id":"3","users":{"admin":{"security":false,"password":"admin"},"root":{"security":"5","password":false}}},"9":{"service_id":"9","port":"25","type":"1","quest_server_id":"5","discovered":"0","welcome":"","quest_id":"3","users":{"root":{"security":"10","password":false}}},"-7":{"quest_server_id":-7,"type":1,"discovered":true,"users":{"cardinal":{"security":false,"password":false}},"port":30,"welcome":""},"-8":{"quest_server_id":-8,"type":1,"discovered":true,"users":{"cardinal":{"security":false,"password":false}},"port":22,"welcome":""}},"entities":{"8":{"entity_id":"8","title":"admin.readme","service_id":"7","security":"0","content":"This file can only be seen by admin.","quest_id":"3","sender_receiver":null,"parent_entity_id":"0","type":"0","password":"","owner":"admin","required_running":""},"7":{"entity_id":"7","title":"root.readme","service_id":"7","security":"0","content":"This file can only be seen by root.","quest_id":"3","sender_receiver":null,"parent_entity_id":"0","type":"0","password":"","owner":"root","required_running":""}},"objective":{"objective_id":"7","parent_objective_id":null,"story":"Howdy, newborns.\\r\\n\\r\\nThe Cardinal Operating System has been designed by Alpha Co to fulfill any needs of the market, from research (the Iris orbital research space stations runs entirely on COS) to personal use. Different flavors have been built by third-parties to accommodate hacking and other miscellaneous uses.\\r\\n\\r\\nA computer (more generally referred to as a server, since most of them are connected to the Global Grid and running one service or another) running CardinalOS usually runs one or more services.\\r\\n\\r\\nServices are applications, software with a specific function. The most popular ones are:\\r\\n<ul>\\r\\n<li>SSH\\/FILES services - user\\/password restricted access to any kind of files (text, images, encrypted, etc.)<\\/li>\\r\\n<li>SMTP\\/EMAIL services - email\\/password restrict access to emails<\\/li>\\r\\n<li>DB\\/SQL services - databases running on the Cardinal Query Language - more or less: tables of data; we shall discuss this in further lessons<\\/li>\\r\\n<\\/ul>\\r\\n\\r\\nI won''t keep you much longer. You should see our training on your screen. If you try to access it you will note that an SSH service is running on port 22 of this server.\\r\\n\\r\\nEvery service requires a username and password authentication. \\r\\n\\r\\nSome servers may be too well protected to be cracked so you will have no other choice than to find passwords through other means (e.g. hacking into other systems first). \\r\\n\\r\\nIn this instance, I shall give you the password for the server running on port 22. The password for the admin account is <strong>admin<\\/strong>. Please connect to this server.\\r\\n\\r\\n","objective_order":"0","optional":null,"type":"1","data":null,"quest_id":"3","name":"Cardinal OS","sides":[{"objective_id":"8","parent_objective_id":"7","story":null,"objective_order":"0","optional":null,"type":"1","data":"admin@7","quest_id":"3","name":null}]},"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"bouncers":[],"connected":{"service_id":7,"username":"admin"}}}', 1473783068, NULL, 3, NULL),
-(47, 1, 1475003020, '2016-09-27 19:03:40', 300, 1, '{"mission":{"bouncers":[],"servers":{"4":{"quest_server_id":"4","quest_id":"3","hostname":"training.secretrepublic.net","discovered":"1","bounces":"3","network":"10","hide_hn":"0","ip":"24.177.80.254"},"5":{"quest_server_id":"5","quest_id":"3","hostname":"training2.secretrepublic.net","discovered":"0","bounces":"3","network":"10","hide_hn":"0","ip":"78.139.173.154"},"-7":{"hostname":"new server","ip":"244.157.70.106","bounces":3,"discovered":true,"network":0,"hide_hn":false},"-8":{"hostname":"new server","ip":"76.216.68.11","bounces":3,"discovered":true,"network":0,"hide_hn":false}},"services":{"7":{"service_id":"7","port":"22","type":"1","quest_server_id":"4","discovered":"1","welcome":"Welcome, user.","quest_id":"3","users":{"admin":{"security":"999999","password":"admin"},"root":{"security":"5","password":false}}},"9":{"service_id":"9","port":"25","type":"1","quest_server_id":"5","discovered":"0","welcome":"","quest_id":"3","users":{"root":{"security":"10","password":false}}},"-7":{"quest_server_id":-7,"type":1,"discovered":true,"users":{"cardinal":{"security":false,"password":false}},"port":25,"welcome":""},"-8":{"quest_server_id":-8,"type":1,"discovered":true,"users":{"cardinal":{"security":false,"password":false}},"port":27,"welcome":""}},"entities":{"8":{"entity_id":"8","title":"admin.readme","service_id":"7","security":"0","content":"This file can only be seen by admin.","quest_id":"3","sender_receiver":null,"parent_entity_id":"0","type":"0","password":"","owner":"admin","required_running":""},"7":{"entity_id":"7","title":"root.readme","service_id":"7","security":"0","content":"This file can only be seen by root.","quest_id":"3","sender_receiver":null,"parent_entity_id":"0","type":"0","password":"","owner":"root","required_running":""}},"objective":{"objective_id":"7","parent_objective_id":null,"story":"Howdy, newborns.\\r\\n\\r\\nThe Cardinal Operating System has been designed by Alpha Co to fulfill any needs of the market, from research (the Iris orbital research space stations runs entirely on COS) to personal use. Different flavors have been built by third-parties to accommodate hacking and other miscellaneous uses.\\r\\n\\r\\nA computer (more generally referred to as a server, since most of them are connected to the Global Grid and running one service or another) running CardinalOS usually runs one or more services.\\r\\n\\r\\nServices are applications, software with a specific function. The most popular ones are:\\r\\n<ul>\\r\\n<li>SSH\\/FILES services - user\\/password restricted access to any kind of files (text, images, encrypted, etc.)<\\/li>\\r\\n<li>SMTP\\/EMAIL services - email\\/password restrict access to emails<\\/li>\\r\\n<li>DB\\/SQL services - databases running on the Cardinal Query Language - more or less: tables of data; we shall discuss this in further lessons<\\/li>\\r\\n<\\/ul>\\r\\n\\r\\nI won''t keep you much longer. You should see our training on your screen. If you try to access it you will note that an SSH service is running on port 22 of this server.\\r\\n\\r\\nEvery service requires a username and password authentication. \\r\\n\\r\\nSome servers may be too well protected to be cracked so you will have no other choice than to find passwords through other means (e.g. hacking into other systems first). \\r\\n\\r\\nIn this instance, I shall give you the password for the server running on port 22. The password for the admin account is <strong>admin<\\/strong>. Please connect to this server.\\r\\n\\r\\n","objective_order":"0","optional":null,"type":"1","data":null,"quest_id":"3","name":"Cardinal OS","sides":{"8":{"objective_id":"8","parent_objective_id":"7","story":null,"objective_order":"0","optional":null,"type":"1","data":"admin@7","quest_id":"3","name":null}}},"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2}}}', NULL, NULL, 3, NULL),
-(48, 1, 1475003038, '2016-09-27 19:03:58', 1000, 2, '{"train_type":3,"sql_file":"\\/Applications\\/MAMP\\/htdocs\\/hg\\/fuel\\/app\\/tmp\\/train_1.db","completion_conditions":[["select count(*) from company","1"]]}', NULL, NULL, NULL, NULL);
+(47, 1, 1475003020, '2016-09-27 19:03:40', 300, 1, '{"mission":{"bouncers":[],"servers":{"4":{"quest_server_id":"4","quest_id":"3","hostname":"training.secretrepublic.net","discovered":"1","bounces":"3","network":"10","hide_hn":"0","ip":"24.177.80.254"},"5":{"quest_server_id":"5","quest_id":"3","hostname":"training2.secretrepublic.net","discovered":"0","bounces":"3","network":"10","hide_hn":"0","ip":"78.139.173.154"},"-7":{"hostname":"new server","ip":"244.157.70.106","bounces":3,"discovered":true,"network":0,"hide_hn":false},"-8":{"hostname":"new server","ip":"76.216.68.11","bounces":3,"discovered":true,"network":0,"hide_hn":false}},"services":{"7":{"service_id":"7","port":"22","type":"1","quest_server_id":"4","discovered":"1","welcome":"Welcome, user.","quest_id":"3","users":{"admin":{"security":"999999","password":"admin"},"root":{"security":"5","password":false}}},"9":{"service_id":"9","port":"25","type":"1","quest_server_id":"5","discovered":"0","welcome":"","quest_id":"3","users":{"root":{"security":"10","password":false}}},"-7":{"quest_server_id":-7,"type":1,"discovered":true,"users":{"cardinal":{"security":false,"password":false}},"port":25,"welcome":""},"-8":{"quest_server_id":-8,"type":1,"discovered":true,"users":{"cardinal":{"security":false,"password":false}},"port":27,"welcome":""}},"entities":{"8":{"entity_id":"8","title":"admin.readme","service_id":"7","security":"0","content":"This file can only be seen by admin.","quest_id":"3","sender_receiver":null,"parent_entity_id":"0","type":"0","password":"","owner":"admin","required_running":""},"7":{"entity_id":"7","title":"root.readme","service_id":"7","security":"0","content":"This file can only be seen by root.","quest_id":"3","sender_receiver":null,"parent_entity_id":"0","type":"0","password":"","owner":"root","required_running":""}},"objective":{"objective_id":"7","parent_objective_id":null,"story":"Howdy, newborns.\\r\\n\\r\\nThe Cardinal Operating System has been designed by Alpha Co to fulfill any needs of the market, from research (the Iris orbital research space stations runs entirely on COS) to personal use. Different flavors have been built by third-parties to accommodate hacking and other miscellaneous uses.\\r\\n\\r\\nA computer (more generally referred to as a server, since most of them are connected to the Global Grid and running one service or another) running CardinalOS usually runs one or more services.\\r\\n\\r\\nServices are applications, software with a specific function. The most popular ones are:\\r\\n<ul>\\r\\n<li>SSH\\/FILES services - user\\/password restricted access to any kind of files (text, images, encrypted, etc.)<\\/li>\\r\\n<li>SMTP\\/EMAIL services - email\\/password restrict access to emails<\\/li>\\r\\n<li>DB\\/SQL services - databases running on the Cardinal Query Language - more or less: tables of data; we shall discuss this in further lessons<\\/li>\\r\\n<\\/ul>\\r\\n\\r\\nI won''t keep you much longer. You should see our training on your screen. If you try to access it you will note that an SSH service is running on port 22 of this server.\\r\\n\\r\\nEvery service requires a username and password authentication. \\r\\n\\r\\nSome servers may be too well protected to be cracked so you will have no other choice than to find passwords through other means (e.g. hacking into other systems first). \\r\\n\\r\\nIn this instance, I shall give you the password for the server running on port 22. The password for the admin account is <strong>admin<\\/strong>. Please connect to this server.\\r\\n\\r\\n","objective_order":"0","optional":null,"type":"1","data":null,"quest_id":"3","name":"Cardinal OS","sides":{"8":{"objective_id":"8","parent_objective_id":"7","story":null,"objective_order":"0","optional":null,"type":"1","data":"admin@7","quest_id":"3","name":null}}},"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2}}}', 1479840090, NULL, 3, NULL),
+(48, 1, 1475003038, '2016-09-27 19:03:58', 1000, 2, '{"train_type":3,"sql_file":"\\/Applications\\/MAMP\\/htdocs\\/hg\\/fuel\\/app\\/tmp\\/train_1.db","completion_conditions":[["select count(*) from company","1"]]}', 1479840090, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1143,7 +1112,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `profile_fields`, `group`, `last_login`, `login_hash`, `created_at`, `updated_at`, `level`, `experience`, `skills`, `knowledge`, `skill_points`, `train`, `hacker_group_id`, `achievements`, `ranking_points`, `ranking`, `money`, `main_server`, `last_active`, `emergency_logout`, `tutorial_enabled`, `tutorial_step`, `referrer`, `premium`, `premium_until`) VALUES
-(1, 'cardinal', '+Q4xRcof2M/nQvTu/cJcvTerZl+Jfl63ZoZ5mzBlcBk=', 'cardinal@test.com', 'a:0:{}', 2, 1475002992, '66eff4720cfe8a4d19a77de4423650d9f4a8fbcf', 1473138490, 0, 1, 15, '{"1":{"level":1,"exp":8},"2":{"level":1,"exp":2},"3":{"level":1,"exp":0},"4":{"level":1,"exp":0},"5":{"level":1,"exp":0},"6":{"level":1,"exp":0}}', '{"1":{"level":1},"2":{"level":0}}', 0, NULL, 2, NULL, 1, 1, 73010, 7, 1475003035, '', 1, 2, NULL, NULL, NULL),
+(1, 'cardinal', '+Q4xRcof2M/nQvTu/cJcvTerZl+Jfl63ZoZ5mzBlcBk=', 'cardinal@test.com', 'a:0:{}', 2, 1479950825, '57f6d809d7685591106919e98eeaf6368b54e0da', 1473138490, 0, 1, 15, '{"1":{"level":1,"exp":8},"2":{"level":1,"exp":2},"3":{"level":1,"exp":0},"4":{"level":1,"exp":0},"5":{"level":1,"exp":0},"6":{"level":1,"exp":0}}', '{"1":{"level":1},"2":{"level":0}}', 0, NULL, 2, NULL, 1, 1, 73010, 7, 1479955867, '', 1, 2, NULL, NULL, NULL),
 (2, 'card2', 'M0r4butKb0sfOhJq5ihAmLAnEBp2hksKzOltcGOeG50=', 'card2@gmail.com', 'a:0:{}', 1, 0, '', 1473170010, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, '', 1, 1, NULL, NULL, NULL),
 (3, 'card3', 'dNG43NZPc0C7lwHY1AsyBQHKgTOi3XU6g9JjcOtA/G0=', 'card3@gmail.com', 'a:0:{}', 1, 1473170038, 'a872cc3b660ad3c067215350a9bec2440e2d3c8c', 1473170038, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, '', 1, 1, NULL, NULL, NULL);
 
@@ -1235,9 +1204,15 @@ ALTER TABLE `quest_server_service`
   ADD PRIMARY KEY (`service_id`);
 
 --
--- Indexes for table `quest_service_entity`
+-- Indexes for table `quest_service_user`
 --
-ALTER TABLE `quest_service_entity`
+ALTER TABLE `quest_service_user`
+  ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indexes for table `quest_user_entity`
+--
+ALTER TABLE `quest_user_entity`
   ADD PRIMARY KEY (`entity_id`);
 
 --
@@ -1321,32 +1296,37 @@ ALTER TABLE `hacker_quote`
 -- AUTO_INCREMENT for table `quest`
 --
 ALTER TABLE `quest`
-  MODIFY `quest_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `quest_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `quest_group`
 --
 ALTER TABLE `quest_group`
-  MODIFY `quest_group_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `quest_group_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `quest_objective`
 --
 ALTER TABLE `quest_objective`
-  MODIFY `objective_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
+  MODIFY `objective_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `quest_server`
 --
 ALTER TABLE `quest_server`
-  MODIFY `quest_server_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+  MODIFY `quest_server_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `quest_server_service`
 --
 ALTER TABLE `quest_server_service`
-  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
--- AUTO_INCREMENT for table `quest_service_entity`
+-- AUTO_INCREMENT for table `quest_service_user`
 --
-ALTER TABLE `quest_service_entity`
-  MODIFY `entity_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+ALTER TABLE `quest_service_user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `quest_user_entity`
+--
+ALTER TABLE `quest_user_entity`
+  MODIFY `entity_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `reward`
 --

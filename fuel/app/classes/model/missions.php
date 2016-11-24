@@ -45,14 +45,14 @@ class Missions extends \Model {
             $handlers->add('server', function(\Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
                 if ($s->getParameter('id'))
                     $server = static::$shortcode_mission['servers'][$s->getParameter('id')];
-                elseif ($s->getParameter('hn')) 
+                elseif ($s->getParameter('hn'))
                     foreach(static::$shortcode_mission['servers'] as $server) if ($server['hostname'] == $s->getParameter('hn')) break;
                 return sprintf('%s', $server[$s->getParameter('attr')]);
             });
             $handlers->add('ip', function(\Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
                 if ($s->getParameter('id'))
                     $server = static::$shortcode_mission['servers'][$s->getParameter('id')];
-                elseif ($s->getParameter('hn')) 
+                elseif ($s->getParameter('hn'))
                     foreach(static::$shortcode_mission['servers'] as $server) if ($server['hostname'] == $s->getParameter('hn')) break;
                 return sprintf('%s', $server['ip']);
             });
@@ -62,21 +62,21 @@ class Missions extends \Model {
     }
 
     public static function shortcode() {
-        
+
         return $shortcode;
     }
 
     public static function interface_task(&$mission, &$tVars) {
         if (\Input::post('skip') && \Auth::get('group') == 2) {
             $mission['task']['task_duration'] = -1;
-        } 
+        }
         if (\Input::post('cancel')) {
             unset($mission['task']);
             return true;
         } else {
             $remaining = max(0, $mission['task']['task_start'] + $mission['task']['task_duration'] - time());
             if (!$remaining) {
-                switch ($mission['task']['type']) { 
+                switch ($mission['task']['type']) {
                     case 'scan':
                         $srv_id = $mission['task']['data'];
                         foreach($mission['services'] as &$service) {
@@ -122,7 +122,7 @@ class Missions extends \Model {
 
             if (\Input::post('action') == 'connect') {
                 if (static::access_granted_to_service($service['users'], \Input::post('username'), \Input::post('password'))) {
-                   
+
                     $mission['connected'] = array('service_id' => $service_id, 'username' => \Input::post('username'));
                     static::objective_check($task, $mission, 1, \Input::post('username') . ':' . $service_id);
                 }
@@ -146,23 +146,23 @@ class Missions extends \Model {
         $entity_id = $mission['connected']['entity'];
         $entity = &$mission['entities'][$entity_id];
         if (\Input::post('action')) {
-           
+
             if (\Input::post('action') == 'exit') {
                 unset($mission['connected']['entity']);
                 return;
             }
             if ($entity['security']) {
-                if (\Input::post('action') == 'password') { 
+                if (\Input::post('action') == 'password') {
                     if ($entity['password'] && \Input::post('password') == $entity['password']) {
                         $entity['security'] = 0;
                     }
                 }
-                if (\Input::post('action') == 'crack') { 
+                if (\Input::post('action') == 'crack') {
                     $entity['security'] = 0;
-                }        
-            } else {            
+                }
+            } else {
                 if (!isset($entity['running'])) {
-                    if (\Input::post('action') == 'execute') { 
+                    if (\Input::post('action') == 'execute') {
                         foreach($entity['required_running'] as $rr) {
                             if (!isset($mission['entities'][$rr[0]]['running']) || (isset($rr[1]) && $mission['entities'][$rr[0]]['service_id'] != $rr[1])) {
                                 return;
@@ -172,12 +172,12 @@ class Missions extends \Model {
                         static::objective_check($task, $mission, 4, $entity_id);
                         static::objective_check($task, $mission, 7, $entity_id . ':' . $mission['connected']['username'] . ':' . $mission['connected']['service_id']);
                     }
-                    if (\Input::post('action') == 'erase') { 
+                    if (\Input::post('action') == 'erase') {
                         static::objective_check($task, $mission, 3, $entity_id);
                         unset($mission['entities'][$entity_id]);
                         unset($mission['connected']['entity']);
                     }
-                    if (\Input::post('action') == 'transfer') { 
+                    if (\Input::post('action') == 'transfer') {
                         $transfer = explode(':', \Input::post('transfer'));
                         $service_id = $transfer[1];
                         $username = $transfer[0];
@@ -195,7 +195,7 @@ class Missions extends \Model {
                         }
                     }
                 } else {
-                    if (\Input::post('action') == 'kill') { 
+                    if (\Input::post('action') == 'kill') {
                         unset($entity['running']);
                     }
                 }
@@ -205,9 +205,9 @@ class Missions extends \Model {
         $tVars['entity'] = $entity;
     }
     public static function interface_connected(&$mission, &$tVars) {
-        $service = $mission['services'][$mission['connected']['service_id']]; 
+        $service = $mission['services'][$mission['connected']['service_id']];
         $server = $mission['servers'][$service['quest_server_id']];
-        $tVars['service'] = $service; 
+        $tVars['service'] = $service;
         $tVars['server'] = $server;
         if (\Input::post('service_action') == 'disconnect') {
             unset($mission['connected']);
@@ -227,7 +227,7 @@ class Missions extends \Model {
                 }
             }
         }
-        
+
     }
 
     public static function interface($task) {
@@ -246,14 +246,14 @@ class Missions extends \Model {
                 $mission['bouncers'] = array_diff($mission['bouncers'], [\Input::post('remove_bounce')]);
             }
         }
-                
+
         if (\Input::post() || $do_save) {
             Task::save($task);
             \Response::redirect(\Uri::current());
         }
 
         if (!$mission["objective"]) {
-            $mission['completed'] = true;                
+            $mission['completed'] = true;
             Task::save($task);
             \Response::redirect(\Uri::current());
         }
@@ -340,13 +340,13 @@ class Missions extends \Model {
         }
 
         static::parse_shortcodes($mission);
-       
-        $mission['skills_influence'] = Skills::influence_total(\Auth::get('skills')); 
+
+        $mission['skills_influence'] = Skills::influence_total(\Auth::get('skills'));
 
         return $mission;
     }
 
-    
+
     public static function add_task(&$mission, $type, $duration, $data, $influence = false) {
         if ($influence) {
             if (isset($mission['skills_influence'][$influence])) {
@@ -388,11 +388,11 @@ class Missions extends \Model {
 
     	if ($objective_done) {
             if ($mission['objective']) {
-                foreach($mission['entities'] as &$e) 
-                    if (isset($e['required_objective']) && $e['required_objective'] == $mission['objective']['objective_id']) 
+                foreach($mission['entities'] as &$e)
+                    if (isset($e['required_objective']) && $e['required_objective'] == $mission['objective']['objective_id'])
                         unset($e['required_objective']);
-                foreach($mission['services'] as &$s) 
-                    if (isset($s['required_objective']) && $s['required_objective'] == $mission['objective']['objective_id']) 
+                foreach($mission['services'] as &$s)
+                    if (isset($s['required_objective']) && $s['required_objective'] == $mission['objective']['objective_id'])
                         unset($s['required_objective']);
             }
     		$mission["objective"] = static::new_objective($mission, $mission['objective']['quest_id'], $mission['objective']['objective_order']);
@@ -412,17 +412,29 @@ class Missions extends \Model {
         \DB::update('quest_server')->set($data)->where('quest_server_id', $server_id)->where('quest_id', $quest_id)->execute();
     }
 
-    public static function add_entity($service_id, $quest_id, $parent_entity_id = 0) {
-        \DB::insert('quest_service_entity')->set(array('service_id' => $service_id, 'quest_id' => $quest_id, 'parent_entity_id' => $parent_entity_id))->execute();
+    public static function add_entity($user_id, $quest_id, $parent_entity_id = 0) {
+        \DB::insert('quest_user_entity')->set(array('user_id' => $user_id, 'quest_id' => $quest_id, 'parent_entity_id' => $parent_entity_id))->execute();
     }
 
     public static function update_entity($entity_id, $quest_id, $data) {
-        \DB::update('quest_service_entity')->set($data)->where('entity_id', $entity_id)->where('quest_id', $quest_id)->execute();
+        \DB::update('quest_user_entity')->set($data)->where('entity_id', $entity_id)->where('quest_id', $quest_id)->execute();
     }
 
     public static function delete_entity($entity_id, $quest_id) {
-        \DB::delete('quest_service_entity')->where('quest_id', $quest_id)->where(function($q) {
+        \DB::delete('quest_user_entity')->where('quest_id', $quest_id)->where(function($q) {
             return $q->where('entity_id', $entity_id)->or_where('parent_entity_id', $entity_id); })->execute();
+    }
+
+    public static function add_user($service_id, $quest_id) {
+        \DB::insert('quest_service_user')->set(array('service_id' => $service_id, 'quest_id' => $quest_id, 'username' => 'user' . time()))->execute();
+    }
+
+    public static function update_user($user_id, $quest_id, $data) {
+        \DB::update('quest_service_user')->set($data)->where('user_id', $user_id)->where('quest_id', $quest_id)->execute();
+    }
+
+    public static function delete_user($user_id, $quest_id) {
+        \DB::delete('quest_service_user')->where('user_id', $user_id)->where('quest_id', $quest_id)->execute();
     }
 
     public static function add_service($server_id, $quest_id) {

@@ -4,7 +4,7 @@ use \Model\Task;
 
 class Controller_Cardinal extends Controller
 {
-    
+
 
     public function __construct() {
         if (!Auth::check()) Response::redirect(Uri::base());
@@ -19,13 +19,13 @@ class Controller_Cardinal extends Controller
             Response::redirect(Uri::current());
         }
 
-        $steps = DB::select()->from('tutorial_step')->order_by('step_id', 'asc')->execute()->as_array(); 
+        $steps = DB::select()->from('tutorial_step')->order_by('step_id', 'asc')->execute()->as_array();
 
         $tVars['steps'] = $steps;
         return View::forge('cardinal/cardinal_tutorial', $tVars);
     }
 
-	public function action_index() 
+	public function action_index()
     {
         $tVars = array();
 
@@ -68,7 +68,7 @@ class Controller_Cardinal extends Controller
         $tVars['services'] = $services;
         $tVars['quests'] = $quests;
         return View::forge('cardinal/mission/cardinal_quest', $tVars);
-    } 
+    }
 
     public function action_quest_servers($quest_id) {
         $tVars = array();
@@ -79,7 +79,7 @@ class Controller_Cardinal extends Controller
         }
 
         if (Input::post('quest_server_id')) {
-            if (Input::post('add_service')) { 
+            if (Input::post('add_service')) {
                 Missions::add_service(Input::post('quest_server_id'), $quest['quest_id']);
             } elseif (Input::post('delete')) {
                 Missions::delete_server(Input::post('quest_server_id'), $quest['quest_id']);
@@ -88,9 +88,10 @@ class Controller_Cardinal extends Controller
             }
             Response::redirect(Uri::current() . '?quest_server_id=' . Input::post('quest_server_id'));
         }
+
         if (Input::post('service_id')) {
-             if (Input::post('add_entity')) { 
-                Missions::add_entity(Input::post('service_id'), $quest['quest_id']);
+            if (Input::post('add_user')) {
+                Missions::add_user(Input::post('service_id'), $quest['quest_id']);
             } elseif (Input::post('delete')) {
                 Missions::delete_service(Input::post('service_id'), $quest['quest_id']);
             } else {
@@ -99,9 +100,20 @@ class Controller_Cardinal extends Controller
             Response::redirect(Uri::current() . '?service_id=' . Input::post('service_id'));
         }
 
+        if (Input::post('user_id')) {
+             if (Input::post('add_entity')) {
+                Missions::add_entity(Input::post('user_id'), $quest['quest_id']);
+            } elseif (Input::post('delete')) {
+                Missions::delete_user(Input::post('user_id'), $quest['quest_id']);
+            } else {
+                Missions::update_user(Input::post('user_id'), $quest['quest_id'], Input::post());
+            }
+            Response::redirect(Uri::current() . '?user_id=' . Input::post('user_id'));
+        }
+
         if (Input::post('entity_id')) {
             if (Input::post('add_entity')) {
-                Missions::add_entity(Input::post('service_id'), $quest['quest_id'], Input::post('entity_id')); 
+                Missions::add_entity(Input::post('service_id'), $quest['quest_id'], Input::post('entity_id'));
             } elseif (Input::post('delete')) {
                 Missions::delete_entity(Input::post('entity_id'), $quest['quest_id']);
             } else {
@@ -112,12 +124,14 @@ class Controller_Cardinal extends Controller
 
         $servers = DB::select()->from('quest_server')->where('quest_id', $quest_id)->execute()->as_array('quest_server_id');
         $services = DB::select()->from('quest_server_service')->where('quest_id', $quest_id)->order_by('port', 'asc')->execute()->as_array('service_id');
-        $entities = DB::select()->from('quest_service_entity')->where('quest_id', $quest_id)->order_by('title', 'asc')->execute()->as_array('entity_id');
+        $users = DB::select()->from('quest_service_user')->where('quest_id', $quest_id)->order_by('username', 'asc')->execute()->as_array('user_id');
+        $entities = DB::select()->from('quest_user_entity')->where('quest_id', $quest_id)->order_by('title', 'asc')->execute()->as_array('entity_id');
         $objectives = DB::select()->from('quest_objective')->where('quest_id', $quest_id)->where('parent_objective_id', 'IS', NULL)->order_by('objective_order', 'asc')->execute()->as_array('objective_id');
 
         $tVars['quest'] = $quest;
         $tVars['objectives'] = $objectives;
         $tVars['services'] = $services;
+        $tVars['users'] = $users;
         $tVars['entities'] = $entities;
         $tVars['servers'] = $servers;
         return View::forge('cardinal/mission/cardinal_quest_servers', $tVars);
@@ -129,7 +143,8 @@ class Controller_Cardinal extends Controller
 
         if (Input::post('add_objective')) {
             DB::insert('quest_objective')->set(array(
-                'quest_id' => $quest['quest_id'], 
+                'quest_id' => $quest['quest_id'],
+                'name' => 'Untitled',
                 'objective_order' => DB::query('SELECT IFNULL(MAX(objective_order),-1) + 1 oo from quest_objective where quest_id = ' . $quest['quest_id'])->execute()->as_array()[0]['oo']
             ))->execute();
             Response::redirect(Uri::current());
@@ -158,17 +173,20 @@ class Controller_Cardinal extends Controller
 
         $objectives = DB::select()->from('quest_objective')->where('quest_id', $quest_id)->order_by('objective_order', 'asc')->execute()->as_array('objective_id');
         $services = DB::select('qss.*', 'qs.hostname', 'qss.users')->from(array('quest_server_service', 'qss'))->join(array('quest_server', 'qs'),'left outer')->on('qs.quest_server_id', '=', 'qss.quest_server_id')->where('qss.quest_id', $quest_id)->execute()->as_array();
-        
-        $entities = DB::select('qse.*', 'qs.hostname', 'qss.port')->from(array('quest_service_entity', 'qse'))->join(array('quest_server_service', 'qss'), 'left outer')->on('qss.service_id', '=', 'qse.service_id')->join(array('quest_server', 'qs'))->on('qs.quest_server_id', '=', 'qss.quest_server_id')->where('qse.quest_id', $quest_id)->execute()->as_array();
+        $entities = DB::select('que.*', 'qs.hostname', 'qss.port')->from(array('quest_user_entity', 'que'))
+          ->join(array('quest_service_user', 'qsu'), 'left outer')->on('qsu.user_id', '=', 'que.user_id')
+          ->join(array('quest_server_service', 'qss'), 'left outer')->on('qss.service_id', '=', 'qsu.service_id')
+          ->join(array('quest_server', 'qs'))->on('qs.quest_server_id', '=', 'qss.quest_server_id')
+          ->where('que.quest_id', $quest_id)->execute()->as_array();
 
         $tVars['quest'] = $quest;
         $tVars['objectives'] = $objectives;
         $tVars['services'] = $services;
         $tVars['entities'] = $entities;
         return View::forge('cardinal/mission/cardinal_quest_objectives', $tVars);
-    } 
+    }
 
-    public function action_missions() 
+    public function action_missions()
     {
         $tVars = array();
 

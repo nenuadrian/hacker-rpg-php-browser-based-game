@@ -64,7 +64,7 @@ footer {
 .form-control {
 	border-radius: 5px;
     background-color: transparent;
-    border: 1px solid rgba(1, 124, 219, 0.23);
+    border: none;
     border-bottom: 3px solid #017cdb;
     font-weight: 300;
     color: #209eff;
@@ -78,9 +78,9 @@ footer {
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
+input:-webkit-autofill:hover,
 input:-webkit-autofill:focus
-input:-webkit-autofill, 
+input:-webkit-autofill,
 textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover
 textarea:-webkit-autofill:focus,
@@ -232,7 +232,7 @@ hr {
 }
 
 .btn-default {
-	
+
 }
 
 
