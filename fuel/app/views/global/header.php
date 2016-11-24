@@ -105,4 +105,4 @@
 			</div>
 
 		<?php endif; ?>
-		<div class="container-fluid" style="min-height:500px; padding-top:20px;">
+		<div class="container-fluid" style="min-height:500px; padding-top:0px;">

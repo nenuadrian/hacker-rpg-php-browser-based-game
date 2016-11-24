@@ -5,3 +5,4 @@ private/**
 stats/**
 public_shtml/**
 fuel/vendor
+fuel/app/config/db.php
