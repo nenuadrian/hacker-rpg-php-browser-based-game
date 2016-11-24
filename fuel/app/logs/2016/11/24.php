@@ -324,3 +324,5 @@ ERROR - 2016-11-24 23:34:37 --> Error - Could not find asset: bootstrap.css in /
 ERROR - 2016-11-24 23:34:39 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
 ERROR - 2016-11-24 23:34:40 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
 ERROR - 2016-11-24 23:34:43 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
+ERROR - 2016-11-24 23:44:08 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
+ERROR - 2016-11-24 23:44:48 --> Error - Could not find asset: bootstrap.css in /Applications/MAMP/htdocs/SecretAlpha/fuel/core/classes/asset/instance.php on line 413
