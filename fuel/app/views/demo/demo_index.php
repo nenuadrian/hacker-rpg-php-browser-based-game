@@ -45,7 +45,8 @@ cursor:pointer;
 
 
 <div class="collapse mission-content" id="mission">
-  <div>sss
+  <div>
+    ff
     <form method="post" class="text-center">
       <a href="<?php echo Uri::create('demo/play/9'); ?>" class="btn">accept mission</a>
     </form>

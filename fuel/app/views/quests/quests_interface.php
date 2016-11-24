@@ -1,6 +1,5 @@
 <?php echo View::forge('global/header'); ?>
 
-
 <?php print_r($task); ?>
 <style>
 .server {
@@ -28,7 +27,7 @@
 		<?php echo View::forge('components/countdown', array('start_value' => $task['task_start'], 'remaining' => $task['remaining'], 'duration' => $task['task_duration'])); ?>
 		</div>
 	</div>
-<?php 
+<?php
 
 	$mission = $task['data']['mission'];
 ?>
@@ -58,7 +57,7 @@
 		<?php else: ?>
 
 			<div class="list-group">
- 
+
 			<?php foreach($mission['servers'] as $server_id => $s): ?>
 				<?php if ($s['discovered']): ?>
 					<div class="modal fade" id="serverModal_<?php echo $server_id; ?>" role="dialog">
