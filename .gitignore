@@ -4,3 +4,4 @@ cgi-bin/**
 private/**
 stats/**
 public_shtml/**
+fuel/vendor
