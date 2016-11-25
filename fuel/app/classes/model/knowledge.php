@@ -17,7 +17,8 @@ class Knowledge extends \Model {
                                 'level' => $level * 1,
                                 'knows' => array(
                                         2 => $level
-                                    )
+                                    ),
+                                'money' => $level * 3
                             );
                     },
                 ),
@@ -56,8 +57,7 @@ class Knowledge extends \Model {
         );
     }
 
-    public static function process($knowledge_string)
-    {
+    public static function process($knowledge_string) {
         if ($knowledge_string) {
         	$user_knows = json_decode($knowledge_string, true);
         } else $user_knows = array();
@@ -70,12 +70,12 @@ class Knowledge extends \Model {
             $user_knows[$k_id]['skills'] = $k['skills']($user_knows[$k_id]['level'] + 1);
             $user_knows[$k_id]['requires'] = $k['requires']($user_knows[$k_id]['level'] + 1);
             $fulfilled = $user_knows[$k_id]['requires']['level'] <= \Auth::get('level');
+            if (isset($user_knows[$k_id]['requires']['money'])) $fulfilled = $user_knows[$k_id]['requires']['money'] <= \Auth::get('money');
             foreach ($user_knows[$k_id]['requires']['knows'] as $r_k_id => &$r_k) {
                 $r_k = array('level' => $r_k, 'fulfilled' => $user_knows[$r_k_id]['level'] >= $r_k);
-                if (!$r_k['fulfilled']) $fulfilled = false;
+                $fulfilled = !$r_k['fulfilled'] ? false : $fulfilled;
             }
             $user_knows[$k_id]['requires']['fulfilled'] = $fulfilled;
-
         }
         return $user_knows;
     }

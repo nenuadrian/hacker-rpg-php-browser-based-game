@@ -30,13 +30,20 @@ if (Input::get('entity_id')) {
 		<button class="btn btn-default btn-block" type="submit" name="add_server" value="true">add server</button>
 		</form>
 	<?php foreach($servers as $server_id => $s): ?>
-		<button id="anchor_server_<?php echo $server_id; ?>" class="btn btn-default btn-block" data-toggle="collapse" data-target="#server_<?php echo $server_id; ?>">
-  			<?php echo $s['hostname']; ?> | <?php echo $s['discovered'] ? 'discovered' : 'not discovered'; ?> | N(<?php echo $s['network']; ?>) | ID(<?php echo $server_id; ?>)
-		</button>
-
-		<div class="collapse well <?php echo $expanded['server'] == $server_id ? 'in' : ''; ?>" id="server_<?php echo $server_id; ?>" >
-
-			<form method="post" action="#anchor_server_<?php echo $server_id; ?>">
+		<div class="box-layout" id="anchor_server_<?php echo $server_id; ?>">
+			<a class="box-layout-icon" data-toggle="collapse" data-target="#server_<?php echo $server_id; ?>">
+					<div class="front-content">
+							<h3><?php echo $s['hostname']; ?> | <?php echo $s['discovered'] ? 'discovered' : 'not discovered'; ?> | N(<?php echo $s['network']; ?>)</h3>
+					</div>
+			</a>
+			<a class="box-layout-content" data-toggle="collapse" data-target="#server_<?php echo $server_id; ?>">
+					<h3>ID(<?php echo $server_id; ?>)</h3>
+					<p></p>
+			</a>
+		</div>
+		<div class="collapse  <?php echo $expanded['server'] == $server_id ? 'in' : ''; ?>" id="server_<?php echo $server_id; ?>" >
+			<div style="padding:20px">
+			<form method="post" action="#anchor_server_<?php echo $server_id; ?>" class="well">
 			<input type="hidden" name="quest_server_id" value="<?php echo $server_id; ?>" />
 			<div class="row">
 			<div class="col-xs-4">
@@ -68,6 +75,7 @@ if (Input::get('entity_id')) {
 			</div>
 			</form>
 			<?php echo View::forge('cardinal/mission/cardinal_mission_services', array('services' => $services, 'entities' => $entities, 'server_id' => $server_id, 'expanded' => $expanded, 'objectives' => $objectives, 'users' => $users)); ?>
+		</div>
 
 		</div>
 	<?php endforeach; ?>
