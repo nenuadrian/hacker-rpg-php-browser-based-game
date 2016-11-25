@@ -2,14 +2,12 @@
 use \Model\Knowledge;
 use \Model\Task;
 
-class Controller_Knowledge extends Controller
-{
+class Controller_Knowledge extends Controller {
     public function __construct() {
         if (!Auth::check()) Response::redirect(Uri::base());
     }
-    
-	public function action_index() 
-    {
+
+  public function action_index() {
         if (Task::get_one(Auth::get('id'), 4)) Response::redirect(Uri::create('knowledge/learning'));
 
     	$tVars = array();

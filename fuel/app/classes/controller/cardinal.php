@@ -2,10 +2,7 @@
 use \Model\Missions;
 use \Model\Task;
 
-class Controller_Cardinal extends Controller
-{
-
-
+class Controller_Cardinal extends Controller {
     public function __construct() {
         if (!Auth::check()) Response::redirect(Uri::base());
         if (Auth::get('group') != 2) Response::redirect(Uri::base());
@@ -112,9 +109,7 @@ class Controller_Cardinal extends Controller
         }
 
         if (Input::post('entity_id')) {
-            if (Input::post('add_entity')) {
-                Missions::add_entity(Input::post('service_id'), $quest['quest_id'], Input::post('entity_id'));
-            } elseif (Input::post('delete')) {
+            if (Input::post('delete')) {
                 Missions::delete_entity(Input::post('entity_id'), $quest['quest_id']);
             } else {
                 Missions::update_entity(Input::post('entity_id'), $quest['quest_id'], Input::post());

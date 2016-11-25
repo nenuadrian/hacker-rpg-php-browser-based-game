@@ -71,17 +71,10 @@
     color: #b1b1b1;
     margin:0;
 }
-
-.box-layout .box-layout-success .box-layout-icon {background-color: #217911;}
-.box-layout .warning .box-layout-icon {background-color: #fc7f0c;}
-.box-layout .box-layout-alert .box-layout-icon{background-color: #a93432;}
-.box-layout .box-layout-gray .box-layout-icon {background-color: #474747;}
-
-.box-layout .box-layout-success .box-layout-content {background-color: #0e4803;}
-.box-layout .warning .box-layout-content {background-color: #fc7f0c;}
-.box-layout .box-layout-alert .box-layout-content {background-color: #7d1412;}
-.box-layout .box-layout-gray .box-layout-content {background-color: #474747;}
-
+.yellow{background-color: #ffc000;}
+.orange{background-color: #fc7f0c;}
+.red{background-color: #e84b3a;}
+.grey{background-color: #474747;}
 .box-layout:hover .box-layout-icon{
     opacity: 0;
     -webkit-transform: translateY(-110px) rotateX(90deg);

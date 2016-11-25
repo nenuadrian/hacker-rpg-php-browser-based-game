@@ -57,10 +57,19 @@
 					<?php echo $service['welcome']; ?>
 					</p>
 
-					<?php foreach($mission['entities'] as $entity_id => $entity): ?>
-						<?php if ($entity['user_id'] != $user['user_id'] || $entity['user_id'] != $user['user_id'] || isset($entity['required_objective'])) continue; ?>
-						<?php echo View::forge('missions/missions_service_' . $service['type'], array('mission' => $mission, 'entity' => $entity)); ?>
-					<?php endforeach;?>
+					<?php if ($service['type'] == 3): ?>
+						<?php echo View::forge('missions/query_output', array('output' => isset($query_result) ? $query_result : false)); ?>
+
+						<form method="post">
+							<textarea name="query" class="form-control"></textarea>
+							<button type="submit" class="btn">query</button>
+						</form>
+					<?php else: ?>
+						<?php foreach($mission['entities'] as $entity_id => $entity): ?>
+							<?php if ($entity['user_id'] != $user['user_id'] || $entity['user_id'] != $user['user_id'] || isset($entity['required_objective'])) continue; ?>
+							<?php echo View::forge('missions/missions_service_' . $service['type'], array('mission' => $mission, 'entity' => $entity)); ?>
+						<?php endforeach;?>
+					<?php endif; ?>
 				<?php endif; ?>
 			</div>
 	  <?php else: ?>
