@@ -2,6 +2,7 @@
 use \Model\Task;
 use \Model\Skills;
 use \Model\Servers;
+use \Model\DBMock;
 
 namespace Model;
 
@@ -203,9 +204,7 @@ class Missions extends \Model {
         $user = $mission['users'][$mission['connected']['user_id']];
         $service = $mission['services'][$user['service_id']];
         $server = $mission['servers'][$service['quest_server_id']];
-        $tVars['service'] = $service;
-        $tVars['server'] = $server;
-        $tVars['user'] = $user;
+
         if (\Input::post('service_action') == 'disconnect') {
             unset($mission['connected']);
         }
@@ -217,6 +216,33 @@ class Missions extends \Model {
         if (isset($mission['connected']['entity'])) {
             static::interface_entity($mission, $tVars);
         } else {
+            if ($service['type'] == 3 && \Input::post('query')) {
+              $db = DBMock::get_db($user['db_file_id'], 'mission');
+
+              $query = \Input::post('query');
+
+              if (DBMock::allowed($query)) {
+                  $output = DBMock::query($db, $query);
+                  $tVars['query_result'] = $output;
+                  //$ret;
+                  // verify if conditions are met
+                /*  $done = true;
+                  foreach ($task['data']['completion_conditions'] as $cc) {
+                      if ($db->querySingle($cc[0]) != $cc[1]) {
+                          $done = false; break;
+                      }
+                  }
+
+                  if ($done) {
+                    die();
+                  }*/
+
+              } else $tVars['query_result'] = "The Cardinal Query Language of this instance accepts only SELECT, INSERT and UPDATE commands.";
+
+
+              $db->close();
+            }
+
             if ($entity_id = \Input::post('entity_action')) {
                 if (isset($mission['entities'][$entity_id]) && $mission['entities'][$entity_id]['user_id'] == $user['user_id']) {
                     static::objective_check($task, $mission, 5, $entity_id);
@@ -225,6 +251,9 @@ class Missions extends \Model {
             }
         }
 
+        $tVars['service'] = $service;
+        $tVars['server'] = $server;
+        $tVars['user'] = $user;
     }
 
     public static function do_interface($task) {
@@ -243,6 +272,7 @@ class Missions extends \Model {
             static::interface_server_actions($mission, $tVars);
             if (isset($mission['connected'])) {
                 static::interface_connected($mission, $tVars);
+                if (isset($tVars['query_result'])) \Session::set('query_result', $tVars['query_result']);
             }
             if (\Input::post('remove_bounce')) {
                 $mission['bouncers'] = array_diff($mission['bouncers'], [\Input::post('remove_bounce')]);
@@ -258,6 +288,11 @@ class Missions extends \Model {
             $mission['completed'] = true;
             Task::save($task);
             \Response::redirect(\Uri::current());
+        }
+
+        if (\Session::get('query_result')) {
+          $tVars['query_result'] = \Session::get('query_result');
+          \Session::delete('query_result');
         }
 
         $tVars['task'] = $task;
@@ -276,10 +311,6 @@ class Missions extends \Model {
         foreach($mission['entities'] as &$entity) {
             $entity['content'] = static::do_shortcode($mission, $entity['content']);
             $entity['title'] = static::do_shortcode($mission, $entity['title']);
-        }
-
-        if (isset($mission['connected'])) {
-            $mission['connected']['username'] = static::do_shortcode(false, $mission['connected']['username']);
         }
     }
 
@@ -316,11 +347,20 @@ class Missions extends \Model {
         }*/
 
         $mission['users'] = \DB::select()->from('quest_service_user')->where('quest_id', $quest)->order_by('service_id', 'asc')->order_by('username', 'asc')->execute()->as_array('user_id');
-        foreach ($mission['users'] as &$u) {
+        foreach ($mission['users'] as $user_id => &$u) {
           $u['username'] = static::do_shortcode(false, html_entity_decode($u['username'], ENT_QUOTES));
           if ($u['password'] && !$u['security']) {
             $u['security'] = 999999;
           }
+
+          if ($mission['services'][$u['service_id']]['type'] == 3) {
+            $db = DBMock::get_fresh_db($u['db_file_id'] = \Auth::get('id') . $user_id . time(), 'mission');
+            $sql_init = $u['content']. "PRAGMA max_page_count = 20; PRAGMA page_size = 512;";
+            DBMock::run_sql($db, $sql_init);
+            $db->close();
+          }
+
+          unset($u['content']);
         }
         $mission['entities'] = \DB::select()->from('quest_user_entity')->where('quest_id', $quest)->order_by('title', 'asc')->execute()->as_array('entity_id');
         foreach($mission['entities'] as &$e) {
@@ -412,8 +452,8 @@ class Missions extends \Model {
         \DB::update('quest_server')->set($data)->where('quest_server_id', $server_id)->where('quest_id', $quest_id)->execute();
     }
 
-    public static function add_entity($user_id, $quest_id, $parent_entity_id = 0) {
-        \DB::insert('quest_user_entity')->set(array('user_id' => $user_id, 'quest_id' => $quest_id, 'parent_entity_id' => $parent_entity_id))->execute();
+    public static function add_entity($user_id, $quest_id) {
+        \DB::insert('quest_user_entity')->set(array('user_id' => $user_id, 'quest_id' => $quest_id))->execute();
     }
 
     public static function update_entity($entity_id, $quest_id, $data) {
@@ -422,7 +462,7 @@ class Missions extends \Model {
 
     public static function delete_entity($entity_id, $quest_id) {
         \DB::delete('quest_user_entity')->where('quest_id', $quest_id)->where(function($q) {
-            return $q->where('entity_id', $entity_id)->or_where('parent_entity_id', $entity_id); })->execute();
+            return $q->where('entity_id', $entity_id); })->execute();
     }
 
     public static function add_user($service_id, $quest_id) {

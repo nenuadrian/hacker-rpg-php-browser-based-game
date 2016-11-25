@@ -19,13 +19,21 @@ if ($objective_expanded) {
 	<form class="text-center" method="post">
 	<button type="submit" name="add_objective" value="true" class="btn btn-block">add objective</button>
 	</form>
-	<?php foreach($objectives as $objective_id => $o): ?>
-		<?php if ($o['parent_objective_id']) continue; ?>
-		<button class="btn btn-default btn-block" data-toggle="collapse" data-target="#objective_<?php echo $objective_id; ?>">
-			O(<?php echo $o['objective_order']; ?>) | <?php echo $o['name']; ?> | ID(<?php echo $objective_id; ?>)
-		</button>
 
-		<div class="well well-dark collapse <?php echo $objective_expanded == $objective_id ? 'in' : ''; ?>" id="objective_<?php echo $objective_id; ?>">
+	<?php foreach($objectives as $objective_id => $o): if ($o['parent_objective_id']) continue; ?>
+    <div class="box-layout">
+        <a class="box-layout-icon " data-toggle="collapse" data-target="#objective_<?php echo $objective_id; ?>">
+            <div class="front-content">
+                <h3>O(<?php echo $o['objective_order']; ?>) | <?php echo $o['name']; ?></h3>
+            </div>
+        </a>
+        <a class="box-layout-content" data-toggle="collapse" data-target="#objective_<?php echo $objective_id; ?>">
+            <h3>ID(<?php echo $objective_id; ?>)</h3>
+            <p><?php echo substr($o['story'], 0, 500); ?>...</p>
+        </a>
+    </div>
+		<div class="collapse <?php echo $objective_expanded == $objective_id ? 'in' : ''; ?>" id="objective_<?php echo $objective_id; ?>" >
+      <div style="padding:20px">
 		<form method="post" class="text-center" action="#objective_<?php echo $objective_id; ?>">
 		<div class="row">
 		<div class="col-xs-2">
@@ -43,7 +51,8 @@ if ($objective_expanded) {
 		</form>
 			<?php foreach($objectives as $side_o):  ?>
 				<?php if ($objective_id != $side_o['parent_objective_id']) continue; $side_type = Cardinal::$objective_types[$side_o['type']]; ?>
-				<div class="well well-dark" id="objective_<?php echo $side_o['objective_id']; ?>">
+				<div id="objective_<?php echo $side_o['objective_id']; ?>">
+          <div style="padding:20px;">
 				<form method="post" class="text-center" action="#objective_<?php echo $side_o['objective_id']; ?>">
 					<div class="row">
 					<div class="col-xs-4">
@@ -82,9 +91,11 @@ if ($objective_expanded) {
 				<button class="btn btn-default" type="submit" name="objective_id" value="<?php echo $side_o['objective_id']; ?>">update</button>
 				<button class="btn btn-danger" type="submit" name="delete" value="<?php echo $side_o['objective_id']; ?>">erase</button>
 				</form>
-				</div>
+				</div>		</div>
+
 			<?php endforeach; ?>
-		</div>
+    </div>
+  </div>
 	<?php endforeach; ?>
 </div>
 

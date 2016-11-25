@@ -1,5 +1,6 @@
 <?php
 use \Model\Knowledge;
+use \Model\Skills;
  echo View::forge('global/header'); ?>
 
  <?php echo Asset::css('diamond-show/style.css'); ?>
@@ -45,12 +46,29 @@ use \Model\Knowledge;
 
       <?php foreach($knowledge as $k_id => $k): ?>
         <li <?php echo $k_id == 2 ? 'class="selected"' : ''; ?>>
-          <?php echo $k['name']; ?> level <?php echo $user_knowledge[$k_id]['level']; ?>
-          <br/>
-          <a href="<?php echo Uri::create('knowledge/learn/' . $k_id); ?>">learn</a>
-
-          <?php print_r($user_knowledge[$k_id]['skills']); ?>
-          <?php print_r($user_knowledge[$k_id]['requires']); ?>
+          <h2><?php echo $k['name']; ?></h2>
+          <p>Level <?php echo $level = $user_knowledge[$k_id]['level']; ?></p>
+          <p> <strong>skill points obtainable with the next level</strong></p>
+          <?php foreach ($user_knowledge[$k_id]['skills'] as $skill_id => $p): ?>
+            <p><?php echo $p; ?> <em><?php echo Skills::skills()[$skill_id]['name']; ?></em> points</p>
+          <?php endforeach; ?>
+          <p><strong>requirements for next level</strong></p>
+          <?php if (isset($user_knowledge[$k_id]['requires']['level'])): ?>
+            <p>Level <?php echo $user_knowledge[$k_id]['requires']['level']; ?></p>
+          <?php endif; ?>
+          <?php if (isset($user_knowledge[$k_id]['requires']['money'])): ?>
+            <p><i class="fa fa-cube"></i> <?php echo $user_knowledge[$k_id]['requires']['money']; ?></p>
+          <?php endif; ?>
+          <?php foreach($user_knowledge[$k_id]['requires']['knows'] as $r_k_id => $r): ?>
+            <p><?php echo $knowledge[$r_k_id]['name']; ?> at level <?php echo $r['level']; ?> [<?php echo $r['fulfilled'] ? 'yes' : 'no'; ?>]</p>
+          <?php endforeach; ?>
+          <?php if ($user_knowledge[$k_id]['requires']['fulfilled']): ?>
+            <a href="<?php echo Uri::create('knowledge/learn/' . $k_id); ?>">learn</a>
+          <?php else: ?>
+            <div class="alert alert-danger">
+              Requirements have not been fulfilled
+            </div>
+          <?php endif; ?>
         </li>
       <?php endforeach; ?>
 

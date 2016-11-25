@@ -2,14 +2,8 @@
 use \Model\Train;
 use \Model\Task;
 use \Model\Missions;
+use \Model\DBMock;
 
-class MyDB extends SQLite3
-{
-  function __construct($sql_file)
-  {
-     $this->open($sql_file);
-  }
-}
 
 class Controller_Train extends Controller
 {
@@ -38,26 +32,18 @@ class Controller_Train extends Controller
                 $data['mission'] = Missions::prepare_data($mission['quest_id']);
 
             } elseif ($data['train_type'] == 3) {
-                $sql_path = APPPATH . 'tmp';
-                $sql_filename = 'train_' . Auth::get('id') . '.db';
-                $sql_file = $sql_path . '/' . $sql_filename;
-                //File::delete($sql_file);
-                if (!File::exists($sql_file))
-                    File::create($sql_path, $sql_filename, '');
-                else File::update($sql_path, $sql_filename, '');
 
-                $data['sql_file'] = $sql_file;
+                $db = DBMock::get_fresh_db(Auth::get('id'), 'train');
 
-                   $db = new MyDB($sql_file);
+               $sql = DB::select()->from('training')->where('type', 3)->where('min_level', '<=', $train['level'])->where('max_level', '>=', $train['level'])
+                    ->order_by(DB::expr('RAND()'))->limit(1)->execute()->as_array()[0];
 
-                   $sql = DB::select()->from('training')->where('type', 3)->where('min_level', '<=', $train['level'])->where('max_level', '>=', $train['level'])
-                        ->order_by(DB::expr('RAND()'))->limit(1)->execute()->as_array()[0];
+               $sql_init = $sql['init_script']. "PRAGMA max_page_count = 20; PRAGMA page_size = 512;";
 
-                   $sql_init = $sql['init_script']. "PRAGMA max_page_count = 20; PRAGMA page_size = 512;";
-
-                $db->exec($sql_init);
+                DBMock::run_sql($db, $sql_init);
 
                 $db->close();
+
                 $completion_conditions = $sql['completion_conditions'];
                 $completion_conditions = array_filter(explode(";", $completion_conditions));
                 foreach($completion_conditions as &$cc)
@@ -95,51 +81,26 @@ class Controller_Train extends Controller
             $training = DB::select()->from('training')->where('training_id', $task['data']['training_id'])->execute()->as_array()[0];
 
             if (Input::post('query')) {
-                $db = new MyDB($task['data']['sql_file']);
-                try {
-                    $query = trim(Input::post('query'));
-                    $type = strtolower(substr($query, 0, 6));
-                    if (in_array($type, array('select', 'insert', 'update'))) {
-                        $ret = $db->query($query);
-
-                        if ($type == 'select') {
-                            $output = array();
-                            while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
-                                $output[] = $row;
-                            }
-                            $tVars['output'] = $output;
-                        } elseif ($type == 'insert') {
-                            $tVars['output'] = 'done';
-                        } elseif ($type == 'update') {
-                            $tVars['output'] = 'done';
+                $db = DBMock::get_db(Auth::get('id'), 'train');
+                $query = Input::post('query');
+                if (DBMock::allowed($query)) {
+                    $output = DBMock::query($db, $query);
+                    $tVars['output'] = $output;
+                    //$ret;
+                    // verify if conditions are met
+                    $done = true;
+                    foreach ($task['data']['completion_conditions'] as $cc) {
+                        if ($db->querySingle($cc[0]) != $cc[1]) {
+                            $done = false; break;
                         }
+                    }
 
-                        //$ret;
-                        // verify if conditions are met
-                        $done = true;
-                        foreach ($task['data']['completion_conditions'] as $cc) {
-                            if ($db->querySingle($cc[0]) != $cc[1]) {
-                                //die();
-                                $done = false; break;
-                            }
-                        }
+                    if ($done) {
+                      die();
+                    }
 
-                        if ($done) {
-                            echo 'done';
-                         //   die();
-                        }
+                } else $tVars['output'] = "The Cardinal Query Language of this instance accepts only SELECT, INSERT and UPDATE commands.";
 
-                    } else $tVars['output'] = "The Cardinal Query Language of this instance accepts only SELECT, INSERT and UPDATE commands.";
-
-                    /*
-                    while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
-      echo "ADDRESS = ". $row['ADDRESS'] ."\n";
-      echo "SALARY =  ".$row['SALARY'] ."\n\n";
-   }
-   */
-                } catch (Exception $ex) {
-                    $tVars['output'] = $db->lastErrorMsg();
-                }
 
                 $db->close();
             }
