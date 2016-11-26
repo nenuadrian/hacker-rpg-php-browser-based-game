@@ -85,18 +85,6 @@ return array(
 					)
 			),
 		),
-	'train' => array(
-		3 => array(
-			'name' => 'Databases'
-			),
-		2 => array(
-			'name' => 'Field'
-			),
-		1 => array(
-			'name' => 'Decryption'
-			),
-
-		),
 
 	'service_types' => array(
 			1 => array(

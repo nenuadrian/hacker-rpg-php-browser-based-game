@@ -6,12 +6,12 @@ class Controller_Rewards extends Controller
     public function __construct() {
         if (!Auth::check()) Response::redirect(Uri::base());
     }
-    
+
 	public function action_index()
     {
     	$tVars = array();
 
-    	$rewards = DB::select()->from('reward')->where('user_id', Auth::get('id'))->execute()->as_array();
+    	$rewards = DB::select()->from('reward')->where('user_id', Auth::get('id'))->order_by('created_at', 'desc')->execute()->as_array();
 
     	$tVars['rewards'] = $rewards;
         return View::forge('rewards/rewards', $tVars);
@@ -21,7 +21,8 @@ class Controller_Rewards extends Controller
     {
     	$tVars = array();
 
-    	$reward = DB::select()->from('reward')->where('user_id', Auth::get('id'))->where('reward_id', $reward)->execute()->as_array();
+    	$reward = DB::select()->from('reward')->where('user_id', Auth::get('id'))->where('reward_id', $reward)->limit(1)->execute()->as_array();
+      if (!count($reward)) Response::redirect(Uri::base());
     	$reward = $reward[0];
 
     	if (Input::post('claim')) {

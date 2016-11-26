@@ -2,15 +2,12 @@
 use \Model\Quests;
 use \Model\Missions;
 use \Model\Task;
+use \Model\Rewards;
 
-class Controller_Quests extends Controller
-{
-    public function __construct() {
-        if (!Auth::check()) Response::redirect(Uri::base());
-    }
+class Controller_Quests extends Controller {
+    public function __construct() { if (!Auth::check()) Response::redirect(Uri::base()); }
 
-	public function action_index()
-    {
+	public function action_index() {
         if (Task::get_one(Auth::get('id'), 1)) Response::redirect(Uri::create('quests/interface'));
 
         $tVars = array();
@@ -19,8 +16,7 @@ class Controller_Quests extends Controller
         return View::forge('quests/quests', $tVars);
     }
 
-    public function action_group($group)
-    {
+    public function action_group($group) {
         if (Task::get_one(Auth::get('id'), 1)) Response::redirect(Uri::create('quests/interface'));
         $tVars = array();
 
@@ -48,6 +44,14 @@ class Controller_Quests extends Controller
 
             $task['complete'] = time();
             $task['complete_status'] = 1;
+
+            $reward = array(
+              'experience' => 10,
+              'money' => 10,
+              'skill_points' => 1
+            );
+            Rewards::give(Auth::get('id'), $reward, 'Mission');
+
             Task::save($task);
             Response::redirect(Uri::create('quests'));
         }

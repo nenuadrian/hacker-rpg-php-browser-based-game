@@ -106,3 +106,6 @@
 
 		<?php endif; ?>
 		<div class="container-fluid" style="min-height:500px; padding-top:0px;">
+			<div class="container">
+				<?php echo View::forge('components/messages'); ?>
+			</div>
