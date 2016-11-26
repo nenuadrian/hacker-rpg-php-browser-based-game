@@ -104,9 +104,11 @@ class Controller_Train extends Controller
 
                 $db->close();
             }
+
+            $tVars['instructions'] = $training['instructions'];
         }
         $tVars['task'] = $task;
-        $tVars['instructions'] = $training['instructions'];
+
     	return View::forge('train/train_' . $task['data']['train_type'], $tVars);
     }
 }
