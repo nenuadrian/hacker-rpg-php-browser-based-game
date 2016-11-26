@@ -3,9 +3,23 @@
 namespace Model;
 
 class Train extends \Model {
-
-    public static function process($train_string)
-    {
+  public static function types() {
+    return array(
+  		3 => array(
+  			'name' => 'Databases',
+        'quest_group_id' => 6,
+  			),
+  		2 => array(
+  			'name' => 'Field',
+        'quest_group_id' => 3,
+  			),
+  		1 => array(
+  			'name' => 'Decryption',
+        'quest_group_id' => 4,
+  			),
+  		);
+  }
+    public static function process($train_string) {
         if ($train_string) {
         	$train = json_decode($train_string, true);
         } else $train = array();
