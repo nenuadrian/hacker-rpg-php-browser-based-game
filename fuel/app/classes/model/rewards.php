@@ -19,6 +19,16 @@ class Rewards extends \Model {
             $hacker['money'] += $reward['money'];
         }
 
+        if ($reward['achievements']) {
+          foreach(json_decode($reward['achievements'], true) as $a)
+            Achievements::award($a, $reward['user_id']);
+        }
+
+        if ($reward['train_id']) {
+            $train = Train::process(\Auth::get('train'));
+            Train::add_experience($train[$reward['train_id']], $reward['train_experience']);
+            $hacker['train'] = json_encode($train);
+        }
 
         Hacker::save($hacker, $reward['user_id']);
         \DB::update('reward')->set(array('claimed' => \DB::expr('NOW()')))->where('reward_id', $reward['reward_id'])->execute();
@@ -28,6 +38,7 @@ class Rewards extends \Model {
     public static function give($user_id, $reward, $title) {
       $reward['user_id'] = $user_id;
       $reward['title'] = $title;
+      if (isset($reward['achievements'])) $reward['achievements'] = json_encode($reward['achievements']);
       \DB::insert('reward')->set($reward)->execute();
     }
 }

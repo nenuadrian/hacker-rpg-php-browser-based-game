@@ -29,6 +29,8 @@ class Controller_Rewards extends Controller
     		Rewards::claim($reward);
     		Response::redirect(Uri::current());
     	}
+      if (isset($reward['achievements']))
+        $reward['achievements'] = json_decode($reward['achievements'], true);
     	$tVars['reward'] = $reward;
         return View::forge('rewards/reward', $tVars);
     }

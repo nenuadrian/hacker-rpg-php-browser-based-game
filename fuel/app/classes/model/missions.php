@@ -223,7 +223,7 @@ class Missions extends \Model {
 
               if (DBMock::allowed($query)) {
                   $output = DBMock::query($db, $query);
-                  $tVars['query_result'] = $output;
+                  $tVars['cql'] = array('query' => $query, 'output' => $output);
                   //$ret;
                   // verify if conditions are met
                 /*  $done = true;
@@ -237,7 +237,7 @@ class Missions extends \Model {
                     die();
                   }*/
 
-              } else $tVars['query_result'] = "The Cardinal Query Language of this instance accepts only SELECT, INSERT and UPDATE commands.";
+              } else $tVars['cql'] = "The Cardinal Query Language of this instance accepts only SELECT, INSERT and UPDATE commands.";
 
 
               $db->close();
@@ -272,7 +272,7 @@ class Missions extends \Model {
             static::interface_server_actions($mission, $tVars);
             if (isset($mission['connected'])) {
                 static::interface_connected($mission, $tVars);
-                if (isset($tVars['query_result'])) \Session::set('query_result', $tVars['query_result']);
+                if (isset($tVars['cql'])) \Session::set('cql', $tVars['cql']);
             }
             if (\Input::post('remove_bounce')) {
                 $mission['bouncers'] = array_diff($mission['bouncers'], [\Input::post('remove_bounce')]);
@@ -290,9 +290,9 @@ class Missions extends \Model {
             \Response::redirect(\Uri::current());
         }
 
-        if (\Session::get('query_result')) {
-          $tVars['query_result'] = \Session::get('query_result');
-          \Session::delete('query_result');
+        if (\Session::get('cql')) {
+          $tVars['cql'] = \Session::get('cql');
+          \Session::delete('cql');
         }
 
         $tVars['task'] = $task;

@@ -58,11 +58,18 @@
 					</p>
 
 					<?php if ($service['type'] == 3): ?>
-						<?php echo View::forge('missions/query_output', array('output' => isset($query_result) ? $query_result : false)); ?>
-
+						<?php if (isset($cql)): ?>
+							<?php echo View::forge('missions/query_output', array('cql' => $cql)); ?>
+						<?php endif; ?>
 						<form method="post">
-							<textarea name="query" class="form-control"></textarea>
-							<button type="submit" class="btn">query</button>
+							<div class="row">
+								<div class="col-xs-10">
+									<input type="text" name="query" class="form-control" required placeholder="Cardinal Query Languange" />
+								</div>
+								<div class="col-xs-2 text-center">
+									<button type="submit" class="btn"><i class="fa fa-table" aria-hidden="true"></i></button>
+								</div>
+							</div>
 						</form>
 					<?php else: ?>
 						<?php foreach($mission['entities'] as $entity_id => $entity): ?>
