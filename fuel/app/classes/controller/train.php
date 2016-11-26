@@ -47,7 +47,9 @@ class Controller_Train extends Controller {
         $reward = array(
           'experience' => 10,
           'money' => 10,
-          'skill_points' => 1
+          'skill_points' => 1,
+          'train_id' => $task['data']['train_type'],
+          'train_experience' => 10
         );
         Rewards::give(Auth::get('id'), $reward, 'Train');
 

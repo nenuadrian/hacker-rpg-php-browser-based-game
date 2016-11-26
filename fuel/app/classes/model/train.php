@@ -11,11 +11,11 @@ class Train extends \Model {
   			),
   		2 => array(
   			'name' => 'Field',
-        'quest_group_id' => 3,
+        'quest_group_id' => 7,
   			),
   		1 => array(
   			'name' => 'Decryption',
-        'quest_group_id' => 4,
+        'quest_group_id' => 8,
   			),
   		);
   }
@@ -49,7 +49,6 @@ class Train extends \Model {
     }
 
     public static function save($user_id, $train) {
-        $train = json_encode($train);
-        \DB::update('users')->set(array('train' => $train))->where('id', $user_id)->execute();
+        \DB::update('users')->set(array('train' => json_encode($train)))->where('id', $user_id)->execute();
     }
 }

@@ -5,7 +5,7 @@ body {
 	    font-weight: 300;
 	    letter-spacing:2px;
 	    color:#dedede;
-			font-smooth: auto; 
+			font-smooth: auto;
 
 }
 footer {
@@ -27,6 +27,7 @@ footer {
 }
 .modal-dialog {
 	    margin-bottom: 80px ;
+			margin-top:100px!important;
 }
 .modal-content {
 	border-radius: 0;
@@ -231,8 +232,8 @@ hr {
 	outline: none;
 	border:0;
 	transition:inherit;
-	    margin-top: 10px;
     margin-bottom: 10px;
+		    margin-top: 12px;
         letter-spacing: 3px;
 }
 
@@ -320,7 +321,7 @@ hr {
     background: rgba(255, 255, 255, 0.03);
     border-top-left-radius: 25px;
     border-bottom-right-radius: 25px;
-    border:0;
+    border: 1px solid rgba(255, 255, 255, 0.13);
 }
 
 .well-blue {
@@ -411,17 +412,29 @@ border-bottom-right-radius: 24px;}
 
 .panel-default .panel-heading {
 	border-radius:0;
-	    background: rgba(255, 255, 255, 0.24)!important;
-    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.64)!important;
+	    background: rgba(0, 0, 0, 0.31)!important;
     border:0;
     color:#D1D8DF;
+		white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
+}
+.panel-heading, .panel-footer {
+	padding: 15px 25px;
 }
 
 .panel-default .panel-footer {
 	border-radius:0;
-	    background: rgba(255, 255, 255, 0.24)!important;
-    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.64)!important;
+	    background: rgba(0, 0, 0, 0.31)!important;
     border:0;color:#D1D8DF;
+		white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
+}
+
+
+.table {
+	margin-bottom: 0;
 }
