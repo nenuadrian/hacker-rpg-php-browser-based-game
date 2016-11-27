@@ -23,7 +23,7 @@
 		<?php echo Asset::css('style.css'); ?>
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Josefin+Sans%3A300italic%2C300&amp;ver=4.6" type="text/css" media="all">
-		
+
 	</head>
 	<body>
 		<?php if (Auth::check()):
@@ -43,7 +43,7 @@
 			<br/>
 			<nav class="navbar navbar-default">
 			  <div class="container">
-			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <!-- 
 			    <div class="navbar-header">
 			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
 			        <span class="sr-only">Toggle navigation</span>
@@ -51,9 +51,9 @@
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
 			      </button>
-			    </div>
+			    </div> -->
 
-			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			    <div class="collapse navbar-collapse in" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav text-center">
 			        <li><a href="<?php echo Uri::create('dashboard'); ?>"><i class="fa fa-tachometer" aria-hidden="true"></i></a></li>
 							<li><a href="<?php echo Uri::create('quests'); ?>"><i class="fa fa-crosshairs" aria-hidden="true"></i></a></li>
