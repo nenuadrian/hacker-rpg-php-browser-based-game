@@ -1,10 +1,6 @@
 		</div>
 		<footer>
-		<?php if (Auth::check()): ?>
-			<a href="<?php echo Uri::create('authenticate/logout'); ?>"><h1 class="text-center" style=" opacity:.4">
-				<i class="fa fa-power-off" aria-hidden="true"></i>
-			</h1></a>
-		<?php endif; ?>
+	
 		</footer>
 
 		<?php $voice = Messages::get('voice'); if (count($voice)): $voice = $voice[count($voice) - 1];  ?>

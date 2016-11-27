@@ -23,7 +23,7 @@
 		<?php echo Asset::css('style.css'); ?>
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Josefin+Sans%3A300italic%2C300&amp;ver=4.6" type="text/css" media="all">
-		
+
 	</head>
 	<body>
 		<?php if (Auth::check()):
@@ -41,17 +41,15 @@
 			 $rewards = DB::select(DB::expr('count(*) as count'))->from('reward')->where('user_id', Auth::get('id'))->where('claimed', 'IS', NULL)->execute()->as_array()[0]['count'];
 		?>
 			<br/>
-			<nav class="navbar navbar-default">
+			<?php if (!isset($hide_menu)): ?>
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			<nav class="navbar navbar-default navbar-fixed-bottom">
 			  <div class="container">
-			    <!-- Brand and toggle get grouped for better mobile display -->
-			    <div class="navbar-header">
-			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-			        <span class="sr-only">Toggle navigation</span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			      </button>
-			    </div>
 
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			      <ul class="nav navbar-nav text-center">
@@ -75,11 +73,16 @@
 			        <?php if (Auth::get('group') == 2): ?>
 				        	 <li><a href="<?php echo Uri::create('cardinal'); ?>"><i class="fa fa-bolt" aria-hidden="true"></i></a></li>
 							<?php endif; ?>
+							<li>
+								<a href="<?php echo Uri::create('authenticate/logout'); ?>" style=" opacity:.4">
+									<i class="fa fa-power-off" aria-hidden="true"></i>
+								</a>
+							</li>
 			      </ul>
 			    </div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->
 			</nav>
-
+		<?php endif; ?>
 
 			<h2 class="level">
 			  L<?php echo Auth::get('level'); ?>
@@ -88,12 +91,12 @@
 			<div class="experience">
 			  <div style="width:<?php echo Auth::get('experience') / (\Model\Hacker::experience(Auth::get('level') + 1) / 100); ?>%">
 			  </div>
-			</div>-->
+			</div>
 
 			<div class="toolbar-bottom">
 			  ID: <a href="<?php echo Uri::create('hacker/access/' . Auth::get('username')); ?>"><?php echo Auth::get('username'); ?></a>
-			</div>
-		 <div class="toolbar-bottom-right">
+			</div>-->
+		 <div class="toolbar-top-right">
 			  <i class="fa fa-cube"></i> <?php echo number_format(Auth::get('money')); ?>
 			</div>
 

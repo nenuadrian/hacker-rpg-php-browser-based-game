@@ -5,7 +5,7 @@
 		<?php foreach($groups as $g): ?>
 			<div class="col-md-6 col-sm-6 ">
 	        <div class="box-layout">
-	            <a class="box-layout-icon " href="<?php echo Uri::create('quests/group/' . $g['quest_group_id']);?>">
+	            <a class="box-layout-icon ">
 	                <div class="front-content">
 	                    <h3><?php echo $g['name']; ?></h3>
 	                </div>
