@@ -16,10 +16,10 @@
 	<div class="col-md-4"></div>
 	<div class="col-md-4 text-center">
 
-		<img src="http://secretrepublic.net/layout/img/logo-art.png" class="main-logo" style="margin-top:50px;max-width:400px; width:100%;" />
+		<img src="<?php echo Uri::create('assets/img/logo.png'); ?>" class="main-logo" style="max-width:400px; width:100%;" />
 		<form method="post" style="margin-top:40px;margin-bottom:30px;">
 			<?php echo View::forge('components/messages'); ?>
-			<input type="text" class="form-control text-center" placeholder="user id" name="username"/>
+			<input type="text" class="form-control text-center" placeholder="user id" name="username" autocapitalize="off" autocorrect="off" />
 			<input type="password" class="form-control text-center" placeholder="password" name="password" />
 			<button class="btn btn-block btn-default" type="submit" style="margin-top:20px">connect</button>
 		</form>
