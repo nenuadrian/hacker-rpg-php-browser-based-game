@@ -28,8 +28,10 @@ class Authenticate extends \Model {
         if ($updateData['daily_login_count'] == 60) Rewards::give(\Auth::get('id'), array('achievements' => array(4)), "60th time's the charm");
       }
       Hacker::save($updateData, \Auth::get('id'));
+
+      \Messages::modal('Connected to the grid', "You've connected to the grid " . $updateData['daily_login_count'] . " times in a row!");
     }
-    \Messages::modal('Welcome', 'test');
+
     \Messages::voice('accessgranted');
   }
 }

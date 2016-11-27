@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3307
--- Generation Time: Nov 24, 2016 at 10:32 PM
+-- Generation Time: Nov 27, 2016 at 12:46 PM
 -- Server version: 5.5.42
 -- PHP Version: 7.0.0
 
@@ -736,18 +736,24 @@ CREATE TABLE `quest` (
   `live` tinyint(4) NOT NULL DEFAULT '0',
   `quest_group_order` int(11) NOT NULL DEFAULT '0',
   `level` int(11) NOT NULL DEFAULT '0',
-  `summary` text NOT NULL,
+  `summary1` text NOT NULL,
   `type` tinyint(1) NOT NULL DEFAULT '1',
   `default_connection` varchar(255) DEFAULT NULL,
-  `one_time_only` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+  `one_time_only` tinyint(1) NOT NULL DEFAULT '0',
+  `money` int(11) NOT NULL DEFAULT '0',
+  `experience` int(11) NOT NULL DEFAULT '0',
+  `summary2` text NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `quest`
 --
 
-INSERT INTO `quest` (`quest_id`, `name`, `required_quest_id`, `quest_group_id`, `live`, `quest_group_order`, `level`, `summary`, `type`, `default_connection`, `one_time_only`) VALUES
-(9, 'Demo 1', 0, 5, 1, 0, 0, '', 1, '0', 1);
+INSERT INTO `quest` (`quest_id`, `name`, `required_quest_id`, `quest_group_id`, `live`, `quest_group_order`, `level`, `summary1`, `type`, `default_connection`, `one_time_only`, `money`, `experience`, `summary2`) VALUES
+(9, 'Demo 1', 0, 5, 1, 0, 0, 'summary test code asdfasfdasdf asf as fda sdf asdf sadf', 1, '0', 1, 1, 1, 'asdfasfdsa asdf asf asfasd flongasdfasfdsa asdf asf asfasd flongasdfasfdsa asdf asf asfasd flongasdfasfdsa asdf asf asfasd flongasdfasfdsa asdf asf asfasd flongasdfasfdsa asdf asf asfasd flongasdfasfdsa asdf asf asfasd flongasdfasfdsa asdf asf asfasd flongasdfasfdsa asdf asf asfasd flongasdfasfdsa asdf asf asfasd flongasdfasfdsa asdf asf asfasd flongasdfasfdsa asdf asf asfasd flongasdfasfdsa asdf asf asfasd flongasdfasfdsa asdf asf asfasd flongasdfasfdsa asdf asf asfasd flong'),
+(10, 'New quest', 0, 6, 1, 0, 0, '', 1, '0', 0, 0, 0, ''),
+(11, 'New quest', 0, 7, 1, 0, 0, '', 1, '0', 0, 0, 0, ''),
+(12, 'New quest', 0, 8, 1, 0, 0, '', 1, '0', 0, 0, 0, '');
 
 -- --------------------------------------------------------
 
@@ -764,14 +770,17 @@ CREATE TABLE `quest_group` (
   `level` int(11) NOT NULL DEFAULT '0',
   `group_order` int(11) NOT NULL DEFAULT '0',
   `description` varchar(1000) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `quest_group`
 --
 
 INSERT INTO `quest_group` (`quest_group_id`, `name`, `required_quest_id`, `live`, `type`, `level`, `group_order`, `description`) VALUES
-(5, 'Demo', 0, 1, 1, 0, 0, 'test description');
+(5, 'Demo', 0, 1, 1, 0, 0, 'test description'),
+(6, 'Training DB', 0, 1, 2, 0, 0, NULL),
+(7, 'Field training', 0, 1, 3, 0, 0, NULL),
+(8, 'Decryption training', 0, 1, 4, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -789,7 +798,7 @@ CREATE TABLE `quest_objective` (
   `data` varchar(255) DEFAULT NULL,
   `quest_id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `quest_objective`
@@ -798,7 +807,8 @@ CREATE TABLE `quest_objective` (
 INSERT INTO `quest_objective` (`objective_id`, `parent_objective_id`, `story`, `objective_order`, `optional`, `type`, `data`, `quest_id`, `name`) VALUES
 (33, NULL, 'Objective 1', 1, NULL, 1, NULL, 9, 'Objective 1'),
 (35, 33, NULL, 0, NULL, 7, 'NONE', 9, NULL),
-(36, NULL, NULL, 2, NULL, 1, NULL, 9, 'Untitled');
+(36, NULL, NULL, 2, NULL, 1, NULL, 9, 'Untitled'),
+(37, NULL, NULL, 3, NULL, 1, NULL, 9, 'Untitled');
 
 -- --------------------------------------------------------
 
@@ -814,7 +824,7 @@ CREATE TABLE `quest_server` (
   `bounces` int(11) NOT NULL DEFAULT '3',
   `network` int(11) NOT NULL DEFAULT '10',
   `hide_hn` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `quest_server`
@@ -822,8 +832,7 @@ CREATE TABLE `quest_server` (
 
 INSERT INTO `quest_server` (`quest_server_id`, `quest_id`, `hostname`, `discovered`, `bounces`, `network`, `hide_hn`) VALUES
 (19, 9, 'untitled1', 1, 3, 10, 0),
-(20, 9, 'untitled', 1, 3, 10, 0),
-(21, 9, 'untitled', 0, 3, 10, 0);
+(20, 9, 'untitled', 1, 3, 10, 0);
 
 -- --------------------------------------------------------
 
@@ -841,7 +850,7 @@ CREATE TABLE `quest_server_service` (
   `quest_id` int(11) NOT NULL,
   `users` varchar(255) NOT NULL DEFAULT 'root::60',
   `required_objective` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `quest_server_service`
@@ -850,8 +859,7 @@ CREATE TABLE `quest_server_service` (
 INSERT INTO `quest_server_service` (`service_id`, `port`, `type`, `quest_server_id`, `discovered`, `welcome`, `quest_id`, `users`, `required_objective`) VALUES
 (14, 22, 1, 19, 1, '', 9, 'root::60', 0),
 (15, 22, 1, 19, 0, NULL, 9, 'root::60', 0),
-(16, 22, 1, 19, 0, NULL, 9, 'root::60', 0),
-(17, 22, 1, 19, 0, NULL, 9, 'root::60', 0);
+(16, 3006, 3, 19, 0, 'Welcome to this Cardinal SQL instance', 9, 'root::60', 0);
 
 -- --------------------------------------------------------
 
@@ -865,16 +873,18 @@ CREATE TABLE `quest_service_user` (
   `username` varchar(255) NOT NULL,
   `password` varchar(255) DEFAULT NULL,
   `quest_id` int(11) NOT NULL,
-  `security` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  `security` int(11) NOT NULL DEFAULT '0',
+  `content` text
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `quest_service_user`
 --
 
-INSERT INTO `quest_service_user` (`user_id`, `service_id`, `username`, `password`, `quest_id`, `security`) VALUES
-(2, 14, 'user1479955190', '', 9, 0),
-(3, 14, 'user1479955296', '', 9, 0);
+INSERT INTO `quest_service_user` (`user_id`, `service_id`, `username`, `password`, `quest_id`, `security`, `content`) VALUES
+(2, 14, 'user1479955190', '', 9, 0, NULL),
+(3, 14, 'user1479955296', '', 9, 0, NULL),
+(4, 16, 'root', 'root', 9, 0, 'CREATE TABLE COMPANY\r\n      (ID INT PRIMARY KEY     NOT NULL,\r\n      NAME           TEXT    NOT NULL,\r\n      AGE            INT     NOT NULL,\r\n      ADDRESS        CHAR(50),\r\n      SALARY         REAL);\r\n\r\nINSERT INTO company(id, name, age, address, salary) values(1, ''test'', 2, ''test'', 2);');
 
 -- --------------------------------------------------------
 
@@ -890,33 +900,35 @@ CREATE TABLE `quest_user_entity` (
   `content` longtext,
   `quest_id` int(11) NOT NULL,
   `sender_receiver` varchar(255) DEFAULT NULL,
-  `parent_entity_id` int(11) NOT NULL DEFAULT '0',
   `type` tinyint(1) NOT NULL DEFAULT '1',
   `password` varchar(255) NOT NULL,
   `required_running` varchar(500) NOT NULL,
   `required_objective` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `quest_user_entity`
 --
 
-INSERT INTO `quest_user_entity` (`entity_id`, `title`, `user_id`, `security`, `content`, `quest_id`, `sender_receiver`, `parent_entity_id`, `type`, `password`, `required_running`, `required_objective`) VALUES
-(1, 'test file2', 1, 2, 'a', 1, NULL, 0, 0, '', '', 0),
-(2, '4', 1, 2, '', 1, NULL, 0, 0, '', '', 0),
-(3, 'test', 4, 0, '', 1, 'owen@alpha.co', 0, 0, '', '', 0),
-(4, 'users', 5, 0, 'id|salary', 1, NULL, 0, 0, '', '', 0),
-(5, '1|test', NULL, 0, 'sdf', 1, NULL, 4, 0, '', '', 0),
-(6, 'run.me', 6, 0, '', 2, NULL, 0, 1, '', '', 0),
-(7, 'root.readme', 7, 0, 'This file can only be seen by root.', 3, NULL, 0, 0, '', '', 0),
-(8, 'admin.readme', 7, 0, 'This file can only be seen by admin.', 3, NULL, 0, 0, '', '', 0),
-(9, 'exec-needs-exec2', 1, 0, '', 1, NULL, 0, 1, '', '10:1', 0),
-(10, 'exec2', 1, 0, '', 1, NULL, 0, 1, '', '', 0),
-(11, 'Carpe Diem ', 11, 0, 'Well, hi <strong>[username]</strong>,\r\n\r\nWe''ve heard of you recent progress in the industry. Our agents have been researching specific individuals since their first contact with a computer until their latest keystrokes.\r\n\r\nYou, amongst others, stand out from the masses. \r\n\r\nAllow me to be short.\r\n\r\nI want to offer you.. a contract. You will provide a service and I will pay more or less handsomely.\r\n\r\nThe service we need from you is infiltrating into the entities we specify and either retrieve the information we require or inflicting irreparable damage.\r\n\r\nYou might be wondering who we are by now.\r\n\r\nOur name is Cobra and we are delighted to make your acquaintance, [username].\r\n\r\nUntil we talk again,\r\nW.\r\n', 7, 'unknown@anonymous.contractor.co', 0, 1, '', '', 0),
-(12, 'index.php', 12, 100, '<?php\r\nif (isset($_POST[''email'']) && filter_var($_POST[''email''], FILTER_VALIDATE_EMAIL)) {\r\n   file_put_contents(''to_contact.txt'', $_POST[''email''].PHP_EOL, FILE_APPEND | LOCK_EX);\r\n}\r\n?>\r\n<html lang="en">\r\n  <head>\r\n    <meta charset="utf-8">\r\n    <meta http-equiv="X-UA-Compatible" content="IE=edge">\r\n    <meta name="viewport" content="width=device-width, initial-scale=1">\r\n    <link rel="icon" href="favicon.ico">\r\n    <title>Revolution of Bio Technology</title>\r\n    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">\r\n  </head>\r\n  <body>\r\n    <div class="container">\r\n      <div class="page-header">\r\n        <h1>A new formula for bio engineering</h1>\r\n      </div>\r\n      <p class="lead">Our team is working on the next generation of bio engineered cells.</p>\r\n      <p>We are recruiting bright talent from the industry. Contact us and we''ll get back to you for your CV and references.</p>\r\n      <p>\r\n         <form method="post">\r\n            <input type="email" name="email" placeholder="Your email" />\r\n            <button type="submit" class="btn btn-block">Send</button>\r\n         </form>\r\n      </p>\r\n    </div>\r\n    <div class="footer">\r\n      <div class="container">\r\n        <p class="text-muted">Bio-Keltech</p>\r\n      </div>\r\n    </div>\r\n  </body>\r\n</html>', 7, NULL, 0, 2, '', '', 0),
-(13, 'to_contact.txt', 12, 100, '', 7, NULL, 0, 0, '', '', 0),
-(14, 'site.backup', 13, 100, '', 7, NULL, 0, 0, '', '', 0),
-(15, 'untitled', 2, 0, 'sdfsdf', 9, NULL, 0, 1, '', '', 0);
+INSERT INTO `quest_user_entity` (`entity_id`, `title`, `user_id`, `security`, `content`, `quest_id`, `sender_receiver`, `type`, `password`, `required_running`, `required_objective`) VALUES
+(1, 'test file2', 1, 2, 'a', 1, NULL, 0, '', '', 0),
+(2, '4', 1, 2, '', 1, NULL, 0, '', '', 0),
+(3, 'test', 4, 0, '', 1, 'owen@alpha.co', 0, '', '', 0),
+(4, 'users', 5, 0, 'id|salary', 1, NULL, 0, '', '', 0),
+(5, '1|test', NULL, 0, 'sdf', 1, NULL, 0, '', '', 0),
+(6, 'run.me', 6, 0, '', 2, NULL, 1, '', '', 0),
+(7, 'root.readme', 7, 0, 'This file can only be seen by root.', 3, NULL, 0, '', '', 0),
+(8, 'admin.readme', 7, 0, 'This file can only be seen by admin.', 3, NULL, 0, '', '', 0),
+(9, 'exec-needs-exec2', 1, 0, '', 1, NULL, 1, '', '10:1', 0),
+(10, 'exec2', 1, 0, '', 1, NULL, 1, '', '', 0),
+(11, 'Carpe Diem ', 11, 0, 'Well, hi <strong>[username]</strong>,\r\n\r\nWe''ve heard of you recent progress in the industry. Our agents have been researching specific individuals since their first contact with a computer until their latest keystrokes.\r\n\r\nYou, amongst others, stand out from the masses. \r\n\r\nAllow me to be short.\r\n\r\nI want to offer you.. a contract. You will provide a service and I will pay more or less handsomely.\r\n\r\nThe service we need from you is infiltrating into the entities we specify and either retrieve the information we require or inflicting irreparable damage.\r\n\r\nYou might be wondering who we are by now.\r\n\r\nOur name is Cobra and we are delighted to make your acquaintance, [username].\r\n\r\nUntil we talk again,\r\nW.\r\n', 7, 'unknown@anonymous.contractor.co', 1, '', '', 0),
+(12, 'index.php', 12, 100, '<?php\r\nif (isset($_POST[''email'']) && filter_var($_POST[''email''], FILTER_VALIDATE_EMAIL)) {\r\n   file_put_contents(''to_contact.txt'', $_POST[''email''].PHP_EOL, FILE_APPEND | LOCK_EX);\r\n}\r\n?>\r\n<html lang="en">\r\n  <head>\r\n    <meta charset="utf-8">\r\n    <meta http-equiv="X-UA-Compatible" content="IE=edge">\r\n    <meta name="viewport" content="width=device-width, initial-scale=1">\r\n    <link rel="icon" href="favicon.ico">\r\n    <title>Revolution of Bio Technology</title>\r\n    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">\r\n  </head>\r\n  <body>\r\n    <div class="container">\r\n      <div class="page-header">\r\n        <h1>A new formula for bio engineering</h1>\r\n      </div>\r\n      <p class="lead">Our team is working on the next generation of bio engineered cells.</p>\r\n      <p>We are recruiting bright talent from the industry. Contact us and we''ll get back to you for your CV and references.</p>\r\n      <p>\r\n         <form method="post">\r\n            <input type="email" name="email" placeholder="Your email" />\r\n            <button type="submit" class="btn btn-block">Send</button>\r\n         </form>\r\n      </p>\r\n    </div>\r\n    <div class="footer">\r\n      <div class="container">\r\n        <p class="text-muted">Bio-Keltech</p>\r\n      </div>\r\n    </div>\r\n  </body>\r\n</html>', 7, NULL, 2, '', '', 0),
+(13, 'to_contact.txt', 12, 100, '', 7, NULL, 0, '', '', 0),
+(14, 'site.backup', 13, 100, '', 7, NULL, 0, '', '', 0),
+(15, 'untitled', 2, 0, 'sdfsdf', 9, NULL, 1, '', '', 0),
+(16, 'untitled', 4, 0, '', 9, NULL, 1, '', '', 0),
+(17, 'untitled', NULL, 0, NULL, 9, NULL, 1, '', '', 0),
+(18, 'untitled', NULL, 0, NULL, 9, NULL, 1, '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -931,15 +943,29 @@ CREATE TABLE `reward` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `money` int(11) DEFAULT NULL,
   `skill_points` int(11) DEFAULT NULL,
-  `experience` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `experience` int(11) DEFAULT NULL,
+  `title` varchar(255) NOT NULL,
+  `achievements` text,
+  `train_id` int(11) DEFAULT NULL,
+  `train_experience` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reward`
 --
 
-INSERT INTO `reward` (`reward_id`, `user_id`, `claimed`, `created_at`, `money`, `skill_points`, `experience`) VALUES
-(1, 1, '2016-09-06 10:50:29', '2016-09-06 10:31:29', 1, 1, 2);
+INSERT INTO `reward` (`reward_id`, `user_id`, `claimed`, `created_at`, `money`, `skill_points`, `experience`, `title`, `achievements`, `train_id`, `train_experience`) VALUES
+(1, 1, '2016-09-06 10:50:29', '2016-09-06 10:31:29', 1, 1, 2, 'test', NULL, NULL, NULL),
+(2, 1, '2016-11-26 16:35:24', '2016-11-26 16:33:27', 10, 1, 10, 'Train', NULL, NULL, NULL),
+(3, 1, '2016-11-26 16:35:12', '2016-11-26 16:33:30', 10, 1, 10, 'Train', NULL, NULL, NULL),
+(4, 1, '2016-11-26 20:05:08', '2016-11-26 20:05:02', NULL, NULL, NULL, '5th time''s the charm', '[1]', NULL, NULL),
+(5, 1, NULL, '2016-11-26 22:37:10', 10, 1, 10, 'Train', NULL, NULL, NULL),
+(6, 1, NULL, '2016-11-26 22:37:13', 10, 1, 10, 'Train', NULL, NULL, NULL),
+(7, 1, NULL, '2016-11-26 22:37:47', 10, 1, 10, 'Train', NULL, NULL, NULL),
+(8, 1, NULL, '2016-11-26 22:37:50', 10, 1, 10, 'Train', NULL, NULL, NULL),
+(9, 1, '2016-11-26 22:44:42', '2016-11-26 22:43:20', 10, 1, 10, 'Train', NULL, 2, 10),
+(10, 1, '2016-11-26 22:44:56', '2016-11-26 22:44:52', 10, 1, 10, 'Train', NULL, 2, 10),
+(11, 1, '2016-11-27 01:15:28', '2016-11-27 01:15:24', 10, 1, 10, 'Train', NULL, 2, 10);
 
 -- --------------------------------------------------------
 
@@ -1014,37 +1040,29 @@ CREATE TABLE `task` (
   `server_id` int(11) DEFAULT NULL,
   `data_id` int(11) DEFAULT NULL,
   `complete_status` tinyint(4) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `task`
 --
 
 INSERT INTO `task` (`task_id`, `user_id`, `task_start`, `created_at`, `task_duration`, `task_type`, `data`, `complete`, `server_id`, `data_id`, `complete_status`) VALUES
-(59, 1, 1480022956, '2016-11-24 21:29:16', 1000, 2, '{"train_type":3,"sql_file":"\\/Applications\\/MAMP\\/htdocs\\/SecretAlpha\\/fuel\\/app\\/tmp\\/train_1.db","completion_conditions":[["select count(*) from company","1"]],"training_id":"1"}', NULL, NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `training`
---
-
-CREATE TABLE `training` (
-  `training_id` int(11) NOT NULL,
-  `type` tinyint(1) NOT NULL DEFAULT '1',
-  `init_script` text NOT NULL,
-  `completion_conditions` text NOT NULL,
-  `min_level` int(11) NOT NULL DEFAULT '0',
-  `max_level` int(11) NOT NULL DEFAULT '1000',
-  `instructions` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `training`
---
-
-INSERT INTO `training` (`training_id`, `type`, `init_script`, `completion_conditions`, `min_level`, `max_level`, `instructions`) VALUES
-(1, 3, 'CREATE TABLE COMPANY\n      (ID INT PRIMARY KEY     NOT NULL,\n      NAME           TEXT    NOT NULL,\n      AGE            INT     NOT NULL,\n      ADDRESS        CHAR(50),\n      SALARY         REAL);', 'select count(*) from company|1;', 0, 1000, 'hey there');
+(68, 1, 1480042141, '2016-11-25 02:49:01', 30000, 100, '{"mission":{"bouncers":[],"servers":{"19":{"quest_server_id":"19","quest_id":"9","hostname":"untitled1","discovered":"1","bounces":"3","network":"10","hide_hn":"0","ip":"66.226.136.10"},"20":{"quest_server_id":"20","quest_id":"9","hostname":"untitled","discovered":"1","bounces":"3","network":"10","hide_hn":"0","ip":"90.230.134.230"}},"services":{"14":{"service_id":"14","port":"22","type":"1","quest_server_id":"19","discovered":true,"welcome":"","quest_id":"9","users":"root::60"},"15":{"service_id":"15","port":"22","type":"1","quest_server_id":"19","discovered":true,"welcome":null,"quest_id":"9","users":"root::60"},"16":{"service_id":"16","port":"3006","type":"3","quest_server_id":"19","discovered":true,"welcome":"Welcome to this Cardinal SQL instance","quest_id":"9","users":"root::60"}},"users":{"2":{"user_id":"2","service_id":"14","username":"user1479955190","password":"","quest_id":"9","security":"0"},"3":{"user_id":"3","service_id":"14","username":"user1479955296","password":"","quest_id":"9","security":"0"},"4":{"user_id":"4","service_id":"16","username":"root","password":"root","quest_id":"9","security":999999,"db_file_id":"141480042141"}},"entities":{"15":{"entity_id":"15","title":"untitled","user_id":"2","security":"0","content":"sdfsdf","quest_id":"9","sender_receiver":null,"type":"1","password":"","required_running":""},"16":{"entity_id":"16","title":"untitled","user_id":"4","security":"0","content":"","quest_id":"9","sender_receiver":null,"type":"1","password":"","required_running":""},"17":{"entity_id":"17","title":"untitled","user_id":null,"security":"0","content":null,"quest_id":"9","sender_receiver":null,"type":"1","password":"","required_running":""},"18":{"entity_id":"18","title":"untitled","user_id":null,"security":"0","content":null,"quest_id":"9","sender_receiver":null,"type":"1","password":"","required_running":""}},"objective":{"objective_id":"33","parent_objective_id":null,"story":"Objective 1","objective_order":"1","optional":null,"type":"1","data":null,"quest_id":"9","name":"Objective 1","sides":{"35":{"objective_id":"35","parent_objective_id":"33","story":null,"objective_order":"0","optional":null,"type":"7","data":"NONE","quest_id":"9","name":null}}},"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"connected":{"service_id":"16","user_id":4}}}', 1480121431, NULL, 9, NULL),
+(69, 1, 1480123810, '2016-11-26 01:30:10', 1000, 2, '{"train_type":1}', 1480176711, NULL, NULL, NULL),
+(70, 1, 1480177469, '2016-11-26 16:24:29', 1000, 2, '{"train_type":3,"mission":{"bouncers":[],"servers":[],"services":[],"users":[],"entities":[],"objective":false,"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"completed":true}}', 1480177544, NULL, NULL, NULL),
+(71, 1, 1480177632, '2016-11-26 16:27:12', 1000, 2, '{"train_type":3,"mission":{"bouncers":[],"servers":[],"services":[],"users":[],"entities":[],"objective":false,"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"completed":true}}', 1480177632, NULL, NULL, NULL),
+(72, 1, 1480177982, '2016-11-26 16:33:02', 1000, 2, '{"train_type":3,"mission":{"bouncers":[],"servers":[],"services":[],"users":[],"entities":[],"objective":false,"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"completed":true}}', 1480178007, NULL, NULL, NULL),
+(73, 1, 1480178010, '2016-11-26 16:33:30', 1000, 2, '{"train_type":3,"mission":{"bouncers":[],"servers":[],"services":[],"users":[],"entities":[],"objective":false,"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"completed":true}}', 1480178010, NULL, NULL, NULL),
+(74, 1, 1480193139, '2016-11-26 20:45:39', 300, 1, '{"mission":{"bouncers":[],"servers":{"19":{"quest_server_id":"19","quest_id":"9","hostname":"untitled1","discovered":"1","bounces":"3","network":"10","hide_hn":"0","ip":"89.25.75.199"},"20":{"quest_server_id":"20","quest_id":"9","hostname":"untitled","discovered":"1","bounces":"3","network":"10","hide_hn":"0","ip":"76.41.49.82"}},"services":{"14":{"service_id":"14","port":"22","type":"1","quest_server_id":"19","discovered":true,"welcome":"","quest_id":"9","users":"root::60"},"15":{"service_id":"15","port":"22","type":"1","quest_server_id":"19","discovered":true,"welcome":null,"quest_id":"9","users":"root::60"},"16":{"service_id":"16","port":"3006","type":"3","quest_server_id":"19","discovered":true,"welcome":"Welcome to this Cardinal SQL instance","quest_id":"9","users":"root::60"}},"users":{"2":{"user_id":"2","service_id":"14","username":"user1479955190","password":"","quest_id":"9","security":"0"},"3":{"user_id":"3","service_id":"14","username":"user1479955296","password":"","quest_id":"9","security":"0"},"4":{"user_id":"4","service_id":"16","username":"root","password":"root","quest_id":"9","security":999999,"db_file_id":"141480193139"}},"entities":{"15":{"entity_id":"15","title":"untitled","user_id":"2","security":"0","content":"sdfsdf","quest_id":"9","sender_receiver":null,"type":"1","password":"","required_running":""},"16":{"entity_id":"16","title":"untitled","user_id":"4","security":"0","content":"","quest_id":"9","sender_receiver":null,"type":"1","password":"","required_running":""},"17":{"entity_id":"17","title":"untitled","user_id":null,"security":"0","content":null,"quest_id":"9","sender_receiver":null,"type":"1","password":"","required_running":""},"18":{"entity_id":"18","title":"untitled","user_id":null,"security":"0","content":null,"quest_id":"9","sender_receiver":null,"type":"1","password":"","required_running":""}},"objective":{"objective_id":"33","parent_objective_id":null,"story":"Objective 1","objective_order":"1","optional":null,"type":"1","data":null,"quest_id":"9","name":"Objective 1","sides":{"35":{"objective_id":"35","parent_objective_id":"33","story":null,"objective_order":"0","optional":null,"type":"7","data":"NONE","quest_id":"9","name":null}}},"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"connected":{"service_id":"16","user_id":4}}}', 1480193582, NULL, 9, NULL),
+(75, 1, 1480193587, '2016-11-26 20:53:07', 300, 1, '{"mission":{"bouncers":[],"servers":{"19":{"quest_server_id":"19","quest_id":"9","hostname":"untitled1","discovered":"1","bounces":"3","network":"10","hide_hn":"0","ip":"31.53.206.40"},"20":{"quest_server_id":"20","quest_id":"9","hostname":"untitled","discovered":"1","bounces":"3","network":"10","hide_hn":"0","ip":"49.232.60.237"}},"services":{"14":{"service_id":"14","port":"22","type":"1","quest_server_id":"19","discovered":true,"welcome":"","quest_id":"9","users":"root::60"},"15":{"service_id":"15","port":"22","type":"1","quest_server_id":"19","discovered":true,"welcome":null,"quest_id":"9","users":"root::60"},"16":{"service_id":"16","port":"3006","type":"3","quest_server_id":"19","discovered":true,"welcome":"Welcome to this Cardinal SQL instance","quest_id":"9","users":"root::60"}},"users":{"2":{"user_id":"2","service_id":"14","username":"user1479955190","password":"","quest_id":"9","security":"0"},"3":{"user_id":"3","service_id":"14","username":"user1479955296","password":"","quest_id":"9","security":"0"},"4":{"user_id":"4","service_id":"16","username":"root","password":"root","quest_id":"9","security":999999,"db_file_id":"141480193587"}},"entities":{"15":{"entity_id":"15","title":"untitled","user_id":"2","security":"0","content":"sdfsdf","quest_id":"9","sender_receiver":null,"type":"1","password":"","required_running":""},"16":{"entity_id":"16","title":"untitled","user_id":"4","security":"0","content":"","quest_id":"9","sender_receiver":null,"type":"1","password":"","required_running":""},"17":{"entity_id":"17","title":"untitled","user_id":null,"security":"0","content":null,"quest_id":"9","sender_receiver":null,"type":"1","password":"","required_running":""},"18":{"entity_id":"18","title":"untitled","user_id":null,"security":"0","content":null,"quest_id":"9","sender_receiver":null,"type":"1","password":"","required_running":""}},"objective":{"objective_id":"33","parent_objective_id":null,"story":"Objective 1","objective_order":"1","optional":null,"type":"1","data":null,"quest_id":"9","name":"Objective 1","sides":{"35":{"objective_id":"35","parent_objective_id":"33","story":null,"objective_order":"0","optional":null,"type":"7","data":"NONE","quest_id":"9","name":null}}},"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"connected":{"service_id":"16","user_id":4}}}', 1480195204, NULL, 9, NULL),
+(76, 1, 1480195210, '2016-11-26 21:20:10', 300, 1, '{"mission":{"bouncers":[],"servers":{"19":{"quest_server_id":"19","quest_id":"9","hostname":"untitled1","discovered":"1","bounces":"3","network":"10","hide_hn":"0","ip":"32.160.200.135"},"20":{"quest_server_id":"20","quest_id":"9","hostname":"untitled","discovered":"1","bounces":"3","network":"10","hide_hn":"0","ip":"38.243.53.181"}},"services":{"14":{"service_id":"14","port":"22","type":"1","quest_server_id":"19","discovered":true,"welcome":"","quest_id":"9","users":"root::60"},"15":{"service_id":"15","port":"22","type":"1","quest_server_id":"19","discovered":true,"welcome":null,"quest_id":"9","users":"root::60"},"16":{"service_id":"16","port":"3006","type":"3","quest_server_id":"19","discovered":true,"welcome":"Welcome to this Cardinal SQL instance","quest_id":"9","users":"root::60"}},"users":{"2":{"user_id":"2","service_id":"14","username":"user1479955190","password":"","quest_id":"9","security":"0"},"3":{"user_id":"3","service_id":"14","username":"user1479955296","password":"","quest_id":"9","security":"0"},"4":{"user_id":"4","service_id":"16","username":"root","password":"root","quest_id":"9","security":999999,"db_file_id":"141480195210"}},"entities":{"15":{"entity_id":"15","title":"untitled","user_id":"2","security":"0","content":"sdfsdf","quest_id":"9","sender_receiver":null,"type":"1","password":"","required_running":""},"16":{"entity_id":"16","title":"untitled","user_id":"4","security":"0","content":"","quest_id":"9","sender_receiver":null,"type":"1","password":"","required_running":""},"17":{"entity_id":"17","title":"untitled","user_id":null,"security":"0","content":null,"quest_id":"9","sender_receiver":null,"type":"1","password":"","required_running":""},"18":{"entity_id":"18","title":"untitled","user_id":null,"security":"0","content":null,"quest_id":"9","sender_receiver":null,"type":"1","password":"","required_running":""}},"objective":{"objective_id":"33","parent_objective_id":null,"story":"Objective 1","objective_order":"1","optional":null,"type":"1","data":null,"quest_id":"9","name":"Objective 1","sides":{"35":{"objective_id":"35","parent_objective_id":"33","story":null,"objective_order":"0","optional":null,"type":"7","data":"NONE","quest_id":"9","name":null}}},"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"connected":{"service_id":"16","user_id":4}}}', 1480195652, NULL, 9, NULL),
+(77, 1, 1480199830, '2016-11-26 22:37:10', 1000, 2, '{"train_type":3,"mission":{"bouncers":[],"servers":[],"services":[],"users":[],"entities":[],"objective":false,"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"completed":true}}', 1480199830, NULL, NULL, NULL),
+(78, 1, 1480199833, '2016-11-26 22:37:13', 1000, 2, '{"train_type":3,"mission":{"bouncers":[],"servers":[],"services":[],"users":[],"entities":[],"objective":false,"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"completed":true}}', 1480199833, NULL, NULL, NULL),
+(79, 1, 1480199867, '2016-11-26 22:37:47', 1000, 2, '{"train_type":2,"mission":{"bouncers":[],"servers":[],"services":[],"users":[],"entities":[],"objective":false,"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"completed":true}}', 1480199867, NULL, NULL, NULL),
+(80, 1, 1480199870, '2016-11-26 22:37:50', 1000, 2, '{"train_type":1,"mission":{"bouncers":[],"servers":[],"services":[],"users":[],"entities":[],"objective":false,"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"completed":true}}', 1480199870, NULL, NULL, NULL),
+(81, 1, 1480200200, '2016-11-26 22:43:20', 1000, 2, '{"train_type":2,"mission":{"bouncers":[],"servers":[],"services":[],"users":[],"entities":[],"objective":false,"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"completed":true}}', 1480200200, NULL, NULL, NULL),
+(82, 1, 1480200291, '2016-11-26 22:44:51', 1000, 2, '{"train_type":2,"mission":{"bouncers":[],"servers":[],"services":[],"users":[],"entities":[],"objective":false,"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"completed":true}}', 1480200292, NULL, NULL, NULL),
+(83, 1, 1480209324, '2016-11-27 01:15:24', 1000, 2, '{"train_type":2,"mission":{"bouncers":[],"servers":[],"services":[],"users":[],"entities":[],"objective":false,"skills_influence":{"crack_1":8,"grid_scan":2,"crack_3":4,"crack_2":2,"decrypt":2},"completed":true}}', 1480209324, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1105,17 +1123,18 @@ CREATE TABLE `users` (
   `tutorial_step` tinyint(2) NOT NULL DEFAULT '1',
   `referrer` int(11) DEFAULT NULL,
   `premium` tinyint(4) DEFAULT NULL,
-  `premium_until` int(11) DEFAULT NULL
+  `premium_until` int(11) DEFAULT NULL,
+  `daily_login_count` int(11) NOT NULL DEFAULT '0',
+  `daily_login_last` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `profile_fields`, `group`, `last_login`, `login_hash`, `created_at`, `updated_at`, `level`, `experience`, `skills`, `knowledge`, `skill_points`, `train`, `hacker_group_id`, `achievements`, `ranking_points`, `ranking`, `money`, `main_server`, `last_active`, `emergency_logout`, `tutorial_enabled`, `tutorial_step`, `referrer`, `premium`, `premium_until`) VALUES
-(1, 'cardinal', '+Q4xRcof2M/nQvTu/cJcvTerZl+Jfl63ZoZ5mzBlcBk=', 'cardinal@test.com', 'a:0:{}', 2, 1480018287, '0176d824646fc9a11e6376a5a13b1a670bf0acc9', 1473138490, 0, 1, 15, '{"1":{"level":1,"exp":8},"2":{"level":1,"exp":3},"3":{"level":1,"exp":0},"4":{"level":1,"exp":0},"5":{"level":1,"exp":0},"6":{"level":1,"exp":0}}', '{"1":{"level":1},"2":{"level":0}}', 1, NULL, 2, NULL, 1, 1, 73010, 7, 1480023097, '', 1, 2, NULL, NULL, NULL),
-(2, 'card2', 'M0r4butKb0sfOhJq5ihAmLAnEBp2hksKzOltcGOeG50=', 'card2@gmail.com', 'a:0:{}', 1, 0, '', 1473170010, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, '', 1, 1, NULL, NULL, NULL),
-(3, 'card3', 'dNG43NZPc0C7lwHY1AsyBQHKgTOi3XU6g9JjcOtA/G0=', 'card3@gmail.com', 'a:0:{}', 1, 1473170038, 'a872cc3b660ad3c067215350a9bec2440e2d3c8c', 1473170038, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, '', 1, 1, NULL, NULL, NULL);
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `profile_fields`, `group`, `last_login`, `login_hash`, `created_at`, `updated_at`, `level`, `experience`, `skills`, `knowledge`, `skill_points`, `train`, `hacker_group_id`, `achievements`, `ranking_points`, `ranking`, `money`, `main_server`, `last_active`, `emergency_logout`, `tutorial_enabled`, `tutorial_step`, `referrer`, `premium`, `premium_until`, `daily_login_count`, `daily_login_last`) VALUES
+(1, 'cardinal', '+Q4xRcof2M/nQvTu/cJcvTerZl+Jfl63ZoZ5mzBlcBk=', 'cardinal@test.com', 'a:0:{}', 2, 1480247090, '6f2bcbfd5ce2763e388db36a9fda3daec21b767d', 1473138490, 0, 1, 15, '{"1":{"level":1,"exp":8},"2":{"level":1,"exp":5},"3":{"level":1,"exp":1},"4":{"level":1,"exp":0},"5":{"level":1,"exp":0},"6":{"level":1,"exp":0}}', '{"1":{"level":1},"2":{"level":0}}', 3, '{"1":{"level":1,"exp":0,"exp_next":10},"2":{"level":3,"exp":5,"exp_next":20},"3":{"level":1,"exp":0,"exp_next":10},"4":{"level":1,"exp":0,"exp_next":10},"5":{"level":1,"exp":0,"exp_next":10}}', 2, '{"1":1480190708}', 1, 1, 73060, 7, 1480247180, '', 1, 2, NULL, NULL, NULL, 7, '2016-11-27 00:00:00'),
+(3, 'card3', 'dNG43NZPc0C7lwHY1AsyBQHKgTOi3XU6g9JjcOtA/G0=', 'card3@gmail.com', 'a:0:{}', 1, 1473170038, 'a872cc3b660ad3c067215350a9bec2440e2d3c8c', 1473170038, 0, 1, 0, NULL, NULL, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, '', 1, 1, NULL, NULL, NULL, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -1241,12 +1260,6 @@ ALTER TABLE `task`
   ADD PRIMARY KEY (`task_id`);
 
 --
--- Indexes for table `training`
---
-ALTER TABLE `training`
-  ADD PRIMARY KEY (`training_id`);
-
---
 -- Indexes for table `tutorial_step`
 --
 ALTER TABLE `tutorial_step`
@@ -1297,42 +1310,42 @@ ALTER TABLE `hacker_quote`
 -- AUTO_INCREMENT for table `quest`
 --
 ALTER TABLE `quest`
-  MODIFY `quest_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `quest_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `quest_group`
 --
 ALTER TABLE `quest_group`
-  MODIFY `quest_group_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `quest_group_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `quest_objective`
 --
 ALTER TABLE `quest_objective`
-  MODIFY `objective_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
+  MODIFY `objective_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT for table `quest_server`
 --
 ALTER TABLE `quest_server`
-  MODIFY `quest_server_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+  MODIFY `quest_server_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `quest_server_service`
 --
 ALTER TABLE `quest_server_service`
-  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `quest_service_user`
 --
 ALTER TABLE `quest_service_user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `quest_user_entity`
 --
 ALTER TABLE `quest_user_entity`
-  MODIFY `entity_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+  MODIFY `entity_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `reward`
 --
 ALTER TABLE `reward`
-  MODIFY `reward_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `reward_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `server`
 --
@@ -1347,12 +1360,7 @@ ALTER TABLE `server_app`
 -- AUTO_INCREMENT for table `task`
 --
 ALTER TABLE `task`
-  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=60;
---
--- AUTO_INCREMENT for table `training`
---
-ALTER TABLE `training`
-  MODIFY `training_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=84;
 --
 -- AUTO_INCREMENT for table `tutorial_step`
 --
