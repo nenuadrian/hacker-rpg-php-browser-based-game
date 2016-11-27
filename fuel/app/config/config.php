@@ -365,6 +365,7 @@ return array(
 		 'packages'  => array(
 			'auth',
 			'messages',
+      'globaljs'
 		 ),
 
 		/**

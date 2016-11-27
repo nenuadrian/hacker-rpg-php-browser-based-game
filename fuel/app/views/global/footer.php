@@ -25,8 +25,17 @@
 
 			<?php endif;?>
 		<?php endif; ?>
-		
+		<?php echo Asset::js('jquery-3.1.0.min.js'); ?>
+
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+		<!--	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>-->
+			<?php echo Asset::js('bootstrap.min.js'); ?>
+
 		<?php echo Asset::js('progressbar.min.js'); ?>
 		<?php echo Asset::js('countdown.custom.js'); ?>
+
+		<script type="text/javascript">
+			<?php echo GlobalJs::render(); ?>
+		</script>
 	</body>
 </html>

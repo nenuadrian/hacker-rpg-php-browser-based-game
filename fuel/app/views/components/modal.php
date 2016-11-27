@@ -11,7 +11,7 @@
 	      	<?php echo html_entity_decode($content); ?>
 	      <?php endif; ?>
       </div>
-      
+
     </div>
   </div>
   <div class="modal-footer">
@@ -21,6 +21,6 @@
 
 <?php if (isset($auto_open)): ?>
 <script>
-$('#<?php echo $id; ?>').modal({});
+  $('#<?php echo $id; ?>').modal({});
 </script>
 <?php endif; ?>
