@@ -47,6 +47,15 @@ use \Model\Skills;
       <?php foreach($knowledge as $k_id => $k): ?>
         <li <?php echo $k_id == 2 ? 'class="selected"' : ''; ?>>
           <h2><?php echo $k['name']; ?></h2>
+          
+          <?php if ($user_knowledge[$k_id]['requires']['fulfilled']): ?>
+            <a href="<?php echo Uri::create('knowledge/learn/' . $k_id); ?>">learn</a>
+          <?php else: ?>
+            <div class="alert alert-danger">
+              Requirements have not been fulfilled
+            </div>
+          <?php endif; ?>
+
           <p>Level <?php echo $level = $user_knowledge[$k_id]['level']; ?></p>
           <p> <strong>skill points obtainable with the next level</strong></p>
           <?php foreach ($user_knowledge[$k_id]['skills'] as $skill_id => $p): ?>
@@ -62,13 +71,7 @@ use \Model\Skills;
           <?php foreach($user_knowledge[$k_id]['requires']['knows'] as $r_k_id => $r): ?>
             <p><?php echo $knowledge[$r_k_id]['name']; ?> at level <?php echo $r['level']; ?> [<?php echo $r['fulfilled'] ? 'yes' : 'no'; ?>]</p>
           <?php endforeach; ?>
-          <?php if ($user_knowledge[$k_id]['requires']['fulfilled']): ?>
-            <a href="<?php echo Uri::create('knowledge/learn/' . $k_id); ?>">learn</a>
-          <?php else: ?>
-            <div class="alert alert-danger">
-              Requirements have not been fulfilled
-            </div>
-          <?php endif; ?>
+
         </li>
       <?php endforeach; ?>
 

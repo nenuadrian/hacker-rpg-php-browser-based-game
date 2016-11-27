@@ -1,7 +1,7 @@
-<?php echo $entity['title'] ;?> <?php echo isset($entity['running']) ? 'running' : ''; ?>
+<h3 class="text-center"><?php echo $entity['title'] ;?></h3>
+<?php echo isset($entity['running']) ? 'running' : ''; ?>
 
-
-
+<br/>
 <?php if (!$entity['security']): ?>
 	<div class="well">
 		<?php if ($entity['content']): ?>
@@ -37,28 +37,23 @@
 	  		<?php endif; ?>
   		<?php endif ;?>
 	<?php endif;?>
-
 	<?php if (!isset($entity['running'])): ?>
-			<h3>transfer</h3>
-			<?php foreach($mission['users'] as $user_id => $u): if ($user_id == $entity['user_id'] || !$mission['services'][$u['service_id']]['discovered']) continue; ?>
-				<?php echo View::forge('components/modal', array('id' => 'user_' . $user_id, 'title' => $u['username'], 'content' => View::forge('missions/missions_transfer', array('user' => $u)))); ?>
+		<?php echo View::forge('components/modal', array('id' => 'transfer', 'title' => 'Transfer', 'content' => View::forge('missions/mission_entity_1_transfer', array('mission' => $mission, 'entity' => $entity)))); ?>
+  <?php endif ;?>
+	<form method="post" class="text-center">
+		<?php if (!isset($entity['running'])): ?>
+			<a data-toggle="modal" href="#transfer" class="btn btn-default">transfer</a>
+		<?php endif ;?>
 
-				<a data-toggle="modal" href="#user_<?php echo $user_id; ?>">
-					<?php echo $u['username']; ?> @ <?php echo $mission['servers'][($service = $mission['services'][$u['service_id']])['quest_server_id']]['ip']; ?>:<?php echo $service['port']; ?>
-				</a><br/>
-			<?php endforeach ;?>
-		<hr/>
-	<?php endif ;?>
-<form method="post">
-	<button type="submit" class="btn btn-default" name="action" value="erase">erase</button>
-</form>
+		<button type="submit" class="btn btn-default" name="action" value="erase">erase</button>
+	</form>
 <?php else: ?>
 	<form method="post">
-	<input type="text" name="password" placeholder="Password" class="form-control" />
-<button type="submit" class="btn btn-default" name="action" value="password">try pass</button>
-or
-<button type="submit" class="btn btn-default" name="action" value="crack">crack</button>
-</form>
+		<input type="text" name="password" placeholder="Password" class="form-control" />
+		<button type="submit" class="btn btn-default" name="action" value="password">try pass</button>
+		or
+		<button type="submit" class="btn btn-default" name="action" value="crack">crack</button>
+	</form>
 <?php endif; ?>
 <hr/>
 <form method="post">

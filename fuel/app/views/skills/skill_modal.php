@@ -21,8 +21,14 @@ use \Model\Servers;
 <br/>
 <?php if (Auth::get('skill_points')): ?>
 <form method="post">
-	<input type="number" min="1" max="<?php echo Auth::get('skill_points'); ?>" name="points" class="form-control text-center" value="1" required />
-	<button type="submit" name="add_points" value="<?php echo $skill_id; ?>" class="btn btn-default">add points</button>
+	<div class="row">
+		<div class="col-xs-8">
+				<input type="number" min="1" max="<?php echo Auth::get('skill_points'); ?>" name="points" class="form-control text-center" value="1" required />
+		</div>
+		<div class="col-xs-4">
+			<button type="submit" name="add_points" value="<?php echo $skill_id; ?>" class="btn btn-default">add</button>
+		</div>
+	</div>
 </form>
 <?php else: ?>
 

@@ -6,6 +6,7 @@ body {
 	    letter-spacing:2px;
 	    color:#dedede;
 			font-smooth: auto;
+			padding-top:50px;
 
 }
 footer {
@@ -134,9 +135,9 @@ hr {
 	padding:30px;
 }
 
-.toolbar-bottom-right {
+.toolbar-top-right {
 	position:fixed;
-	bottom:0;
+	top:0;
 	right:0;
 	padding:30px;
 }
@@ -175,15 +176,42 @@ hr {
 	background-color: white;
 	height:100%;
 }
+.navbar-collapse {
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.icon-bar {
+    background-color: white;
+}.icon-bar {
+    width: 28px;
+    height: 3px;
+}
+.icon-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+}
 
 .navbar-default {
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.45);
     border: 0;
+
+		min-height:0;
 }
 
 .navbar-toggle {
 	border-radius:0;
 	border-color:white;
+	border:0;
+	bottom: 10px;
+	right: 10px;
+	z-index:1035;
+	position:fixed;
+	opacity:.8;
+}
+
+.navbar-toggle[aria-expanded="true"] {
 }
 
 .navbar-toggle {

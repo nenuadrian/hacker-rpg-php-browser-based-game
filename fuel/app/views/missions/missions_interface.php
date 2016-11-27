@@ -1,4 +1,4 @@
-<?php echo View::forge('global/header'); ?>
+<?php echo View::forge('global/header', array('hide_menu' => true)); ?>
 <?php
 	$mission = $task['data']['mission'];
 ?>
@@ -8,7 +8,8 @@
 		padding: 20px;
 		background-color: #115b95;
 		border-bottom: 2px solid rgba(0, 0, 0, 0.44);
-		cursor:pointer;
+		display: block;
+		color: inherit;
 	}
 	.mission-interface .services {
 		background-color: rgba(0, 0, 0, 0.44);
@@ -41,15 +42,18 @@
 		<?php if (isset($mission['task'])): ?>
 			<?php echo View::forge('missions/mission_inside_task', array('task' => $mission['task'], 'task_remaining' => $task_remaining)); ?>
 		<?php elseif (isset($mission['connected'])): ?>
-			<div class="well">
-				<?php echo $user['username']; ?> @ <?php echo $server['hostname']; ?> : <?php echo $service['port']; ?>
+			<div class="server">
+				<h4><?php echo $user['username']; ?> @ <?php echo $server['hostname']; ?> : <?php echo $service['port']; ?></h4>
+				<small><?php echo isset($server['custom_name']) ? $server['custom_name'] : ($server['hide_hn'] ? 'unknown hostname' : $server['hostname']); ?></small>
+			</div>
+
 				<form method="post">
 					<button type="submit" class="btn btn-default" name="service_action" value="disconnect">disconnect</button>
 					<?php if ($service['type'] == 1): ?>
 						<button type="submit" class="btn btn-default" name="service_action" value="bounce">add as bounce</button>
 					<?php endif; ?>
 				</form>
-					</div>
+
 				<?php if (isset($mission['connected']['entity'])): ?>
 					<?php echo View::forge('missions/mission_entity_'. $service['type'], array('mission' => $mission, 'entity' => $entity)); ?>
 				<?php else: ?>
@@ -86,10 +90,10 @@
 					$knownServices = 0;
 					foreach($mission['services'] as $serv) if ($serv['discovered'] && $serv['quest_server_id'] == $server_id && !isset($service['required_objective'])) $knownServices++;
 				?>
-				<div class="server" onclick="$('#services_<?php echo $server_id; ?>').collapse('toggle');">
+				<a class="server" onclick="$('#services_<?php echo $server_id; ?>').collapse('toggle');">
 					<h4><?php echo $s['ip']; ?></h4>
 					<small><?php echo isset($s['custom_name']) ? $s['custom_name'] : ($s['hide_hn'] ? 'unknown hostname' : $s['hostname']); ?> - <?php echo $knownServices; ?> known services</small>
-				</div>
+				</a>
 				<div class="services collapse" id="services_<?php echo $server_id; ?>">
 					<div style="padding:20px;">
 						<?php foreach($mission['services'] as $service_id => $service): if (!$service['discovered'] || $service['quest_server_id'] != $server_id || isset($service['required_objective'])) continue; ?>
@@ -101,7 +105,6 @@
 								<div style="padding:15px">
 									<?php foreach($mission['users'] as $user_id => $user): if ($user['service_id'] != $service_id) continue; ?>
 										<?php echo View::forge('components/modal', array('id' => 'user_' . $user_id, 'title' => $user['username'], 'content' => View::forge('missions/missions_service_user', array('user' => $user)))); ?>
-
 										<div class="user" onclick="$('#user_<?php echo $user_id; ?>').modal('toggle')">
 											<?php echo $user['username']; ?>
 										</div>
@@ -110,17 +113,15 @@
 							</div>
 					  <?php endforeach; ?>
 
+						<?php echo View::forge('components/modal', array('id' => 'rename_' . $server_id, 'title' => 'Rename', 'content' => View::forge('missions/mission_server_rename', array('s' => $s, 'server_id' => $server_id)))); ?>
 
 						<form method="post" class="text-center">
 							<input type="hidden" name="server_action" value="<?php echo $server_id; ?>"/>
-							<button type="submit" class="btn btn-default" name="action" value="scan">nmap for services</button>
+							<button type="submit" class="btn btn-default" name="action" value="scan">nmap</button>
+							<a class="btn btn-default" data-toggle="modal" href="#rename_<?php echo $server_id; ?>">rename</a>
 						</form>
 
-						<form method="post" class="text-center">
-							<input type="hidden" name="server_action" value="<?php echo $server_id; ?>"/>
-							<input name="custom_name" value="<?php echo isset($s['custom_name']) ? $s['custom_name'] : ''; ?>" placeholder="Custom name" class="form-control" />
-							<button type="submit" class="btn btn-default" name="action" value="set_name">set name</button>
-						</form>
+
 					</div>
 				</div>
 			<?php endforeach; ?>
