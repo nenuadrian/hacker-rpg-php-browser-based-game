@@ -19,7 +19,7 @@ echo View::forge('global/header');
 	<div style="padding:40px">
 		<div class="row">
 		<?php foreach(Skills::skills() as $skill_id => $s): ?>
-			<div class="col-md-3 col-xs-6 text-center" style="margin-bottom:50px">
+			<div class="col-md-3 text-center" style="margin-bottom:50px">
 				<?php echo View::forge('components/modal', array('id' => 'skill-' . $skill_id, 'title' => $s['name'], 'content' => View::forge('skills/skill_modal', array('skill_id' => $skill_id, 's' => $s, 'user_skill' => $skills[$skill_id])))); ?>
 
 			<a style="display: block;margin-left: 25px;" class="" data-toggle="modal" data-target="#skill-<?php echo $skill_id; ?>">
