@@ -79,9 +79,9 @@ use \Model\Skills;
 
 
 
-<?php echo Asset::js('diamond-show/modernizr-custom.js'); ?>
-<?php echo Asset::js('diamond-show/snap.svg-min.js'); ?>
-<?php echo Asset::js('diamond-show/main.js'); ?>
+<?php echo GlobalJs::include('diamond-show/modernizr-custom.js'); ?>
+<?php echo GlobalJs::include('diamond-show/snap.svg-min.js'); ?>
+<?php echo GlobalJs::include('diamond-show/main.js'); ?>
 
 
 <?php echo View::forge('global/footer'); ?>
