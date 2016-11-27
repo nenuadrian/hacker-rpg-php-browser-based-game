@@ -1,5 +1,6 @@
 <?php
 use \Model\Authenticate;
+use \Model\Analytics;
 class Controller_Authenticate extends Controller
 {
     public function action_forgot() {
@@ -19,14 +20,12 @@ class Controller_Authenticate extends Controller
             );
 
             // if a user was created succesfully
-            if ($created)
-            {
+            if ($created) {
                 Auth::force_login($created);
+                Analytics::record('register', array('headers' => \Input::headers()));
                 Authenticate::process_login();
                 \Response::redirect_back();
-            }
-            else
-            {
+            } else {
                 \Messages::error("We've encountered an unknow error. Please contact us immediately if you feel this is a mistake. The error has been recorded and our team of hackers will take a look ASAP.");
             }
         }
