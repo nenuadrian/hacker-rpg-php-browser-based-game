@@ -25,7 +25,7 @@ use \Model\Skills;
 								</clipPath>
 							</defs>
 
-							<image height='800px' width="800px" clip-path="url(#cd-image-<?php echo $k_id; ?>)" xlink:href="assets/img/img-01.jpg"></image>
+							<image height='800px' width="800px" clip-path="url(#cd-image-<?php echo $k_id; ?>)" xlink:href="<?php echo Uri::create('assets/img/knowledge/knowledge_' . $k_id .'.jpg'); ?>"></image>
 							<use xlink:href="#cd-morphing-path-<?php echo $k_id; ?>" class="cover-layer" />
 						</svg>
 					</div> <!-- .svg-wrapper -->
