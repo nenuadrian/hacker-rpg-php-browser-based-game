@@ -1,6 +1,6 @@
 		</div>
 		<footer>
-			<?php if (Input::headers('In-App', false)): ?>
+			<?php if (Input::headers('In-App', false)): \Model\Analytics::record('in-app', Input::headers('In-App')); ?>
 				<p>IN APP HEADER: <?php echo Input::headers('In-App'); ?></p>
 			<?php endif; ?>
 		</footer>
