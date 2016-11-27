@@ -1,6 +1,8 @@
 		</div>
 		<footer>
-
+			<?php if (Input::headers('In-App', false)): ?>
+				<p>IN APP HEADER: <?php echo Input::headers('In-App'); ?></p>
+			<?php endif; ?>
 		</footer>
 
 		<?php $voice = Messages::get('voice'); if (count($voice)): $voice = $voice[count($voice) - 1];  ?>
@@ -30,8 +32,7 @@
 		<?php echo Asset::js('progressbar.min.js'); ?>
 		<?php echo Asset::js('countdown.custom.js'); ?>
 
+		<?php echo GlobalJs::render(); ?>
 
-			<?php echo GlobalJs::render(); ?>
-		
 	</body>
 </html>

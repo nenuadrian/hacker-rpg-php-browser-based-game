@@ -177,7 +177,7 @@ hr {
 	height:100%;
 }
 .navbar-collapse {
-	
+
 }
 .icon-bar {
     background-color: white;
@@ -404,7 +404,7 @@ border-bottom-right-radius: 24px;}
 
 .tutorial-notice {
 	position: fixed;
-	top: 40%;
+	bottom: 15px;
 	left: 0;
 	padding:15px;
 	padding-left:25px;
@@ -465,4 +465,19 @@ border-bottom-right-radius: 24px;}
 
 .table {
 	margin-bottom: 0;
+}
+
+
+
+/* MOBILE HACKS */
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+     -khtml-user-select: none; /* Konqueror */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  not supported by any browser */
+																	cursor:default;
+
 }

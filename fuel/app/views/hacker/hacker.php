@@ -11,7 +11,7 @@ echo View::forge('global/header'); ?>
 <Br/>
 <div class="row">
 <?php foreach(Achievements::$achievements as $id => $a): if(!isset($hacker['achievements'][$id])) continue; ?>
-<div class="col-md-3 text-center">
+<div class="col-md-3 col-xs-6 text-center ">
 
 <?php echo View::forge('components/modal', array('id' => 'achievement-' . $id, 'title' => $a['name'], 'content' => $a['description'])); ?>
 

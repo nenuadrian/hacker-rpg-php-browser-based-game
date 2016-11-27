@@ -21,11 +21,11 @@
 	  <?php echo Asset::css('reset.css'); ?>
 	  <?php echo Asset::css('bootstrap.min.css'); ?>
 		<?php echo Asset::css('style.css'); ?>
-		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Josefin+Sans%3A300italic%2C300&amp;ver=4.6" type="text/css" media="all">
 
 	</head>
-	<body>
+	<body class="noselect">
 		<?php if (Auth::check()):
 			if (Session::get('last_active_update') + 10 <= time()) {
 				DB::update('users')->set(array('last_active' => time()))->where('id', Auth::get('id'))->execute();
@@ -70,7 +70,7 @@
 			        <li <?php echo $rewards ? 'class="active"' : ''; ?>><a href="<?php echo Uri::create('rewards'); ?>"><i class="fa fa-gift" aria-hidden="true"></i><?php echo $rewards ? ' <small>('.$rewards.')</small>' : ''; ?></a></li>
 
 			      <li><a href="<?php echo Uri::create('rankings'); ?>"><i class="fa fa-trophy" aria-hidden="true"></i> <small>(<?php echo number_format(Auth::get('ranking')); ?>)</small></a></li>
-			        <li><a href="<?php echo Uri::create('dna'); ?>"><i class="fa fa-user-secret" aria-hidden="true"></i></a></li>
+			      <!--  <li><a href="<?php echo Uri::create('dna'); ?>"><i class="fa fa-user-secret" aria-hidden="true"></i></a></li>-->
 
 			        <?php if (Auth::get('group') == 2): ?>
 				        	 <li><a href="<?php echo Uri::create('cardinal'); ?>"><i class="fa fa-bolt" aria-hidden="true"></i></a></li>
@@ -90,15 +90,7 @@
 			<h2 class="level">
 			  L<?php echo Auth::get('level'); ?>
 			</h2>
-			<!--
-			<div class="experience">
-			  <div style="width:<?php echo Auth::get('experience') / (\Model\Hacker::experience(Auth::get('level') + 1) / 100); ?>%">
-			  </div>
-			</div>
 
-			<div class="toolbar-bottom">
-			  ID: <a href="<?php echo Uri::create('hacker/access/' . Auth::get('username')); ?>"><?php echo Auth::get('username'); ?></a>
-			</div>-->
 		 <div class="toolbar-top-right">
 			  <i class="fa fa-cube"></i> <?php echo number_format(Auth::get('money')); ?>
 			</div>

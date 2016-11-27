@@ -12,11 +12,13 @@
     opacity: 0.3;"> <canvas id="can" class="transparent_class" ></canvas> </div>
     <?php echo GlobalJs::include_js('hackerIntro.js'); ?>
 
+<div class="container">
 <div class="row">
-	<div class="col-md-4"></div>
-	<div class="col-md-4 text-center">
+	<div class="col-md-3"></div>
+	<div class="col-md-6 text-center">
 
 		<img src="<?php echo Uri::create('assets/img/logo.png'); ?>" class="main-logo" style="max-width:400px; width:100%;" />
+    
 		<form method="post">
 			<?php echo View::forge('components/messages'); ?>
 			<input type="text" class="form-control text-center" placeholder="user id" name="username" autocapitalize="off" autocorrect="off" />
@@ -28,6 +30,7 @@
 
 	</div>
 
+</div>
 </div>
 
 
