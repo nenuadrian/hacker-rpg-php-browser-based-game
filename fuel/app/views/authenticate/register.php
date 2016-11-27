@@ -11,8 +11,8 @@
 		<?php echo View::forge('components/messages'); ?>
 
 		<form method="post" style="margin-top:50px">
-			<input type="text" class="form-control text-center" placeholder="user id" name="username" required value="<?php echo Input::post('username', ''); ?>" />
-			<input type="email" class="form-control text-center" placeholder="email address" name="email" required value="<?php echo Input::post('email', ''); ?>" />
+			<input type="text" class="form-control text-center" placeholder="user id" name="username" required value="<?php echo Input::post('username', ''); ?>" autocapitalize="off" autocorrect="off" />
+			<input type="email" class="form-control text-center" placeholder="e-mail" name="email" required value="<?php echo Input::post('email', ''); ?>" autocapitalize="off" autocorrect="off" />
 			<input type="password" class="form-control text-center" placeholder="password" name="password" required value="<?php echo Input::post('password', ''); ?>" />
 			<br/>
 			<p>
