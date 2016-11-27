@@ -1,12 +1,9 @@
 <?php echo View::forge('global/header'); ?>
 
-
+<div class="container">
 <div class="row">
-	<div class="col-md-4"></div>
-	<div class="col-md-4 text-center">
-		<a href="<?php echo Uri::base();?>">
-			<img src="http://secretrepublic.net/layout/img/logo-art.png" class="main-logo" style="margin-top:50px;max-width:250px" />
-			</a>
+	<div class="col-md-3"></div>
+	<div class="col-md-6 text-center">
 
 		<?php echo View::forge('components/messages'); ?>
 
@@ -20,9 +17,13 @@
 			</p>
 			<button class="btn btn-block btn-default" type="submit" style="margin-top:20px">obtain citizenship</button>
 		</form>
+		<Br/>
+		<a href="<?php echo Uri::base();?>" class="btn btn-default">
+			home
+			</a>
 
 	</div>
 
 </div>
-
+</div>
 <?php echo View::forge('global/footer'); ?>

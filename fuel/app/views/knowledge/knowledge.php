@@ -46,8 +46,8 @@ use \Model\Skills;
 
       <?php foreach($knowledge as $k_id => $k): ?>
         <li <?php echo $k_id == 2 ? 'class="selected"' : ''; ?>>
-          <h2><?php echo $k['name']; ?></h2>
-          
+          <h1><?php echo $k['name']; ?></h1>
+
           <?php if ($user_knowledge[$k_id]['requires']['fulfilled']): ?>
             <a href="<?php echo Uri::create('knowledge/learn/' . $k_id); ?>">learn</a>
           <?php else: ?>
@@ -56,12 +56,12 @@ use \Model\Skills;
             </div>
           <?php endif; ?>
 
-          <p>Level <?php echo $level = $user_knowledge[$k_id]['level']; ?></p>
-          <p> <strong>skill points obtainable with the next level</strong></p>
+        <h3>Level <?php echo $level = $user_knowledge[$k_id]['level']; ?></h3>
+          <h3> <strong>with the next level</strong></h3>
           <?php foreach ($user_knowledge[$k_id]['skills'] as $skill_id => $p): ?>
             <p><?php echo $p; ?> <em><?php echo Skills::skills()[$skill_id]['name']; ?></em> points</p>
           <?php endforeach; ?>
-          <p><strong>requirements for next level</strong></p>
+          <h3><strong>requirements for next level</strong></h3>
           <?php if (isset($user_knowledge[$k_id]['requires']['level'])): ?>
             <p>Level <?php echo $user_knowledge[$k_id]['requires']['level']; ?></p>
           <?php endif; ?>

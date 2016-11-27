@@ -7,9 +7,9 @@ $pogress_shapes = array();
 ?>
 <div class="container">
 
-	<div class="row">
+	<div class="row text-center">
 		<?php foreach(Train::types() as $train_id => $t): ?>
-			<div class="col-md-4 text-center">
+			<div class="col-md-4 col-xs-6">
 <h3><?php echo $t['name']; ?> training</h3><br/>
 
 
