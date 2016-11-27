@@ -9,7 +9,7 @@ class GlobalJs {
     static::$js[] = $js;
   }
 
-  public static function include($js) {
+  public static function include_js($js) {
     static::$include_js[] = $js;
   }
 
