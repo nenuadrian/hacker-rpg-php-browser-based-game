@@ -49,9 +49,10 @@
 
 				<form method="post">
 					<button type="submit" class="btn btn-default" name="service_action" value="disconnect">disconnect</button>
+					<!--
 					<?php if ($service['type'] == 1): ?>
 						<button type="submit" class="btn btn-default" name="service_action" value="bounce">add as bounce</button>
-					<?php endif; ?>
+					<?php endif; ?>-->
 				</form>
 
 				<?php if (isset($mission['connected']['entity'])): ?>

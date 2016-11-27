@@ -18,7 +18,7 @@ class GlobalJs {
     foreach(static::$include_js as $js) {
       $output .= \Asset::js($js);
     }
-    return $output . implode('', static::$js);
+    return $output . '<script type="text/javascript">' . implode('', static::$js) . '</script>';
   }
 
 }
