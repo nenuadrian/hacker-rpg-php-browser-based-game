@@ -10,14 +10,14 @@
     padding: 0;
     position: fixed;
     opacity: 0.3;"> <canvas id="can" class="transparent_class" ></canvas> </div>
-    <?php echo Asset::js('hackerIntro.js'); ?>
+    <?php echo GlobalJs::include_js('hackerIntro.js'); ?>
 
 <div class="row">
 	<div class="col-md-4"></div>
 	<div class="col-md-4 text-center">
 
 		<img src="<?php echo Uri::create('assets/img/logo.png'); ?>" class="main-logo" style="max-width:400px; width:100%;" />
-		<form method="post" style="margin-top:40px;margin-bottom:30px;">
+		<form method="post">
 			<?php echo View::forge('components/messages'); ?>
 			<input type="text" class="form-control text-center" placeholder="user id" name="username" autocapitalize="off" autocorrect="off" />
 			<input type="password" class="form-control text-center" placeholder="password" name="password" />
