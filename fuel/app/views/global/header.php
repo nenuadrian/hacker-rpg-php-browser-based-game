@@ -52,6 +52,8 @@
 			  <div class="container">
 
 			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<div style="padding-top:5px;
+						padding-bottom:5px;">
 			      <ul class="nav navbar-nav text-center">
 			        <li><a href="<?php echo Uri::create('dashboard'); ?>"><i class="fa fa-tachometer" aria-hidden="true"></i></a></li>
 							<li><a href="<?php echo Uri::create('quests'); ?>"><i class="fa fa-crosshairs" aria-hidden="true"></i></a></li>
@@ -79,7 +81,8 @@
 								</a>
 							</li>
 			      </ul>
-			    </div><!-- /.navbar-collapse -->
+					</div><!-- /.navbar-collapse -->
+				</div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->
 			</nav>
 		<?php endif; ?>
