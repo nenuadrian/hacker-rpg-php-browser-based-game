@@ -22,8 +22,11 @@
 			<?php else: ?>
 
 			<?php echo View::forge('components/modal', array('id' => 'modal-footer', 'title' => $modal->title, 'content' => $modal->message, 'auto_open' => true)); ?>
-			
+
 			<?php endif;?>
 		<?php endif; ?>
+		
+		<?php echo Asset::js('progressbar.min.js'); ?>
+		<?php echo Asset::js('countdown.custom.js'); ?>
 	</body>
 </html>

@@ -24,11 +24,10 @@
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Josefin+Sans%3A300italic%2C300&amp;ver=4.6" type="text/css" media="all">
 		<?php echo Asset::js('jquery-3.1.0.min.js'); ?>
-		<?php echo Asset::js('bootstrap.min.js'); ?>
+
 	<!--	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>-->
-		<?php echo Asset::js('progressbar.min.js'); ?>
-		<?php echo Asset::js('countdown.custom.js'); ?>
+			<?php echo Asset::js('bootstrap.min.js'); ?>
 	</head>
 	<body>
 		<?php if (Auth::check()):
