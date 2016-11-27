@@ -1,6 +1,6 @@
 <?php echo View::forge('global/header'); ?>
 
-<?php 
+<?php
 	$types = array(
 			1 => array(
 			'name' => 'Normal'
@@ -43,11 +43,11 @@
 			<?php endforeach; ?>
 			</select>
 		</div>
-		
+
 		<div class="col-xs-4">
 			<select name="default_connection" class="form-control">
 				<option value="0">No default connection</option>
-				<?php foreach($services as $s): 
+				<?php foreach($services as $s):
 					$users = explode(';', html_entity_decode($s['users'], ENT_QUOTES));
 					foreach($users as $u): $u = explode(':', $u); $value = $u[0] . ':' . $s['service_id']; ?>
 					<option value="<?php echo htmlspecialchars($value); ?>" <?php echo $value == html_entity_decode($quest['default_connection'], ENT_QUOTES) ? 'selected' : ''; ?>><?php echo $u[0]; ?> : <?php echo $s['hostname']; ?> : <?php echo $s['port']; ?></option>
@@ -62,7 +62,8 @@
 			</select>
 		</div>
 		</div>
-		<textarea class="form-control" name="summary"><?php echo $quest['summary']; ?></textarea>
+		<input type="text" class="form-control" name="summary1" value="<?php echo $quest['summary1']; ?>" />
+		<textarea class="form-control" name="summary2"><?php echo $quest['summary2']; ?></textarea>
 		<select name="live" class="form-control">
 			<option value="0">DRAFT</option>
 			<option value="1" <?php echo $quest['live'] ? 'selected' : ''; ?>>LIVE</option>
