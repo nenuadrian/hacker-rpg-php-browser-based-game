@@ -37,16 +37,19 @@
 	  		<?php endif; ?>
   		<?php endif ;?>
 	<?php endif;?>
-	<?php if (!isset($entity['running'])): ?>
-		<?php echo View::forge('components/modal', array('id' => 'transfer', 'title' => 'Transfer', 'content' => View::forge('missions/mission_entity_1_transfer', array('mission' => $mission, 'entity' => $entity)))); ?>
-  <?php endif ;?>
 	<form method="post" class="text-center">
 		<?php if (!isset($entity['running'])): ?>
-			<a data-toggle="modal" href="#transfer" class="btn btn-default">transfer</a>
-		<?php endif ;?>
-
-		<button type="submit" class="btn btn-default" name="action" value="erase">erase</button>
+			<a data-toggle="collapse" href="#transfer" class="btn btn-default" aria-expanded="false">transfer</a>
+		<?php endif; ?>
+		<button type="submit" class="btn btn-default" name="action" value="erase" >erase</button>
 	</form>
+	<?php if (!isset($entity['running'])): ?>
+		<div id="transfer" class="collapse">
+			<div class="well">
+				<?php echo View::forge('missions/mission_entity_1_transfer', array('mission' => $mission, 'entity' => $entity)); ?>
+			</div>
+		</div>
+	<?php endif; ?>
 <?php else: ?>
 	<form method="post">
 		<input type="text" name="password" placeholder="Password" class="form-control" />
@@ -55,7 +58,6 @@
 		<button type="submit" class="btn btn-default" name="action" value="crack">crack</button>
 	</form>
 <?php endif; ?>
-<hr/>
 <form method="post">
 <button type="submit" class="btn btn-default" name="action" value="exit">back</button>
 </form>

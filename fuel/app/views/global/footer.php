@@ -1,6 +1,6 @@
 		</div>
 		<footer>
-	
+
 		</footer>
 
 		<?php $voice = Messages::get('voice'); if (count($voice)): $voice = $voice[count($voice) - 1];  ?>
@@ -30,8 +30,8 @@
 		<?php echo Asset::js('progressbar.min.js'); ?>
 		<?php echo Asset::js('countdown.custom.js'); ?>
 
-		<script type="text/javascript">
+
 			<?php echo GlobalJs::render(); ?>
-		</script>
+		
 	</body>
 </html>
