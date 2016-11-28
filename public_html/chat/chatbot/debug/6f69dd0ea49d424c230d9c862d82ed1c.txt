@@ -1,0 +1,1104 @@
+28-11-2016 01:11:53.49546[0][4] - Elapsed time: 2.366 milliseconds
+[conversation_start.php][Called outside of function][26]
+Conversation Starting. Program O version 2.6.3
+PHP  version 7.0.0
+OS: Darwin version Darwin Kernel Version 16.1.0: Thu Oct 13 21:26:57 PDT 2016; root:xnu-3789.21.3~60/RELEASE_X86_64 
+-----------------------
+28-11-2016 01:11:53.50301[4][4] - Elapsed time: 7.555 milliseconds
+[load_aimlfunctions.php][Called outside of function][15]
+AIML function include files loaded 
+-----------------------
+28-11-2016 01:11:53.5046[4][4] - Elapsed time: 1.584 milliseconds
+[load_convofunctions.php][Called outside of function][15]
+Convofunction include files loaded 
+-----------------------
+28-11-2016 01:11:53.50487[4][4] - Elapsed time: 0.275 milliseconds
+[load_userfunctions.php][Called outside of function][13]
+userfunctions include files loaded 
+-----------------------
+28-11-2016 01:11:53.5063[4][4] - Elapsed time: 1.425 milliseconds
+[load_addons.php][Called outside of function][19]
+Loading addons 
+-----------------------
+28-11-2016 01:11:53.50633[4][4] - Elapsed time: 0.038 milliseconds
+[conversation_start.php][Called outside of function][35]
+Loaded all Includes 
+-----------------------
+28-11-2016 01:11:53.50676[0][4] - Elapsed time: 0.430 milliseconds
+[conversation_start.php][Called outside of function][84]
+Debug level: 4
+session ID = 6f69dd0ea49d424c230d9c862d82ed1c 
+-----------------------
+28-11-2016 01:11:53.50681[2][4] - Elapsed time: 0.042 milliseconds
+[spell_checker.php][run_spell_checker_say][36]
+Starting function and setting timestamp. 
+-----------------------
+28-11-2016 01:11:53.50682[2][4] - Elapsed time: 0.018 milliseconds
+[spell_checker.php][spell_check][57]
+Preforming a spel chek on how. 
+-----------------------
+28-11-2016 01:11:53.50684[2][4] - Elapsed time: 0.021 milliseconds
+[spell_checker.php][load_spelling_list][120]
+Loading the spellcheck list from the DB. 
+-----------------------
+28-11-2016 01:11:53.50781[4][4] - Elapsed time: 0.969 milliseconds
+[spell_checker.php][spell_check][64]
+The word 'how' is a common word. Returning without checking. 
+-----------------------
+28-11-2016 01:11:53.50784[2][4] - Elapsed time: 0.022 milliseconds
+[spell_checker.php][spell_check][57]
+Preforming a spel chek on are. 
+-----------------------
+28-11-2016 01:11:53.50786[4][4] - Elapsed time: 0.021 milliseconds
+[spell_checker.php][spell_check][64]
+The word 'are' is a common word. Returning without checking. 
+-----------------------
+28-11-2016 01:11:53.50787[2][4] - Elapsed time: 0.013 milliseconds
+[spell_checker.php][spell_check][57]
+Preforming a spel chek on oyu. 
+-----------------------
+28-11-2016 01:11:53.5079[4][4] - Elapsed time: 0.033 milliseconds
+[spell_checker.php][spell_check][74]
+Spelling check passed. 
+-----------------------
+28-11-2016 01:11:53.50793[4][4] - Elapsed time: 0.028 milliseconds
+[misc_functions.php][normalize_text][79]
+Begin normalization - text = 'how are oyu' 
+-----------------------
+28-11-2016 01:11:53.50797[4][4] - Elapsed time: 0.037 milliseconds
+[misc_functions.php][normalize_text][94]
+Normalization complete. Text = 'HOW ARE OYU' 
+-----------------------
+28-11-2016 01:11:53.50798[2][4] - Elapsed time: 0.015 milliseconds
+[conversation_start.php][Called outside of function][146]
+Details:
+User say: HOW ARE OYU
+Convo id: 6f69dd0ea49d424c230d9c862d82ed1c
+Bot id: 1
+Format: json 
+-----------------------
+28-11-2016 01:11:53.50799[4][4] - Elapsed time: 0.012 milliseconds
+[intialise_conversation.php][read_from_session][144]
+Reading from session 
+-----------------------
+28-11-2016 01:11:53.50801[4][4] - Elapsed time: 0.013 milliseconds
+[intialise_conversation.php][load_default_bot_values][105]
+Loading db bot personality properties 
+-----------------------
+28-11-2016 01:11:53.50802[3][4] - Elapsed time: 0.012 milliseconds
+[intialise_conversation.php][load_default_bot_values][109]
+load db bot personality values SQL: SELECT * FROM `bot`.`botpersonality` WHERE `bot_id` = '1' 
+-----------------------
+28-11-2016 01:11:53.50814[4][4] - Elapsed time: 0.121 milliseconds
+[intialise_conversation.php][check_set_convo_id][538]
+Obtaining the convo id from form vars. Value: 6f69dd0ea49d424c230d9c862d82ed1c 
+-----------------------
+28-11-2016 01:11:53.50816[2][4] - Elapsed time: 0.020 milliseconds
+[intialise_conversation.php][check_set_bot][482]
+Checking and/or setting the current bot. 
+-----------------------
+28-11-2016 01:11:53.50818[3][4] - Elapsed time: 0.015 milliseconds
+[intialise_conversation.php][check_set_bot][500]
+Making sure the bot exists. SQL = SELECT * FROM `bot`.`bots` WHERE bot_id = '1' and `bot_active`='1' 
+-----------------------
+28-11-2016 01:11:53.50833[2][4] - Elapsed time: 0.157 milliseconds
+[intialise_conversation.php][check_set_bot][511]
+BOT ID: 1 
+-----------------------
+28-11-2016 01:11:53.50835[2][4] - Elapsed time: 0.021 milliseconds
+[intialise_conversation.php][check_set_user][565]
+Checking and setting the user info, as needed. 
+-----------------------
+28-11-2016 01:11:53.50847[4][4] - Elapsed time: 0.120 milliseconds
+[intialise_conversation.php][check_set_format][625]
+Using format: json 
+-----------------------
+28-11-2016 01:11:53.50849[2][4] - Elapsed time: 0.019 milliseconds
+[intialise_conversation.php][load_that][641]
+Loading the THAT array. 
+-----------------------
+28-11-2016 01:11:53.50851[3][4] - Elapsed time: 0.015 milliseconds
+[intialise_conversation.php][load_that][648]
+Getting conversation log entries for the current user. SQL:
+select `input`, `response` from `bot`.`conversation_log` where `user_id` = 1 and `bot_id` = 1 order by `id` desc limit 10; 
+-----------------------
+28-11-2016 01:11:53.50866[1][4] - Elapsed time: 0.149 milliseconds
+[intialise_conversation.php][load_that][662]
+Inputs returned:Array
+(
+    [0] => hello
+    [1] => hello
+    [2] => Hello
+    [3] => hi
+)
+ 
+-----------------------
+28-11-2016 01:11:53.50868[4][4] - Elapsed time: 0.018 milliseconds
+[intialise_conversation.php][load_that][663]
+Loading previous responses into the ~THAT~ array. 
+-----------------------
+28-11-2016 01:11:53.50869[1][4] - Elapsed time: 0.016 milliseconds
+[intialise_conversation.php][load_that][664]
+Responses returned:Array
+(
+    [0] => No AIML category found. This is a Default Response.
+    [1] => No AIML category found. This is a Default Response.
+    [2] => No AIML category found. This is a Default Response.
+    [3] => No AIML category found. This is a Default Response.
+)
+ 
+-----------------------
+28-11-2016 01:11:53.50871[2][4] - Elapsed time: 0.023 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][95]
+Imploding an array into a string. (recursively, if necessary) 
+-----------------------
+28-11-2016 01:11:53.50873[4][4] - Elapsed time: 0.014 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][105]
+The variable $input is of type array 
+-----------------------
+28-11-2016 01:11:53.50874[4][4] - Elapsed time: 0.017 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][128]
+Imploding complete. Returning 'No AIML category found This is a Default Response ' 
+-----------------------
+28-11-2016 01:11:53.50876[4][4] - Elapsed time: 0.013 milliseconds
+[parse_aiml.php][clean_that][218]
+Cleaning up the ~THAT~ tag: 'No AIML category found This is a Default Response ' 
+-----------------------
+28-11-2016 01:11:53.50877[4][4] - Elapsed time: 0.013 milliseconds
+[misc_functions.php][normalize_text][79]
+Begin normalization - text = 'No AIML category found This is a Default Response ' 
+-----------------------
+28-11-2016 01:11:53.50882[4][4] - Elapsed time: 0.053 milliseconds
+[misc_functions.php][normalize_text][94]
+Normalization complete. Text = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50884[4][4] - Elapsed time: 0.013 milliseconds
+[parse_aiml.php][clean_that][223]
+Cleaning Complete. output = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50885[2][4] - Elapsed time: 0.012 milliseconds
+[intialise_conversation.php][push_on_front_convoArr][204]
+Pushing 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' to the front of the [that] array 
+-----------------------
+28-11-2016 01:11:53.50887[4][4] - Elapsed time: 0.016 milliseconds
+[intialise_conversation.php][load_blank_array_element][59]
+Loading blank that array 
+-----------------------
+28-11-2016 01:11:53.5089[4][4] - Elapsed time: 0.033 milliseconds
+[parse_aiml.php][clean_that][218]
+Cleaning up the ~THAT~ tag: 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50891[4][4] - Elapsed time: 0.014 milliseconds
+[misc_functions.php][normalize_text][79]
+Begin normalization - text = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50894[4][4] - Elapsed time: 0.033 milliseconds
+[misc_functions.php][normalize_text][94]
+Normalization complete. Text = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50896[4][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml.php][clean_that][223]
+Cleaning Complete. output = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50898[2][4] - Elapsed time: 0.024 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][95]
+Imploding an array into a string. (recursively, if necessary) 
+-----------------------
+28-11-2016 01:11:53.50899[4][4] - Elapsed time: 0.013 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][105]
+The variable $input is of type array 
+-----------------------
+28-11-2016 01:11:53.50901[4][4] - Elapsed time: 0.014 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][128]
+Imploding complete. Returning 'No AIML category found This is a Default Response ' 
+-----------------------
+28-11-2016 01:11:53.50902[4][4] - Elapsed time: 0.011 milliseconds
+[parse_aiml.php][clean_that][218]
+Cleaning up the ~THAT~ tag: 'No AIML category found This is a Default Response ' 
+-----------------------
+28-11-2016 01:11:53.50903[4][4] - Elapsed time: 0.012 milliseconds
+[misc_functions.php][normalize_text][79]
+Begin normalization - text = 'No AIML category found This is a Default Response ' 
+-----------------------
+28-11-2016 01:11:53.50908[4][4] - Elapsed time: 0.046 milliseconds
+[misc_functions.php][normalize_text][94]
+Normalization complete. Text = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50909[4][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml.php][clean_that][223]
+Cleaning Complete. output = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.5091[2][4] - Elapsed time: 0.011 milliseconds
+[intialise_conversation.php][push_on_front_convoArr][204]
+Pushing 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' to the front of the [that] array 
+-----------------------
+28-11-2016 01:11:53.50912[4][4] - Elapsed time: 0.021 milliseconds
+[parse_aiml.php][clean_that][218]
+Cleaning up the ~THAT~ tag: 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50914[4][4] - Elapsed time: 0.015 milliseconds
+[misc_functions.php][normalize_text][79]
+Begin normalization - text = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50917[4][4] - Elapsed time: 0.033 milliseconds
+[misc_functions.php][normalize_text][94]
+Normalization complete. Text = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50918[4][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml.php][clean_that][223]
+Cleaning Complete. output = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.5092[2][4] - Elapsed time: 0.021 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][95]
+Imploding an array into a string. (recursively, if necessary) 
+-----------------------
+28-11-2016 01:11:53.50921[4][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][105]
+The variable $input is of type array 
+-----------------------
+28-11-2016 01:11:53.50923[4][4] - Elapsed time: 0.014 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][128]
+Imploding complete. Returning 'No AIML category found This is a Default Response ' 
+-----------------------
+28-11-2016 01:11:53.50924[4][4] - Elapsed time: 0.011 milliseconds
+[parse_aiml.php][clean_that][218]
+Cleaning up the ~THAT~ tag: 'No AIML category found This is a Default Response ' 
+-----------------------
+28-11-2016 01:11:53.50925[4][4] - Elapsed time: 0.012 milliseconds
+[misc_functions.php][normalize_text][79]
+Begin normalization - text = 'No AIML category found This is a Default Response ' 
+-----------------------
+28-11-2016 01:11:53.5093[4][4] - Elapsed time: 0.045 milliseconds
+[misc_functions.php][normalize_text][94]
+Normalization complete. Text = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50931[4][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml.php][clean_that][223]
+Cleaning Complete. output = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50932[2][4] - Elapsed time: 0.011 milliseconds
+[intialise_conversation.php][push_on_front_convoArr][204]
+Pushing 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' to the front of the [that] array 
+-----------------------
+28-11-2016 01:11:53.50934[4][4] - Elapsed time: 0.020 milliseconds
+[parse_aiml.php][clean_that][218]
+Cleaning up the ~THAT~ tag: 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50935[4][4] - Elapsed time: 0.015 milliseconds
+[misc_functions.php][normalize_text][79]
+Begin normalization - text = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50939[4][4] - Elapsed time: 0.033 milliseconds
+[misc_functions.php][normalize_text][94]
+Normalization complete. Text = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.5094[4][4] - Elapsed time: 0.011 milliseconds
+[parse_aiml.php][clean_that][223]
+Cleaning Complete. output = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50942[2][4] - Elapsed time: 0.020 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][95]
+Imploding an array into a string. (recursively, if necessary) 
+-----------------------
+28-11-2016 01:11:53.50943[4][4] - Elapsed time: 0.013 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][105]
+The variable $input is of type array 
+-----------------------
+28-11-2016 01:11:53.50944[4][4] - Elapsed time: 0.013 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][128]
+Imploding complete. Returning 'No AIML category found This is a Default Response ' 
+-----------------------
+28-11-2016 01:11:53.50945[4][4] - Elapsed time: 0.011 milliseconds
+[parse_aiml.php][clean_that][218]
+Cleaning up the ~THAT~ tag: 'No AIML category found This is a Default Response ' 
+-----------------------
+28-11-2016 01:11:53.50947[4][4] - Elapsed time: 0.012 milliseconds
+[misc_functions.php][normalize_text][79]
+Begin normalization - text = 'No AIML category found This is a Default Response ' 
+-----------------------
+28-11-2016 01:11:53.50951[4][4] - Elapsed time: 0.045 milliseconds
+[misc_functions.php][normalize_text][94]
+Normalization complete. Text = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50952[4][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml.php][clean_that][223]
+Cleaning Complete. output = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50954[2][4] - Elapsed time: 0.011 milliseconds
+[intialise_conversation.php][push_on_front_convoArr][204]
+Pushing 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' to the front of the [that] array 
+-----------------------
+28-11-2016 01:11:53.50956[4][4] - Elapsed time: 0.020 milliseconds
+[parse_aiml.php][clean_that][218]
+Cleaning up the ~THAT~ tag: 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50957[4][4] - Elapsed time: 0.014 milliseconds
+[misc_functions.php][normalize_text][79]
+Begin normalization - text = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.5096[4][4] - Elapsed time: 0.032 milliseconds
+[misc_functions.php][normalize_text][94]
+Normalization complete. Text = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50961[4][4] - Elapsed time: 0.011 milliseconds
+[parse_aiml.php][clean_that][223]
+Cleaning Complete. output = 'NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.50963[4][4] - Elapsed time: 0.020 milliseconds
+[intialise_conversation.php][load_that][679]
+Loading previous user inputs into the ~INPUT~ array. 
+-----------------------
+28-11-2016 01:11:53.50965[2][4] - Elapsed time: 0.018 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][95]
+Imploding an array into a string. (recursively, if necessary) 
+-----------------------
+28-11-2016 01:11:53.50966[4][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][105]
+The variable $input is of type array 
+-----------------------
+28-11-2016 01:11:53.50967[4][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][128]
+Imploding complete. Returning 'hi' 
+-----------------------
+28-11-2016 01:11:53.50969[4][4] - Elapsed time: 0.011 milliseconds
+[parse_aiml.php][clean_that][218]
+Cleaning up the ~THAT~ tag: 'hi' 
+-----------------------
+28-11-2016 01:11:53.5097[4][4] - Elapsed time: 0.012 milliseconds
+[misc_functions.php][normalize_text][79]
+Begin normalization - text = 'hi' 
+-----------------------
+28-11-2016 01:11:53.50972[4][4] - Elapsed time: 0.023 milliseconds
+[misc_functions.php][normalize_text][94]
+Normalization complete. Text = 'HI' 
+-----------------------
+28-11-2016 01:11:53.50973[4][4] - Elapsed time: 0.011 milliseconds
+[parse_aiml.php][clean_that][223]
+Cleaning Complete. output = 'HI' 
+-----------------------
+28-11-2016 01:11:53.50974[2][4] - Elapsed time: 0.012 milliseconds
+[intialise_conversation.php][push_on_front_convoArr][204]
+Pushing 'HI' to the front of the [input] array 
+-----------------------
+28-11-2016 01:11:53.50976[4][4] - Elapsed time: 0.013 milliseconds
+[intialise_conversation.php][load_blank_array_element][59]
+Loading blank input array 
+-----------------------
+28-11-2016 01:11:53.50978[2][4] - Elapsed time: 0.022 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][95]
+Imploding an array into a string. (recursively, if necessary) 
+-----------------------
+28-11-2016 01:11:53.50979[4][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][105]
+The variable $input is of type array 
+-----------------------
+28-11-2016 01:11:53.5098[4][4] - Elapsed time: 0.013 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][128]
+Imploding complete. Returning 'Hello' 
+-----------------------
+28-11-2016 01:11:53.50981[4][4] - Elapsed time: 0.011 milliseconds
+[parse_aiml.php][clean_that][218]
+Cleaning up the ~THAT~ tag: 'Hello' 
+-----------------------
+28-11-2016 01:11:53.50982[4][4] - Elapsed time: 0.011 milliseconds
+[misc_functions.php][normalize_text][79]
+Begin normalization - text = 'Hello' 
+-----------------------
+28-11-2016 01:11:53.50985[4][4] - Elapsed time: 0.024 milliseconds
+[misc_functions.php][normalize_text][94]
+Normalization complete. Text = 'HELLO' 
+-----------------------
+28-11-2016 01:11:53.50986[4][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml.php][clean_that][223]
+Cleaning Complete. output = 'HELLO' 
+-----------------------
+28-11-2016 01:11:53.50987[2][4] - Elapsed time: 0.012 milliseconds
+[intialise_conversation.php][push_on_front_convoArr][204]
+Pushing 'HELLO' to the front of the [input] array 
+-----------------------
+28-11-2016 01:11:53.50989[2][4] - Elapsed time: 0.018 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][95]
+Imploding an array into a string. (recursively, if necessary) 
+-----------------------
+28-11-2016 01:11:53.5099[4][4] - Elapsed time: 0.013 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][105]
+The variable $input is of type array 
+-----------------------
+28-11-2016 01:11:53.50992[4][4] - Elapsed time: 0.013 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][128]
+Imploding complete. Returning 'hello' 
+-----------------------
+28-11-2016 01:11:53.50993[4][4] - Elapsed time: 0.010 milliseconds
+[parse_aiml.php][clean_that][218]
+Cleaning up the ~THAT~ tag: 'hello' 
+-----------------------
+28-11-2016 01:11:53.50994[4][4] - Elapsed time: 0.012 milliseconds
+[misc_functions.php][normalize_text][79]
+Begin normalization - text = 'hello' 
+-----------------------
+28-11-2016 01:11:53.50996[4][4] - Elapsed time: 0.023 milliseconds
+[misc_functions.php][normalize_text][94]
+Normalization complete. Text = 'HELLO' 
+-----------------------
+28-11-2016 01:11:53.50997[4][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml.php][clean_that][223]
+Cleaning Complete. output = 'HELLO' 
+-----------------------
+28-11-2016 01:11:53.50998[2][4] - Elapsed time: 0.011 milliseconds
+[intialise_conversation.php][push_on_front_convoArr][204]
+Pushing 'HELLO' to the front of the [input] array 
+-----------------------
+28-11-2016 01:11:53.51[2][4] - Elapsed time: 0.019 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][95]
+Imploding an array into a string. (recursively, if necessary) 
+-----------------------
+28-11-2016 01:11:53.51002[4][4] - Elapsed time: 0.013 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][105]
+The variable $input is of type array 
+-----------------------
+28-11-2016 01:11:53.51003[4][4] - Elapsed time: 0.013 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][128]
+Imploding complete. Returning 'hello' 
+-----------------------
+28-11-2016 01:11:53.51004[4][4] - Elapsed time: 0.011 milliseconds
+[parse_aiml.php][clean_that][218]
+Cleaning up the ~THAT~ tag: 'hello' 
+-----------------------
+28-11-2016 01:11:53.51005[4][4] - Elapsed time: 0.011 milliseconds
+[misc_functions.php][normalize_text][79]
+Begin normalization - text = 'hello' 
+-----------------------
+28-11-2016 01:11:53.51008[4][4] - Elapsed time: 0.024 milliseconds
+[misc_functions.php][normalize_text][94]
+Normalization complete. Text = 'HELLO' 
+-----------------------
+28-11-2016 01:11:53.51009[4][4] - Elapsed time: 0.013 milliseconds
+[parse_aiml.php][clean_that][223]
+Cleaning Complete. output = 'HELLO' 
+-----------------------
+28-11-2016 01:11:53.5101[2][4] - Elapsed time: 0.011 milliseconds
+[intialise_conversation.php][push_on_front_convoArr][204]
+Pushing 'HELLO' to the front of the [input] array 
+-----------------------
+28-11-2016 01:11:53.51057[2][4] - Elapsed time: 0.468 milliseconds
+[intialise_conversation.php][load_bot_config][315]
+Loading config data for the current bot. 
+-----------------------
+28-11-2016 01:11:53.51059[3][4] - Elapsed time: 0.019 milliseconds
+[intialise_conversation.php][load_bot_config][319]
+load bot config SQL: SELECT * FROM `bot`.`bots` WHERE bot_id = '1' 
+-----------------------
+28-11-2016 01:11:53.51076[4][4] - Elapsed time: 0.172 milliseconds
+[intialise_conversation.php][load_bot_config][323]
+Loading bot details from the database. 
+-----------------------
+28-11-2016 01:11:53.51079[0][4] - Elapsed time: 0.028 milliseconds
+[conversation_start.php][Called outside of function][167]
+Debug level = 4 
+-----------------------
+28-11-2016 01:11:53.5108[0][4] - Elapsed time: 0.013 milliseconds
+[conversation_start.php][Called outside of function][169]
+Debug level = 4 
+-----------------------
+28-11-2016 01:11:53.51081[4][4] - Elapsed time: 0.014 milliseconds
+[intialise_conversation.php][add_new_conversation_vars][165]
+New conversation vars 
+-----------------------
+28-11-2016 01:11:53.51083[2][4] - Elapsed time: 0.014 milliseconds
+[intialise_conversation.php][push_on_front_convoArr][204]
+Pushing 'HOW ARE OYU' to the front of the [user_say] array 
+-----------------------
+28-11-2016 01:11:53.51084[4][4] - Elapsed time: 0.017 milliseconds
+[intialise_conversation.php][load_blank_array_element][59]
+Loading blank user_say array 
+-----------------------
+28-11-2016 01:11:53.51087[2][4] - Elapsed time: 0.028 milliseconds
+[intialise_conversation.php][push_on_front_convoArr][204]
+Pushing 'HOW ARE OYU' to the front of the [input] array 
+-----------------------
+28-11-2016 01:11:53.5109[4][4] - Elapsed time: 0.022 milliseconds
+[make_conversation.php][make_conversation][22]
+Making conversation 
+-----------------------
+28-11-2016 01:11:53.51091[4][4] - Elapsed time: 0.013 milliseconds
+[misc_functions.php][normalize_text][79]
+Begin normalization - text = 'HOW ARE OYU' 
+-----------------------
+28-11-2016 01:11:53.51094[4][4] - Elapsed time: 0.029 milliseconds
+[misc_functions.php][normalize_text][94]
+Normalization complete. Text = 'HOW ARE OYU' 
+-----------------------
+28-11-2016 01:11:53.51095[4][4] - Elapsed time: 0.013 milliseconds
+[find_aiml.php][get_aiml_to_parse][865]
+Running all functions to get the correct aiml from the DB 
+-----------------------
+28-11-2016 01:11:53.51108[4][4] - Elapsed time: 0.129 milliseconds
+[find_aiml.php][find_userdefined_aiml][821]
+Looking for user defined responses 
+-----------------------
+28-11-2016 01:11:53.5111[3][4] - Elapsed time: 0.021 milliseconds
+[find_aiml.php][find_userdefined_aiml][833]
+User defined SQL: SELECT * FROM `bot`.`aiml_userdefined` WHERE
+    `bot_id` = '1' AND
+    (`user_id` = '6f69dd0ea49d424c230d9c862d82ed1c' OR `user_id` = '-1') AND
+    `pattern` = 'HOW ARE OYU' 
+-----------------------
+28-11-2016 01:11:53.51121[2][4] - Elapsed time: 0.110 milliseconds
+[find_aiml.php][find_userdefined_aiml][852]
+User defined rows found: '0' 
+-----------------------
+28-11-2016 01:11:53.51123[4][4] - Elapsed time: 0.021 milliseconds
+[find_aiml.php][find_aiml_matches][940]
+Finding the aiml matches from the DB 
+-----------------------
+28-11-2016 01:11:53.51125[4][4] - Elapsed time: 0.020 milliseconds
+[find_aiml.php][get_last_word][22]
+Sentence: HOW ARE OYU. Last word:OYU 
+-----------------------
+28-11-2016 01:11:53.51127[4][4] - Elapsed time: 0.014 milliseconds
+[find_aiml.php][get_first_word][35]
+Sentence: HOW ARE OYU. First word:HOW 
+-----------------------
+28-11-2016 01:11:53.51136[4][4] - Elapsed time: 0.096 milliseconds
+[find_aiml.php][find_aiml_matches][954]
+Stored topic = '' 
+-----------------------
+28-11-2016 01:11:53.51138[4][4] - Elapsed time: 0.018 milliseconds
+[find_aiml.php][make_like_pattern][47]
+Making a like pattern to use in the sql 
+-----------------------
+28-11-2016 01:11:53.51139[4][4] - Elapsed time: 0.015 milliseconds
+[find_aiml.php][make_like_pattern][48]
+Transforming thatpattern: NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE 
+-----------------------
+28-11-2016 01:11:53.51142[4][4] - Elapsed time: 0.022 milliseconds
+[find_aiml.php][make_like_pattern][57]
+word list:
+Array
+(
+    [0] => NO
+    [1] => AIML
+    [2] => CATEGORY
+    [3] => FOUND
+    [4] => THIS
+    [5] => IS
+    [6] => A
+    [7] => DEFAULT
+    [8] => RESPONSE
+)
+ 
+-----------------------
+28-11-2016 01:11:53.51148[4][4] - Elapsed time: 0.061 milliseconds
+[find_aiml.php][make_like_pattern][108]
+returning like pattern:
+
+  `thatpattern` like 'NO % RESPONSE' OR
+  `thatpattern` like 'NO %' OR
+(`thatpattern` LIKE '% AIML %') OR (`thatpattern` LIKE '% AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' ) OR (`thatpattern` LIKE '% CATEGORY %') OR (`thatpattern` LIKE 'NO %') OR (`thatpattern` LIKE '% CATEGORY FOUND THIS IS A DEFAULT RESPONSE' ) OR (`thatpattern` LIKE '% FOUND %') OR (`thatpattern` LIKE 'NO AIML %') OR (`thatpattern` LIKE '% FOUND THIS IS A DEFAULT RESPONSE' ) OR (`thatpattern` LIKE '% THIS %') OR (`thatpattern` LIKE 'NO AIML CATEGORY %') OR (`thatpattern` LIKE '% THIS IS A DEFAULT RESPONSE' ) OR (`thatpattern` LIKE '% IS %') OR (`thatpattern` LIKE 'NO AIML CATEGORY FOUND %') OR (`thatpattern` LIKE '% IS A DEFAULT RESPONSE' ) OR (`thatpattern` LIKE '% A %') OR (`thatpattern` LIKE 'NO AIML CATEGORY FOUND THIS %') OR (`thatpattern` LIKE '% A DEFAULT RESPONSE' ) OR (`thatpattern` LIKE '% DEFAULT %') OR (`thatpattern` LIKE 'NO AIML CATEGORY FOUND THIS IS %') OR (`thatpattern` LIKE '% DEFAULT RESPONSE' ) OR (`thatpattern` LIKE 'NO AIML CATEGORY FOUND THIS IS A %') OR (`thatpattern` LIKE '% RESPONSE' ) OR (`thatpattern` LIKE 'NO AIML CATEGORY FOUND THIS IS A DEFAULT %') OR  
+-----------------------
+28-11-2016 01:11:53.5115[4][4] - Elapsed time: 0.019 milliseconds
+[find_aiml.php][wordsCount_inSentence][121]
+Sentence: HOW ARE OYU numWords:3 
+-----------------------
+28-11-2016 01:11:53.51151[4][4] - Elapsed time: 0.014 milliseconds
+[find_aiml.php][make_like_pattern][47]
+Making a like pattern to use in the sql 
+-----------------------
+28-11-2016 01:11:53.51152[4][4] - Elapsed time: 0.013 milliseconds
+[find_aiml.php][make_like_pattern][48]
+Transforming pattern: HOW ARE OYU 
+-----------------------
+28-11-2016 01:11:53.51154[4][4] - Elapsed time: 0.015 milliseconds
+[find_aiml.php][make_like_pattern][57]
+word list:
+Array
+(
+    [0] => HOW
+    [1] => ARE
+    [2] => OYU
+)
+ 
+-----------------------
+28-11-2016 01:11:53.51156[4][4] - Elapsed time: 0.024 milliseconds
+[find_aiml.php][make_like_pattern][108]
+returning like pattern:
+
+  `pattern` like 'HOW % OYU' OR
+  `pattern` like 'HOW %' OR
+(`pattern` LIKE '% ARE %') OR (`pattern` LIKE '% ARE OYU' ) OR (`pattern` LIKE 'HOW %') OR (`pattern` LIKE '% OYU' ) OR (`pattern` LIKE 'HOW ARE %') OR  
+-----------------------
+28-11-2016 01:11:53.51158[3][4] - Elapsed time: 0.015 milliseconds
+[find_aiml.php][find_aiml_matches][1014]
+Core Match AIML sql: SELECT `id`, `bot_id`, `pattern`, `thatpattern`, `topic` FROM `bot`.`aiml` WHERE
+   bot_id = '1'  AND (
+  `pattern` = '_' OR
+  `pattern` = '*' OR
+  `pattern` = 'HOW ARE OYU' OR 
+  `pattern` like 'HOW % OYU' OR
+  `pattern` like 'HOW %' OR
+(`pattern` LIKE '% ARE %') OR (`pattern` LIKE '% ARE OYU' ) OR (`pattern` LIKE 'HOW %') OR (`pattern` LIKE '% OYU' ) OR (`pattern` LIKE 'HOW ARE %')      OR
+  `pattern` = 'RANDOM PICKUP LINE'
+   OR 
+  `thatpattern` like 'NO % RESPONSE' OR
+  `thatpattern` like 'NO %' OR
+(`thatpattern` LIKE '% AIML %') OR (`thatpattern` LIKE '% AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE' ) OR (`thatpattern` LIKE '% CATEGORY %') OR (`thatpattern` LIKE 'NO %') OR (`thatpattern` LIKE '% CATEGORY FOUND THIS IS A DEFAULT RESPONSE' ) OR (`thatpattern` LIKE '% FOUND %') OR (`thatpattern` LIKE 'NO AIML %') OR (`thatpattern` LIKE '% FOUND THIS IS A DEFAULT RESPONSE' ) OR (`thatpattern` LIKE '% THIS %') OR (`thatpattern` LIKE 'NO AIML CATEGORY %') OR (`thatpattern` LIKE '% THIS IS A DEFAULT RESPONSE' ) OR (`thatpattern` LIKE '% IS %') OR (`thatpattern` LIKE 'NO AIML CATEGORY FOUND %') OR (`thatpattern` LIKE '% IS A DEFAULT RESPONSE' ) OR (`thatpattern` LIKE '% A %') OR (`thatpattern` LIKE 'NO AIML CATEGORY FOUND THIS %') OR (`thatpattern` LIKE '% A DEFAULT RESPONSE' ) OR (`thatpattern` LIKE '% DEFAULT %') OR (`thatpattern` LIKE 'NO AIML CATEGORY FOUND THIS IS %') OR (`thatpattern` LIKE '% DEFAULT RESPONSE' ) OR (`thatpattern` LIKE 'NO AIML CATEGORY FOUND THIS IS A %') OR (`thatpattern` LIKE '% RESPONSE' ) OR (`thatpattern` LIKE 'NO AIML CATEGORY FOUND THIS IS A DEFAULT %')
+  ) AND `topic`=''
+  order by `topic` desc, `pattern` asc, `thatpattern` asc,`id` asc; 
+-----------------------
+28-11-2016 01:11:53.52136[2][4] - Elapsed time: 9.783 milliseconds
+[find_aiml.php][find_aiml_matches][1020]
+FOUND: (427) potential AIML matches 
+-----------------------
+28-11-2016 01:11:53.5224[1][4] - Elapsed time: 1.044 milliseconds
+[find_aiml.php][unset_all_bad_pattern_matches][143]
+Current THAT = NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE 
+-----------------------
+28-11-2016 01:11:53.52246[4][4] - Elapsed time: 0.060 milliseconds
+[find_aiml.php][unset_all_bad_pattern_matches][151]
+NEW FUNC Searching through 427 rows to unset bad matches 
+-----------------------
+28-11-2016 01:11:53.52249[4][4] - Elapsed time: 0.023 milliseconds
+[find_aiml.php][unset_all_bad_pattern_matches][160]
+Blue 5 to Blue leader. Starting my run now! 
+-----------------------
+28-11-2016 01:11:53.57061[1][4] - Elapsed time: 48.121 milliseconds
+[find_aiml.php][unset_all_bad_pattern_matches][267]
+Error: FOUND NO AIML matches in DB 
+-----------------------
+28-11-2016 01:11:53.57065[4][4] - Elapsed time: 0.046 milliseconds
+[find_aiml.php][unset_all_bad_pattern_matches][276]
+Found 1 relevant rows 
+-----------------------
+28-11-2016 01:11:53.57078[4][4] - Elapsed time: 0.129 milliseconds
+[find_aiml.php][score_matches][330]
+Scoring the matches. 
+-----------------------
+28-11-2016 01:11:53.57109[1][4] - Elapsed time: 0.311 milliseconds
+[find_aiml.php][score_matches][399]
+Found an error trying to identify the chatbot. 
+-----------------------
+28-11-2016 01:11:53.57113[4][4] - Elapsed time: 0.032 milliseconds
+[find_aiml.php][score_matches][580]
+Sorted array $allrows:
+Array
+(
+)
+ 
+-----------------------
+28-11-2016 01:11:53.57115[2][4] - Elapsed time: 0.020 milliseconds
+[find_aiml.php][get_winning_category][701]
+And the winner is... -1! 
+-----------------------
+28-11-2016 01:11:53.57125[4][4] - Elapsed time: 0.106 milliseconds
+[find_aiml.php][get_winning_category][714]
+Returning the AIML template for id# -1. Value:
+'No AIML category found. This is a Default Response.' 
+-----------------------
+28-11-2016 01:11:53.57127[4][4] - Elapsed time: 0.023 milliseconds
+[find_aiml.php][get_highest_scoring_row][685]
+Best Responses: Array
+(
+)
+ 
+-----------------------
+28-11-2016 01:11:53.57129[2][4] - Elapsed time: 0.014 milliseconds
+[find_aiml.php][get_highest_scoring_row][686]
+Will use randomly picked best response chosen out of 0 responses with same score: -1 - no results 
+-----------------------
+28-11-2016 01:11:53.57131[4][4] - Elapsed time: 0.017 milliseconds
+[find_aiml.php][get_aiml_to_parse][899]
+Will be parsing id:-1 (no results) 
+-----------------------
+28-11-2016 01:11:53.57132[3][4] - Elapsed time: 0.014 milliseconds
+[parse_aiml.php][parse_matched_aiml][190]
+Run the aiml parse in normal mode (normal or srai) 
+-----------------------
+28-11-2016 01:11:53.57133[2][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml.php][set_wildcards][250]
+Setting Wildcards 
+-----------------------
+28-11-2016 01:11:53.57135[2][4] - Elapsed time: 0.021 milliseconds
+[parse_aiml_as_XML.php][parse_aiml_as_XML][22]
+Parsing the AIML template as XML 
+-----------------------
+28-11-2016 01:11:53.57137[2][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml_as_XML.php][add_text_tags][53]
+Adding some TEXT tags into the template, just because I can... 
+-----------------------
+28-11-2016 01:11:53.57139[4][4] - Elapsed time: 0.024 milliseconds
+[parse_aiml_as_XML.php][add_text_tags][79]
+Returning template:
+<template><text>No AIML category found. This is a Default Response.</text></template> 
+-----------------------
+28-11-2016 01:11:53.57143[2][4] - Elapsed time: 0.042 milliseconds
+[parse_aiml_as_XML.php][parseTemplateRecursive][142]
+Recursively parsing the AIML template. 
+-----------------------
+28-11-2016 01:11:53.57146[4][4] - Elapsed time: 0.031 milliseconds
+[parse_aiml_as_XML.php][parseTemplateRecursive][149]
+Processing element template at level 0. element XML = <?xml version="1.0"?>
+<template><text>No AIML category found. This is a Default Response.</text></template>
+ 
+-----------------------
+28-11-2016 01:11:53.57148[4][4] - Elapsed time: 0.017 milliseconds
+[parse_aiml_as_XML.php][parseTemplateRecursive][169]
+function parse_template_tag does not exist. Parsing tag as text. 
+-----------------------
+28-11-2016 01:11:53.5715[2][4] - Elapsed time: 0.022 milliseconds
+[parse_aiml_as_XML.php][parseTemplateRecursive][142]
+Recursively parsing the AIML template. 
+-----------------------
+28-11-2016 01:11:53.57153[4][4] - Elapsed time: 0.027 milliseconds
+[parse_aiml_as_XML.php][parseTemplateRecursive][149]
+Processing element text at level 1. element XML = <text>No AIML category found. This is a Default Response.</text> 
+-----------------------
+28-11-2016 01:11:53.57154[4][4] - Elapsed time: 0.014 milliseconds
+[parse_aiml_as_XML.php][parseTemplateRecursive][156]
+Function parse_text_tag does exist. Processing now. 
+-----------------------
+28-11-2016 01:11:53.57155[4][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml_as_XML.php][parseTemplateRecursive][159]
+Passing element text to the parse_text_tag function 
+-----------------------
+28-11-2016 01:11:53.57157[2][4] - Elapsed time: 0.013 milliseconds
+[parse_aiml_as_XML.php][parse_text_tag][201]
+Parsing a TEXT tag. 
+-----------------------
+28-11-2016 01:11:53.57158[4][4] - Elapsed time: 0.014 milliseconds
+[parse_aiml_as_XML.php][parseTemplateRecursive][162]
+Adding 'No AIML category found. This is a Default Response.' to the response array. tag name is text 
+-----------------------
+28-11-2016 01:11:53.5716[2][4] - Elapsed time: 0.015 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][95]
+Imploding an array into a string. (recursively, if necessary) 
+-----------------------
+28-11-2016 01:11:53.57161[4][4] - Elapsed time: 0.013 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][105]
+The variable $input is of type array 
+-----------------------
+28-11-2016 01:11:53.57162[4][4] - Elapsed time: 0.014 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][128]
+Imploding complete. Returning 'No AIML category found. This is a Default Response.' 
+-----------------------
+28-11-2016 01:11:53.57164[4][4] - Elapsed time: 0.013 milliseconds
+[parse_aiml_as_XML.php][parseTemplateRecursive][183]
+Adding 'No AIML category found. This is a Default Response.' to the response array. tag name is template. 
+-----------------------
+28-11-2016 01:11:53.57165[2][4] - Elapsed time: 0.014 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][95]
+Imploding an array into a string. (recursively, if necessary) 
+-----------------------
+28-11-2016 01:11:53.57166[4][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][105]
+The variable $input is of type array 
+-----------------------
+28-11-2016 01:11:53.57168[4][4] - Elapsed time: 0.013 milliseconds
+[parse_aiml_as_XML.php][implode_recursive][128]
+Imploding complete. Returning 'No AIML category found. This is a Default Response.' 
+-----------------------
+28-11-2016 01:11:53.57169[4][4] - Elapsed time: 0.015 milliseconds
+[parse_aiml_as_XML.php][parse_aiml_as_XML][41]
+Completed parsing the template. The bot will say: No AIML category found. This is a Default Response. 
+-----------------------
+28-11-2016 01:11:53.57171[4][4] - Elapsed time: 0.015 milliseconds
+[parse_aiml.php][parse_matched_aiml][195]
+normal - Saving for next turn 
+-----------------------
+28-11-2016 01:11:53.57172[4][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml.php][save_for_nextturn][235]
+Saving that and that_raw for next turn 
+-----------------------
+28-11-2016 01:11:53.57173[2][4] - Elapsed time: 0.012 milliseconds
+[intialise_conversation.php][push_on_front_convoArr][204]
+Pushing 'No AIML category found. This is a Default Response.' to the front of the [that_raw] array 
+-----------------------
+28-11-2016 01:11:53.57175[4][4] - Elapsed time: 0.019 milliseconds
+[intialise_conversation.php][load_blank_array_element][59]
+Loading blank that_raw array 
+-----------------------
+28-11-2016 01:11:53.5718[2][4] - Elapsed time: 0.049 milliseconds
+[intialise_conversation.php][push_on_front_convoArr][204]
+Pushing 'No AIML category found. This is a Default Response.' to the front of the [that] array 
+-----------------------
+28-11-2016 01:11:53.57182[4][4] - Elapsed time: 0.026 milliseconds
+[parse_aiml.php][clean_that][218]
+Cleaning up the ~THAT~ tag: 'No AIML category found.' 
+-----------------------
+28-11-2016 01:11:53.57184[4][4] - Elapsed time: 0.015 milliseconds
+[misc_functions.php][normalize_text][79]
+Begin normalization - text = 'No AIML category found.' 
+-----------------------
+28-11-2016 01:11:53.57188[4][4] - Elapsed time: 0.042 milliseconds
+[misc_functions.php][normalize_text][94]
+Normalization complete. Text = 'NO AIML CATEGORY FOUND' 
+-----------------------
+28-11-2016 01:11:53.57189[4][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml.php][clean_that][223]
+Cleaning Complete. output = 'NO AIML CATEGORY FOUND' 
+-----------------------
+28-11-2016 01:11:53.5719[4][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml.php][clean_that][218]
+Cleaning up the ~THAT~ tag: 'This is a Default Response.' 
+-----------------------
+28-11-2016 01:11:53.57192[4][4] - Elapsed time: 0.013 milliseconds
+[misc_functions.php][normalize_text][79]
+Begin normalization - text = 'This is a Default Response.' 
+-----------------------
+28-11-2016 01:11:53.57195[4][4] - Elapsed time: 0.036 milliseconds
+[misc_functions.php][normalize_text][94]
+Normalization complete. Text = 'THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.57196[4][4] - Elapsed time: 0.012 milliseconds
+[parse_aiml.php][clean_that][223]
+Cleaning Complete. output = 'THIS IS A DEFAULT RESPONSE' 
+-----------------------
+28-11-2016 01:11:53.57199[2][4] - Elapsed time: 0.023 milliseconds
+[intialise_conversation.php][push_on_front_convoArr][204]
+Pushing 'No AIML category found. This is a Default Response.' to the front of the [parsed_template] array 
+-----------------------
+28-11-2016 01:11:53.57201[4][4] - Elapsed time: 0.017 milliseconds
+[intialise_conversation.php][load_blank_array_element][59]
+Loading blank parsed_template array 
+-----------------------
+28-11-2016 01:11:53.57203[2][4] - Elapsed time: 0.023 milliseconds
+[intialise_conversation.php][push_on_front_convoArr][204]
+Pushing 'No AIML category found. This is a Default Response.' to the front of the [template] array 
+-----------------------
+28-11-2016 01:11:53.57204[4][4] - Elapsed time: 0.015 milliseconds
+[intialise_conversation.php][load_blank_array_element][59]
+Loading blank template array 
+-----------------------
+28-11-2016 01:11:53.57207[2][4] - Elapsed time: 0.027 milliseconds
+[intialise_conversation.php][log_conversation][367]
+Saving the conversation to the DB. 
+-----------------------
+28-11-2016 01:11:53.57209[3][4] - Elapsed time: 0.017 milliseconds
+[intialise_conversation.php][log_conversation][402]
+Saving conservation SQL: INSERT INTO `bot`.`conversation_log` (
+      `id` ,
+      `input` ,
+      `response` ,
+      `user_id` ,
+      `convo_id` ,
+      `bot_id` ,
+      `timestamp`
+    )
+    VALUES (
+      NULL ,
+      :usersay,
+      :botsay,
+      :user_id,
+      :convo_id,
+      :bot_id,
+      CURRENT_TIMESTAMP
+    ) 
+-----------------------
+28-11-2016 01:11:53.57224[4][4] - Elapsed time: 0.155 milliseconds
+[intialise_conversation.php][write_to_session][130]
+Saving to session 
+-----------------------
+28-11-2016 01:11:53.57237[3][4] - Elapsed time: 0.129 milliseconds
+[display_conversation.php][get_conversation_to_display][48]
+get_conversation SQL: SELECT * FROM `bot`.`conversation_log`
+        WHERE
+        `user_id` = '1'
+        AND `bot_id` = '1'
+        AND `convo_id` = '6f69dd0ea49d424c230d9c862d82ed1c'
+        ORDER BY id DESC  LIMIT 1  
+-----------------------
+28-11-2016 01:11:53.57252[2][4] - Elapsed time: 0.153 milliseconds
+[display_conversation.php][get_conversation_to_display][62]
+Found '1' lines of conversation 
+-----------------------
+28-11-2016 01:11:53.57254[4][4] - Elapsed time: 0.020 milliseconds
+[display_conversation.php][get_conversation][77]
+Processing conversation as json 
+-----------------------
+28-11-2016 01:11:53.57256[2][4] - Elapsed time: 0.014 milliseconds
+[display_conversation.php][get_json][126]
+Outputting response as JSON 
+-----------------------
+28-11-2016 01:11:53.57258[4][4] - Elapsed time: 0.022 milliseconds
+[display_conversation.php][get_json][137]
+Returning JSON string: {"convo_id":"6f69dd0ea49d424c230d9c862d82ed1c","usersay":"how are oyu","botsay":"No AIML category found. This is a Default Response."} 
+-----------------------
+28-11-2016 01:11:53.5726[2][4] - Elapsed time: 0.022 milliseconds
+[conversation_start.php][Called outside of function][206]
+Closing Database 
+-----------------------
+28-11-2016 01:11:53.57261[2][4] - Elapsed time: 0.012 milliseconds
+[PDO_functions.php][db_close][49]
+This DB is now closed. You don't have to go home, but you can't stay here. 
+-----------------------
+28-11-2016 01:11:53.57294[0][4] - Elapsed time: 0.330 milliseconds
+[conversation_start.php][Called outside of function][211]
+Conversation Ending. Elapsed time: 79.825 milliseconds. 
+-----------------------
+Debug Level: 4
+-----------------------
+Debug Mode: 1
+-----------------------
+CONVERSATION ARRAY
+-----------------------
+Array
+(
+    [conversation] => Array
+        (
+            [convo_id] => 6f69dd0ea49d424c230d9c862d82ed1c
+            [bot_name] => Hacktor
+            [bot_id] => 1
+            [format] => json
+            [unknown_user] => Seeker
+            [user_name] => Seeker
+            [user_id] => 1
+            [totallines] => 1
+            [conversation_lines] => 1
+            [remember_up_to] => 10
+            [debugemail] => adrian.nenu@gmail.com
+            [debug_level] => 4
+            [debugmode] => 1
+            [save_state] => database
+            [default_aiml_pattern] => RANDOM PICKUP LINE
+            [bot_parent_id] => 1
+            [rawSay] => how are oyu
+        )
+
+    [client_properties] => Array
+        (
+            [ip_address] => 127.0.0.1
+            [name] => Seeker
+        )
+
+    [that] => Array
+        (
+            [1] => Array
+                (
+                    [1] => THIS IS A DEFAULT RESPONSE
+                    [2] => NO AIML CATEGORY FOUND
+                )
+
+            [2] => Array
+                (
+                    [1] => NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE
+                )
+
+            [3] => Array
+                (
+                    [1] => NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE
+                )
+
+            [4] => Array
+                (
+                    [1] => NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE
+                )
+
+            [5] => Array
+                (
+                    [1] => NO AIML CATEGORY FOUND THIS IS A DEFAULT RESPONSE
+                )
+
+            [6] => 
+            [7] => 
+            [8] => 
+            [9] => 
+            [10] => 
+            [12] => 
+        )
+
+    [input] => Array
+        (
+            [1] => HOW ARE OYU
+            [2] => HELLO
+            [3] => HELLO
+            [4] => HELLO
+            [5] => HI
+            [6] => 
+            [7] => 
+            [8] => 
+            [9] => 
+            [10] => 
+        )
+
+    [time_start] => 1480291913.49
+    [aiml] => Array
+        (
+            [user_raw] => HOW ARE OYU
+            [lookingfor] => HOW ARE OYU
+            [pattern] => no results
+            [thatpattern] => 
+            [template] => No AIML category found. This is a Default Response.
+            [html_template] => 
+            [topic] => 
+            [score] => 0
+            [aiml_id] => -1
+            [parsed_template] => No AIML category found. This is a Default Response.
+        )
+
+    [user_say] => Array
+        (
+            [1] => HOW ARE OYU
+            [2] => 
+            [3] => 
+            [4] => 
+            [5] => 
+            [6] => 
+            [7] => 
+            [8] => 
+            [9] => 
+            [10] => 
+        )
+
+    [that_raw] => Array
+        (
+            [1] => Array
+                (
+                    [1] => 
+                    [2] => This is a Default Response.
+                    [3] => No AIML category found.
+                )
+
+            [2] => 
+            [3] => 
+            [4] => 
+            [5] => 
+            [6] => 
+            [7] => 
+            [8] => 
+            [9] => 
+            [10] => 
+            [12] => 
+        )
+
+    [parsed_template] => Array
+        (
+            [1] => No AIML category found. This is a Default Response.
+            [2] => 
+            [3] => 
+            [4] => 
+            [5] => 
+            [6] => 
+            [7] => 
+            [8] => 
+            [9] => 
+            [10] => 
+        )
+
+    [template] => Array
+        (
+            [1] => No AIML category found. This is a Default Response.
+            [2] => 
+            [3] => 
+            [4] => 
+            [5] => 
+            [6] => 
+            [7] => 
+            [8] => 
+            [9] => 
+            [10] => 
+        )
+
+    [send_to_user] => {"convo_id":"6f69dd0ea49d424c230d9c862d82ed1c","usersay":"how are oyu","botsay":"No AIML category found. This is a Default Response."}
+)
+
+-----------------------
+Total execution time: 79.825 Milliseconds. Goodbye.
