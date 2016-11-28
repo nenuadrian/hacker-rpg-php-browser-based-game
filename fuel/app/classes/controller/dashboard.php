@@ -14,8 +14,14 @@ class Controller_Dashboard extends Controller
     	$tVars = array();
 
         //$availableQuests = Quests::missions(false, 6);
+				try {
+					$quote = \Cache::get('quote');
+				} catch (Exception $ex) {
+					$quote = DB::select()->from('hacker_quote')->order_by(DB::expr('RAND()'))->limit(1)->execute()->as_array()[0];
+					\Cache::set('quote', $quote, 60);
+				}
 
-        $tVars['quote'] = DB::select()->from('hacker_quote')->order_by(DB::expr('RAND()'))->limit(1)->execute()->as_array()[0];
+        $tVars['quote'] = $quote;
       //  $tVars['availableQuests'] = $availableQuests;
       //  $tVars['tasks'] = $tasks;
         return View::forge('dashboard/dashboard_mobile', $tVars);
