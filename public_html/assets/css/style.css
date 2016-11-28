@@ -404,12 +404,13 @@ border-bottom-right-radius: 24px;}
 
 .tutorial-notice {
 	position: fixed;
-	bottom: 15px;
+	bottom: 115px;
 	left: 0;
 	padding:15px;
 	padding-left:25px;
 	color: white;
 	font-size:20px;
+	z-index:500;
 }
 
 ::-webkit-scrollbar {
