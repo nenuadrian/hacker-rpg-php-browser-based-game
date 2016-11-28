@@ -1,8 +1,6 @@
 		</div>
 		<footer>
-			<?php if (Input::headers('In-App', false)): \Model\Analytics::record('in-app', Input::headers('In-App')); ?>
-				<p>IN APP HEADER: <?php echo Input::headers('In-App'); ?></p>
-			<?php endif; ?>
+			<?php if (Input::headers('In-App', false)) \Model\Analytics::record('in-app', Input::headers('In-App')); ?>
 		</footer>
 
 		<?php $voice = Messages::get('voice'); if (count($voice)): $voice = $voice[count($voice) - 1];  ?>

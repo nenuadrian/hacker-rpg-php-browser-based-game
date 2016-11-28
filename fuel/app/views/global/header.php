@@ -77,7 +77,7 @@
 						<?php else :?>
 
 							<li><a href="<?php echo Uri::base(); ?>"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-							<li><a href="<?php echo Uri::create('create-account'); ?>"><i class="fa fa-id-card" aria-hidden="true"></i></li>
+							<li><a href="<?php echo Uri::create('create-account'); ?>"><i class="fa fa-id-card" aria-hidden="true"></i></a></li>
 						<?php endif; ?>
 
 			      </ul>
