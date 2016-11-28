@@ -17,8 +17,8 @@
 	<div class="col-md-3"></div>
 	<div class="col-md-6 text-center">
 
-		<img src="<?php echo Uri::create('assets/img/logo.png'); ?>" class="main-logo" style="max-width:400px; width:100%;" />
-    
+		<img src="<?php echo Uri::create('assets/img/logo.png'); ?>" class="main-logo" style="max-width:400px; width:100%; margin-top:-60px; margin-bottom:40px" />
+
 		<form method="post">
 			<?php echo View::forge('components/messages'); ?>
 			<input type="text" class="form-control text-center" placeholder="user id" name="username" autocapitalize="off" autocorrect="off" />
