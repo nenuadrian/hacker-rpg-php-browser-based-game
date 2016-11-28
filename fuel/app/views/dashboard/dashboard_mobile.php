@@ -26,8 +26,12 @@ echo View::forge('global/header'); ?>
     <small><?php echo $quote['author']; ?></small>
   <?php endif; ?>
 </blockquote>
-
-
+<br/><br/>
+<h1 class="text-center">
+<a href="https://www.facebook.com/theSecretRepublic" target="_blank"><i class="fa fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
+<a href="https://twitter.com/iSecretRepublic" target="_blank"><i class="fa fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
+<a href="https://www.youtube.com/user/TheSecretRepublicCom/" target="_blank"><i class="fa fa-youtube"></i></a>
+</h1>
 </div>
-
+</div>
 <?php echo View::forge('global/footer'); ?>
