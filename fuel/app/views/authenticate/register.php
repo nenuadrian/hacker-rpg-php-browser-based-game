@@ -17,11 +17,7 @@
 			</p>
 			<button class="btn btn-block btn-default" type="submit" style="margin-top:20px">obtain citizenship</button>
 		</form>
-		<Br/>
-		<a href="<?php echo Uri::base();?>" class="btn btn-default">
-			home
-			</a>
-
+	
 	</div>
 
 </div>
