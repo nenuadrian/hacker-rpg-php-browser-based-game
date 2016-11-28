@@ -26,7 +26,7 @@ echo View::forge('global/header'); ?>
     <small><?php echo $quote['author']; ?></small>
   <?php endif; ?>
 </blockquote>
-<br/><br/>
+<br/>
 <h1 class="text-center">
 <a href="https://www.facebook.com/theSecretRepublic" target="_blank"><i class="fa fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
 <a href="https://twitter.com/iSecretRepublic" target="_blank"><i class="fa fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;
@@ -45,6 +45,10 @@ echo View::forge('global/header'); ?>
 <div class="fb-like" data-href="https://www.facebook.com/theSecretRepublic" data-layout="button_count" data-action="like"  data-show-faces="true" data-share="true"></div>
 --></h1>
 
+<br/><br/>
+<div class="videoWrapper">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/CGRYzLb7FEw?list=PLHxmav9PZJKaiBGqv_2gOxpGhKmtY3j7V" frameborder="0" allowfullscreen></iframe>
+</div>
 </div>
 </div>
 <?php echo View::forge('global/footer'); ?>
