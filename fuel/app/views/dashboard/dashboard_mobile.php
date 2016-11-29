@@ -7,7 +7,8 @@ echo View::forge('global/header'); ?>
       <div class="col-md-6">
 	<div class="text-center">
     <h1><a href="<?php echo Uri::create('hacker/access/' . Auth::get('username')); ?>"><?php echo Auth::get('username'); ?></a></h1>
-	<h4>LEVEL <?php echo Auth::get('level'); ?></h4><br/>
+	<h4>LEVEL <?php echo Auth::get('level'); ?></h4>
+  <h5>ranked #<?php echo number_format(Auth::get('ranking')); ?></h5><br/><br/>
   <div style="max-width:200px; display:inline-block">
 	<?php echo View::forge('components/progress-bar', array(
 		'current' => Auth::get('experience') / (Hacker::experience(Auth::get('level') + 1) / 100),

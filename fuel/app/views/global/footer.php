@@ -15,7 +15,7 @@
 				<script type="text/javascript">
 					if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.interOp) {
 						window.webkit.messageHandlers.interOp.postMessage({ action: "speak", voice: "<?php echo $voice->message; ?>" })
-					} else if (Android && Android.playSound) {
+					} else if (typeof Android !== 'undefined' && Android.playSound) {
 						Android.playSound('<?php echo $voice->message; ?>')
 					} else {
 						var x = document.getElementById("voice")

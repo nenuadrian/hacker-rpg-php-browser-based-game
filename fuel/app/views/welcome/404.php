@@ -1,4 +1,4 @@
-<?php echo View::forge('global/header'); ?>
+<?php echo View::forge('global/header'); Messages::voice('error404'); ?>
 
 <h1 class="text-center">There's nothing here for you</h1>
 <p class="text-center">If you think something should be here, please let us know immediately!</p>

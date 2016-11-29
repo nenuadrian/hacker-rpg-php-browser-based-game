@@ -3,6 +3,8 @@ echo View::forge('global/header'); ?>
 <div class="container">
 <h1 class="text-center"><?php echo $hacker['username']; ?></h1>
 <h4 class="text-center">LEVEL <?php echo Auth::get('level'); ?></h4>
+<h5 class="text-center">ranked #<?php echo number_format(Auth::get('ranking')); ?></h5><br/><br/>
+
 <br/><br/>
 <div class="row">
 <div class="col-md-6"></div>
