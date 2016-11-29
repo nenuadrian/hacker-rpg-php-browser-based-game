@@ -44,7 +44,7 @@ echo View::forge('global/header'); ?>
 }(document, 'script', 'facebook-jssdk'));</script>
 <div class="fb-like" data-href="https://www.facebook.com/theSecretRepublic" data-layout="button_count" data-action="like"  data-show-faces="true" data-share="true"></div>
 --></h1>
-
+<!--
 <br/>
 <div class="row">
   <div class="col-xs-3"></div><div class="col-xs-6">
@@ -52,7 +52,7 @@ echo View::forge('global/header'); ?>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/CGRYzLb7FEw?list=PLHxmav9PZJKaiBGqv_2gOxpGhKmtY3j7V" frameborder="0" allowfullscreen></iframe>
 </div>
 </div>
-</div>
+</div>-->
 </div>
 </div>
 <?php echo View::forge('global/footer'); ?>
