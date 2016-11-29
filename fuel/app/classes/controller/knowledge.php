@@ -33,7 +33,7 @@ class Controller_Knowledge extends Controller {
 
         $data['knowledge'] = $k_id;
         Task::create(Auth::get('id'), 4, 300, $data);
-
+        Messages::voice('ability_in_progress');
     	Response::redirect(Uri::create('knowledge'));
     }
 }

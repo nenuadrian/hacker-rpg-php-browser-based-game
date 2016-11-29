@@ -138,12 +138,16 @@ class Missions extends \Model {
             if (\Input::post('action') == 'crack') {
                 $user['security'] = false;
                 //$service['security'] = false;
+                \Messages::voice('cracking_initiated');
             }
 
             if (\Input::post('action') == 'connect') {
                 if (static::access_granted_to_service($user, \Input::post('password'))) {
                     $mission['connected'] = array('service_id' => $user['service_id'], 'user_id' => $user_id);
                     static::objective_check($task, $mission, 1, $user_id);
+                } else {
+                  \Messages::voice('accessdenied');
+                  \Messages::error('Access denied');
                 }
             }
         }
@@ -241,7 +245,7 @@ class Missions extends \Model {
               $tVars['cql'] = array('query' => $query, 'output' => false);
               if (DBMock::allowed($query)) {
                   $output = DBMock::query($db, $query);
-                  $tVars['cql']['output'] = $output;
+                  $tVars['cql']['output'] = $output[1];
                   //$ret;
                   // verify if conditions are met
                 /*  $done = true;
@@ -254,9 +258,13 @@ class Missions extends \Model {
                   if ($done) {
                     die();
                   }*/
-
-              } else $tVars['cql']['output'] = "The Cardinal Query Language of this instance accepts only SELECT, INSERT and UPDATE commands.";
-
+                  if ($output[0])
+                    \Messages::voice('command_done');
+                  else \Messages::voice('command_error');
+              } else {
+                \Messages::voice('warning');
+                $tVars['cql']['output'] = "The Cardinal Query Language of this instance accepts only SELECT, INSERT and UPDATE commands.";
+              }
 
               $db->close();
             }
@@ -401,13 +409,15 @@ class Missions extends \Model {
 
         $mission['skills_influence'] = Skills::influence_total(\Auth::get('skills'));
 
+        \Messages::voice('systems_initiated_welcome');
+
         return $mission;
     }
 
 
     public static function add_task(&$mission, $type, $duration, $data, $influence_type = false) {
-      if ($influence_type && isset($mission['skills_influence'][$influence])) {
-          $duration = min(5, round($duration - ($duration / 100) * $mission['skills_influence'][$influence]));
+      if ($influence_type && isset($mission['skills_influence'][$influence_type])) {
+          $duration = min(5, round($duration - ($duration / 100) * $mission['skills_influence'][$influence_type]));
       }
     	$mission['task'] = array('task_start' => time(), 'task_duration' => $duration, 'type' => $type, 'data' => $data);
     }

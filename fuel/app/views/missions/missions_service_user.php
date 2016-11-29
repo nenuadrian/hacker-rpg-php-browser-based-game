@@ -1,7 +1,7 @@
 <form method="post" class="text-center">
   <input type="hidden" name="user_id" value="<?php echo $user['user_id']; ?>" />
   <?php if ($user['security'] || $user['password']): ?>
-  <input type="password" class="form-control" name="password" <?php echo $user['password'] ? 'required' : ''; ?> />
+  <input type="password" class="form-control" name="password" />
   <?php else: ?>
     <p>user not protected</p>
   <?php endif; ?>
