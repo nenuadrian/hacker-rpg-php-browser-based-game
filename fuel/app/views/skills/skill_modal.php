@@ -7,7 +7,7 @@ use \Model\Servers;
 
 ?>
 <p>
-<?php echo $s['description']; ?>
+<small><?php echo $s['description']; ?></small>
 </p>
 
 

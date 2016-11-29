@@ -41,7 +41,7 @@ use \Model\Skills;
 				</ul>
 			</nav>
 		</div> <!-- .gallery-wrapper -->
-    
+
 		<ul class="caption">
 
       <?php foreach($knowledge as $k_id => $k): ?>
@@ -49,9 +49,9 @@ use \Model\Skills;
           <div class="row">
           <div class="col-md-1"></div><div class="col-md-10">
           <h1><?php echo $k['name']; ?></h1>
-          <div class="well">
+          <!--<div class="well">
             <?php echo $k['description']; ?>
-          </div>
+          </div>-->
           <?php if ($user_knowledge[$k_id]['requires']['fulfilled']): ?>
             <a href="<?php echo Uri::create('knowledge/learn/' . $k_id); ?>">learn</a>
           <?php else: ?>

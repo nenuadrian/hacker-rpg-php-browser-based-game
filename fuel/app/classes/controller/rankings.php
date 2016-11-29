@@ -2,7 +2,7 @@
 
 class Controller_Rankings extends Controller
 {
-	public function action_index() 
+	public function action_index()
     {
     	$tVars = array();
 
@@ -28,7 +28,7 @@ class Controller_Rankings extends Controller
         return View::forge('rankings/rankings', $tVars);
     }
 
-    public function action_groups() 
+    public function action_groups()
     {
     	$tVars = array();
 

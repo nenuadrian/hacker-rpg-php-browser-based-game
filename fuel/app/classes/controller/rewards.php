@@ -7,13 +7,25 @@ class Controller_Rewards extends Controller
         if (!Auth::check()) Response::redirect(Uri::base());
     }
 
-	public function action_index()
-    {
+	public function action_index() {
     	$tVars = array();
 
-    	$rewards = DB::select()->from('reward')->where('user_id', Auth::get('id'))->order_by('created_at', 'desc')->execute()->as_array();
+      $result = DB::select(DB::expr('COUNT(*) as count'))->from('reward')->where('user_id', Auth::get('id'))->execute();
 
-    	$tVars['rewards'] = $rewards;
+        $config = array(
+          'pagination_url' => Uri::create('rankings'),
+          'total_items'    => $result->current()['count'],
+          'per_page'       => 20,
+          //'uri_segment'    => 3,
+          'uri_segment'    => 'page',
+      );
+        $pagination = Pagination::forge('mypagination', $config);
+
+        $rewards = DB::select()->from('reward')->where('user_id', Auth::get('id'))->order_by('created_at', 'desc')
+          ->limit($pagination->per_page)->offset($pagination->offset)->execute()->as_array();
+
+          $tVars['rewards'] = $rewards;
+          $tVars['pagination'] = $pagination;
         return View::forge('rewards/rewards', $tVars);
     }
 
@@ -29,9 +41,8 @@ class Controller_Rewards extends Controller
     		Rewards::claim($reward);
     		Response::redirect(Uri::current());
     	}
-      if (isset($reward['achievements']))
-        $reward['achievements'] = json_decode($reward['achievements'], true);
-    	$tVars['reward'] = $reward;
+      if (isset($reward['achievements'])) $reward['achievements'] = json_decode($reward['achievements'], true);
+    	   $tVars['reward'] = $reward;
         return View::forge('rewards/reward', $tVars);
     }
 }

@@ -12,7 +12,7 @@ echo View::forge('global/header'); ?>
   <h2 class="text-center">achievements</h2>
 <Br/>
 <div class="row">
-<?php foreach(Achievements::$achievements as $id => $a): if(!isset($hacker['achievements'][$id])) continue; ?>
+<?php foreach(Achievements::$achievements as $id => $a): if(!isset($hacker['achievements'][$id])) continue; $has = true; ?>
 <div class="col-md-3 col-xs-6 text-center ">
 
 <?php echo View::forge('components/modal', array('id' => 'achievement-' . $id, 'title' => $a['name'], 'content' => $a['description'])); ?>
@@ -24,6 +24,11 @@ echo View::forge('global/header'); ?>
 </a>
 </div>
 <?php endforeach; ?>
+<?php if (!isset($has)): ?>
+  <div class="well text-center">
+  <?php echo $hacker['username']; ?> does not have any achievement :(.
+</div>
+<?php endif; ?>
 </div>
 </div>
 </div>

@@ -11,5 +11,8 @@
 		</a>
 	</div>
 <?php endforeach; ?>
+<div class="text-center">
+	<?php echo str_replace(array('<div', '<span'), array('<ul', '<li'), html_entity_decode($pagination)); ?>
+</div>
 </div>
 <?php echo View::forge('global/footer'); ?>
