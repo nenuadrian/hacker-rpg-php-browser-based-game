@@ -8,3 +8,4 @@ fuel/vendor
 fuel/app/config/db.php
 fuel/app/tmp/**
 fuel/app/logs/**
+fuel/app/cache/**
