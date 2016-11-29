@@ -27,6 +27,7 @@ class Controller_Train extends Controller {
           $mission = $mission[0];
           $data['mission'] = Missions::prepare_data($mission['quest_id']);
   		    Task::create(Auth::get('id'), 2, 1000, $data);
+          Messages::voice('training_initiated');
           Response::redirect(Uri::create('train/train'));
         } else Messages::error("No sessions available for you");
         Response::redirect(Uri::current());

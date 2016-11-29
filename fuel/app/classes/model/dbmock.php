@@ -15,16 +15,16 @@ class DBMock extends \Model {
               $output[] = $row;
           }
         } catch (\Exception $ex) {
-            $output = $db->lastErrorMsg();
+            return array(false, $db->lastErrorMsg());
         }
 
-       return $output;
+       return array(true, $output);
     } elseif ($type == 'insert') {
       $db->exec($query);
-        return true;
+        return array(true, 'Inserted');
     } elseif ($type == 'update') {
       $db->exec($query);
-        return true;
+        return array(true, 'Updated');
     }
   }
   public static function allowed($query) {
