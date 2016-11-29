@@ -2,12 +2,12 @@
 
 <div class="container">
 <?php foreach($rewards as $reward): ?>
-	<div>
+	<div class="well">
 		<a href="<?php echo Uri::create('rewards/reward/' . $reward['reward_id']); ?>">
-				<h3><?php echo $reward['title']; ?></h3>
-				<p><small>
+				<strong><?php echo $reward['title']; ?></strong><br/>
+				<small>
 					<?php echo $reward['created_at']; ?> - 	<?php echo $reward['claimed']; ?>
-				</small></p>
+				</small>
 		</a>
 	</div>
 <?php endforeach; ?>

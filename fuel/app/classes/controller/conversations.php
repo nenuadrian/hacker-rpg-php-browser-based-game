@@ -34,7 +34,7 @@ class Controller_Conversations extends Controller
 		$bbcode = new Golonka\BBCode\BBCodeParser;
 
 		foreach ($replies as &$r) {
-			$r['message'] = $bbcode->parseCaseInsensitive($r['message']);
+			$r['message'] = $bbcode->parseCaseInsensitive(htmlentities(htmlentities($r['message'])));
 		}
 
 		$tVars = array();
@@ -46,15 +46,16 @@ class Controller_Conversations extends Controller
 	public function action_new() {
 		$tVars = array();
 
-		if (Input::post()) {
+		if (Input::post() && Input::post('username') != Auth::get('username')) {
 			$user_2_id = DB::select('id')->from('users')->where('username', Input::post('username'))->execute()->as_array();
-			Conversation::create(Input::post('title'), Auth::get('id'), $user_2_id[0]['id'], Input::post('message'));
+			$c_id = Conversation::create(Input::post('title'), Auth::get('id'), $user_2_id[0]['id'], Input::post('message'));
+			Response::redirect(Uri::create('conversations/conversation/' . $c_id));
 		}
 
 		return View::forge('conversations/conversation_new', $tVars);
 	}
 
-	public function action_index() 
+	public function action_index()
     {
     	$tVars = array();
 
@@ -71,7 +72,7 @@ class Controller_Conversations extends Controller
     	$op_usernames = array();
     	if (count($other_participants)) {
 	    	$other_participants = DB::select('username', 'id')->from('users')->where('id', 'IN', $other_participants)->execute()->as_array();
-	    	
+
 	    	foreach($other_participants as $op) {
 	    		$op_usernames[$op['id']] = $op['username'];
 	    	}

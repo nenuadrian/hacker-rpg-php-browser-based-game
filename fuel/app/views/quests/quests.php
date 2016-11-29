@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="row">
 		<?php foreach($groups as $g): ?>
-			<div class="col-md-6 col-sm-6 ">
+			<div class="col-md-6 ">
 	        <div class="box-layout">
 	            <a class="box-layout-icon ">
 	                <div class="front-content">

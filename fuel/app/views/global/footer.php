@@ -9,8 +9,10 @@
 				  <source src="<?php echo Uri::create('voice/speak/' . $voice->message . '/mp3'); ?>" type="audio/mpeg">
 				</audio>
 				<script type="text/javascript">
-					if (window.webkit && window.webkit.messageHandlers.interOp && window.webkit.messageHandlers.interOp) {
+					if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.interOp) {
 						window.webkit.messageHandlers.interOp.postMessage({ action: "speak", voice: "<?php echo $voice->message; ?>" })
+					} else if (Android && Android.playSound) {
+						Android.playSound('<?php echo $voice->message; ?>')
 					} else {
 						var x = document.getElementById("voice")
 						x.autoplay = true

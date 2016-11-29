@@ -1,15 +1,11 @@
 <?php echo View::forge('global/header'); ?>
 
-
-
 <h2 class="text-center"><?php echo $conv['title']; ?></h2><br/>
 <div class="container">
 
-<?php print_r($conv); ?>
-<?php print_r($replies); ?>
 <?php foreach ($replies as $reply): ?>
 	<div class="well well-dark">
-		<p><?php echo $reply['message']; ?></p>
+		<p><?php echo html_entity_decode($reply['message']); ?></p>
 		<div class="text-right">
 		<small><?php echo $reply['created_at']; ?></small>
 	</div>

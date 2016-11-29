@@ -4,7 +4,7 @@ namespace Model;
 
 class Conversation extends \Model {
 
-   
+
     public static function create($title, $user_1, $user_2, $message) {
     	$conv = array(
 			'title' => $title,
@@ -17,6 +17,7 @@ class Conversation extends \Model {
 			);
 
 		\DB::insert('conversation')->set($conv)->execute();
+    return \DB::select('conversation_id')->from('conversation')->where('user_1_id', $user_1)->order_by('created_at', 'desc')->limit(1)->execute()->as_array()[0]['conversation_id'];
     }
-    
+
 }
