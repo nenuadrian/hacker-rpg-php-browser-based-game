@@ -145,6 +145,7 @@ class Missions extends \Model {
                 if (static::access_granted_to_service($user, \Input::post('password'))) {
                     $mission['connected'] = array('service_id' => $user['service_id'], 'user_id' => $user_id);
                     static::objective_check($task, $mission, 1, $user_id);
+                    \Messages::voice('accessgranted');
                 } else {
                   \Messages::voice('accessdenied');
                   \Messages::error('Access denied');
