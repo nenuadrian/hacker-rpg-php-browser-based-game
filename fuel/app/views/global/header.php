@@ -88,11 +88,9 @@
 			      		<li><a href="<?php echo Uri::create('rankings'); ?>"><i class="fa fa-trophy" aria-hidden="true"></i> <small>(<?php echo number_format(Auth::get('ranking')); ?>)</small></a></li>
 							<li><a href="<?php echo Uri::create('dna'); ?>"><i class="fa fa-cog" aria-hidden="true"></i></a></li>
 
-			        <?php if (Auth::get('group') == 2): ?>
-				        	 <li><a href="<?php echo Uri::create('cardinal'); ?>"><i class="fa fa-bolt" aria-hidden="true"></i></a></li>
-							<?php endif; ?>
+			        
 							<li>
-								<a href="<?php echo Uri::create('authenticate/logout'); ?>" style=" opacity:.4;margin-left:30px">
+								<a href="<?php echo Uri::create('authenticate/logout'); ?>" style=" opacity:.4;">
 									<i class="fa fa-power-off" aria-hidden="true"></i>
 								</a>
 							</li>
