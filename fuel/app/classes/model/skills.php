@@ -29,7 +29,7 @@ class Skills extends \Model {
                 'influence' => function($level) {
                             return array(
                                 'crack_1' => $level * 2,
-                                'grid_scan' => $level * 2
+                                'scan' => $level * 2
                                 );
                         }
                 ),
@@ -68,7 +68,7 @@ class Skills extends \Model {
     public static function influence_total($skills_string) {
         $skills = Skills::process($skills_string);
         $skills_influence = array();
-        foreach($skills as $s) 
+        foreach($skills as $s)
             foreach($s['influence'] as $in => $v)
                 $skills_influence[$in] = isset($skills_influence[$in]) ? $skills_influence[$in] + $v : $v;
         return $skills_influence;

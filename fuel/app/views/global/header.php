@@ -72,10 +72,9 @@
 			        <li><a href="<?php echo Uri::create('knowledge'); ?>"><i class="fa fa-book" aria-hidden="true"></i></a></li>
 			        <li><a href="<?php echo Uri::create('train'); ?>"><i class="fa fa-calculator" aria-hidden="true"></i></a></li>
 			        <!--<li><a href="<?php echo Uri::create('servers'); ?>"><i class="fa fa-server" aria-hidden="true"></i></a></li>
-			        <li><a href="<?php echo Uri::create('shop'); ?>"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>-->
-			        <li><a href="<?php echo Uri::create('group'); ?>"><i class="fa fa-users" aria-hidden="true"></i></a></li>
+			        <li><a href="<?php echo Uri::create('shop'); ?>"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
+			        <li><a href="<?php echo Uri::create('group'); ?>"><i class="fa fa-users" aria-hidden="true"></i></a></li>-->
 						<?php else :?>
-
 							<li><a href="<?php echo Uri::base(); ?>"><i class="fa fa-home" aria-hidden="true"></i></a></li>
 							<li><a href="<?php echo Uri::create('create-account'); ?>"><i class="fa fa-id-card" aria-hidden="true"></i></a></li>
 						<?php endif; ?>
@@ -83,10 +82,11 @@
 			      </ul>
 			      <ul class="nav navbar-nav navbar-right text-center">
 							<?php if (Auth::check()): ?>
-			        <li <?php echo $rewards ? 'class="active"' : ''; ?>><a href="<?php echo Uri::create('rewards'); ?>"><i class="fa fa-gift" aria-hidden="true"></i><?php echo $rewards ? ' <small>('.$rewards.')</small>' : ''; ?></a></li>
+								<li <?php echo $convs ? 'class="active"' : ''; ?>><a href="<?php echo Uri::create('conversations'); ?>"><i class="fa fa-envelope-o" aria-hidden="true"></i><?php echo $convs ? ' <small>('.$convs.')</small>' : ''; ?></a></li>
+			        	<li <?php echo $rewards ? 'class="active"' : ''; ?>><a href="<?php echo Uri::create('rewards'); ?>"><i class="fa fa-gift" aria-hidden="true"></i><?php echo $rewards ? ' <small>('.$rewards.')</small>' : ''; ?></a></li>
 
-			      <li><a href="<?php echo Uri::create('rankings'); ?>"><i class="fa fa-trophy" aria-hidden="true"></i> <small>(<?php echo number_format(Auth::get('ranking')); ?>)</small></a></li>
-			      <!--  <li><a href="<?php echo Uri::create('dna'); ?>"><i class="fa fa-user-secret" aria-hidden="true"></i></a></li>-->
+			      		<li><a href="<?php echo Uri::create('rankings'); ?>"><i class="fa fa-trophy" aria-hidden="true"></i> <small>(<?php echo number_format(Auth::get('ranking')); ?>)</small></a></li>
+								<!--  <li><a href="<?php echo Uri::create('dna'); ?>"><i class="fa fa-user-secret" aria-hidden="true"></i></a></li>-->
 
 			        <?php if (Auth::get('group') == 2): ?>
 				        	 <li><a href="<?php echo Uri::create('cardinal'); ?>"><i class="fa fa-bolt" aria-hidden="true"></i></a></li>

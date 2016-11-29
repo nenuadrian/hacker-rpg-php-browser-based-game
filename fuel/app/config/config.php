@@ -12,7 +12,7 @@
 
 return array(
   'title' => 'Hacktivism',
-	'apps' => array(
+/*	'apps' => array(
 			1 => array(
 					'name' => 'Grid scanner 1',
 					'ram' => 20,
@@ -85,22 +85,8 @@ return array(
 					)
 			),
 		),
-
-	'service_types' => array(
-			1 => array(
-			'name' => 'SSH/FILES',
-			'icon' => 'terminal'
-			),
-			2 => array(
-			'name' => 'SMTP/EMAIL',
-			'icon' => 'envelope-o'
-			),
-			3 => array(
-			'name' => 'DB/SQL',
-			'sub_entities' => true,
-			'icon' => 'database'
-			),
-		),
+*/
+	
 	/**
 	 * base_url - The base URL of the application.
 	 * MUST contain a trailing slash (/)

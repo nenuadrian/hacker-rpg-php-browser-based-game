@@ -41,13 +41,17 @@ use \Model\Skills;
 				</ul>
 			</nav>
 		</div> <!-- .gallery-wrapper -->
-
+    
 		<ul class="caption">
 
       <?php foreach($knowledge as $k_id => $k): ?>
         <li <?php echo $k_id == 2 ? 'class="selected"' : ''; ?>>
+          <div class="row">
+          <div class="col-md-1"></div><div class="col-md-10">
           <h1><?php echo $k['name']; ?></h1>
-
+          <div class="well">
+            <?php echo $k['description']; ?>
+          </div>
           <?php if ($user_knowledge[$k_id]['requires']['fulfilled']): ?>
             <a href="<?php echo Uri::create('knowledge/learn/' . $k_id); ?>">learn</a>
           <?php else: ?>
@@ -71,7 +75,7 @@ use \Model\Skills;
           <?php foreach($user_knowledge[$k_id]['requires']['knows'] as $r_k_id => $r): ?>
             <p><?php echo $knowledge[$r_k_id]['name']; ?> at level <?php echo $r['level']; ?> [<?php echo $r['fulfilled'] ? 'yes' : 'no'; ?>]</p>
           <?php endforeach; ?>
-
+</div></div>
         </li>
       <?php endforeach; ?>
 

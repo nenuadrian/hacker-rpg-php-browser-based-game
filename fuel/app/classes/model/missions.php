@@ -9,6 +9,21 @@ namespace Model;
 class Missions extends \Model {
     public static $shortcode = false;
     private static $shortcode_mission = false;
+    public static $service_types = array(
+  			1 => array(
+  			'name' => 'SSH/FILES',
+  			'icon' => 'terminal'
+  			),
+  			2 => array(
+  			'name' => 'SMTP/EMAIL',
+  			'icon' => 'envelope-o'
+  			),
+  			3 => array(
+  			'name' => 'DB/SQL',
+  			'sub_entities' => true,
+  			'icon' => 'database'
+  			),
+  		);
 
     public static function commands() {
         return array(
@@ -16,14 +31,17 @@ class Missions extends \Model {
                 'name' => 'SSH service cracking'
                 ),
             'crack_2' => array(
-                'name' => 'SSH service cracking'
+                'name' => 'SMTP service cracking'
                 ),
             'crack_3' => array(
-                'name' => 'SSH service cracking'
+                'name' => 'CQL service cracking'
                 ),
             'decrypt' => array(
-                'name' => 'SSH service cracking'
-                )
+                'name' => 'File decryption'
+              ),
+            'scan' => array(
+              'name' => 'Detection of running services'
+            )
             );
     }
 
@@ -220,10 +238,10 @@ class Missions extends \Model {
               $db = DBMock::get_db($user['db_file_id'], 'mission');
 
               $query = \Input::post('query');
-
+              $tVars['cql'] = array('query' => $query, 'output' => false);
               if (DBMock::allowed($query)) {
                   $output = DBMock::query($db, $query);
-                  $tVars['cql'] = array('query' => $query, 'output' => $output);
+                  $tVars['cql']['output'] = $output;
                   //$ret;
                   // verify if conditions are met
                 /*  $done = true;
@@ -237,7 +255,7 @@ class Missions extends \Model {
                     die();
                   }*/
 
-              } else $tVars['cql'] = "The Cardinal Query Language of this instance accepts only SELECT, INSERT and UPDATE commands.";
+              } else $tVars['cql']['output'] = "The Cardinal Query Language of this instance accepts only SELECT, INSERT and UPDATE commands.";
 
 
               $db->close();
@@ -387,12 +405,10 @@ class Missions extends \Model {
     }
 
 
-    public static function add_task(&$mission, $type, $duration, $data, $influence = false) {
-        if ($influence) {
-            if (isset($mission['skills_influence'][$influence])) {
-                $duration = min(5, round($duration - ($duration / 100) * $mission['skills_influence'][$influence]));
-            }
-        }
+    public static function add_task(&$mission, $type, $duration, $data, $influence_type = false) {
+      if ($influence_type && isset($mission['skills_influence'][$influence])) {
+          $duration = min(5, round($duration - ($duration / 100) * $mission['skills_influence'][$influence]));
+      }
     	$mission['task'] = array('task_start' => time(), 'task_duration' => $duration, 'type' => $type, 'data' => $data);
     }
 
