@@ -6,7 +6,8 @@ class Knowledge extends \Model {
     public static function knowledge() {
         return array(
             1 => array(
-                    'name' => 'knowledge 1',
+                    'name' => 'Reconnaissance',
+                    'description' => '',
                     'skills' => function($level) {
                         return array(
                                 1 => $level * 2
@@ -24,6 +25,7 @@ class Knowledge extends \Model {
                 ),
                 2 => array(
                         'name' => 'knowledge 2',
+                        'description' => '',
                         'skills' => function($level) {
                             return array(
                                     2 => $level * 2
@@ -40,6 +42,7 @@ class Knowledge extends \Model {
                     ),
                 3 => array(
                             'name' => 'knowledge 3',
+                            'description' => '',
                             'skills' => function($level) {
                                 return array(
                                         2 => $level * 2

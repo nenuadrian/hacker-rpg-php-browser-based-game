@@ -30,5 +30,5 @@
           <?php endif; ?>
         </div>
         <div class="panel-footer"><?php echo $cql['query']; ?></div>
-      </div>
+      </div><br/>
 <?php endif;?>

@@ -9,7 +9,7 @@
 <?php endforeach; ?>
 </select>
 <select class="form-control" name="type">
-<?php foreach(Config::get('service_types') as $t => $tt): ?>
+<?php foreach(\Model\Missions::$service_types as $t => $tt): ?>
 	<option value="<?php echo $t; ?>" <?php echo $service['type'] == $t ? 'selected' : '' ;?>><?php echo $tt['name']; ?></option>
 <?php endforeach; ?>
 </select>

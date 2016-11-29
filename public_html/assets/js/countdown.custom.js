@@ -16,7 +16,7 @@ function Countdown(options) {
 		if (remaining == 0) {
 			clearInterval(interval);
 			setTimeout(countdownCallback, reloadCallbackDelay * 1000);
-			text = 'DONE'
+			text = ''
 		}
 
 		if (progressBar) {

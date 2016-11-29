@@ -1,5 +1,5 @@
 <?php foreach($services as $service_id => $service): if ($service['quest_server_id'] != $server_id) continue; ?>
-	<?php $type = Config::get('service_types')[$service['type']]; ?>
+	<?php $type = \Model\Missions::$service_types[$service['type']]; ?>
 	<div class="box-layout" id="anchor_service_<?php echo $service_id; ?>">
 		<div class="box-layout-alert">
 			<a class="box-layout-icon " data-toggle="collapse" data-target="#service_<?php echo $service_id; ?>">
