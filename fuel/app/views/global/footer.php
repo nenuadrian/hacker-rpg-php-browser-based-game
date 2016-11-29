@@ -2,18 +2,22 @@
 		<footer>
 			<?php if (Input::headers('In-App', false)) \Model\Analytics::record('in-app', Input::headers('In-App')); ?>
 		</footer>
-		<script type="text/javascript">
-			if (window.webkit && window.webkit.messageHandlers.interOp && window.webkit.messageHandlers.interOp) {
-				window.webkit.messageHandlers.interOp.postMessage({ action: "speak", voice: "intro" })
-			}
-		</script>
-		<?php $voice = Messages::get('voice'); if (count($voice)): $voice = $voice[count($voice) - 1];  ?>
 
-			<audio style="display:none;" autoplay>
+		<?php $voice = Messages::get('voice'); if (count($voice)): $voice = $voice[count($voice) - 1];  ?>
+			<audio style="display:none;" id="voice">
 			  <source src="<?php echo Uri::create('voice/speak/' . $voice->message . '/ogg'); ?>" type="audio/ogg">
 			  <source src="<?php echo Uri::create('voice/speak/' . $voice->message . '/mp3'); ?>" type="audio/mpeg">
 			Your browser does not support the audio element.
 			</audio>
+			<script type="text/javascript">
+				if (window.webkit && window.webkit.messageHandlers.interOp && window.webkit.messageHandlers.interOp) {
+					window.webkit.messageHandlers.interOp.postMessage({ action: "speak", voice: "<?php echo $voice->message; ?>" })
+				} else {
+					var x = document.getElementById("voice")
+					x.autoplay = true
+					x.load()
+				}
+			</script>
 		<?php endif; ?>
 		<?php $modal = Messages::get('modal', null, 1); if (count($modal)): $modal = $modal[0];  ?>
 			<?php if ($modal->message == 'tutorial'): ?>
