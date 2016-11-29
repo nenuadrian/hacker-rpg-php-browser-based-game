@@ -2,8 +2,13 @@
 		<footer>
 			<?php if (Input::headers('In-App', false)) \Model\Analytics::record('in-app', Input::headers('In-App')); ?>
 		</footer>
-
+		<script type="text/javascript">
+			if (window.webkit && window.webkit.messageHandlers.interOp && window.webkit.messageHandlers.interOp) {
+				window.webkit.messageHandlers.interOp.postMessage({ action: "speak", voice: "intro" })
+			}
+		</script>
 		<?php $voice = Messages::get('voice'); if (count($voice)): $voice = $voice[count($voice) - 1];  ?>
+
 			<audio style="display:none;" autoplay>
 			  <source src="<?php echo Uri::create('voice/speak/' . $voice->message . '/ogg'); ?>" type="audio/ogg">
 			  <source src="<?php echo Uri::create('voice/speak/' . $voice->message . '/mp3'); ?>" type="audio/mpeg">
