@@ -16,7 +16,8 @@ class Controller_Knowledge extends Controller {
 
         $tVars['knowledge'] = Knowledge::knowledge();
         $tVars['user_knowledge'] = $user_knowledge;
-        return View::forge('knowledge/knowledge', $tVars);
+        return Response::forge(View::forge('knowledge/knowledge', $tVars))->set_header('Access-Control-Allow-Origin', '*');
+
     }
 
     public function action_learning() {
@@ -24,7 +25,7 @@ class Controller_Knowledge extends Controller {
         if (!$task) Response::redirect(Uri::create('knowledge'));
         $tVars = array();
         $tVars['task'] = $task;
-        return View::forge('knowledge/knowledge_learning', $tVars);
+        return Response::forge(View::forge('knowledge/knowledge_learning', $tVars))->set_header('Access-Control-Allow-Origin', '*');
     }
 
     public function action_learn($k_id) {

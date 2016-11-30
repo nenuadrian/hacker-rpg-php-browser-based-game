@@ -19,14 +19,15 @@ class Controller_Cardinal extends Controller {
         $steps = DB::select()->from('tutorial_step')->order_by('step_id', 'asc')->execute()->as_array();
 
         $tVars['steps'] = $steps;
-        return View::forge('cardinal/cardinal_tutorial', $tVars);
+        return Response::forge(View::forge('cardinal/cardinal_tutorial', $tVars))->set_header('Access-Control-Allow-Origin', '*');
     }
 
 	public function action_index()
     {
         $tVars = array();
 
-        return View::forge('cardinal/cardinal', $tVars);
+        return Response::forge(View::forge('cardinal/cardinal', $tVars))->set_header('Access-Control-Allow-Origin', '*');
+
     }
 
     public function action_quest_play($mission) {
@@ -64,7 +65,7 @@ class Controller_Cardinal extends Controller {
         $tVars['quest'] = $quest;
         $tVars['services'] = $services;
         $tVars['quests'] = $quests;
-        return View::forge('cardinal/mission/cardinal_quest', $tVars);
+        return Response::forge(View::forge('cardinal/mission/cardinal_quest', $tVars))->set_header('Access-Control-Allow-Origin', '*');
     }
 
     public function action_quest_servers($quest_id) {
@@ -129,7 +130,8 @@ class Controller_Cardinal extends Controller {
         $tVars['users'] = $users;
         $tVars['entities'] = $entities;
         $tVars['servers'] = $servers;
-        return View::forge('cardinal/mission/cardinal_quest_servers', $tVars);
+        return Response::forge(View::forge('cardinal/mission/cardinal_quest_servers', $tVars))->set_header('Access-Control-Allow-Origin', '*');
+
     }
 
     public function action_quest_objectives($quest_id) {
@@ -182,11 +184,11 @@ class Controller_Cardinal extends Controller {
         $tVars['users'] = $users;
         $tVars['services'] = $services;
         $tVars['entities'] = $entities;
-        return View::forge('cardinal/mission/cardinal_quest_objectives', $tVars);
+        return Response::forge(View::forge('cardinal/mission/cardinal_quest_objectives', $tVars))->set_header('Access-Control-Allow-Origin', '*');
+
     }
 
-    public function action_missions()
-    {
+    public function action_missions() {
         $tVars = array();
 
         if (Input::post('add_group')) {
@@ -209,6 +211,6 @@ class Controller_Cardinal extends Controller {
 
         $tVars['quests'] = $quests;
         $tVars['groups'] = $groups;
-        return View::forge('cardinal/mission/cardinal_quests', $tVars);
+        return Response::forge(View::forge('cardinal/mission/cardinal_quests', $tVars))->set_header('Access-Control-Allow-Origin', '*');
     }
 }

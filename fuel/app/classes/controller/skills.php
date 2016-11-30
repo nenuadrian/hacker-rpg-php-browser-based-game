@@ -24,6 +24,7 @@ class Controller_Skills extends Controller
     		Response::redirect(Uri::current());
     	}
     	$tVars['skills'] = $skills;
-        return View::forge('skills/skills', $tVars);
+        return Response::forge(View::forge('skills/skills', $tVars))->set_header('Access-Control-Allow-Origin', '*');
+
     }
 }

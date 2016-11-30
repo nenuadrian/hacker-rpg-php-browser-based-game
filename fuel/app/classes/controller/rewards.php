@@ -26,7 +26,8 @@ class Controller_Rewards extends Controller
 
           $tVars['rewards'] = $rewards;
           $tVars['pagination'] = $pagination;
-        return View::forge('rewards/rewards', $tVars);
+        return Response::forge(View::forge('rewards/rewards', $tVars))->set_header('Access-Control-Allow-Origin', '*');
+
     }
 
     public function action_reward($reward)
@@ -43,6 +44,6 @@ class Controller_Rewards extends Controller
     	}
       if (isset($reward['achievements'])) $reward['achievements'] = json_decode($reward['achievements'], true);
     	   $tVars['reward'] = $reward;
-        return View::forge('rewards/reward', $tVars);
+         return Response::forge(View::forge('reward/reward', $tVars))->set_header('Access-Control-Allow-Origin', '*');
     }
 }

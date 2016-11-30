@@ -13,7 +13,7 @@ class Controller_Quests extends Controller {
         $tVars = array();
         $groups = Quests::groups();
         $tVars['groups'] = $groups;
-        return View::forge('quests/quests', $tVars);
+        return Response::forge(View::forge('quests/quests', $tVars))->set_header('Access-Control-Allow-Origin', '*');
     }
 
     public function action_group($group) {
@@ -23,7 +23,7 @@ class Controller_Quests extends Controller {
         $quests = Quests::of($group);
 
         $tVars['quests'] = $quests;
-        return View::forge('quests/quests_group', $tVars);
+        return Response::forge(View::forge('quests/quests_group', $tVars))->set_header('Access-Control-Allow-Origin', '*');
     }
 
 

@@ -12,7 +12,7 @@ class Controller_Welcome extends Controller {
             \Auth::remember_me();
 
 						Authenticate::process_login();
-            
+
             \Response::redirect_back('dashboard');
         } else {
             // login failed, show an error message
@@ -20,12 +20,11 @@ class Controller_Welcome extends Controller {
             \Messages::error("Access Denied");
         }
     }
-
-		return Response::forge(View::forge('welcome/index'));
+		return Response::forge(View::forge('welcome/index'))->set_header('Access-Control-Allow-Origin', '*');
 	}
 
 	public function action_404()
 	{
-		return View::forge('welcome/404');
+		return Response::forge(View::forge('welcome/404'))->set_header('Access-Control-Allow-Origin', '*');
 	}
 }

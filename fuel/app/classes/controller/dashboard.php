@@ -24,6 +24,7 @@ class Controller_Dashboard extends Controller
         $tVars['quote'] = $quote;
       //  $tVars['availableQuests'] = $availableQuests;
       //  $tVars['tasks'] = $tasks;
-        return View::forge('dashboard/dashboard_mobile', $tVars);
+				return Response::forge(View::forge('dashboard/dashboard_mobile', $tVars))->set_header('Access-Control-Allow-Origin', '*');
+
     }
 }

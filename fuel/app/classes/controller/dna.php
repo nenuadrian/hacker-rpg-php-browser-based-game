@@ -9,7 +9,7 @@ class Controller_Dna extends Controller {
 			Messages::voice('data_saved2');
 			Response::redirect(Uri::current());
 		}
-        return View::forge('dna/dna');
+		return Response::forge(View::forge('dna/dna'))->set_header('Access-Control-Allow-Origin', '*');
     }
 
 }

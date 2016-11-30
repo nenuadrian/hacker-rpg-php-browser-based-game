@@ -52,7 +52,7 @@ class Controller_Authenticate extends Controller
             }
         }
     }
-		return View::forge('authenticate/register');
+    return Response::forge(View::forge('authenticate/register'))->set_header('Access-Control-Allow-Origin', '*');
 	}
 
 	public function action_logout()

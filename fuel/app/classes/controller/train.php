@@ -34,7 +34,8 @@ class Controller_Train extends Controller {
     	}
 
     	$tVars['train'] = $train;
-      return View::forge('train/train', $tVars);
+      return Response::forge(View::forge('train/train', $tVars))->set_header('Access-Control-Allow-Origin', '*');
+
     }
 
     public function action_train() {

@@ -40,7 +40,7 @@ class Controller_Conversations extends Controller
 		$tVars = array();
 		$tVars['replies'] = $replies;
 		$tVars['conv'] = $conv;
-        return View::forge('conversations/conversation', $tVars);
+				return Response::forge(View::forge('conversation/conversation', $tVars))->set_header('Access-Control-Allow-Origin', '*');
 	}
 
 	public function action_new() {
@@ -52,7 +52,7 @@ class Controller_Conversations extends Controller
 			Response::redirect(Uri::create('conversations/conversation/' . $c_id));
 		}
 
-		return View::forge('conversations/conversation_new', $tVars);
+		return Response::forge(View::forge('conversation/conversation_new', $tVars))->set_header('Access-Control-Allow-Origin', '*');
 	}
 
 	public function action_index()
@@ -80,6 +80,7 @@ class Controller_Conversations extends Controller
 		$op_usernames[-1] = 'System';
     	$tVars['op_usernames'] = $op_usernames;
     	$tVars['convs'] = $convs;
-        return View::forge('conversations/conversations', $tVars);
+				return Response::forge(View::forge('conversation/conversations', $tVars))->set_header('Access-Control-Allow-Origin', '*');
+
     }
 }

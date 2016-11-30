@@ -25,7 +25,7 @@ class Controller_Rankings extends Controller
     	$tVars['rankings'] = $rankings;
     	$tVars['pagination'] = $pagination;
 
-        return View::forge('rankings/rankings', $tVars);
+				return Response::forge(View::forge('rankings/rankings', $tVars))->set_header('Access-Control-Allow-Origin', '*');
     }
 
     public function action_groups()
@@ -50,7 +50,6 @@ class Controller_Rankings extends Controller
 
     	$tVars['rankings'] = $rankings;
     	$tVars['pagination'] = $pagination;
-
-        return View::forge('rankings/rankings_groups', $tVars);
+			return Response::forge(View::forge('rankings/rankings_groups', $tVars))->set_header('Access-Control-Allow-Origin', '*');
     }
 }
