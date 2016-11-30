@@ -23,7 +23,6 @@
 		<?php echo Asset::css('style.css'); ?>
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Josefin+Sans%3A300italic%2C300&amp;ver=4.6" type="text/css" media="all">
-
 	</head>
 	<body class="noselect">
 		<?php if (Auth::check()):
@@ -104,6 +103,8 @@
 
 		<?php endif; ?>
 		<div class="container-fluid" style="min-height:500px; padding-top:0px;">
-			<div class="container">
-				<?php echo View::forge('components/messages'); ?>
-			</div>
+			<?php if (!isset($messages_handled)): ?>
+				<div class="container">
+					<?php echo View::forge('components/messages'); ?>
+				</div>
+			<?php endif; ?>

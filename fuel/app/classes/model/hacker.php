@@ -4,17 +4,6 @@ namespace Model;
 
 class Hacker extends \Model {
 
-    public static function add_experience(&$hacker, $exp) {
-        $hacker['exp_next'] = Hacker::experience($hacker['level'] + 1);
-        $leveled_up = false;
-        while($hacker['experience'] >= $hacker['exp_next']) {
-            $hacker['level'] += 1;
-            $hacker['experience'] -= $hacker['exp_next'];
-            $hacker['exp_next'] = Hacker::experience($hacker['level'] + 1);
-            $leveled_up = true;
-        }
-        return $leveled_up;
-    }
 
     public static function save($data, $user_id = false) {
         if (!$user_id) $user_id = \Auth::get('id'); if (!$user_id) return false;

@@ -1,4 +1,4 @@
-<?php echo View::forge('global/header'); ?>
+<?php echo View::forge('global/header', array('messages_handled' => true)); ?>
 <div id="cann" style="position: absolute;
     top: 0!important;
     left: 0!important;
@@ -17,8 +17,9 @@
 	<div class="col-md-3"></div>
 	<div class="col-md-6 text-center">
 
-		<img src="<?php echo Uri::create('assets/img/logo.png'); ?>" class="main-logo" style="max-width:400px; width:100%; margin-top:-60px; margin-bottom:40px" />
-
+		<img src="<?php echo Uri::create('assets/img/logo.png'); ?>" class="main-logo" style="max-width:400px; width:100%; margin-top:-60px; margin-bottom:20px" />
+    <?php echo View::forge('components/messages'); ?>
+    <br/>
 		<form method="post">
 			<?php echo View::forge('components/messages'); ?>
 			<input type="text" class="form-control text-center" placeholder="user id" name="username" autocapitalize="off" autocorrect="off" />

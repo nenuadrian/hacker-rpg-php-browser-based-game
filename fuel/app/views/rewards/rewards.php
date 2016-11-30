@@ -4,9 +4,9 @@
 <?php foreach($rewards as $reward): ?>
 	<div class="well">
 		<a href="<?php echo Uri::create('rewards/reward/' . $reward['reward_id']); ?>">
-				<strong><?php echo $reward['title']; ?></strong><br/>
+				<strong><?php echo $reward['claimed'] ? '' : '[NOT CLAIMED] ';?><?php echo $reward['title']; ?></strong><br/>
 				<small>
-					<?php echo $reward['created_at']; ?> - 	<?php echo $reward['claimed']; ?>
+					received <?php echo $reward['created_at']; ?> 
 				</small>
 		</a>
 	</div>

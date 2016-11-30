@@ -7,7 +7,13 @@ class Rewards extends \Model {
         $hacker = \DB::select('experience', 'level', 'skill_points', 'money')->from('users')->where('id', $reward['user_id'])->execute()->as_array()[0];
 
         if ($reward['experience']) {
-            $leveled_up = Hacker::add_experience($hacker, $reward['experience']);
+            $hacker['exp_next'] = Hacker::experience($hacker['level'] + 1);
+            $hacker['experience'] += $reward['experience'];
+            while($hacker['experience'] >= $hacker['exp_next']) {
+                $hacker['level'] += 1;
+                $hacker['experience'] -= $hacker['exp_next'];
+                $hacker['exp_next'] = Hacker::experience($hacker['level'] + 1);
+            }
             unset($hacker['exp_next']);
         }
 

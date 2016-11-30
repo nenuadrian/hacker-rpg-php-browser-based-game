@@ -34,12 +34,12 @@
   <?php endif; ?>
   </div>
 </br>
-<?php print_r($reward); ?>
 
   <?php if (!$reward['claimed']): ?>
   <form method="post" class="text-center">
       	<button type="submit" class="btn btn-default btn-block btn-lg" name="claim" value="true">claim reward</button>
   </form>
+
 <?php endif; ?>
 
 </div>

@@ -25,17 +25,7 @@
 				</script>
 			<?php endif; ?>
 		<?php endif; ?>
-		<?php $modal = Messages::get('modal', null, 1); if (count($modal)): $modal = $modal[0];  ?>
-			<?php if ($modal->message == 'tutorial'): ?>
-				<script>
-				$('#modal-tutorial').modal({});
-				</script>
-			<?php else: ?>
 
-			<?php echo View::forge('components/modal', array('id' => 'modal-footer', 'title' => $modal->title, 'content' => $modal->message, 'auto_open' => true)); ?>
-
-			<?php endif;?>
-		<?php endif; ?>
 		<?php echo Asset::js('jquery-3.1.0.min.js'); ?>
 
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
@@ -47,6 +37,18 @@
 
 		<?php echo GlobalJs::render(); ?>
 
+		<?php $modal = Messages::get('modal', null, 1); if (count($modal)): $modal = $modal[0];  ?>
+			<?php if ($modal->message == 'tutorial'): ?>
+				<script>
+				$('#modal-tutorial').modal({});
+				</script>
+			<?php else: ?>
+
+			<?php echo View::forge('components/modal', array('id' => 'modal-footer', 'title' => $modal->title, 'content' => $modal->message, 'auto_open' => true)); ?>
+
+			<?php endif;?>
+		<?php endif; ?>
+		
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

@@ -29,7 +29,8 @@ class Authenticate extends \Model {
       }
       Hacker::save($updateData, \Auth::get('id'));
 
-      \Messages::modal('Connected to the grid', "You've connected to the grid " . $updateData['daily_login_count'] . " times in a row!");
+      Rewards::give(\Auth::get('id'), array('experience' => 3 * $updateData['daily_login_count'] ), 'Stacked ' . $updateData['daily_login_count'] . ' days');
+      \Messages::modal('Connected to the grid', "<p>You've connected to the grid " . $updateData['daily_login_count'] . " days in a row!</p><p>The more days you stack, the higher the rewards get!</p>");
     }
 
     \Messages::voice('accessgranted');
