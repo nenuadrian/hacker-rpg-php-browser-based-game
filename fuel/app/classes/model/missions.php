@@ -3,7 +3,6 @@ use \Model\Task;
 use \Model\Skills;
 use \Model\Servers;
 use \Model\DBMock;
-use \Thunder\Shortcode\Shortcode\ShortcodeInterface;
 
 namespace Model;
 
@@ -50,23 +49,23 @@ class Missions extends \Model {
         static::$shortcode_mission = $mission;
         if (!static::$shortcode) {
             $handlers = new \Thunder\Shortcode\HandlerContainer\HandlerContainer();
-            $handlers->add('user', function(ShortcodeInterface $s) {
+            $handlers->add('user', function(\Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
                 return sprintf('%s', \Auth::get($s->getParameter('attr')));
             });
-            $handlers->add('substring', function(ShortcodeInterface $s) {
+            $handlers->add('substring', function(\Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
                 return sprintf('%s', substr($s->getContent(), $s->getParameter('start'), $s->getParameter('length') ? $s->getParameter('length') : 99999));
             });
-            $handlers->add('username', function(ShortcodeInterface $s) {
+            $handlers->add('username', function(\Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
                 return sprintf('%s', \Auth::get('username'));
             });
-            $handlers->add('server', function(ShortcodeInterface $s) {
+            $handlers->add('server', function(\Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
                 if ($s->getParameter('id'))
                     $server = static::$shortcode_mission['servers'][$s->getParameter('id')];
                 elseif ($s->getParameter('hn'))
                     foreach(static::$shortcode_mission['servers'] as $server) if ($server['hostname'] == $s->getParameter('hn')) break;
                 return sprintf('%s', $server[$s->getParameter('attr')]);
             });
-            $handlers->add('ip', function(ShortcodeInterface $s) {
+            $handlers->add('ip', function(\Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
                 if ($s->getParameter('id'))
                     $server = static::$shortcode_mission['servers'][$s->getParameter('id')];
                 elseif ($s->getParameter('hn'))
