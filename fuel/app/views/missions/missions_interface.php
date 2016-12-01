@@ -35,13 +35,14 @@
 <div class="row mission-interface">
 	<div class="col-md-3"></div>
 	<div class="col-md-6">
-		<?php echo View::forge('components/modal', array('id' => 'objective', 'title' => 'Current objective', 'content' => html_entity_decode(nl2br($mission['objective']['story'])))); ?>
+		<?php  echo View::forge('components/modal', array('auto_open' => $new_objective, 'id' => 'objective', 'title' => $mission['objective']['name'], 'content' => html_entity_decode(nl2br($mission['objective']['story'])))); ?>
 		<div class="row">
 			<div class="col-xs-6">
 				<?php echo View::forge('components/countdown', array('start_value' => $task['task_start'], 'remaining' => $task['remaining'], 'duration' => $task['task_duration'], 'max_width' => '100px')); ?>
 			</div>
 			<div class="col-xs-6 text-center">
-				<a class="btn" href="#objective" data-toggle="modal">objective</a>
+				<a class="btn" href="#objective" data-toggle="modal">objective</a><br/>
+				<small><a href="#objective" data-toggle="modal"><?php echo $mission['objective']['name']; ?></a></small>
 			</div>
 		</div>
 		<br/>
@@ -55,12 +56,14 @@
 					<h4><?php echo $user['username']; ?> @ <?php echo $server['hostname']; ?> : <?php echo $service['port']; ?></h4>
 					<small><?php echo isset($server['custom_name']) ? $server['custom_name'] : ($server['hide_hn'] ? 'unknown hostname' : $server['hostname']); ?></small>
 				</div>
-	<br/>
-				<div class="well">
-					<?php echo $service['welcome']; ?>
-				</div>
-					<form method="post">
-						<button type="submit" class="btn btn-default" name="service_action" value="disconnect">disconnect</button>
+				<?php if ($service['welcome']): ?>
+					<br/>
+					<div class="well">
+						<?php echo $service['welcome']; ?>
+					</div>
+				<?php endif; ?>
+					<form method="post" class="text-center">
+						<button type="submit" class="btn btn-danger" name="service_action" value="disconnect">disconnect</button>
 						<!--
 						<?php if ($service['type'] == 1): ?>
 							<button type="submit" class="btn btn-default" name="service_action" value="bounce">add as bounce</button>
@@ -70,10 +73,8 @@
 					<?php if (isset($mission['connected']['entity'])): ?>
 						<?php echo View::forge('missions/mission_entity_'. $service['type'], array('mission' => $mission, 'entity' => $entity)); ?>
 					<?php else: ?>
-
-
 						<?php if ($service['type'] == 3): ?>
-							<?php if (isset($cql)): ?>
+							<?php if ($cql): ?>
 								<?php echo View::forge('missions/query_output', array('cql' => $cql)); ?>
 							<?php endif; ?>
 							<form method="post">
@@ -90,15 +91,19 @@
 							</form>
 						<?php else: ?>
 							<?php foreach($mission['entities'] as $entity_id => $entity): ?>
-								<?php if ($entity['user_id'] != $user['user_id'] || $entity['user_id'] != $user['user_id'] || isset($entity['required_objective'])) continue; ?>
+								<?php if ($entity['user_id'] != $user['user_id'] || $entity['user_id'] != $user['user_id'] || isset($entity['required_objective'])) continue; $found = true; ?>
 								<?php echo View::forge('missions/missions_service_' . $service['type'], array('mission' => $mission, 'entity' => $entity)); ?>
 							<?php endforeach;?>
+							<?php if (!isset($found)): ?>
+								<div class="alert alert-info text-center">
+									Nothing here
+								</div>
+							<?php endif; ?>
 						<?php endif; ?>
 					<?php endif; ?>
 				</div>
 		  <?php else: ?>
-
-				<?php foreach(array_filter($mission['servers'], function($s) { return $s['discovered']; }) as $server_id => $s):
+				<?php foreach(array_filter($mission['servers'], function($s) { return $s['discovered']; }) as $server_id => $s): $found = true;
 						$knownServices = 0;
 						foreach($mission['services'] as $serv) if ($serv['discovered'] && $serv['quest_server_id'] == $server_id && !isset($service['required_objective'])) $knownServices++;
 					?>
@@ -114,7 +119,7 @@
 									<i class="fa fa-<?php echo $type['icon']; ?>"></i> <?php echo $type['name']; ?> | PORT <?php echo $service['port']; ?>
 								</div>
 								<div class="users collapse" id="users_<?php echo $service_id; ?>">
-									<div style="padding:15px">
+									<div style="padding: 15px;">
 										<?php foreach($mission['users'] as $user_id => $user): if ($user['service_id'] != $service_id) continue; ?>
 											<?php echo View::forge('components/modal', array('id' => 'user_' . $user_id, 'title' => $user['username'], 'content' => View::forge('missions/missions_service_user', array('user' => $user)))); ?>
 											<div class="user" onclick="$('#user_<?php echo $user_id; ?>').modal('toggle')">
@@ -132,11 +137,22 @@
 								<button type="submit" class="btn btn-default" name="action" value="scan">nmap</button>
 								<a class="btn btn-default" data-toggle="modal" href="#rename_<?php echo $server_id; ?>">rename</a>
 							</form>
-
-
 						</div>
 					</div>
 				<?php endforeach; ?>
+				<?php if (!isset($found)): ?>
+					<div class="alert alert-info text-center">
+						No server discovered
+					</div>
+				<?php endif; ?>
+				<div class="text-center">
+					<a data-toggle="modal" data-target="#ping" class="btn">ping</a>
+				</div>
+				<?php echo View::forge('components/modal', array('id' => 'ping', 'title' => 'ping server', 'content' =>
+						'<form method="post" class="text-center">
+							<input type="text" name="ip" placeholder="Target" class="form-control" />
+							<button type="submit" class="btn btn-default " name="ping" value="true">ping</button>
+						</form>')); ?>
 			<?php endif;?>
 		<?php endif; ?>
 	</div>
@@ -227,6 +243,7 @@
 	<br/><br/><br/>
 	<form method="post">
 		<button class="btn btn-danger btn-block" type="submit" name="cancel" value="true">cancel</button>
+		<button class="btn btn-primary btn-block" type="submit" name="skip_objective" value="true">skip objective</button>
 	</form>
 	<button class="btn btn-default btn-block"  data-toggle="collapse" href="#debug" >debug</button>
 <div class="well collapse" id="debug">

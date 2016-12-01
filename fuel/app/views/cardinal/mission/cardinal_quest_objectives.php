@@ -29,7 +29,7 @@ if ($objective_expanded) {
         </a>
         <a class="box-layout-content" data-toggle="collapse" data-target="#objective_<?php echo $objective_id; ?>">
             <h3>ID(<?php echo $objective_id; ?>)</h3>
-            <p><?php echo substr($o['story'], 0, 500); ?>...</p>
+            <p><?php echo substr($o['story'], 0, 100); ?>...</p>
         </a>
     </div>
 		<div class="collapse <?php echo $objective_expanded == $objective_id ? 'in' : ''; ?>" id="objective_<?php echo $objective_id; ?>" >

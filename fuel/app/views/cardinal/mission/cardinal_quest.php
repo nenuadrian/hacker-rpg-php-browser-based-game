@@ -10,10 +10,9 @@
 			),
 		);
 ?>
-<div class="container">
 	<?php echo View::forge('cardinal/mission/cardinal_quest_menu', array('quest' => $quest)); ?>
 
-	<form method="post">
+	<form method="post" class="well">
 		<div class="row">
 		<div class="col-xs-1">
 		<input type="number" name="quest_group_order" class="form-control" value="<?php echo $quest['quest_group_order']; ?>" />
@@ -68,8 +67,18 @@
 			<option value="0">DRAFT</option>
 			<option value="1" <?php echo $quest['live'] ? 'selected' : ''; ?>>LIVE</option>
 			</select>
+			<div class="row">
+				<div class="col-md-4">
+						<input type="number" class="form-control" name="money" value="<?php echo $quest['money']; ?>" />
+				</div>
+				<div class="col-md-4">
+						<input type="number" class="form-control" name="experience" value="<?php echo $quest['experience']; ?>" />
+				</div>
+				<div class="col-md-4">
+						<input type="number" class="form-control" name="skill_points" value="<?php echo $quest['skill_points']; ?>" />
+				</div>
+			</div>
 		<button class="btn btn-default btn-block" type="submit">update</button>
 	</form>
-</div>
 
 <?php echo View::forge('global/footer'); ?>

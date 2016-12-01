@@ -31,7 +31,7 @@
 <option value="0">DRAFT</option>
 <option value="1" <?php echo $g['live'] ? 'selected' : ''; ?>>LIVE</option>
 </select>
-
+<textarea name="description" class="form-control"><?php echo $g['description']; ?></textarea>
 <button class="btn btn-default" type="submit" name="quest_group_id" value="<?php echo $g['quest_group_id']; ?>">update</button>
 <button class="btn btn-default" type="submit" name="add_quest" value="<?php echo $g['quest_group_id']; ?>">add</button>
 

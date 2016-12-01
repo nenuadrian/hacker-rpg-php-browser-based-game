@@ -44,14 +44,16 @@ class Controller_Quests extends Controller {
 
             $task['complete'] = time();
             $task['complete_status'] = 1;
+            $quest = DB::select()->from('quest')->where('quest_id', $task['data_id'])->limit(1)->execute()->as_array()[0];
 
             $reward = array(
-              'experience' => 10,
-              'money' => 10,
-              'skill_points' => 1
+              'experience' => $quest['experience'],
+              'money' => $quest['money'],
+              'skill_points' => $quest['skill_points']
             );
             Rewards::give(Auth::get('id'), $reward, 'Mission');
 
+            Messages::modal('Mission complete', '<p class="text-center">You have succesfully finished the mission!</p>');
             Task::save($task);
             Response::redirect(Uri::create('quests'));
         }

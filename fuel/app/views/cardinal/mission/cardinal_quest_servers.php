@@ -8,16 +8,16 @@ $expanded = array(
 	'user' => Input::get('user_id')
 );
 
-if (Input::get('user_id')) {
+if (Input::get('user_id') && isset($users[$expanded['user']]['service_id'])) {
 	$expanded['service'] = $users[$expanded['user']]['service_id'];
 	$expanded['server'] = $services[$expanded['service']]['quest_server_id'];
 }
 
-if (Input::get('service_id')) {
+if (Input::get('service_id') && isset($services[$expanded['service']]['quest_server_id'])) {
 	$expanded['server'] = $services[$expanded['service']]['quest_server_id'];
 }
 
-if (Input::get('entity_id')) {
+if (Input::get('entity_id') && isset($entities[Input::get('entity_id')])) {
 	$expanded['user'] = $entities[Input::get('entity_id')]['user_id'];
 	$expanded['service'] = $users[$expanded['user']]['service_id'];
 	$expanded['server'] = $services[$expanded['service']]['quest_server_id'];

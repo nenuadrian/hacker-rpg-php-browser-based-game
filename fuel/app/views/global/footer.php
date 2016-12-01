@@ -35,20 +35,16 @@
 		<?php echo Asset::js('progressbar.min.js'); ?>
 		<?php echo Asset::js('countdown.custom.js'); ?>
 
-		<?php echo GlobalJs::render(); ?>
 
 		<?php $modal = Messages::get('modal', null, 1); if (count($modal)): $modal = $modal[0];  ?>
 			<?php if ($modal->message == 'tutorial'): ?>
-				<script>
-				$('#modal-tutorial').modal({});
-				</script>
+				<?php GlobalJs::js("	$('#modal-tutorial').modal({});"); ?>
 			<?php else: ?>
-
-			<?php echo View::forge('components/modal', array('id' => 'modal-footer', 'title' => $modal->title, 'content' => $modal->message, 'auto_open' => true)); ?>
-
+				<?php echo View::forge('components/modal', array('id' => 'modal-footer', 'title' => $modal->title, 'content' => $modal->message, 'auto_open' => true)); ?>
 			<?php endif;?>
+
 		<?php endif; ?>
-		
+<?php echo GlobalJs::render(); ?>
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

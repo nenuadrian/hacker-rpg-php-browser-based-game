@@ -11,7 +11,7 @@
 		<div class="collapse mission-content" id="mission">
 		  <div class="text-center">
 				<p class="text-center"><small>
-					<i class="fa fa-cube"></i> <?php echo number_format($q['money']); ?> - <?php echo number_format($q['skill_points']); ?> skill points
+					<i class="fa fa-cube"></i> <?php echo number_format($q['money']); ?> - <?php echo number_format($q['skill_points']); ?> skill points - <?php echo number_format($q['experience']); ?> exp
 				</small></p><br/>
 		    <p><?php echo html_entity_decode($q['summary2']); ?></p><br/>
 		    <form method="post" class="text-center">

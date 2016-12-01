@@ -3,6 +3,8 @@ use \Model\Task;
 use \Model\Skills;
 use \Model\Servers;
 use \Model\DBMock;
+use \Thunder\Shortcode\Shortcode\ShortcodeInterface;
+use Golonka\BBCode\BBCodeParser;
 
 namespace Model;
 
@@ -11,15 +13,15 @@ class Missions extends \Model {
     private static $shortcode_mission = false;
     public static $service_types = array(
   			1 => array(
-  			'name' => 'SSH/FILES',
+  			'name' => 'FILES/SSH/',
   			'icon' => 'terminal'
   			),
   			2 => array(
-  			'name' => 'SMTP/EMAIL',
+  			'name' => 'EMAIL/CMTP',
   			'icon' => 'envelope-o'
   			),
   			3 => array(
-  			'name' => 'DB/SQL',
+  			'name' => 'DB/CQL',
   			'sub_entities' => true,
   			'icon' => 'database'
   			),
@@ -49,26 +51,23 @@ class Missions extends \Model {
         static::$shortcode_mission = $mission;
         if (!static::$shortcode) {
             $handlers = new \Thunder\Shortcode\HandlerContainer\HandlerContainer();
-            $handlers->add('user', function(\Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
+            $handlers->add('user', function(ShortcodeInterface $s) {
                 return sprintf('%s', \Auth::get($s->getParameter('attr')));
             });
-            $handlers->add('substring', function(\Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
+            $handlers->add('substring', function(ShortcodeInterface $s) {
                 return sprintf('%s', substr($s->getContent(), $s->getParameter('start'), $s->getParameter('length') ? $s->getParameter('length') : 99999));
             });
-            $handlers->add('username', function(\Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
+            $handlers->add('username', function(ShortcodeInterface $s) {
                 return sprintf('%s', \Auth::get('username'));
             });
-            /*$handlers->add('connected_username', function(\Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
-                return sprintf('%s', static::$shortcode_mission['connected']['username']);
-            });*/
-            $handlers->add('server', function(\Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
+            $handlers->add('server', function(ShortcodeInterface $s) {
                 if ($s->getParameter('id'))
                     $server = static::$shortcode_mission['servers'][$s->getParameter('id')];
                 elseif ($s->getParameter('hn'))
                     foreach(static::$shortcode_mission['servers'] as $server) if ($server['hostname'] == $s->getParameter('hn')) break;
                 return sprintf('%s', $server[$s->getParameter('attr')]);
             });
-            $handlers->add('ip', function(\Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
+            $handlers->add('ip', function(ShortcodeInterface $s) {
                 if ($s->getParameter('id'))
                     $server = static::$shortcode_mission['servers'][$s->getParameter('id')];
                 elseif ($s->getParameter('hn'))
@@ -77,7 +76,8 @@ class Missions extends \Model {
             });
             static::$shortcode = new \Thunder\Shortcode\Processor\Processor(new \Thunder\Shortcode\Parser\RegularParser(), $handlers);
         }
-        return static::$shortcode->process($text);
+        $bbcode = new BCodeParser;
+        return $bbcode->parseCaseInsensitive(static::$shortcode->process($text));
     }
 
     public static function shortcode() {
@@ -293,6 +293,12 @@ class Missions extends \Model {
           \Response::redirect(\Uri::current());
         }
 
+        if (\Input::post('skip_objective') && \Auth::get('group') == 2) {
+          $t = false;
+          static::objective_check($task, $mission, $t, $t, true);
+          $do_save = true;
+        }
+
         if (isset($mission['task'])) {
             $do_save = static::interface_task($mission, $tVars);
         } else {
@@ -317,9 +323,12 @@ class Missions extends \Model {
             \Response::redirect(\Uri::current());
         }
 
-        if (\Session::get('cql')) {
-          $tVars['cql'] = \Session::get('cql');
+        if ($tVars['cql'] = \Session::get('cql')) {
           \Session::delete('cql');
+        }
+
+        if ($tVars['new_objective'] = \Session::get('new_objective')) {
+          \Session::delete('new_objective');
         }
 
         $tVars['task'] = $task;
@@ -436,13 +445,15 @@ class Missions extends \Model {
                 foreach($objective['sides'] as &$o) {
                     $o['data'] = static::do_shortcode($mission, $o['data']);
                 }
+                \Session::set('new_objective', true);
                 return $objective;
             }
         return false;
     }
 
-    public static function objective_check(&$task, &$mission, $type, $data) {
-    	$objective_done = true;
+    public static function objective_check(&$task, &$mission, $type, $data, $objective_done = false) {
+      if (!$objective_done) {
+    	   $objective_done = true;
         if ($mission['objective'])
         	foreach ($mission['objective']['sides'] as &$side) {
         		if (isset($side['done'])) continue;
@@ -452,7 +463,7 @@ class Missions extends \Model {
         			$objective_done = false;
         		}
         	}
-
+      }
     	if ($objective_done) {
             if ($mission['objective']) {
                 foreach($mission['entities'] as &$e)
@@ -488,8 +499,7 @@ class Missions extends \Model {
     }
 
     public static function delete_entity($entity_id, $quest_id) {
-        \DB::delete('quest_user_entity')->where('quest_id', $quest_id)->where(function($q) {
-            return $q->where('entity_id', $entity_id); })->execute();
+        \DB::delete('quest_user_entity')->where('quest_id', $quest_id)->where('entity_id', $entity_id)->execute();
     }
 
     public static function add_user($service_id, $quest_id) {
@@ -500,17 +510,19 @@ class Missions extends \Model {
         \DB::update('quest_service_user')->set($data)->where('user_id', $user_id)->where('quest_id', $quest_id)->execute();
     }
 
-    public static function delete_user($user_id, $quest_id) {
-        \DB::delete('quest_service_user')->where('user_id', $user_id)->where('quest_id', $quest_id)->execute();
-    }
-
     public static function add_service($server_id, $quest_id) {
         \DB::insert('quest_server_service')->set(array('quest_server_id' => $server_id, 'quest_id' => $quest_id))->execute();
     }
 
     public static function delete_service($service_id, $quest_id) {
         \DB::delete('quest_server_service')->where('service_id', $service_id)->where('quest_id', $quest_id)->execute();
-        $entities = \DB::select('entity_id')->from('quest_service_entity')->where('service_id', $service_id)->execute()->as_array();
+        $users = \DB::select('user_id')->from('quest_service_user')->where('service_id', $service_id)->execute()->as_array();
+        foreach($users as $u) static::delete_user($u['user_id'], $quest_id);
+    }
+
+    public static function delete_user($user_id, $quest_id) {
+        \DB::delete('quest_service_user')->where('user_id', $user_id)->where('quest_id', $quest_id)->execute();
+        $entities = \DB::select('entity_id')->from('quest_user_entity')->where('user_id', $user_id)->execute()->as_array();
         foreach($entities as $e) static::delete_entity($e['entity_id'], $quest_id);
     }
 

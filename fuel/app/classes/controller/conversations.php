@@ -3,9 +3,7 @@ use \Model\Conversation;
 
 class Controller_Conversations extends Controller
 {
-	public function __construct() {
-        if (!Auth::check()) Response::redirect(Uri::base());
-    }
+	public function __construct() { if (!Auth::check()) Response::redirect(Uri::base()); }
 	public function action_conversation($conv) {
 		$conv = DB::select('conversation_id', 'title', 'user_1_id', 'user_2_id', 'unseen', 'last_replier_id')->from('conversation')->where('conversation_id', $conv)->where('parent_conversation_id', 'IS', NULL)->where(function($q) {
 				return $q->where('user_1_id', Auth::get('id'))->or_where('user_2_id', Auth::get('id'));
@@ -32,7 +30,7 @@ class Controller_Conversations extends Controller
 		$replies = DB::select()->from('conversation')->where('parent_conversation_id', $conv['conversation_id'])->or_where('conversation_id', $conv['conversation_id'])->order_by('created_at', 'desc')->execute()->as_array();
 
 		$bbcode = new Golonka\BBCode\BBCodeParser;
-
+		
 		foreach ($replies as &$r) {
 			$r['message'] = $bbcode->parseCaseInsensitive(htmlentities(htmlentities($r['message'])));
 		}
@@ -40,7 +38,7 @@ class Controller_Conversations extends Controller
 		$tVars = array();
 		$tVars['replies'] = $replies;
 		$tVars['conv'] = $conv;
-				return Response::forge(View::forge('conversation/conversation', $tVars))->set_header('Access-Control-Allow-Origin', '*');
+				return View::forge('conversations/conversation', $tVars);
 	}
 
 	public function action_new() {
@@ -52,7 +50,7 @@ class Controller_Conversations extends Controller
 			Response::redirect(Uri::create('conversations/conversation/' . $c_id));
 		}
 
-		return Response::forge(View::forge('conversation/conversation_new', $tVars))->set_header('Access-Control-Allow-Origin', '*');
+		return View::forge('conversations/conversation_new', $tVars);
 	}
 
 	public function action_index()
@@ -80,7 +78,7 @@ class Controller_Conversations extends Controller
 		$op_usernames[-1] = 'System';
     	$tVars['op_usernames'] = $op_usernames;
     	$tVars['convs'] = $convs;
-				return Response::forge(View::forge('conversation/conversations', $tVars))->set_header('Access-Control-Allow-Origin', '*');
+				return View::forge('conversations/conversations', $tVars);
 
     }
 }

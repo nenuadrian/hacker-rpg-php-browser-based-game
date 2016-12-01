@@ -2,14 +2,12 @@
 use \Model\Hacker;
 use \Model\Skills;
 
-class Controller_Skills extends Controller
-{
+class Controller_Skills extends Controller {
     public function __construct() {
         if (!Auth::check()) Response::redirect(Uri::base());
     }
 
-	public function action_index()
-    {
+	public function action_index() {
     	$tVars = array();
 
     	$skills = Skills::process(Auth::get('skills'));
