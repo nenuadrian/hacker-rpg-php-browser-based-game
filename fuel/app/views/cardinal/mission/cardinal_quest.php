@@ -63,10 +63,17 @@
 		</div>
 		<input type="text" class="form-control" name="summary1" value="<?php echo $quest['summary1']; ?>" />
 		<textarea class="form-control" name="summary2"><?php echo $quest['summary2']; ?></textarea>
+		<div class="row">
+			<div class="col-md-6">
+				<input type="number" class="form-control" name="duration" value="<?php echo $quest['duration']; ?>" />
+			</div>
+			<div class="col-md-6">
 		<select name="live" class="form-control">
 			<option value="0">DRAFT</option>
 			<option value="1" <?php echo $quest['live'] ? 'selected' : ''; ?>>LIVE</option>
 			</select>
+		</div>
+	</div>
 			<div class="row">
 				<div class="col-md-4">
 						<input type="number" class="form-control" name="money" value="<?php echo $quest['money']; ?>" />

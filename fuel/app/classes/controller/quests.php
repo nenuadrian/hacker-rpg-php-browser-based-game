@@ -30,7 +30,7 @@ class Controller_Quests extends Controller {
     public function action_play($mission) {
         if (Task::get_one(Auth::get('id'), 1)) Response::redirect(Uri::create('quests/interface'));
         $data = array('mission' => Missions::prepare_data($mission));
-        Task::create(Auth::get('id'), 1, 300, $data, $mission);
+        Task::create(Auth::get('id'), 1, $data['duration'] * 60, $data, $mission);
         Response::redirect(Uri::create('quests/interface'));
     }
 

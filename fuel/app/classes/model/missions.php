@@ -351,6 +351,7 @@ class Missions extends \Model {
     public static function prepare_data($quest) {
         $mission = array('bouncers' => array());
         $q = \DB::select()->from('quest')->where('quest_id', $quest)->execute()->as_array()[0];
+        $mission['duration'] = $q['duration'];
         $mission['servers'] = \DB::select()->from('quest_server')->where('quest_id', $quest)->execute()->as_array('quest_server_id');
         foreach($mission['servers'] as &$server) {
             $server['ip'] = static::ip();
