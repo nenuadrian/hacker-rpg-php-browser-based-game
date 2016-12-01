@@ -4,7 +4,6 @@ use \Model\Skills;
 use \Model\Servers;
 use \Model\DBMock;
 use \Thunder\Shortcode\Shortcode\ShortcodeInterface;
-use Golonka\BBCode\BBCodeParser;
 
 namespace Model;
 
@@ -76,7 +75,7 @@ class Missions extends \Model {
             });
             static::$shortcode = new \Thunder\Shortcode\Processor\Processor(new \Thunder\Shortcode\Parser\RegularParser(), $handlers);
         }
-        $bbcode = new BCodeParser;
+        $bbcode = new \Golonka\BBCode\BBCodeParser;
         return $bbcode->parseCaseInsensitive(static::$shortcode->process($text));
     }
 
