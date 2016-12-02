@@ -1,5 +1,5 @@
 
-/*
+
 function selectText(container) {
   //  container.selectionStart = 0; container.selectionEnd = container.innerText.length;
     if (document.createTextRange) {
@@ -27,13 +27,9 @@ $(document).ready(function() {
   $('code, .auto-select').on('click touchstart focus tap', function(e) {
     selectText(this)
     $(this).select();
+    $(this).get(0).setSelectionRange(0,9999);
 
   })
-$('code, .auto-select').on('focus', function(e) {
-  e.preventDefault();
-   e.stopPropagation();
-});
 
 
 })
-*/
