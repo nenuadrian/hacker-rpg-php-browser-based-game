@@ -69,6 +69,9 @@ class Missions extends \Model {
             $handlers->add('username', function(\Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
                 return sprintf('%s', \Auth::get('username'));
             });
+            $handlers->add('code', function(\Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
+                return sprintf('<code>%s</code>', $s->getContent());
+            });
             $handlers->add('server', function(\Thunder\Shortcode\Shortcode\ShortcodeInterface $s) {
                 if ($s->getParameter('id'))
                     $server = static::$shortcode_mission['servers'][$s->getParameter('id')];

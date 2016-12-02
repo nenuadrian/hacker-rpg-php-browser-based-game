@@ -273,4 +273,5 @@
 </div>
 
 <?php endif; ?>
+
 <?php echo View::forge('global/footer'); ?>

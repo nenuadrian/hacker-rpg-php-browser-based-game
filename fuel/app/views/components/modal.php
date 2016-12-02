@@ -10,13 +10,16 @@
       	<?php else: ?>
 	      	<?php echo html_entity_decode($content); ?>
 	      <?php endif; ?>
+        <Br/>
+        <div class="text-center">
+
+        <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+      </div>
       </div>
 
     </div>
   </div>
-  <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
-      </div>
+
 </div>
 
 <?php if (isset($auto_open) && $auto_open): ?>

@@ -308,8 +308,18 @@ hr {
 .auto-select {
 	display:inline-block;
 	color: #46abf9;
+	cursor:pointer;
 }
-code {
+code, textarea.code {
+	border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+		
+	width:100%;
     color: #098fc7;
     background-color: rgba(0, 144, 255, 0.12);
     border-radius: 4px;
@@ -318,7 +328,9 @@ code {
 		display:block;
 		text-align:center;
 		margin:0;
-		margin-left:10px;margin-right:10px;
+		min-height:0;
+		 resize: none;
+		    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
 }
 
 .alert {
@@ -516,7 +528,12 @@ border-bottom-right-radius: 24px;}
 
 }
 .select {
-	user-select: initial;
+	-webkit-touch-callout: initial; /* iOS Safari */
+		-webkit-user-select: initial; /* Chrome/Safari/Opera */
+		 -khtml-user-select: initial; /* Konqueror */
+			 -moz-user-select: initial; /* Firefox */
+				-ms-user-select: initial; /* Internet Explorer/Edge */
+						user-select: initial;
 cursor: initial;
 }
 

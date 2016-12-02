@@ -21,7 +21,7 @@
 	  <?php echo Asset::css('reset.css'); ?>
 	  <?php echo Asset::css('bootstrap.min.css'); ?>
 		<?php echo Asset::css('style.css'); ?>
-		
+
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Josefin+Sans%3A300italic%2C300&amp;ver=4.6" type="text/css" media="all">
 	</head>
