@@ -9,6 +9,17 @@ namespace Model;
 class Missions extends \Model {
     public static $shortcode = false;
     private static $shortcode_mission = false;
+    public static $types = array(
+  			1 => array(
+  			     'name' => 'Normal'
+  			),
+  			2 => array(
+  			     'name' => 'Daily'
+  			),
+  			3 => array(
+  			     'name' => 'Reapatable (no subsequent ewards)'
+  			),
+  		);
     public static $service_types = array(
   			1 => array(
   			'name' => 'FILES/SSH/',
@@ -134,7 +145,8 @@ class Missions extends \Model {
             $server = &$mission['servers'][$service['quest_server_id']];
 
             if (\Input::post('action') == 'crack') {
-                $user['security'] = false;
+              $user['security'] = false;
+              $user['password'] = false;
                 //$service['security'] = false;
                 \Messages::voice('cracking_initiated');
             }

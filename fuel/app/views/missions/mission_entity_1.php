@@ -1,3 +1,6 @@
+
+
+
 <h3 class="text-center"><?php echo $entity['title'] ;?></h3>
 <?php echo isset($entity['running']) ? 'running' : ''; ?>
 
@@ -58,6 +61,3 @@
 		<button type="submit" class="btn btn-default" name="action" value="crack">crack</button>
 	</form>
 <?php endif; ?>
-<form method="post">
-<button type="submit" class="btn btn-default" name="action" value="exit">back</button>
-</form>

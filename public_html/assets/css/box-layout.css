@@ -6,6 +6,10 @@
     perspective:1000px;
     -webkit-perspective:1000px;
 }
+
+.box-layout .front-content p {
+      color: black;
+}
 .box-layout-icon{
     width: 100%;
     height: 150px;

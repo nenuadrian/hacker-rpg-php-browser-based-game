@@ -2,7 +2,6 @@
 <?php
 	$mission = $task['data']['mission'];
 ?>
-
 <style>
 	.mission-interface .server {
 		padding: 20px;
@@ -35,7 +34,7 @@
 <div class="row mission-interface">
 	<div class="col-md-3"></div>
 	<div class="col-md-6">
-		<?php  echo View::forge('components/modal', array('auto_open' => $new_objective, 'id' => 'objective', 'title' => $mission['objective']['name'], 'content' => html_entity_decode(nl2br($mission['objective']['story'])))); ?>
+		<?php  echo View::forge('components/modal', array('auto_open' => $new_objective, 'id' => 'objective', 'title' => $mission['objective']['name'], 'content' => '<div class="select">' . html_entity_decode(nl2br($mission['objective']['story']) . '</div>'))); ?>
 		<div class="row">
 			<div class="col-xs-6">
 				<?php echo View::forge('components/countdown', array('start_value' => $task['task_start'], 'remaining' => $task['remaining'], 'duration' => $task['task_duration'], 'max_width' => '100px')); ?>
@@ -62,17 +61,15 @@
 						<?php echo $service['welcome']; ?>
 					</div>
 				<?php endif; ?>
-					<form method="post" class="text-center">
-						<button type="submit" class="btn btn-danger" name="service_action" value="disconnect">disconnect</button>
-						<!--
-						<?php if ($service['type'] == 1): ?>
-							<button type="submit" class="btn btn-default" name="service_action" value="bounce">add as bounce</button>
-						<?php endif; ?>-->
-					</form>
-
 					<?php if (isset($mission['connected']['entity'])): ?>
+						<form method="post" class="text-center">
+							<button type="submit" class="btn btn-default" name="action" value="exit">back 2 service</button>
+						</form>
 						<?php echo View::forge('missions/mission_entity_'. $service['type'], array('mission' => $mission, 'entity' => $entity)); ?>
 					<?php else: ?>
+						<form method="post" class="text-center">
+							<button type="submit" class="btn btn-danger" name="service_action" value="disconnect">disconnect</button>
+						</form>
 						<?php if ($service['type'] == 3): ?>
 							<?php if ($cql): ?>
 								<?php echo View::forge('missions/query_output', array('cql' => $cql)); ?>
@@ -89,10 +86,33 @@
 								</div>
 							</div>
 							</form>
+						<?php elseif ($service['type'] == 2): ?>
+							<h3 class="text-center">received</h3>
+							<?php foreach($mission['entities'] as $entity_id => $entity): ?>
+								<?php if ($entity['type'] != 1 || $entity['user_id'] != $user['user_id'] || $entity['user_id'] != $user['user_id'] || isset($entity['required_objective'])) continue; $found = true; ?>
+								<?php echo View::forge('missions/missions_service_2', array('mission' => $mission, 'entity' => $entity)); ?>
+							<?php endforeach;?>
+							<?php if (!isset($found)): ?>
+								<div class="alert alert-info text-center">
+									Nothing here
+								</div>
+							<?php endif; ?>
+
+							<h3 class="text-center">sent</h3>
+							<?php foreach($mission['entities'] as $entity_id => $entity): ?>
+								<?php if ($entity['type'] != 2 || $entity['user_id'] != $user['user_id'] || $entity['user_id'] != $user['user_id'] || isset($entity['required_objective'])) continue; $found2 = true; ?>
+								<?php echo View::forge('missions/missions_service_2', array('mission' => $mission, 'entity' => $entity)); ?>
+							<?php endforeach;?>
+							<?php if (!isset($found2)): ?>
+								<div class="alert alert-info text-center">
+									Nothing here
+								</div>
+							<?php endif; ?>
+
 						<?php else: ?>
 							<?php foreach($mission['entities'] as $entity_id => $entity): ?>
 								<?php if ($entity['user_id'] != $user['user_id'] || $entity['user_id'] != $user['user_id'] || isset($entity['required_objective'])) continue; $found = true; ?>
-								<?php echo View::forge('missions/missions_service_' . $service['type'], array('mission' => $mission, 'entity' => $entity)); ?>
+								<?php echo View::forge('missions/missions_service_3', array('mission' => $mission, 'entity' => $entity)); ?>
 							<?php endforeach;?>
 							<?php if (!isset($found)): ?>
 								<div class="alert alert-info text-center">

@@ -172,7 +172,7 @@ class Controller_Cardinal extends Controller {
         $services = DB::select('qss.*', 'qs.hostname', 'qss.users')->from(array('quest_server_service', 'qss'))->join(array('quest_server', 'qs'),'left outer')->on('qs.quest_server_id', '=', 'qss.quest_server_id')->where('qss.quest_id', $quest_id)->execute()->as_array('service_id');
         $users = DB::select('qsu.*', 'qs.hostname', 'qss.port')->from(array('quest_service_user', 'qsu'))
           ->join(array('quest_server_service', 'qss'), 'left outer')->on('qss.service_id', '=', 'qsu.service_id')
-          ->join(array('quest_server', 'qs'))->on('qs.quest_server_id', '=', 'qss.quest_server_id')->execute()->as_array('user_id');
+          ->join(array('quest_server', 'qs'))->on('qs.quest_server_id', '=', 'qss.quest_server_id')->where('qsu.quest_id', $quest_id)->execute()->as_array('user_id');
         $entities = DB::select('que.*', 'qs.hostname', 'qss.port', 'qsu.username')->from(array('quest_user_entity', 'que'))
           ->join(array('quest_service_user', 'qsu'), 'left outer')->on('qsu.user_id', '=', 'que.user_id')
           ->join(array('quest_server_service', 'qss'), 'left outer')->on('qss.service_id', '=', 'qsu.service_id')

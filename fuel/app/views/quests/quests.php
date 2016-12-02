@@ -8,6 +8,7 @@
 	            <a class="box-layout-icon ">
 	                <div class="front-content">
 	                    <h3><?php echo $g['name']; ?></h3>
+											<p>level <?php echo $g['level']; ?></p>
 	                </div>
 	            </a>
 	            <a class="box-layout-content" href="<?php echo Uri::create('quests/group/' . $g['quest_group_id']);?>">

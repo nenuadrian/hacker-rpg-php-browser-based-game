@@ -20,7 +20,7 @@
           <input type="hidden" name="user_id" value="<?php echo $user_id; ?>" />
           <div class="row">
             <div class="col-xs-4">
-            <input type="text" name="username" class="form-control" value="<?php echo $u['username']; ?>" placeholder="Username"/>
+            <input type="<?php echo $service['type'] == 2 ? 'email' : 'text'; ?>" name="username" class="form-control" value="<?php echo $u['username']; ?>" required/>
             </div>
             <div class="col-xs-4">
             <input type="text" name="password" class="form-control" value="<?php echo $u['password']; ?>" placeholder="Password"/>

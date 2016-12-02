@@ -499,6 +499,10 @@ border-bottom-right-radius: 24px;}
 																	cursor:default;
 
 }
+.select {
+	user-select: initial;
+cursor: initial;
+}
 
 .pagination>li>a, .pagination>li>span {
 

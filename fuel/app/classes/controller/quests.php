@@ -21,7 +21,12 @@ class Controller_Quests extends Controller {
         $tVars = array();
 
         $quests = Quests::of($group);
-
+        foreach($quests as &$q) {
+          $q['available'] = $q['type'] == 1 && !$q['times'] || $q['type'] == 3 || $q['type'] == 2 && $q['last_done'] <= time() - 24 * 60 * 60;
+          if (!$q['available'] && $q['type'] == 2) {
+            $q['available_in'] = $q['last_done'] - time() + 24 * 60 * 60;
+          }
+        }
         $tVars['quests'] = $quests;
         return Response::forge(View::forge('quests/quests_group', $tVars))->set_header('Access-Control-Allow-Origin', '*');
     }
@@ -30,7 +35,7 @@ class Controller_Quests extends Controller {
     public function action_play($mission) {
         if (Task::get_one(Auth::get('id'), 1)) Response::redirect(Uri::create('quests/interface'));
         $data = array('mission' => Missions::prepare_data($mission));
-        Task::create(Auth::get('id'), 1, $data['duration'] * 60, $data, $mission);
+        Task::create(Auth::get('id'), 1, $data['mission']['duration'] * 60, $data, $mission);
         Response::redirect(Uri::create('quests/interface'));
     }
 
