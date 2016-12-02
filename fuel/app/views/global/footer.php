@@ -34,6 +34,7 @@
 
 		<?php echo Asset::js('progressbar.min.js'); ?>
 		<?php echo Asset::js('countdown.custom.js'); ?>
+		<?php echo Asset::js('global.js'); ?>
 
 
 		<?php $modal = Messages::get('modal', null, 1); if (count($modal)): $modal = $modal[0];  ?>
@@ -52,7 +53,7 @@
 		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 			<?php if (Auth::check()): ?>
 				ga('create', 'UA-88039088-1', 'auto', {
-				  userId: <?php echo Auth::get('id'); ?>
+				  userId: 'user_<?php echo Auth::get('id'); ?>'
 				});
 			<?php else: ?>
 		  	ga('create', 'UA-88039088-1', 'auto');

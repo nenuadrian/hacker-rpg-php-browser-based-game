@@ -81,7 +81,7 @@ class Missions extends \Model {
                     $server = static::$shortcode_mission['servers'][$s->getParameter('id')];
                 elseif ($s->getParameter('hn'))
                     foreach(static::$shortcode_mission['servers'] as $server) if ($server['hostname'] == $s->getParameter('hn')) break;
-                return sprintf('%s', $server['ip']);
+                return sprintf('<div class="auto-select">%s</div>', $server['ip']);
             });
             static::$shortcode = new \Thunder\Shortcode\Processor\Processor(new \Thunder\Shortcode\Parser\RegularParser(), $handlers);
         }

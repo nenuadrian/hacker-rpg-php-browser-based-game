@@ -305,12 +305,28 @@ hr {
 	color:#8a6d3b;
 }
 
+.auto-select {
+	display:inline-block;
+	color: #46abf9;
+}
+code {
+    color: #098fc7;
+    background-color: rgba(0, 144, 255, 0.12);
+    border-radius: 4px;
+    padding: 15px;
+    border: 1px solid rgba(1, 152, 216, 0.19);
+		display:block;
+		text-align:center;
+		margin:0;
+		margin-left:10px;margin-right:10px;
+}
 
 .alert {
 	    border-radius: 2px;
     background: transparent;
     font-size: 17px;
 		    box-shadow: 2px 2px 22px black;
+				    padding-top: 18px;
 }
 
 .alert-danger {
