@@ -17,7 +17,7 @@ class Missions extends \Model {
   			     'name' => 'Daily'
   			),
   			3 => array(
-  			     'name' => 'Reapatable (no subsequent ewards)'
+  			     'name' => 'Reapatable (no subsequent rewards)'
   			),
   		);
     public static $service_types = array(
