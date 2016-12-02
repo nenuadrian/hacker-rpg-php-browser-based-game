@@ -121,7 +121,7 @@ class Controller_Cardinal extends Controller {
         $servers = DB::select()->from('quest_server')->where('quest_id', $quest_id)->execute()->as_array('quest_server_id');
         $services = DB::select()->from('quest_server_service')->where('quest_id', $quest_id)->order_by('port', 'asc')->execute()->as_array('service_id');
         $users = DB::select()->from('quest_service_user')->where('quest_id', $quest_id)->order_by('username', 'asc')->execute()->as_array('user_id');
-        $entities = DB::select()->from('quest_user_entity')->where('quest_id', $quest_id)->order_by('title', 'asc')->execute()->as_array('entity_id');
+        $entities = DB::select()->from('quest_user_entity')->where('quest_id', $quest_id)->order_by('entity_order', 'asc')->execute()->as_array('entity_id');
         $objectives = DB::select()->from('quest_objective')->where('quest_id', $quest_id)->where('parent_objective_id', 'IS', NULL)->order_by('objective_order', 'asc')->execute()->as_array('objective_id');
 
         $tVars['quest'] = $quest;
@@ -177,7 +177,7 @@ class Controller_Cardinal extends Controller {
           ->join(array('quest_service_user', 'qsu'), 'left outer')->on('qsu.user_id', '=', 'que.user_id')
           ->join(array('quest_server_service', 'qss'), 'left outer')->on('qss.service_id', '=', 'qsu.service_id')
           ->join(array('quest_server', 'qs'))->on('qs.quest_server_id', '=', 'qss.quest_server_id')
-          ->where('que.quest_id', $quest_id)->execute()->as_array('entity_id');
+          ->where('que.quest_id', $quest_id)->order_by('entity_order', 'asc')->execute()->as_array('entity_id');
 
         $tVars['quest'] = $quest;
         $tVars['objectives'] = $objectives;

@@ -5,7 +5,7 @@
 
 <?php if (!$entity['security']): ?>
 
-		<div class="well">
+		<div class="well select">
 			<?php echo html_entity_decode(nl2br($entity['content'])); ?>
 		</div>
 		<div class="text-center">

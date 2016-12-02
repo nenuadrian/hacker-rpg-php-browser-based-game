@@ -6,7 +6,7 @@
 
 <br/>
 <?php if (!$entity['security']): ?>
-	<div class="well">
+	<div class="well select">
 		<?php if ($entity['content']): ?>
 			<div style="white-space:pre;"><?php if ($entity['type'] == 1) echo html_entity_decode(nl2br($entity['content'])); else echo nl2br($entity['content']); ?></div>
 		<?php else: ?>

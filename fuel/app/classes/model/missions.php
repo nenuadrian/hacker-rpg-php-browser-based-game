@@ -409,7 +409,7 @@ class Missions extends \Model {
 
           unset($u['content']);
         }
-        $mission['entities'] = \DB::select()->from('quest_user_entity')->where('quest_id', $quest)->order_by('title', 'asc')->execute()->as_array('entity_id');
+        $mission['entities'] = \DB::select()->from('quest_user_entity')->where('quest_id', $quest)->order_by('entity_order', 'asc')->execute()->as_array('entity_id');
         foreach($mission['entities'] as &$e) {
             if ($e['type'] == 3) {
                 $e['required_running'] = array_filter(explode(',', $e['required_running']));
