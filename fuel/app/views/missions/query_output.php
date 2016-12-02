@@ -29,6 +29,8 @@
             <?php echo $cql['output']; ?>
           <?php endif; ?>
         </div>
-        <div class="panel-footer"><?php echo $cql['query']; ?></div>
       </div><br/>
+      <div class="well">
+        <?php echo $cql['query']; ?>
+      </div>
 <?php endif;?>
