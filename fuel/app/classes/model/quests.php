@@ -24,7 +24,7 @@ class Quests extends \Model {
         ->join(array('user_mission', 'um2'), 'LEFT OUTER')->on('um2.quest_id', '=', 'quest.quest_id')->and_on('um2.user_id', '=', \DB::expr(\Auth::get('id')))
         ->join(array('user_mission', 'um'), 'LEFT OUTER')->on('um.quest_id', '=', 'required_quest_id')->and_on('um.user_id', '=', \DB::expr(\Auth::get('id')))->where(function($q){
             return $q->where('required_quest_id', 0)->or_where('um.user_mission_id', 'IS NOT', NULL);
-        });
+        })->order_by('quest_group_order', 'asc');
 
         if ($limit) $quests->limit($limit);
 
