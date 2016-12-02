@@ -7,7 +7,6 @@
     <div class="mission" onclick="$('#mission_<?php echo $k; ?>').collapse('toggle');$('#description_<?php echo $k; ?>').collapse('toggle')">
         <div class="name"><?php echo $q['name']; ?></div>
         <p id="description_<?php echo $k; ?>" class="collapse in">
-					<em><?php echo html_entity_decode($q['summary1']); ?></em> -
 					<?php echo \Model\Missions::$types[$q['type']]['name']; ?> mission
 					<?php if ($q['times']): ?>
 						- Completed
@@ -32,7 +31,7 @@
 				 <?php echo Date::forge($q['duration'])->format("%H:%M:%S"); ?>	-
 					<i class="fa fa-cube"></i> <?php echo number_format($q['money']); ?> - <?php echo number_format($q['skill_points']); ?> skill points - <?php echo number_format($q['experience']); ?> exp
 				</small></p><br/>
-		    <p><?php echo html_entity_decode($q['summary2']); ?></p>
+		    <p><?php echo html_entity_decode($q['summary']); ?></p>
 				<?php if ($q['available']): ?>
 					<br/>
 			    <form method="post">

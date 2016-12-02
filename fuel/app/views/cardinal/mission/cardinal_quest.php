@@ -49,8 +49,7 @@
 		</div>
 
 		</div>
-		<input type="text" class="form-control" name="summary1" value="<?php echo $quest['summary1']; ?>" />
-		<textarea class="form-control" name="summary2"><?php echo $quest['summary2']; ?></textarea>
+		<textarea class="form-control" name="summary"><?php echo $quest['summary']; ?></textarea>
 		<div class="row">
 			<div class="col-md-6">
 				<input type="number" class="form-control" name="duration" value="<?php echo $quest['duration']; ?>" />
