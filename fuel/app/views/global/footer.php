@@ -39,7 +39,7 @@
 
 		<?php $modal = Messages::get('modal', null, 1); if (count($modal)): $modal = $modal[0];  ?>
 			<?php if ($modal->message == 'tutorial'): ?>
-				<?php GlobalJs::js("	$('#modal-tutorial').modal({});"); ?>
+				<?php GlobalJs::add("	$('#modal-tutorial').modal({});"); ?>
 			<?php else: ?>
 				<?php echo View::forge('components/modal', array('id' => 'modal-footer', 'title' => $modal->title, 'content' => $modal->message, 'auto_open' => true)); ?>
 			<?php endif;?>
