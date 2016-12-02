@@ -1,8 +1,5 @@
 <?php echo View::forge('global/header'); ?>
 
-<?php
-
-?>
 	<?php echo View::forge('cardinal/mission/cardinal_quest_menu', array('quest' => $quest)); ?>
 
 	<form method="post" class="well">
@@ -39,11 +36,8 @@
 		<div class="col-xs-4">
 			<select name="default_connection" class="form-control">
 				<option value="0">No default connection</option>
-				<?php foreach($services as $s):
-					$users = explode(';', html_entity_decode($s['users'], ENT_QUOTES));
-					foreach($users as $u): $u = explode(':', $u); $value = $u[0] . ':' . $s['service_id']; ?>
-					<option value="<?php echo htmlspecialchars($value); ?>" <?php echo $value == html_entity_decode($quest['default_connection'], ENT_QUOTES) ? 'selected' : ''; ?>><?php echo $u[0]; ?> : <?php echo $s['hostname']; ?> : <?php echo $s['port']; ?></option>
-					<?php endforeach;?>
+				<?php  foreach($users as $u):?>
+					<option value="<?php echo $u['user_id']; ?>" <?php echo $quest['default_connection'] == $u['user_id'] ? 'selected' : ''; ?>><?php echo $u['username']; ?></option>
 				<?php endforeach;?>
 			</select>
 		</div>

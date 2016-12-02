@@ -60,10 +60,9 @@ class Controller_Cardinal extends Controller {
             Response::redirect(Uri::current());
         }
         $quests = DB::select('quest_id', 'name')->from('quest')->where('quest_id', '!=', $quest_id)->execute()->as_array();
-        $services = DB::select('qss.*', 'qs.hostname')->from(array('quest_server_service', 'qss'))->join(array('quest_server', 'qs'), 'left outer')->on('qs.quest_server_id', '=', 'qss.quest_server_id')->where('qss.quest_id', $quest_id)->execute()->as_array();
-
+        $users = DB::select()->from('quest_service_user')->where('quest_id', $quest_id)->order_by('username', 'asc')->execute()->as_array('user_id');
         $tVars['quest'] = $quest;
-        $tVars['services'] = $services;
+        $tVars['users'] = $users;
         $tVars['quests'] = $quests;
         return Response::forge(View::forge('cardinal/mission/cardinal_quest', $tVars))->set_header('Access-Control-Allow-Origin', '*');
     }

@@ -11,5 +11,6 @@ class Cardinal extends \Model {
         7 => array('name' => 'Execute entity on user', 'data_type' => 'entity_user'),
         5 => array('name' => 'Open entity', 'data_type' => 'entity'),
         6 => array('name' => 'Transfer entity', 'data_type' => 'entity_user'),
+        8 => array('name' => 'SQL', 'data_type' => 'user', 'data2' => true)
         );
 }

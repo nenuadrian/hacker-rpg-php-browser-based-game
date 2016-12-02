@@ -78,15 +78,19 @@ if ($objective_expanded) {
 						<?php endif; ?>
 						<?php if (in_array($side_type['data_type'], array('user', 'entity_user'))): ?>
 							<div class="col-xs-4">
-							<select name="data_user" class="form-control">
-							<option>NONE</option>
-							<?php foreach($users as $u_id => $u): ?>
-								<option value="<?php echo $u_id; ?>" <?php echo $u_id == $selected_user ? 'selected' : ''; ?>><?php echo $u['username']; ?> @ <?php echo $u['hostname']; ?>:<?php echo $u['port']; ?></option>
-							<?php endforeach;?>
-							</select>
+  							<select name="data_user" class="form-control">
+    							<option>NONE</option>
+    							<?php foreach($users as $u_id => $u): ?>
+    								<option value="<?php echo $u_id; ?>" <?php echo $u_id == $selected_user ? 'selected' : ''; ?>><?php echo $u['username']; ?> @ <?php echo $u['hostname']; ?>:<?php echo $u['port']; ?></option>
+    							<?php endforeach;?>
+  							</select>
 							</div>
 						<?php endif; ?>
-
+            <div class="col-md-12">
+              <?php if (isset($side_type['data2'])): ?>
+                <input type="text" placeholder="Data2" name="data2" value="<?php echo $side_o['data2']; ?>" class="form-control"/>
+              <?php endif; ?>
+            </div>
 					</div>
 				<button class="btn btn-default" type="submit" name="objective_id" value="<?php echo $side_o['objective_id']; ?>">update</button>
 				<button class="btn btn-danger" type="submit" name="delete" value="<?php echo $side_o['objective_id']; ?>">erase</button>

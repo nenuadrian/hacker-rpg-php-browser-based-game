@@ -153,8 +153,8 @@ class Missions extends \Model {
 
             if (\Input::post('action') == 'connect') {
                 if (static::access_granted_to_service($user, \Input::post('password'))) {
-                    $mission['connected'] = array('service_id' => $user['service_id'], 'user_id' => $user_id);
-                    static::objective_check($task, $mission, 1, $user_id);
+                    $mission['connected'] = array('user_id' => $user_id);
+                    static::objective_check($mission, 1, $user_id);
                     \Messages::voice('accessgranted');
                 } else {
                   \Messages::voice('accessdenied');
@@ -203,11 +203,11 @@ class Missions extends \Model {
                             }
                         }
                         $entity['running'] = true;
-                        static::objective_check($task, $mission, 4, $entity_id);
-                        static::objective_check($task, $mission, 7, $entity_id . ':' . $mission['connected']['user_id']);
+                        static::objective_check($mission, 4, $entity_id);
+                        static::objective_check($mission, 7, $entity_id . ':' . $mission['connected']['user_id']);
                     }
                     if (\Input::post('action') == 'erase') {
-                        static::objective_check($task, $mission, 3, $entity_id);
+                        static::objective_check($mission, 3, $entity_id);
                         unset($mission['entities'][$entity_id]);
                         unset($mission['connected']['entity']);
                     }
@@ -219,7 +219,7 @@ class Missions extends \Model {
                                 $server_id = $mission['services'][$service_id]['quest_server_id'];
                                 $entity['user_id'] = $user_id;
                                 unset($mission['connected']['entity']);
-                                static::objective_check($task, $mission, 6, $entity_id . ':' . $user_id);
+                                static::objective_check($mission, 6, $entity_id . ':' . $user_id);
                             }
                         }
                     }
@@ -235,7 +235,7 @@ class Missions extends \Model {
     }
     public static function interface_connected(&$mission, &$tVars) {
         $user = $mission['users'][$mission['connected']['user_id']];
-        $service = $mission['services'][$user['service_id']];
+        $service = $mission['services'][$mission['users'][$user['user_id']]['service_id']];
         $server = $mission['servers'][$service['quest_server_id']];
 
         if (\Input::post('service_action') == 'disconnect') {
@@ -257,24 +257,11 @@ class Missions extends \Model {
               if (DBMock::allowed($query)) {
                   $output = DBMock::query($db, $query);
                   $tVars['cql']['output'] = $output[1];
-                  //$ret;
-                  // verify if conditions are met
-                /*  $done = true;
-                  foreach ($task['data']['completion_conditions'] as $cc) {
-                      if ($db->querySingle($cc[0]) != $cc[1]) {
-                          $done = false; break;
-                      }
-                  }
-
-                  if ($done) {
-                    die();
-                  }*/
-                  if ($output[0])
-                    \Messages::voice('command_done');
-                  else \Messages::voice('command_error');
+                  static::objective_check($mission, 8, array('user_id' => $user['user_id'], 'db' => $db));
+                  if ($output[0]) \Messages::voice('command_done'); else \Messages::voice('command_error');
               } else {
                 \Messages::voice('warning');
-                $tVars['cql']['output'] = "The Cardinal Query Language of this instance accepts only SELECT, INSERT and UPDATE commands.";
+                $tVars['cql']['output'] = "The Cardinal Query Language of this instance accepts only SELECT, INSERT, DELETE and UPDATE commands.";
               }
 
               $db->close();
@@ -282,7 +269,7 @@ class Missions extends \Model {
 
             if ($entity_id = \Input::post('entity_action')) {
                 if (isset($mission['entities'][$entity_id]) && $mission['entities'][$entity_id]['user_id'] == $user['user_id']) {
-                    static::objective_check($task, $mission, 5, $entity_id);
+                    static::objective_check($mission, 5, $entity_id);
                     $mission['connected']['entity'] = $entity_id;
                 }
             }
@@ -305,7 +292,7 @@ class Missions extends \Model {
 
         if (\Input::post('skip_objective') && \Auth::get('group') == 2) {
           $t = false;
-          static::objective_check($task, $mission, $t, $t, true);
+          static::objective_check($mission, $t, $t, true);
           $do_save = true;
         }
 
@@ -422,8 +409,7 @@ class Missions extends \Model {
 
         $mission["objective"] = static::new_objective($mission, $quest);
         if ($q['default_connection']) {
-            $con = explode(':', html_entity_decode($q['default_connection'], ENT_QUOTES));
-            $mission['connected'] = array('service_id' => $con[1], 'username' => $con[0]);
+            $mission['connected'] = array('user_id' => $q['default_connection']);
         }
 
         static::parse_shortcodes($mission);
@@ -462,18 +448,27 @@ class Missions extends \Model {
         return false;
     }
 
-    public static function objective_check(&$task, &$mission, $type, $data, $objective_done = false) {
+    public static function objective_check(&$mission, $type, $data, $objective_done = false) {
       if (!$objective_done) {
-    	   $objective_done = true;
-        if ($mission['objective'])
-        	foreach ($mission['objective']['sides'] as &$side) {
-        		if (isset($side['done'])) continue;
-        		if ($side['type'] == $type && $side['data'] == $data) {
-        			$side['done'] = true;
-        		} elseif (!$side['optional']) {
+    	  $objective_done = true;
+        if ($mission['objective']) {
+        	foreach ($mission['objective']['sides'] as &$side) { if (isset($side['done'])) continue;
+        		if ($side['type'] == $type && ($side['data'] == $data || ($type == 8 && $side['data'] == $data['user_id']))) {
+              if ($type == 8) {
+                 $sql = explode('|', $side['data2']);
+                 if ($data['db']->querySingle($sql[0]) == $sql[1]) {
+                   $side['done'] = true;
+                 }
+              } else {
+      			     $side['done'] = true;
+               }
+        		}
+
+            if (!isset($side['done']) && !$side['optional']) {
         			$objective_done = false;
         		}
         	}
+        }
       }
     	if ($objective_done) {
             if ($mission['objective']) {

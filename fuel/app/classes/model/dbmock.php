@@ -25,11 +25,14 @@ class DBMock extends \Model {
     } elseif ($type == 'update') {
       $db->exec($query);
         return array(true, 'Updated');
+    } elseif ($type == 'delete') {
+      $db->exec($query);
+        return array(true, 'Deleted');
     }
   }
   public static function allowed($query) {
     $type = strtolower(substr(trim($query), 0, 6));
-    return in_array($type, array('select', 'insert', 'update'));
+    return in_array($type, array('select', 'insert', 'update', 'delete'));
   }
   public static function get_db($identifier, $purpose) {
     $sql_path = APPPATH . 'tmp';
@@ -56,7 +59,7 @@ class DBMock extends \Model {
   }
 
   public static function run_sql(&$db, $sql) {
-    $sql = static::split_sql_file($sql);
+    $sql = array_filter(static::split_sql_file($sql));
 
     foreach ($sql as $s)
       $db->exec($s);
