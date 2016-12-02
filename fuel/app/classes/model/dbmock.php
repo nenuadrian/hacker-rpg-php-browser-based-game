@@ -6,28 +6,30 @@ class DBMock extends \Model {
 
   public static function query($db, $query) {
     $type = strtolower(substr(trim($query), 0, 6));
-
+    try {
     if ($type == 'select') {
-        try {
+
           $ret = $db->query($query);
           $output = array();
           while($row = $ret->fetchArray(SQLITE3_ASSOC) ){
               $output[] = $row;
           }
-        } catch (\Exception $ex) {
-            return array(false, $db->lastErrorMsg());
-        }
+        
 
-       return array(true, $output);
-    } elseif ($type == 'insert') {
-      $db->exec($query);
-        return array(true, 'Inserted');
-    } elseif ($type == 'update') {
-      $db->exec($query);
-        return array(true, 'Updated');
-    } elseif ($type == 'delete') {
-      $db->exec($query);
-        return array(true, 'Deleted');
+         return array(true, $output);
+      } elseif ($type == 'insert') {
+        $db->exec($query);
+          return array(true, 'Inserted');
+      } elseif ($type == 'update') {
+        $db->exec($query);
+          return array(true, 'Updated');
+      } elseif ($type == 'delete') {
+        $db->exec($query);
+          return array(true, 'Deleted');
+      }
+
+    } catch (\Exception $ex) {
+        return array(false, $db->lastErrorMsg());
     }
   }
   public static function allowed($query) {
