@@ -11,12 +11,15 @@ echo View::forge('global/header');
 
 		Upgrade your abilities as fast as you can to gain more skill points. Your skills are separate from server skills, which are per machine.
 	</div>
-	<br/>
-	<h3 class="text-center">
-		<?php echo Auth::get('skill_points'); ?> assignable skill points available
-	</h3>
+	<div class="alert alert-info text-center">
+		<?php if (Auth::get('skill_points')): ?>
+			<?php echo Auth::get('skill_points'); ?> assignable skill points available
+		<?php else: ?>
+			You do not have any available skill points, <?php echo Auth::get('username'); ?>.
+		<?php endif; ?>
 	</div>
-	<div style="padding:40px">
+	</div>
+	<div style="padding:30px">
 		<div class="row">
 		<?php foreach(Skills::skills() as $skill_id => $s): ?>
 			<div class="col-md-3 col-sm-6 text-center" style="margin-bottom:50px">

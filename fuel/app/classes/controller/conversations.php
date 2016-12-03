@@ -30,7 +30,7 @@ class Controller_Conversations extends Controller
 		$replies = DB::select()->from('conversation')->where('parent_conversation_id', $conv['conversation_id'])->or_where('conversation_id', $conv['conversation_id'])->order_by('created_at', 'desc')->execute()->as_array();
 
 		$bbcode = new Golonka\BBCode\BBCodeParser;
-		
+
 		foreach ($replies as &$r) {
 			$r['message'] = $bbcode->parseCaseInsensitive(htmlentities(htmlentities($r['message'])));
 		}
@@ -46,8 +46,12 @@ class Controller_Conversations extends Controller
 
 		if (Input::post() && Input::post('username') != Auth::get('username')) {
 			$user_2_id = DB::select('id')->from('users')->where('username', Input::post('username'))->execute()->as_array();
-			$c_id = Conversation::create(Input::post('title'), Auth::get('id'), $user_2_id[0]['id'], Input::post('message'));
-			Response::redirect(Uri::create('conversations/conversation/' . $c_id));
+			if (!$user_2_id) {
+				Messages::error('Target not found!');
+			} else {
+				$c_id = Conversation::create(Input::post('title'), Auth::get('id'), $user_2_id[0]['id'], Input::post('message'));
+				Response::redirect(Uri::create('conversations/conversation/' . $c_id));
+			}
 		}
 
 		return View::forge('conversations/conversation_new', $tVars);

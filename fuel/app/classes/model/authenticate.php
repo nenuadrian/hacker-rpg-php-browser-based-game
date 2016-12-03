@@ -20,17 +20,21 @@ class Authenticate extends \Model {
         'daily_login_last' => $today,
         'daily_login_count' => 1
       );
-      if ($login_last == $yesterday) {
-        $updateData['daily_login_count'] = \Auth::get('daily_login_count') + 1;
-        if ($updateData['daily_login_count'] == 5) Rewards::give(\Auth::get('id'), array('achievements' => array(1)), "5th time's the charm");
-        if ($updateData['daily_login_count'] == 15) Rewards::give(\Auth::get('id'), array('achievements' => array(2)), "15th time's the charm");
-        if ($updateData['daily_login_count'] == 30) Rewards::give(\Auth::get('id'), array('achievements' => array(3)), "30th time's the charm");
-        if ($updateData['daily_login_count'] == 60) Rewards::give(\Auth::get('id'), array('achievements' => array(4)), "60th time's the charm");
-      }
-      Hacker::save($updateData, \Auth::get('id'));
 
-      Rewards::give(\Auth::get('id'), array('experience' => 3 * $updateData['daily_login_count'] ), 'Stacked ' . $updateData['daily_login_count'] . ' days');
-      \Messages::modal('Connected to the grid', "<p>You've connected to the grid " . $updateData['daily_login_count'] . " days in a row!</p><p>The more days you stack, the higher the rewards get!</p>");
+      if ($updateData['daily_login_count'] > 1) {
+        if ($login_last == $yesterday) {
+          $updateData['daily_login_count'] = \Auth::get('daily_login_count') + 1;
+          if ($updateData['daily_login_count'] == 5) Rewards::give(\Auth::get('id'), array('achievements' => array(1)), "5th time's the charm");
+          if ($updateData['daily_login_count'] == 15) Rewards::give(\Auth::get('id'), array('achievements' => array(2)), "15th time's the charm");
+          if ($updateData['daily_login_count'] == 30) Rewards::give(\Auth::get('id'), array('achievements' => array(3)), "30th time's the charm");
+          if ($updateData['daily_login_count'] == 60) Rewards::give(\Auth::get('id'), array('achievements' => array(4)), "60th time's the charm");
+        }
+      
+        Rewards::give(\Auth::get('id'), array('experience' => 3 * $updateData['daily_login_count'] ), 'Stacked ' . $updateData['daily_login_count'] . ' days');
+        \Messages::modal('Connected to the grid', "<p>You've connected to the grid " . $updateData['daily_login_count'] . " days in a row!</p><p>The more days you stack, the higher the rewards get!</p>");
+      }
+
+      Hacker::save($updateData, \Auth::get('id'));
     }
 
     \Messages::voice('accessgranted');

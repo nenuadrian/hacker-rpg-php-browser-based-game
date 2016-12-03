@@ -70,7 +70,7 @@
 							<li><a href="<?php echo Uri::create('quests'); ?>"><i class="fa fa-crosshairs" aria-hidden="true"></i></a></li>
 			        <li><a href="<?php echo Uri::create('skills'); ?>"><i class="fa fa-diamond" aria-hidden="true"></i></a></li>
 			        <li><a href="<?php echo Uri::create('knowledge'); ?>"><i class="fa fa-book" aria-hidden="true"></i></a></li>
-			        <li><a href="<?php echo Uri::create('train'); ?>"><i class="fa fa-calculator" aria-hidden="true"></i></a></li>
+			        <!--<li><a href="<?php echo Uri::create('train'); ?>"><i class="fa fa-calculator" aria-hidden="true"></i></a></li>-->
 			        <!--<li><a href="<?php echo Uri::create('servers'); ?>"><i class="fa fa-server" aria-hidden="true"></i></a></li>
 			        <li><a href="<?php echo Uri::create('shop'); ?>"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
 			        <li><a href="<?php echo Uri::create('group'); ?>"><i class="fa fa-users" aria-hidden="true"></i></a></li>-->

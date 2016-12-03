@@ -2,6 +2,11 @@
 <?php echo Asset::css('missions.css'); ?>
 
 <div class="container">
+		<?php if (!$quests): ?>
+			<div class="alert alert-info text-center">
+				Nothing here
+			</div>
+		<?php endif; ?>
 		<?php foreach($quests as $k => $q): ?>
 			<div class="<?php echo $q['available'] ? '' : 'mission-done'; ?>">
     <div class="mission" onclick="$('#mission_<?php echo $k; ?>').collapse('toggle');$('#description_<?php echo $k; ?>').collapse('toggle')">

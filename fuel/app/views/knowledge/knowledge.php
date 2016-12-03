@@ -59,8 +59,8 @@ use \Model\Skills;
               Requirements have not been fulfilled
             </div>
           <?php endif; ?>
-
-        <h3>Level <?php echo $level = $user_knowledge[$k_id]['level']; ?></h3>
+<?php $level = $user_knowledge[$k_id]['level']; ?>
+        <h3><?php if ($level): ?>Level <?php echo $level; ?><?php else: ?>not learnt<?php endif; ?></h3>
           <h3> <strong>with the next level</strong></h3>
           <?php foreach ($user_knowledge[$k_id]['skills'] as $skill_id => $p): ?>
             <p><?php echo $p; ?> <em><?php echo Skills::skills()[$skill_id]['name']; ?></em> points</p>
