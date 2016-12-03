@@ -4,7 +4,7 @@
 <div class="container">
   <Br/><Br/>
   <form method="post">
-    <div class="row">
+    <div class="row-fluid">
       <div class="col-xs-9">
         <h3>A.I. voice</h3>
       </div>

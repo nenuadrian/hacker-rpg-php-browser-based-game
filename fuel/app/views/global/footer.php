@@ -13,15 +13,7 @@
 				  <source src="<?php echo Uri::create('voice/speak/' . $voice->message . '/mp3'); ?>" type="audio/mpeg">
 				</audio>
 				<script type="text/javascript">
-					if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.interOp) {
-						window.webkit.messageHandlers.interOp.postMessage({ action: "speak", voice: "<?php echo $voice->message; ?>" })
-					} else if (typeof Android !== 'undefined' && Android.playSound) {
-						Android.playSound('<?php echo $voice->message; ?>')
-					} else {
-						var x = document.getElementById("voice")
-						x.autoplay = true
-						x.load()
-					}
+					aiSpeak("<?php echo $voice->message; ?>");
 				</script>
 			<?php endif; ?>
 		<?php endif; ?>
@@ -36,7 +28,6 @@
 		<?php echo Asset::js('countdown.custom.js'); ?>
 		<?php echo Asset::js('global.js'); ?>
 
-
 		<?php $modal = Messages::get('modal', null, 1); if (count($modal)): $modal = $modal[0];  ?>
 			<?php if ($modal->message == 'tutorial'): ?>
 				<?php GlobalJs::add("	$('#modal-tutorial').modal({});"); ?>
@@ -45,20 +36,9 @@
 			<?php endif;?>
 
 		<?php endif; ?>
-<?php echo GlobalJs::render(); ?>
+		<?php echo GlobalJs::render(); ?>
 		<script>
-		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-			<?php if (Auth::check()): ?>
-				ga('create', 'UA-88039088-1', 'auto', {
-				  userId: 'user_<?php echo Auth::get('id'); ?>'
-				});
-			<?php else: ?>
-		  	ga('create', 'UA-88039088-1', 'auto');
-			<?php endif; ?>
-		  ga('send', 'pageview');
+			googleAnalytics('user_<?php echo Auth::get('id'); ?>')
 
 		</script>
 	</body>
