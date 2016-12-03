@@ -5,11 +5,11 @@
   <Br/><Br/>
     <div class="row-fluid">
       <div class="col-xs-9">
-        <h3>A.I. voice</h3>
+        <div style="font-size:30px;padding-top:15px; padding-bottom:15px;">A.I. voice</div>
       </div>
       <div class="col-xs-3 text-center">
         <form method="post">
-          <button type="submit" class="btn btn-default" name="voice" value="true">
+          <button type="submit" class="btn btn-default btn-block" name="voice" value="true">
             <?php echo Auth::get('voice_enabled') ? 'enabled' : 'disabled'; ?>
           </button>
         </form>

@@ -19,7 +19,6 @@ echo View::forge('global/header');
 		<?php endif; ?>
 	</div>
 	</div>
-	<div style="padding:30px">
 		<div class="row">
 		<?php foreach(Skills::skills() as $skill_id => $s): ?>
 			<div class="col-md-3 col-sm-6 text-center" style="margin-bottom:50px">
@@ -38,6 +37,5 @@ echo View::forge('global/header');
 			</div>
 		<?php endforeach; ?>
 		</div>
-	</div>
 </div>
 <?php echo View::forge('global/footer'); ?>
