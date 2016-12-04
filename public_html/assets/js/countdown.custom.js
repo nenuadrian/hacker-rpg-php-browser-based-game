@@ -1,8 +1,9 @@
 function Countdown(options) {
+
 	function countdowner() {
 		remaining -= 1;
 
-		var percentage = (duration - remaining) / (duration / 100.0);
+
 
 		var text = '';
 		if (remaining < 60) {
@@ -19,12 +20,13 @@ function Countdown(options) {
 			text = ''
 		}
 
+		var percentage = (duration - remaining) / onePercentOfDuration;
 		if (progressBar) {
 			progressBar.animate(percentage / 100);
 			progressBar.setText(text);
 		}
 
-		if (bottomProgress) {
+		if (bottomProgress && document.getElementById(bottomProgress)) {
 			document.getElementById(bottomProgress).style.width = percentage + '%';
 		}
 	}
@@ -44,6 +46,7 @@ function Countdown(options) {
 	if (options.duration) duration = options.duration;
 	if (options.progressBar) progressBar = options.progressBar;
 	if (options.bottomProgress) bottomProgress = options.bottomProgress;
+	var onePercentOfDuration = duration / 100.0
 
 	countdowner();
 	var interval = setInterval(countdowner, 1000);

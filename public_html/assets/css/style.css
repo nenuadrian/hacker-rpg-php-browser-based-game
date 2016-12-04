@@ -318,7 +318,7 @@ code, textarea.code {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
-		
+
 	width:100%;
     color: #098fc7;
     background-color: rgba(0, 144, 255, 0.12);
@@ -393,6 +393,15 @@ code, textarea.code {
 }
 
 
+@media screen and (max-width: 767px) {
+	.table-responsive {
+	    border: 1px dotted rgba(221, 221, 221, 0.46);
+		}
+}
+.table>thead>tr>th {
+	border-bottom: 1px solid rgba(221, 221, 221, 0.2);
+	    background-color: rgba(221, 221, 221, 0.1);
+}
 .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
     border-top: 1px solid rgba(221, 221, 221, 0.1);
 }
@@ -401,9 +410,6 @@ code, textarea.code {
     border-top: 1px solid rgba(221, 221, 221, 0.1);
 }
 
-.table>thead>tr>th {
-    border-bottom: 2px solid rgba(221, 221, 221, 0.2);
-}
 
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
     padding: 13px;
