@@ -28,6 +28,8 @@ echo View::forge('global/header'); ?>
   <?php endif; ?>
 </blockquote>
 <br/>
+<a href="<?php echo Uri::create('feedback'); ?>" class="btn btn-block btn-default">feedback</a>
+<br/>
 <h1 class="text-center">
 <a href="https://www.facebook.com/theSecretRepublic" target=""><i class="fa fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;
 <a href="https://twitter.com/iSecretRepublic" target="_blank"><i class="fa fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;

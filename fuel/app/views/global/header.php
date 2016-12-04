@@ -23,7 +23,7 @@
 		<?php echo Asset::css('style.css'); ?>
 
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Josefin+Sans%3A300italic%2C300&amp;ver=4.6" type="text/css" media="all">
+		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,600&amp;subset=latin-ext" rel="stylesheet">
 	</head>
 	<body class="noselect">
 		<?php if (Auth::check()):
