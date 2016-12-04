@@ -6,17 +6,7 @@
 
 			<?php if (Input::headers('In-App', false)) \Model\Analytics::record('in-app', Input::headers()); ?>
 		</footer>
-			<?php $voice = Messages::get('voice'); if (count($voice)): $voice = $voice[count($voice) - 1];  ?>
-				<?php if (Auth::check() && Auth::get('voice_enabled')): ?>
-				<audio style="display:none;" id="voice">
-				  <source src="<?php echo Uri::create('voice/speak/' . $voice->message . '/ogg'); ?>" type="audio/ogg">
-				  <source src="<?php echo Uri::create('voice/speak/' . $voice->message . '/mp3'); ?>" type="audio/mpeg">
-				</audio>
-				<script type="text/javascript">
-					aiSpeak("<?php echo $voice->message; ?>");
-				</script>
-			<?php endif; ?>
-		<?php endif; ?>
+
 
 		<?php echo Asset::js('jquery-3.1.0.min.js'); ?>
 
@@ -27,6 +17,19 @@
 		<?php echo Asset::js('progressbar.min.js'); ?>
 		<?php echo Asset::js('countdown.custom.js'); ?>
 		<?php echo Asset::js('global.js'); ?>
+
+		<?php $voice = Messages::get('voice'); if (count($voice)): $voice = $voice[count($voice) - 1];  ?>
+			<?php if (Auth::check() && Auth::get('voice_enabled')): ?>
+				<audio style="display:none;" id="voice">
+					<source src="<?php echo Uri::create('voice/speak/' . $voice->message . '/ogg'); ?>" type="audio/ogg">
+					<source src="<?php echo Uri::create('voice/speak/' . $voice->message . '/mp3'); ?>" type="audio/mpeg">
+				</audio>
+				<script type="text/javascript">
+					aiSpeak("<?php echo $voice->message; ?>");
+				</script>
+			<?php endif; ?>
+		<?php endif; ?>
+
 
 		<?php $modal = Messages::get('modal', null, 1); if (count($modal)): $modal = $modal[0];  ?>
 			<?php if ($modal->message == 'tutorial'): ?>
