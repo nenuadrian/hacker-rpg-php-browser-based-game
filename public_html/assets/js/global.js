@@ -63,3 +63,13 @@ $(window).on('load', function() {
   })
 
 })
+
+if(/Android 4\.[0-3]/.test(navigator.appVersion)){
+   window.addEventListener("resize", function(){
+      if(document.activeElement.tagName=="INPUT"){
+         window.setTimeout(function(){
+            document.activeElement.scrollIntoViewIfNeeded();
+         },0);
+      }
+   })
+}
