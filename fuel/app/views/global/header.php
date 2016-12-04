@@ -103,7 +103,7 @@
 
 
 		<?php endif; ?>
-		<div class="container-fluid" style="min-height:900px; padding-top:0px;">
+		<div class="container-fluid" style="min-height:400px; padding-top:0px;">
 			<?php if (!isset($messages_handled)): ?>
 				<div class="container">
 					<?php echo View::forge('components/messages'); ?>

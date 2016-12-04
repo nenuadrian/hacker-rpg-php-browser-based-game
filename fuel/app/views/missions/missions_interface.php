@@ -77,10 +77,10 @@
 							<form method="post">
 								<div class="well">
 								<div class="row">
-									<div class="col-xs-10">
+									<div class="col-sm-10">
 										<input type="text" name="query" class="form-control" required placeholder="Cardinal Query Languange" />
 									</div>
-									<div class="col-xs-2 text-center">
+									<div class="col-sm-2 text-center">
 										<button type="submit" class="btn"><i class="fa fa-table" aria-hidden="true"></i></button>
 									</div>
 								</div>
