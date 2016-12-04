@@ -9,7 +9,7 @@ $countdown_id = 'countdown_' . $id;
 $bar_type = 'Circle';
 ?>
 
-<?php if (!isset($hide_bottom_count)): ?>
+<?php if (!false && !isset($hide_bottom_count)): ?>
 <div class="countdown-bottom" >
   <div style="width:0%" id="bar_<?php echo $countdown_id; ?>_bottom">
   </div>

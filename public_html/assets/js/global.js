@@ -21,15 +21,17 @@ function selectText(container) {
 }
 
 function aiSpeak(command_name) {
-  if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.interOp) {
-    window.webkit.messageHandlers.interOp.postMessage({ action: "speak", voice: command_name })
-  } else if (typeof Android !== 'undefined' && Android.playSound) {
-    Android.playSound(command_name)
-  } else {
-    var x = document.getElementById("voice")
-    x.autoplay = true
-    x.load()
-  }
+  $(window).on('load', function() {
+    if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.interOp) {
+      window.webkit.messageHandlers.interOp.postMessage({ action: "speak", voice: command_name })
+    } else if (typeof Android !== 'undefined' && Android.playSound) {
+      setTimeout(Android.playSound(command_name),100)
+    } else {
+      var x = document.getElementById("voice")
+      x.autoplay = true
+      x.load()
+    }
+  });
 }
 
 function googleAnalytics(user_id) {
