@@ -4,7 +4,7 @@
 					 <h1 class="text-center"><a href="<?php echo Uri::create('cardinal'); ?>"><i class="fa fa-bolt" aria-hidden="true"></i></a></h1>
 			<?php endif; ?>
 
-			<?php if (Input::headers('In-App', false)) \Model\Analytics::record('in-app', Input::headers('In-App')); ?>
+			<?php if (Input::headers('In-App', false)) \Model\Analytics::record('in-app', Input::headers()); ?>
 		</footer>
 			<?php $voice = Messages::get('voice'); if (count($voice)): $voice = $voice[count($voice) - 1];  ?>
 				<?php if (Auth::check() && Auth::get('voice_enabled')): ?>

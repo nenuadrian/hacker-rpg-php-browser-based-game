@@ -211,9 +211,6 @@ class View
 		try
 		{
 			$output = $this->render();
-			if (Input::headers('Android-App', false)) {
-				$output = str_replace('_blank', '_self', $output);
-			}
 			return $output;
 		}
 		catch (\Exception $e)

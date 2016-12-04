@@ -24,7 +24,7 @@ echo View::forge('global/header');
 			<div class="col-md-3 col-sm-6 text-center" style="margin-bottom:50px">
 				<?php echo View::forge('components/modal', array('id' => 'skill-' . $skill_id, 'title' => $s['name'], 'content' => View::forge('skills/skill_modal', array('skill_id' => $skill_id, 's' => $s, 'user_skill' => $skills[$skill_id])))); ?>
 
-			<a style="display: block;margin-left: 25px;" class="" data-toggle="modal" data-target="#skill-<?php echo $skill_id; ?>">
+			<a style="display: block;" data-toggle="modal" data-target="#skill-<?php echo $skill_id; ?>">
 			<h3><?php echo $s['name']; ?></h3>
 
 			<div style="margin-top:40px; margin-bottom:40px">
