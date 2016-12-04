@@ -212,7 +212,7 @@ class View
 		{
 			$output = $this->render();
 			if (Input::headers('Android-App', false)) {
-				$output = str_replace('_target', '_self', $output);
+				$output = str_replace('_blank', '_self', $output);
 			}
 			return $output;
 		}
