@@ -22,8 +22,8 @@
     <br/>
 		<form method="post">
 			<?php echo View::forge('components/messages'); ?>
-			<input type="text" class="form-control text-center" placeholder="username / email" name="username" autocapitalize="off" autocorrect="off" autofocus="true" />
-			<input type="password" class="form-control text-center" placeholder="password" name="password" />
+			<input type="text" class="form-control text-center" placeholder="username / email" name="username" autocapitalize="off" autocorrect="off" required />
+			<input type="password" class="form-control text-center" placeholder="password" name="password"  required/>
 			<button class="btn btn-block btn-default" type="submit" style="margin-top:20px">connect</button>
 		</form>
 
