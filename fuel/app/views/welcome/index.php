@@ -17,12 +17,12 @@
 	<div class="col-md-3"></div>
 	<div class="col-md-6 text-center">
 
-		<img src="<?php echo Uri::create('assets/img/logo.png'); ?>" class="main-logo" style="max-width:400px; width:100%; margin-top:-60px; margin-bottom:20px" />
+		<img src="<?php echo Uri::create('assets/img/logo.png'); ?>" class="main-logo" style="max-width:300px; width:100%; margin-top:-60px; margin-bottom:20px" />
     <?php echo View::forge('components/messages'); ?>
     <br/>
 		<form method="post">
 			<?php echo View::forge('components/messages'); ?>
-			<input type="text" class="form-control text-center" placeholder="username / email" name="username" autocapitalize="off" autocorrect="off" />
+			<input type="text" class="form-control text-center" placeholder="username / email" name="username" autocapitalize="off" autocorrect="off" autofocus="true" />
 			<input type="password" class="form-control text-center" placeholder="password" name="password" />
 			<button class="btn btn-block btn-default" type="submit" style="margin-top:20px">connect</button>
 		</form>
