@@ -32,7 +32,7 @@
 				Session::set('last_active_update', time());
 			}
 
-		 	echo View::forge('tutorial/tutorial-handler');
+		 	// echo View::forge('tutorial/tutorial-handler');
 
 			 $convs = DB::select(DB::expr('count(*) as count'))->where('parent_conversation_id', 'IS', NULL)->from('conversation')->where('unseen', 1)->where('last_replier_id', '!=', Auth::get('id'))->where(function($conv) {
 			 			return $conv->where('user_1_id', Auth::get('id'))->or_where('user_2_id', Auth::get('id'));

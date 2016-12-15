@@ -12,8 +12,10 @@ class Controller_Cardinal extends Controller {
         $tVars = array();
 
         if (Input::post('update')) {
-            DB::update('tutorial_step')->set(Input::post())->where('step_id', Input::post('update'))->execute();
-            Response::redirect(Uri::current());
+          $updateData = Input::post();
+          unset($updateData['update']);
+          DB::update('tutorial_step')->set($updateData)->where('step_id', Input::post('update'))->execute();
+          Response::redirect(Uri::current());
         }
 
         $steps = DB::select()->from('tutorial_step')->order_by('step_id', 'asc')->execute()->as_array();
