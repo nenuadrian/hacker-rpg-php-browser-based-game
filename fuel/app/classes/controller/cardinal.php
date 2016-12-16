@@ -8,6 +8,25 @@ class Controller_Cardinal extends Controller {
         if (Auth::get('group') != 2) Response::redirect(Uri::base());
     }
 
+    public function action_feedback() {
+      $result = DB::select(DB::expr('COUNT(*) as count'))->from('feedback')->execute();
+      $config = array(
+          'pagination_url' => Uri::create('cardina/feedback'),
+          'total_items'    => $result->current()['count'],
+          'per_page'       => 20,
+          //'uri_segment'    => 3,
+          'uri_segment'    => 'page',
+      );
+      $pagination = Pagination::forge('mypagination', $config);
+      $feedback = DB::select('feedback.*', 'users.username')->from('feedback')
+      ->join('users', 'left outer')->on('users.id', '=', 'feedback.user_id')
+      ->order_by('created_at', 'desc')->limit($pagination->per_page)->offset($pagination->offset)->execute()->as_array();
+
+      $tVars['feedback'] = $feedback;
+    	$tVars['pagination'] = $pagination;
+      return View::forge('cardinal/cardinal_feedback', $tVars);
+    }
+
     public function action_tutorial() {
         $tVars = array();
 
@@ -21,14 +40,14 @@ class Controller_Cardinal extends Controller {
         $steps = DB::select()->from('tutorial_step')->order_by('step_id', 'asc')->execute()->as_array();
 
         $tVars['steps'] = $steps;
-        return Response::forge(View::forge('cardinal/cardinal_tutorial', $tVars))->set_header('Access-Control-Allow-Origin', '*');
+        return View::forge('cardinal/cardinal_tutorial', $tVars);
     }
 
 	public function action_index()
     {
         $tVars = array();
 
-        return Response::forge(View::forge('cardinal/cardinal', $tVars))->set_header('Access-Control-Allow-Origin', '*');
+        return View::forge('cardinal/cardinal', $tVars);
 
     }
 
@@ -66,7 +85,7 @@ class Controller_Cardinal extends Controller {
         $tVars['quest'] = $quest;
         $tVars['users'] = $users;
         $tVars['quests'] = $quests;
-        return Response::forge(View::forge('cardinal/mission/cardinal_quest', $tVars))->set_header('Access-Control-Allow-Origin', '*');
+        return View::forge('cardinal/mission/cardinal_quest', $tVars);
     }
 
     public function action_quest_servers($quest_id) {
@@ -131,8 +150,7 @@ class Controller_Cardinal extends Controller {
         $tVars['users'] = $users;
         $tVars['entities'] = $entities;
         $tVars['servers'] = $servers;
-        return Response::forge(View::forge('cardinal/mission/cardinal_quest_servers', $tVars))->set_header('Access-Control-Allow-Origin', '*');
-
+        return View::forge('cardinal/mission/cardinal_quest_servers', $tVars);
     }
 
     public function action_quest_objectives($quest_id) {
@@ -185,8 +203,7 @@ class Controller_Cardinal extends Controller {
         $tVars['users'] = $users;
         $tVars['services'] = $services;
         $tVars['entities'] = $entities;
-        return Response::forge(View::forge('cardinal/mission/cardinal_quest_objectives', $tVars))->set_header('Access-Control-Allow-Origin', '*');
-
+        return View::forge('cardinal/mission/cardinal_quest_objectives', $tVars);
     }
 
     public function action_missions() {
@@ -212,6 +229,6 @@ class Controller_Cardinal extends Controller {
 
         $tVars['quests'] = $quests;
         $tVars['groups'] = $groups;
-        return Response::forge(View::forge('cardinal/mission/cardinal_quests', $tVars))->set_header('Access-Control-Allow-Origin', '*');
+        return View::forge('cardinal/mission/cardinal_quests', $tVars);
     }
 }

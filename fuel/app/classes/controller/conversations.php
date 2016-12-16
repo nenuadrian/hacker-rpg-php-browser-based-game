@@ -41,7 +41,7 @@ class Controller_Conversations extends Controller
 				return View::forge('conversations/conversation', $tVars);
 	}
 
-	public function action_new() {
+	public function action_new($to = false) {
 		$tVars = array();
 
 		if (Input::post() && Input::post('username') != Auth::get('username')) {
@@ -53,7 +53,7 @@ class Controller_Conversations extends Controller
 				Response::redirect(Uri::create('conversations/conversation/' . $c_id));
 			}
 		}
-
+		$tVars['to'] = $to;
 		return View::forge('conversations/conversation_new', $tVars);
 	}
 

@@ -29,6 +29,11 @@ echo View::forge('global/header'); ?>
 </blockquote>
 <br/>
 <a href="<?php echo Uri::create('feedback'); ?>" class="btn btn-block btn-default">feedback</a>
+<div class="alert alert-info text-center">
+  We are Alpha testing. Send us any feedback you can, as often as you want!<br/>
+  There is a lot (a lot) in the works and we want things to match your expectations (as much as possible).
+  <div class="text-right">C. & Co</div>
+</div>
 <br/>
 <h1 class="text-center">
 <a href="https://www.facebook.com/theSecretRepublic" target=""><i class="fa fa-facebook"></i></a>&nbsp;&nbsp;&nbsp;

@@ -3,12 +3,12 @@
 echo View::forge('global/header'); ?>
 
 <div class="container">
-	
+
 	<div class="row">
 	<div class="col-md-9">
 	<?php print_R($availableQuests); ?>
 
-	
+
 	</div>
 	<div class="col-md-3 text-center">
 	<h3>LEVEL <?php echo Auth::get('level'); ?></h3><br/>
@@ -18,7 +18,7 @@ echo View::forge('global/header'); ?>
 		'text' => Auth::get('experience') . ' / ' . Hacker::experience(Auth::get('level') + 1),
 		'id' => 'exp_container'
 		)); ?>
-	
+
 	<a href="<?php echo Uri::create('world'); ?>" class="btn">world</a>
 	</div>
 	</div>
@@ -26,7 +26,6 @@ echo View::forge('global/header'); ?>
 	<div class="row">
 	<div class="col-md-6">
 	<?php foreach($tasks as $task): ?>
-
 		<div class="text-center">
 		<div style="display:inline-block; max-width:100px;margin-top:50px">
 		<?php echo View::forge('components/countdown', array('start_value' => $task['task_start'], 'remaining' => $task['remaining'], 'duration' => $task['task_duration'], 'hide_bottom_count' => true, 'id' => $task['task_id'])); ?>

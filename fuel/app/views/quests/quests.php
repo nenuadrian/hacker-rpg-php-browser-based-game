@@ -1,6 +1,12 @@
 <?php echo View::forge('global/header'); ?>
 <?php echo Asset::css('box-layout.css'); ?>
+
+
 <div class="container">
+	<div class="alert alert-warning text-center">
+		<p>Only the Computer Science set is currently live. Let us know what you think and we'll make more available.</p>
+		We will let you know when new content becomes available!
+	</div>
 	<div class="row">
 		<?php foreach($groups as $g): ?>
 			<div class="col-md-6 ">

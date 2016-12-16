@@ -8,7 +8,7 @@
 			<div class="col-md-6">
 				<input type="text" class="form-control" placeholder="Title" name="title" value="<?php echo Input::post('title'); ?>" required/>
 			</div><div class="col-md-6">
-				<input type="text" class="form-control" placeholder="Username" name="username" value="<?php echo Input::post('username'); ?>" required/>
+				<input type="text" class="form-control" placeholder="Username" name="username" value="<?php echo Input::post('username', $to); ?>" required/>
 			</div></div>
 			<textarea class="form-control" name="message" required><?php echo Input::post('message'); ?></textarea>
 			<button type="submit" class="btn btn-default">send</button>
