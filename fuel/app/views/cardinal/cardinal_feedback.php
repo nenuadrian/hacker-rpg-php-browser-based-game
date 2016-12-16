@@ -8,7 +8,7 @@
 
   		<div class="text-center">
     		<small>
-          <a href="<?php echo Uri::create('conversations/new/' . Auth::get('username')); ?>">
+          <a href="<?php echo Uri::create('conversations/new/' . $f['username']); ?>">
             <?php echo $f['username'] ? $f['username'] : 'unknown'; ?>
           </a> - <?php echo $f['created_at']; ?></small>
     	</div>
