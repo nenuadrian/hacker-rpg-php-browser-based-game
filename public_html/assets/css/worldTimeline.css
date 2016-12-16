@@ -27,11 +27,11 @@
 	font-weight:bold;
   font-size:15px;
   text-transform:uppercase;
+      line-height: 1.5;
 }
 .timeline p,
 .timeline ol {
   padding: 3px 0 20px 0;
-  text-align: justify;
   width: 70%;
 }
 
