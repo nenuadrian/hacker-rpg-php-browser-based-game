@@ -28,7 +28,7 @@ echo View::forge('global/header'); ?>
   <?php endif; ?>
 </blockquote>
 <br/>
-<a href="<?php echo Uri::create('feedback'); ?>" class="btn btn-block btn-default">feedback</a>
+<a href="<?php echo Uri::create('feedback'); ?>" class="btn btn-block btn-default"><i class="fa fa-smile-o" aria-hidden="true"></i> feedback</a>
 <div class="alert alert-info text-center">
   We are Alpha testing. Send us any feedback you can, as often as you want!<br/>
   There is a lot (a lot) in the works and we want things to match your expectations (as much as possible).
