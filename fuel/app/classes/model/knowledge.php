@@ -24,11 +24,12 @@ class Knowledge extends \Model {
                     },
                 ),
                 2 => array(
-                        'name' => 'knowledge 2',
+                        'name' => 'Cryptology',
                         'description' => '',
                         'skills' => function($level) {
                             return array(
-                                    2 => $level * 2
+                                    3 => $level * 2,
+                                    6 => $level * 1
                                 );
                         },
                         'requires' => function($level) {
@@ -41,11 +42,11 @@ class Knowledge extends \Model {
                         },
                     ),
                 3 => array(
-                            'name' => 'knowledge 3',
+                            'name' => 'Stealth',
                             'description' => '',
                             'skills' => function($level) {
                                 return array(
-                                        2 => $level * 2
+                                        5 => $level * 2
                                     );
                             },
                             'requires' => function($level) {
