@@ -3,14 +3,12 @@
 class Controller_World extends Controller {
 	public function action_index() {
 			try {
-				$tVars = \Cache::get('world');
+				$tVars = \Cache::get('world2');
 			} catch (Exception $ex) {
 				$tVars = array();
-	        $rightSide = array();
-	        $leftSide = array();
 					$active48 = time() - 48 * 60 * 60;
 
-	        $data = DB::query('select
+	        $values = DB::query('select
 					(select sum(money) from users) nrMoney,
 					(select count(*) from users where last_active <= ' . $active48 . ') nrActive48,
 					(select sum(times) from user_mission) nrDoneQuests,
@@ -27,22 +25,21 @@ class Controller_World extends Controller {
 						$datediff = $now - $your_date;
 
 						$wd = floor($datediff / (60 * 60 * 24));
+					$data = array();
+	        $data[] = array('value' => $values['nrHackers'], 'title' => 'Hackers', 'description' => 'joined the Competition');
+	        $data[] = array('value' => $values['nrQuests'], 'title' => 'Missions', 'description' => 'can be uncovered');
+	        $data[] = array('value' => $values['nrRewards'], 'title' => 'Rewards', 'description' => 'obtained by hackers');
+	        $data[] = array('value' => $values['nrDoneQuests'], 'title' => 'missions', 'description' => 'finished by hackers');
+	        $data[] = array('value' => $values['nrHackerGroups'], 'title' => 'hacker groups', 'description' => 'have been created');
+	        $data[] = array('value' => $wd, 'title' => 'Days', 'description' => 'since the new world');
+					$data[] = array('value' => $values['nrActive48'], 'title' => 'hackers connected', 'description' => 'in the last 24h');
+					$data[] = array('value' => $values['nrConvs'], 'title' => 'messages exchanged', 'description' => 'in conversations');
+	        $data[] = array('value' => $values['nrMoney'], 'title' => '<i class="fa fa-cube"></i>', 'description' => 'in circulation');
+					$data[] = array('value' => $values['nrTasks'], 'title' => 'tasks', 'description' => 'done by hackers');
 
-	        $leftSide[] = array('value' => $data['nrHackers'], 'title' => 'Hackers', 'description' => 'joined the Competition');
-	        $leftSide[] = array('value' => $data['nrQuests'], 'title' => 'Missions', 'description' => 'can be uncovered');
-	        $leftSide[] = array('value' => $data['nrRewards'], 'title' => 'Rewards', 'description' => 'obtained by hackers');
-	        $leftSide[] = array('value' => $data['nrDoneQuests'], 'title' => 'missions', 'description' => 'finished by hackers');
-	        $leftSide[] = array('value' => $data['nrHackerGroups'], 'title' => 'hacker groups', 'description' => 'have been created');
-	        $rightSide[] = array('value' => $wd, 'title' => 'Days', 'description' => 'since the new world');
-					$rightSide[] = array('value' => $data['nrActive48'], 'title' => 'hackers connected', 'description' => 'in the last 24h');
-					$rightSide[] = array('value' => $data['nrConvs'], 'title' => 'messages exchanged', 'description' => 'in conversations');
-	        $rightSide[] = array('value' => $data['nrMoney'], 'title' => '<i class="fa fa-cube"></i>', 'description' => 'in circulation');
-					$rightSide[] = array('value' => $data['nrTasks'], 'title' => 'tasks', 'description' => 'done by hackers');
+	        $tVars['data'] = $data;
 
-	        $tVars['leftSide'] = $leftSide;
-	        $tVars['rightSide'] = $rightSide;
-
-				\Cache::set('world', $tVars, 3 * 60 * 60);
+				\Cache::set('world2', $tVars, 3 * 60 * 60);
 			}
 
 			return View::forge('world/world', $tVars);

@@ -30,7 +30,7 @@ echo View::forge('global/header'); ?>
 <br/>
 <div class="text-center">
 <a href="<?php echo Uri::create('feedback'); ?>" class="btn btn-default"><i class="fa fa-smile-o" aria-hidden="true"></i> feedback</a>
-<a href="<?php echo Uri::create('world'); ?>" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> world</a>
+<a href="<?php echo Uri::create('world'); ?>" class="btn btn-default">world <i class="fa fa-globe" aria-hidden="true"></i></a>
 </div><br/>
 <div class="alert alert-info text-center">
   We are Alpha testing. Send us any feedback you can, as often as you want!<br/>

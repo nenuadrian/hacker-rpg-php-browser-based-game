@@ -11,6 +11,9 @@ class Controller_Authenticate extends Controller
 		// was the registration form posted?
 	    if (Input::post()) {
         try {
+            if (strlen(Input::post('username')) > 30 || !ctype_alnum(Input::post('username'))) {
+              throw new SimpleUserUpdateException('Your nickname should have at most 30 characters and consist only of letters and numbers.');
+            }
             // call Auth to create this user
             $created = \Auth::create_user(
                 Input::post('username'),
