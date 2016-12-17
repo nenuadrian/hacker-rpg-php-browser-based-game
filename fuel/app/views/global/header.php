@@ -51,7 +51,7 @@
 	<?php endif; ?>
 
 			<?php if (!isset($hide_menu)): ?>
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
 					<span class="sr-only">Toggle navigation</span>
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
@@ -60,11 +60,8 @@
 			<nav class="navbar navbar-default navbar-fixed-bottom">
 			  <div class="container">
 
-			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<div style="padding-top:5px;
-						padding-bottom:5px;">
-			      <ul class="nav navbar-nav text-center">
-
+			    <div class="collapse navbar-collapse" id="menu">
+			      <ul class="nav navbar-nav text-center" <?php echo !Auth::check() ? 'style="width:100%;"' : ''; ?>>
 							<?php if (Auth::check()): ?>
 			        <li><a href="<?php echo Uri::create('dashboard'); ?>"><i class="fa fa-tachometer" aria-hidden="true"></i></a></li>
 							<li><a href="<?php echo Uri::create('quests'); ?>"><i class="fa fa-crosshairs" aria-hidden="true"></i></a></li>
@@ -75,8 +72,9 @@
 			        <li><a href="<?php echo Uri::create('shop'); ?>"><i class="fa fa-shopping-basket" aria-hidden="true"></i></a></li>
 			        <li><a href="<?php echo Uri::create('group'); ?>"><i class="fa fa-users" aria-hidden="true"></i></a></li>-->
 						<?php else :?>
-							<li><a href="<?php echo Uri::base(); ?>"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-							<li><a href="<?php echo Uri::create('create-account'); ?>"><i class="fa fa-id-card" aria-hidden="true"></i></a></li>
+							<li style="float:none"><a href="<?php echo Uri::base(); ?>"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+							<li style="float:none"><a href="<?php echo Uri::create('create-account'); ?>"><i class="fa fa-id-card" aria-hidden="true"></i></a></li>
+							<li style="float:none"><a href="<?php echo Uri::create('world'); ?>"><i class="fa fa-globe" aria-hidden="true"></i></a></li>
 						<?php endif; ?>
 
 			      </ul>
@@ -96,7 +94,6 @@
 							</li>
 						<?php endif; ?>
 			      </ul>
-					</div><!-- /.navbar-collapse -->
 				</div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->
 			</nav>

@@ -238,6 +238,9 @@ hr {
     height: 3px;
 }
 
+.navbar-nav {
+padding-top:5px; padding-bottom:5px;
+}
 .navbar-default .navbar-nav>li>a {
     color: #209eff;
     font-size:20px;
