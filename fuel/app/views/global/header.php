@@ -78,22 +78,22 @@
 						<?php endif; ?>
 
 			      </ul>
+						<?php if (Auth::check()): ?>
+
 			      <ul class="nav navbar-nav navbar-right text-center">
-							<?php if (Auth::check()): ?>
+								<li>
+									<a href="<?php echo Uri::create('authenticate/logout'); ?>" style=" opacity:.4;">
+										<i class="fa fa-power-off" aria-hidden="true"></i>
+									</a>
+								</li>
 								<li <?php echo $convs ? 'class="active"' : ''; ?>><a href="<?php echo Uri::create('conversations'); ?>"><i class="fa fa-envelope-o" aria-hidden="true"></i><?php echo $convs ? ' <small>('.$convs.')</small>' : ''; ?></a></li>
 			        	<li <?php echo $rewards ? 'class="active"' : ''; ?>><a href="<?php echo Uri::create('rewards'); ?>"><i class="fa fa-gift" aria-hidden="true"></i><?php echo $rewards ? ' <small>('.$rewards.')</small>' : ''; ?></a></li>
 
 			      		<li><a href="<?php echo Uri::create('rankings'); ?>"><i class="fa fa-trophy" aria-hidden="true"></i></a></li>
-							<li><a href="<?php echo Uri::create('dna'); ?>"><i class="fa fa-cog" aria-hidden="true"></i></a></li>
-
-
-							<li>
-								<a href="<?php echo Uri::create('authenticate/logout'); ?>" style=" opacity:.4;">
-									<i class="fa fa-power-off" aria-hidden="true"></i>
-								</a>
-							</li>
-						<?php endif; ?>
+								<li><a href="<?php echo Uri::create('dna'); ?>"><i class="fa fa-cog" aria-hidden="true"></i></a></li>
 			      </ul>
+					<?php endif; ?>
+
 				</div><!-- /.navbar-collapse -->
 			  </div><!-- /.container-fluid -->
 			</nav>
