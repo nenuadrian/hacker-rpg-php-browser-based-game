@@ -28,9 +28,11 @@
 		</form>
 
 			<a class="btn btn-block btn-default" href="<?php echo Uri::create('create-account'); ?>">create a citizen account</a>
-      <br/><br/>
-    <a href="https://itunes.apple.com/us/app/secret-republic-hacker-orpg/id1181237523" target="_blank"><?php echo Asset::img('app_store.png', array('style' => 'max-width: 200px;')); ?></a>
-	</div>
+      <?php if (strpos($_SERVER['HTTP_USER_AGENT'], 'Secret') === false): ?>
+        <br/><br/>
+      <a href="https://itunes.apple.com/us/app/secret-republic-hacker-orpg/id1181237523" target="_blank"><?php echo Asset::img('app_store.png', array('style' => 'max-width: 200px;')); ?></a>
+    <?php endif; ?>
+  </div>
 
 </div>
 </div>
