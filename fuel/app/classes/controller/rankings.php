@@ -18,6 +18,7 @@ class Controller_Rankings extends Controller
     	$pagination = Pagination::forge('mypagination', $config);
 
     	$rankings = DB::select('id', 'username', 'ranking', 'ranking_points')->from('users')->where('ranking', '!=', 0)
+							->order_by('ranking', 'asc')
     						->limit($pagination->per_page)
                             ->offset($pagination->offset)
                             ->execute()->as_array();
