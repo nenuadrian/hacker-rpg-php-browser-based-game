@@ -8,7 +8,7 @@
   </div>
   <div class="row text-center">
     <?php foreach ($data as $d): ?>
-      <div class="col-sm-4 col-xs-6">
+      <div class="col-sm-4">
         <h1><?php echo number_format($d['value']); ?></h1>
         <h3><?php echo html_entity_decode(strtolower($d['title'])); ?></h3>
         <p><?php echo html_entity_decode($d['description']); ?></p>
