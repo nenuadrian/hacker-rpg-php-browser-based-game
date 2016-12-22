@@ -21,7 +21,7 @@ class Controller_World extends Controller {
 	            ')->execute()->as_array()[0];
 
 							$now = time(); // or your date as well
-						$your_date = strtotime("2016-11-01");
+						$your_date = strtotime("2016-12-01");
 						$datediff = $now - $your_date;
 
 						$wd = floor($datediff / (60 * 60 * 24));
