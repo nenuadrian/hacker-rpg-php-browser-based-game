@@ -288,8 +288,8 @@ class Missions extends \Model {
         $mission = &$task['data']['mission'];
         $do_save = false;
 
-        if (\Input::post('cancel') && \Auth::get('group') == 2) {
-          \DB::delete('task')->where('task_id', $task['task_id'])->execute();
+        if (\Input::post('cancel')) {
+          \DB::update('task')->set(array('cancelled' => \DB::expr('NOW()')))->where('task_id', $task['task_id'])->execute();
           \Response::redirect(\Uri::current());
         }
 

@@ -20,7 +20,7 @@ class Task extends \Model {
             );
         \DB::insert('task')->set($task)->execute();
     }
-    
+
     public static function create($user_id, $type, $duration, $data, $data_id = NULL) {
         $task = array(
             'user_id' => $user_id,
@@ -61,7 +61,7 @@ class Task extends \Model {
                             $app = $task['data']['app'];
                             $app = Apps::process($app);
                             if (Servers::can_add_app($server, $app)['can']) {
-                                $app['server_app_id'] = Servers::add_app($server, $app, $task['user_id']);  
+                                $app['server_app_id'] = Servers::add_app($server, $app, $task['user_id']);
                                 if (Servers::can_run_app($server, $app)['can']) {
                                     Servers::run_app($server, $app);
                                 }
@@ -94,7 +94,7 @@ class Task extends \Model {
     }
 
     public static function get($user_id, $type = false) {
-        $tasks = \DB::select()->from('task')->where('complete', 'IS', NULL)->where('user_id', $user_id);
+        $tasks = \DB::select()->from('task')->where('complete', 'IS', NULL)->where('cancelled', 'IS', NULL)->where('user_id', $user_id);
         if ($type) $tasks = $tasks->where('task_type', $type);
         $tasks = $tasks->execute()->as_array();
         Task::process($tasks);
