@@ -5,9 +5,15 @@
 
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
+# Live Demo
+
 Live demo: http://secretrepublic.nenuadrian.com
 
-See screenshots at the bottom. 
+# Read about the journey
+
+https://medium.com/@adrian.n/secret-republic-open-sourced-hacker-simulation-futuristic-rpg-browser-based-game-php-843d393cb9d7
+
+# Overview
 
 Audio trailer: https://www.youtube.com/watch?v=6thfiGb-b7c
 
@@ -104,9 +110,7 @@ https://en.wikipedia.org/wiki/Cron
 
 ![Screenshot](images/original2.png)
 
-# Read about the journey
 
-https://medium.com/@adrian.n/secret-republic-open-sourced-hacker-simulation-futuristic-rpg-browser-based-game-php-843d393cb9d7
 
 # License
 
