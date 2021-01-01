@@ -8,22 +8,21 @@
 # Live Demo
 
 Live demo: http://secretrepublic.nenuadrian.com
+Hosted on [DreamHost](https://mbsy.co/dreamhost/92571715)
 
 # Read about the journey
 
-https://medium.com/@adrian.n/secret-republic-open-sourced-hacker-simulation-futuristic-rpg-browser-based-game-php-843d393cb9d7
+[Read article on Medium](https://medium.com/@adrian.n/secret-republic-open-sourced-hacker-simulation-futuristic-rpg-browser-based-game-php-843d393cb9d7)
 
 # Overview
 
-Audio trailer: https://www.youtube.com/watch?v=6thfiGb-b7c
+Audio trailer on Youtube: https://www.youtube.com/watch?v=6thfiGb-b7c
 
-The code for the Secret Republic hacker simulation role playing browser text game.
-
-A lot of work has gone into this but it (and more in its previous version) is not a documented (as of yet) project.
+A lot of work has gone into this, but it (and more in its previous version) are not a documented (as of yet) project.
 
 It's been through years of development with this being its 3rd full do-over.
 
-However, the project on stand-by so I've decided to make the source available of nothing else
+The project is not under active development with milestones in-place.
 
 Read more about the history of the game and the more complete older version in the works for open sourcing @ https://medium.com/@adrian.n/secret-republic-open-sourced-hacker-simulation-futuristic-rpg-browser-based-game-php-843d393cb9d7
 
@@ -119,9 +118,9 @@ https://en.wikipedia.org/wiki/Cron
 Please link and contribute back to this repository if using the code or assets :)
 
 
-# SecretAlpha V3 ( MORE FEATURES! )
+# SecretAlpha V3 (MORE FEATURES)
 
-I would recommend you try to run both versions or at least throw an eye on both repositories. V3 is much older, less organized and not respecting of any patterns what-so-ever in code, mostly based on a framework written from scratch, but I've refactored some dependency management into it.
+V3 is much older, less organized and not respecting of any patterns what-so-ever in code, mostly based on a framework written from scratch, but I've refactored some dependency management into it.
 
 Find version 3 here: https://github.com/nenuadrian/Secret-Republic-Hacking-Browser-Game-V3
 
