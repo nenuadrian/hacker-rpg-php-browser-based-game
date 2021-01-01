@@ -44,7 +44,7 @@ Read more about the history of the game and the more complete older version in t
 
 # Setting up
 
-You need a webserver (e.g. MAMP/WAMP) able to run PHP (work with 7.3) and an MySQL database (LAMP stack).
+You need a webserver (e.g. MAMP/WAMP) able to run PHP (tested with 7.3) and an MySQL database (LAMP stack).
 
 1. Import db.sql into a fresh MySQL db.
 
