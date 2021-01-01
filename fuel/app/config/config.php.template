@@ -1,82 +1,14 @@
 <?php
+
+ini_set("pcre.jit", "0");
+
+
 return array(
+	'email_confirmation_enabled' => false,
   'title'                  => 'Secret Republic of Hackers',
   'salt'                   => 'AV&Uf5#8u.af(aY?a6l^S;{c@2JSLH?z_9_N5mf5K<xrL.JmB1udU.Z$i(1S<&^s',
   'iterations'             => 10000,
-/*	'apps' => array(
-			1 => array(
-					'name' => 'Grid scanner 1',
-					'ram' => 20,
-					'cpu' => 5,
-					'ssd' => 10,
-					'grid_scanner' => 10
-				),
-			2 => array(
-					'name' => 'Firewall 1',
-					'ram' => 20,
-					'cpu' => 5,
-					'ssd' => 10,
-					'firewall' => 10
-				),
-
-			3 => array(
-					'name' => 'Antivirus 1',
-					'ram' => 20,
-					'cpu' => 5,
-					'ssd' => 10,
-					'antivirus' => 10
-				),
-
-			4 => array(
-					'name' => 'Money stealer 1',
-					'ram' => 20,
-					'cpu' => 5,
-					'ssd' => 10,
-					'money_steal' => 10
-				),
-
-			5 => array(
-					'name' => 'Money making app planter 1',
-					'ram' => 20,
-					'cpu' => 5,
-					'ssd' => 10,
-					'money_maker_planter' => 10,
-					'plants' => 6
-				),
-
-			6 => array(
-					'name' => 'Money making app 1',
-					'ram' => 20,
-					'cpu' => 5,
-					'ssd' => 10,
-					'user_run' => true,
-					'money_maker' => 10
-				)
-		),
-	'hardware' => array(
-		'ram' => array(
-				1 => array(
-						'name' => 'RAM 256 MB',
-						'value' => 256,
-						'price' => 100
-					)
-			),
-		'cpu' => array(
-				1 => array(
-						'name' => 'CPU - power: 20',
-						'value' => 20,
-						'price' => 300
-					)
-			),
-		'ssd' => array(
-				1 => array(
-						'name' => 'SSD 2GB',
-						'value' => 2000,
-						'price' => 300
-					)
-			),
-		),
-*/
+/
 
 	/**
 	 * base_url - The base URL of the application.
@@ -222,7 +154,8 @@ return array(
 		 * WARNING: Using xss_clean will cause a performance hit.
 		 * How much is dependant on how much input data there is.
 		 */
-		'output_filter'  => array('Security::htmlentities'),
+		//'output_filter'  => array('Security::htmlentities'),
+		'output_filter' => array(),
 
 		/**
 		 * Encoding mechanism to use on htmlentities()

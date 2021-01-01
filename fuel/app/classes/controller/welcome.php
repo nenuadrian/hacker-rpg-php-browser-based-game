@@ -17,8 +17,12 @@ class Controller_Welcome extends Controller {
 			try {
 					$id = Hacker::create(Input::post('username'), Input::post('password'), Input::post('email'));
 					Hacker::force_login($id);
-					\Model\Emails::send(Input::post('email'), Input::post('username'), 'welcome', ['USERNAME' => Input::post('username')]);
-					$this->send_confirmation_email($id, Input::post('email'), Input::post('username'));
+					if (Config::get('email_confirmation_enabled')) {
+						\Model\Emails::send(Input::post('email'), Input::post('username'), 'welcome', ['USERNAME' => Input::post('username')]);
+						$this->send_confirmation_email($id, Input::post('email'), Input::post('username'));
+					} else {
+						Hacker::update(array('email_confirmed' => 1), $id);
+					}
 
 					Response::redirect(Uri::create('pages/view/story'));
 				} catch (Exception $e) {
@@ -93,12 +97,11 @@ class Controller_Welcome extends Controller {
 	}
 
 	private function send_confirmation_email($user_id, $target, $username) {
-		$confirm_hash = md5($to . $username . '23%@#%FD2sadfg' . time() . rand(1, 1000));
+		$confirm_hash = md5($user_id . $username . '23%@#%FD2sadfg' . time() . rand(1, 1000));
 		$confirm_url = Uri::create('welcome/confirm/' . $confirm_hash);
 		Hacker::update(array('email_last_confirm_req' => DB::expr('NOW()'), 'email_hash' => $confirm_hash), $user_id);
 
 		\Model\Emails::send($target, $username, 'confirm', ['USERNAME' => $username, 'CONFIRM_URL' => $confirm_url]);
-
 	}
 
 
@@ -110,7 +113,7 @@ public function action_logout() {
 	if (Hacker::get('emergency_logout')) {
 			return Response::redirect(Hacker::get('emergency_logout'));
 	}
-	Response::redirect_back();
+	Response::redirect(Uri::base());
 }
 
 	public function action_404() {

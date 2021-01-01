@@ -17,6 +17,8 @@
 	<div class="col-md-3"></div>
 	<div class="col-md-6 text-center">
 		<img src="<?php echo Uri::create('assets/img/logo.png'); ?>" class="main-logo" style="max-width:300px; width:100%; margin-top:-60px; margin-bottom:20px" />
+    <p><a href="https://github.com/nenuadrian/Secret-Republic-Hacker-Game-ORPBG-Alpha" target="_blank">Open Source framework of this game on GitHub</a></p>
+
     <?php echo !Input::post('register') ? View::forge('components/messages') : ''; ?>
     <br/>
 		<form method="post">
@@ -49,12 +51,6 @@
 			</p>
 			<button class="btn btn-block btn-default" type="submit" style="margin-top:20px" name="register" value="true">obtain citizenship</button>
 		</form>
-
-      <?php /* $detect = new Mobile_Detect;
-      if (!$detect->isMobile()): ?>
-        <br/><br/>
-      <a href="https://itunes.apple.com/us/app/secret-republic-hacker-orpg/id1181237523" target="_blank"><?php echo Asset::img('app_store.png', array('style' => 'max-width: 200px;')); ?></a>
-    <?php endif;*/ ?>
   </div>
 
 </div>

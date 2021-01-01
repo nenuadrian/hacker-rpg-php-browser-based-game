@@ -1,15 +1,13 @@
 <?php
 /**
- * Fuel
- *
- * Fuel is a fast, lightweight, community driven PHP5 framework.
+ * Fuel is a fast, lightweight, community driven PHP 5.4+ framework.
  *
  * @package    Fuel
- * @version    1.8
+ * @version    1.8.2
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2016 Fuel Development Team
- * @link       http://fuelphp.com
+ * @copyright  2010 - 2019 Fuel Development Team
+ * @link       https://fuelphp.com
  */
 
 namespace Email;
@@ -154,11 +152,19 @@ class Email_Driver_Smtp extends \Email_Driver
 			$this->config['smtp']['host'] = 'tcp://'.$this->config['smtp']['host'];
 		}
 
+		$context = stream_context_create();
+		if (is_array($this->config['smtp']['options']) and ! empty($this->config['smtp']['options']))
+		{
+			stream_context_set_option($context, $this->config['smtp']['options']);
+		}
+
 		$this->smtp_connection = stream_socket_client(
 			$this->config['smtp']['host'].':'.$this->config['smtp']['port'],
 			$error_number,
 			$error_string,
-			$this->config['smtp']['timeout']
+			$this->config['smtp']['timeout'],
+			STREAM_CLIENT_CONNECT,
+			$context
 		);
 
 		if(empty($this->smtp_connection))

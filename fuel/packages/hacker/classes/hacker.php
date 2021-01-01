@@ -160,6 +160,7 @@ class Hacker {
 
   public static function logout() {
     \Session::destroy();
+    session_destroy();
   }
 
   public static function unread_conversations() {

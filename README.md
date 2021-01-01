@@ -1,11 +1,15 @@
-# Secret Republic - Alpha V4
+# Secret Republic - Browser Based Hacker Themed Text Game- Alpha V4
 
 
 ![Cover](images/cover.jpg)
 
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
-See screenshots at the bottom. Audio trailer: https://www.youtube.com/watch?v=6thfiGb-b7c
+Live demo: http://secretrepublic.nenuadrian.com
+
+See screenshots at the bottom. 
+
+Audio trailer: https://www.youtube.com/watch?v=6thfiGb-b7c
 
 The code for the Secret Republic hacker simulation role playing browser text game.
 
@@ -19,45 +23,38 @@ Read more about the history of the game and the more complete older version in t
 
 # Main Features
 
-1 Audio AI (woman, same as trailer) voice speaks when interacting with the game
+1. Audio AI (woman, same as trailer) voice speaks when interacting with the game
 
-2 Futuristic bootstrap based UI, mobile ready, made to feel like an app
+2. Futuristic minimalistic Bootstrap-based UI, mobile ready, made to feel like an app
 
-3 Point and click based missions with servers of multiple types (file servers, email and database)
+3. Point and click based missions with servers of multiple types (file servers, email and database)
 
-4 In-game Mission designer with BBCode like syntax features
+4. In-game Mission designer with BBCode like syntax features
 
-5 Upgradable knowledge & skills
+5. Upgradable knowledge & skills
 
-6 Rewards system
+6. Rewards system
 
-# SecretAlpha V3 ( MORE FEATURES! )
-
-I probably recommend you try to run both versions or at least check out both repositories. V3 is much older, less organized or respecting any patterns what-so-ever code, mostly written from scratch but I've refactored some dependency management into it.
-
-https://github.com/nenuadrian/Secret-Republic-Hacking-Browser-Game-V3
 
 # Setting up
 
-You need a webserver able to run PHP and an MySQL database (LAMP).
+You need a webserver (e.g. MAMP/WAMP) able to run PHP (work with 7.3) and an MySQL database (LAMP stack).
 
-1. Install MAMP (https://www.mamp.info/en/) for windows or WAMP (http://www.wampserver.com/en/) for Mac to get them out of the box.
+1. Import db.sql into a fresh MySQL db.
 
-2. Import db.sql into a fresh MySQL db.
+2. cp fuel/app/config/db.template fuel/app/config/db.php and add your DB details.
 
-3. Copy fuel/app/config/config.template into fuel/app/config/db.php and add your DB details.
+3. cp fuel/app/config/config.template fuel/app/config/config.php and configure it if you want.
 
-4. Copy fuel/app/config/db.template into fuel/app/config/config.php and configure it if you want.
+4. cp fuel/app/config/email.template fuel/app/config/email.php and configure it if you want to setup email sending.
 
-5. Copy fuel/app/config/email.template into fuel/app/config/email.php and configure it if you want to setup email sending.
+5. Run 'composer install' (you may need to install the composer PHP deppendency management tool).
 
-6. Run 'composer install' and 'composer update' (more optional info about composer: https://getcomposer.org/)
-
-7. Create an account through the signup form and set your group to 2 in the database in order to become a Cardinal (admin).
+6. Create an account through the signup form and set your group to 2 in the 'user' DB table in order to become a Cardinal (admin).
 
 # Cron jobs
 
-You may want to setup tasks to run the following code once in a while
+You may want to setup cron tasks to run the following pages once in a while
 
 your-url/cron/rankings
 
@@ -116,3 +113,12 @@ https://medium.com/@adrian.n/secret-republic-open-sourced-hacker-simulation-futu
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
 Please link and contribute back to this repository if using the code or assets :)
+
+
+# SecretAlpha V3 ( MORE FEATURES! )
+
+I would recommend you try to run both versions or at least throw an eye on both repositories. V3 is much older, less organized and not respecting of any patterns what-so-ever in code, mostly based on a framework written from scratch, but I've refactored some dependency management into it.
+
+Find version 3 here: https://github.com/nenuadrian/Secret-Republic-Hacking-Browser-Game-V3
+
+The repository you are on now, V4, is much more easy to setup.
