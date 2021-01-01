@@ -1,4 +1,4 @@
-# Secret Republic - Browser Based Hacker Themed Text Game- Alpha V4
+# Secret Republic - Browser Based PHP Hacker Themed RPG - Alpha V4
 
 
 ![Cover](images/cover.jpg)
