@@ -3,8 +3,6 @@
 
 ![Cover](images/cover.jpg)
 
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
-
 # Live Demo
 
 Live demo: http://secretrepublic.nenuadrian.com
@@ -13,7 +11,7 @@ Hosted on [DreamHost](https://mbsy.co/dreamhost/92571715)
 
 # Read about the journey
 
-[Read article on Medium](https://medium.com/@adrian.n/secret-republic-open-sourced-hacker-simulation-futuristic-rpg-browser-based-game-php-843d393cb9d7)
+[Read article on Medium](https://adriannenu.medium.com/secret-republic-update-hacker-themed-browser-based-php-game-855299b4cdea)
 
 # Overview
 
