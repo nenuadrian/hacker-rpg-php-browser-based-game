@@ -6,7 +6,8 @@ ini_set("pcre.jit", "0");
 return array(
 	'email_confirmation_enabled' => false,
   'title'                  => 'Secret Republic of Hackers',
-  'salt'                   => 'AV&Uf5#8u.af(aY?a6l^S;{c@2JSLH?z_9_N5mf5K<xrL.JmB1udU.Z$i(1S<&^s',
+  'cron_hash'                  => 'YOUR_UNIQUE_HASH',
+  'salt'                   => 'YOUR_UNIQUE_HASH2',
   'iterations'             => 10000,
 /
 

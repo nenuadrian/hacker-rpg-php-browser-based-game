@@ -16,7 +16,11 @@ class Controller_Cron extends Controller {
   	DB::update('server')->set(array('last_apps_profit_check' => time()))->execute();
   }*/
 	
-	public function action_emails() {
+	public function action_emails($hash) {
+		if ($hash != Config::get('cron_hash')) {
+			die('Access denied - nice try');
+		}
+
 		$queue = DB::select()->from('email_queue')->where('processed_at', 'IS', NULL)->limit(5)->execute()->as_array('queue_id');
 		foreach($queue as $queue_id => $q) {
 			try {
@@ -28,7 +32,11 @@ class Controller_Cron extends Controller {
 		}
 	}
 	
-	public function action_rankings() {
+	public function action_rankings($hash) {
+		if ($hash != Config::get('cron_hash')) {
+			die('Access denied - nice try');
+		}
+		
 		$users = DB::select()->from('user')->execute()->as_array();
 		foreach($users as $user) {
 			$points = $user['level'] * 2;
