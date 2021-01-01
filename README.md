@@ -25,8 +25,6 @@ It's been through years of development with this being its 3rd full do-over.
 
 The project is not under active development with milestones in-place.
 
-Read more about the history of the game and the more complete older version in the works for open sourcing @ https://medium.com/@adrian.n/secret-republic-open-sourced-hacker-simulation-futuristic-rpg-browser-based-game-php-843d393cb9d7
-
 # Main Features
 
 1. Audio AI (woman, same as trailer) voice speaks when interacting with the game
