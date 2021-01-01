@@ -74,7 +74,9 @@ https://en.wikipedia.org/wiki/Cron
 
 # Mobile app
 
-One approach is to use this repository: https://github.com/nenuadrian/iOS-website-elegant-rendering-swift-app
+One approach is to use these repositories: 
+ * iOS: https://github.com/nenuadrian/iOS-website-elegant-rendering-swift-app
+ * Android: https://github.com/nenuadrian/android-website-elegant-rendering
 
 To render the website within a published application
 
