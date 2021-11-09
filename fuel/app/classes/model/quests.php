@@ -1,6 +1,6 @@
 <?php
-use \Model\Task;
 namespace Model;
+use \Model\Task;
 
 class Quests extends \Model {
 

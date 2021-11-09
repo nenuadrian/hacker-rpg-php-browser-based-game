@@ -9,7 +9,6 @@ return array(
   'cron_hash'                  => 'YOUR_UNIQUE_HASH',
   'salt'                   => 'YOUR_UNIQUE_HASH2',
   'iterations'             => 10000,
-/
 
 	/**
 	 * base_url - The base URL of the application.
