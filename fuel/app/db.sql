@@ -1,32 +1,5 @@
--- phpMyAdmin SQL Dump
--- version 4.7.0
--- https://www.phpmyadmin.net/
---
--- Host: localhost
--- Generation Time: Feb 02, 2018 at 11:37 PM
--- Server version: 5.5.52-MariaDB
--- PHP Version: 5.6.30
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `admin_alpha`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `analytics`
---
 
 CREATE TABLE `analytics` (
   `analytic_id` bigint(20) NOT NULL,
@@ -38,10 +11,6 @@ CREATE TABLE `analytics` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `conversation`
---
 
 CREATE TABLE `conversation` (
   `conversation_id` int(11) NOT NULL,
@@ -59,9 +28,6 @@ CREATE TABLE `conversation` (
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `email_queue`
---
 
 CREATE TABLE `email_queue` (
   `queue_id` bigint(20) NOT NULL,
@@ -76,9 +42,6 @@ CREATE TABLE `email_queue` (
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `feedback`
---
 
 CREATE TABLE `feedback` (
   `feedback_id` int(11) NOT NULL,
@@ -89,9 +52,6 @@ CREATE TABLE `feedback` (
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `group_application`
---
 
 CREATE TABLE `group_application` (
   `application_id` int(11) NOT NULL,
@@ -103,9 +63,6 @@ CREATE TABLE `group_application` (
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `hacker_group`
---
 
 CREATE TABLE `hacker_group` (
   `hacker_group_id` int(11) NOT NULL,
@@ -115,9 +72,7 @@ CREATE TABLE `hacker_group` (
   `ranking_points` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `hacker_group`
---
+-- --------------------------------------------------------
 
 INSERT INTO `hacker_group` (`hacker_group_id`, `name`, `created_at`, `ranking`, `ranking_points`) VALUES
 (1, 'asdf', '2016-09-06 07:12:19', 0, 0),
@@ -125,9 +80,6 @@ INSERT INTO `hacker_group` (`hacker_group_id`, `name`, `created_at`, `ranking`, 
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `hacker_group_application`
---
 
 CREATE TABLE `hacker_group_application` (
   `hacker_group_application_id` int(11) NOT NULL,
@@ -139,9 +91,6 @@ CREATE TABLE `hacker_group_application` (
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `hacker_quote`
---
 
 CREATE TABLE `hacker_quote` (
   `quote_id` int(11) NOT NULL,
@@ -149,9 +98,8 @@ CREATE TABLE `hacker_quote` (
   `author` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `hacker_quote`
---
+-- --------------------------------------------------------
+
 
 INSERT INTO `hacker_quote` (`quote_id`, `content`, `author`) VALUES
 (1, 'I Hate Programming.\nI Hate Programming.\nI Hate Programming.\nIt works!\nI Love Programming.\n', NULL),
@@ -754,9 +702,6 @@ INSERT INTO `hacker_quote` (`quote_id`, `content`, `author`) VALUES
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `level_rewards`
---
 
 CREATE TABLE `level_rewards` (
   `level` int(11) NOT NULL
@@ -764,9 +709,6 @@ CREATE TABLE `level_rewards` (
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `quest`
---
 
 CREATE TABLE `quest` (
   `quest_id` int(11) NOT NULL,
@@ -788,9 +730,8 @@ CREATE TABLE `quest` (
   `duration` int(21) NOT NULL DEFAULT '10'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `quest`
---
+-- --------------------------------------------------------
+
 
 INSERT INTO `quest` (`quest_id`, `name`, `required_quest_id`, `quest_group_id`, `live`, `quest_group_order`, `level`, `type`, `default_connection`, `money`, `experience`, `summary`, `skill_points`, `pm_success_send`, `pm_success_title`, `pm_success_content`, `duration`) VALUES
 (9, 'Newborns', 0, 5, 1, 0, 0, 3, 0, 10, 1, 'Deciding to join THE competition is a very bold move on your part. Everyone has been relentlessly talking about it all around you and it is finally time to find out yourself exactly what all this fuss is about. Is it worth sacrificing it all for this? Let me tell you that it is not going to be an easy journey. It will, in fact, be the longest and most gratifying journey of your lifetime.\r\n', 2, 0, NULL, NULL, 100),
@@ -803,9 +744,6 @@ INSERT INTO `quest` (`quest_id`, `name`, `required_quest_id`, `quest_group_id`, 
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `quest_group`
---
 
 CREATE TABLE `quest_group` (
   `quest_group_id` int(11) NOT NULL,
@@ -818,9 +756,7 @@ CREATE TABLE `quest_group` (
   `description` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `quest_group`
---
+-- --------------------------------------------------------
 
 INSERT INTO `quest_group` (`quest_group_id`, `name`, `required_quest_id`, `live`, `type`, `level`, `group_order`, `description`) VALUES
 (5, 'Computer Science Flash Course', 0, 1, 1, 0, 0, 'The very basics'),
@@ -832,9 +768,6 @@ INSERT INTO `quest_group` (`quest_group_id`, `name`, `required_quest_id`, `live`
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `quest_objective`
---
 
 CREATE TABLE `quest_objective` (
   `objective_id` int(11) NOT NULL,
@@ -849,9 +782,8 @@ CREATE TABLE `quest_objective` (
   `data2` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `quest_objective`
---
+-- --------------------------------------------------------
+
 
 INSERT INTO `quest_objective` (`objective_id`, `parent_objective_id`, `story`, `objective_order`, `optional`, `type`, `data`, `quest_id`, `name`, `data2`) VALUES
 (33, NULL, 'I\'ve prepared a server for you with a default SSH (Secure Shell) service running on port 23. \r\n\r\nTake a look at [ip hn=\"demo.server\"].\r\n\r\nThe password for the SSH service is [b]root[/b].\r\n\r\nSee you there.', 1, NULL, 1, NULL, 9, 'Welcome to jungle', NULL),
@@ -887,9 +819,6 @@ INSERT INTO `quest_objective` (`objective_id`, `parent_objective_id`, `story`, `
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `quest_server`
---
 
 CREATE TABLE `quest_server` (
   `quest_server_id` int(11) NOT NULL,
@@ -900,10 +829,8 @@ CREATE TABLE `quest_server` (
   `network` int(11) NOT NULL DEFAULT '10',
   `hide_hn` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- --------------------------------------------------------
 
---
--- Dumping data for table `quest_server`
---
 
 INSERT INTO `quest_server` (`quest_server_id`, `quest_id`, `hostname`, `discovered`, `bounces`, `network`, `hide_hn`) VALUES
 (19, 9, 'demo.server', 1, 0, 0, 0),
@@ -919,9 +846,6 @@ INSERT INTO `quest_server` (`quest_server_id`, `quest_id`, `hostname`, `discover
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `quest_server_service`
---
 
 CREATE TABLE `quest_server_service` (
   `service_id` int(11) NOT NULL,
@@ -935,9 +859,7 @@ CREATE TABLE `quest_server_service` (
   `required_objective` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `quest_server_service`
---
+-- --------------------------------------------------------
 
 INSERT INTO `quest_server_service` (`service_id`, `port`, `type`, `quest_server_id`, `discovered`, `welcome`, `quest_id`, `users`, `required_objective`) VALUES
 (14, 23, 1, 19, 1, '', 9, 'root::60', 0),
@@ -950,9 +872,6 @@ INSERT INTO `quest_server_service` (`service_id`, `port`, `type`, `quest_server_
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `quest_service_user`
---
 
 CREATE TABLE `quest_service_user` (
   `user_id` int(11) NOT NULL,
@@ -964,9 +883,8 @@ CREATE TABLE `quest_service_user` (
   `content` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `quest_service_user`
---
+-- --------------------------------------------------------
+
 
 INSERT INTO `quest_service_user` (`user_id`, `service_id`, `username`, `password`, `quest_id`, `security`, `content`) VALUES
 (2, 14, 'root', 'root', 9, 0, NULL),
@@ -979,9 +897,6 @@ INSERT INTO `quest_service_user` (`user_id`, `service_id`, `username`, `password
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `quest_user_entity`
---
 
 CREATE TABLE `quest_user_entity` (
   `entity_id` int(11) NOT NULL,
@@ -998,9 +913,8 @@ CREATE TABLE `quest_user_entity` (
   `entity_order` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `quest_user_entity`
---
+-- --------------------------------------------------------
+
 
 INSERT INTO `quest_user_entity` (`entity_id`, `title`, `user_id`, `security`, `content`, `quest_id`, `sender_receiver`, `type`, `password`, `required_running`, `required_objective`, `entity_order`) VALUES
 (1, 'test file2', 1, 2, 'a', 1, NULL, 0, '', '', 0, 0),
@@ -1031,10 +945,6 @@ INSERT INTO `quest_user_entity` (`entity_id`, `title`, `user_id`, `security`, `c
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `reward`
---
-
 CREATE TABLE `reward` (
   `reward_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -1051,9 +961,6 @@ CREATE TABLE `reward` (
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `server`
---
 
 CREATE TABLE `server` (
   `server_id` int(11) NOT NULL,
@@ -1070,19 +977,14 @@ CREATE TABLE `server` (
   `change_ip_request` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `server`
---
+-- --------------------------------------------------------
+
 
 INSERT INTO `server` (`server_id`, `hostname`, `ip`, `user_id`, `ram`, `cpu`, `ssd`, `cpu_used`, `ssd_used`, `ram_used`, `last_apps_profit_check`, `change_ip_request`) VALUES
 (7, 'new server', '244.157.70.106', 1, 256, 20, 2000, 0, 10, 0, 1473249580, NULL),
 (8, 'new server', '76.216.68.11', 1, 256, 20, 2000, 5, 20, 20, 1473249580, NULL);
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `server_app`
---
 
 CREATE TABLE `server_app` (
   `server_app_id` int(11) NOT NULL,
@@ -1092,9 +994,8 @@ CREATE TABLE `server_app` (
   `owner_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `server_app`
---
+-- --------------------------------------------------------
+
 
 INSERT INTO `server_app` (`server_app_id`, `type`, `running`, `server_id`, `owner_id`) VALUES
 (8, 5, NULL, 7, 1),
@@ -1106,9 +1007,6 @@ INSERT INTO `server_app` (`server_app_id`, `type`, `running`, `server_id`, `owne
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `task`
---
 
 CREATE TABLE `task` (
   `task_id` int(11) NOT NULL,
@@ -1127,9 +1025,6 @@ CREATE TABLE `task` (
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `tutorial_step`
---
 
 CREATE TABLE `tutorial_step` (
   `step_id` int(11) NOT NULL,
@@ -1141,9 +1036,7 @@ CREATE TABLE `tutorial_step` (
   `experience` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tutorial_step`
---
+-- --------------------------------------------------------
 
 INSERT INTO `tutorial_step` (`step_id`, `story`, `completion_conditions`, `title`, `money`, `skill_points`, `experience`) VALUES
 (1, '', 'return true;', 'title', 0, 0, 0),
@@ -1151,17 +1044,14 @@ INSERT INTO `tutorial_step` (`step_id`, `story`, `completion_conditions`, `title
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `user`
---
 
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `group` int(11) NOT NULL,
-  `session_hash` varchar(255) NOT NULL,
+  `group` int(11) NOT NULL DEFAULT '1',
+  `session_hash` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `level` int(11) NOT NULL DEFAULT '1',
   `experience` int(11) NOT NULL DEFAULT '0',
@@ -1196,9 +1086,6 @@ CREATE TABLE `user` (
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `user_mission`
---
 
 CREATE TABLE `user_mission` (
   `user_mission_id` int(11) NOT NULL,
@@ -1209,257 +1096,201 @@ CREATE TABLE `user_mission` (
   `best_time` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Indexes for dumped tables
---
+-- --------------------------------------------------------
 
---
--- Indexes for table `analytics`
---
 ALTER TABLE `analytics`
   ADD PRIMARY KEY (`analytic_id`);
 
---
--- Indexes for table `conversation`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `conversation`
   ADD PRIMARY KEY (`conversation_id`);
 
---
--- Indexes for table `email_queue`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `email_queue`
   ADD PRIMARY KEY (`queue_id`);
 
---
--- Indexes for table `feedback`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `feedback`
   ADD PRIMARY KEY (`feedback_id`);
 
---
--- Indexes for table `group_application`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `group_application`
   ADD PRIMARY KEY (`application_id`);
 
---
--- Indexes for table `hacker_group`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `hacker_group`
   ADD PRIMARY KEY (`hacker_group_id`);
 
---
--- Indexes for table `hacker_group_application`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `hacker_group_application`
   ADD PRIMARY KEY (`hacker_group_application_id`);
 
---
--- Indexes for table `hacker_quote`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `hacker_quote`
   ADD PRIMARY KEY (`quote_id`);
 
---
--- Indexes for table `quest`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `quest`
   ADD PRIMARY KEY (`quest_id`);
 
---
--- Indexes for table `quest_group`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `quest_group`
   ADD PRIMARY KEY (`quest_group_id`);
 
---
--- Indexes for table `quest_objective`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `quest_objective`
   ADD PRIMARY KEY (`objective_id`);
 
---
--- Indexes for table `quest_server`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `quest_server`
   ADD PRIMARY KEY (`quest_server_id`);
 
---
--- Indexes for table `quest_server_service`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `quest_server_service`
   ADD PRIMARY KEY (`service_id`);
 
---
--- Indexes for table `quest_service_user`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `quest_service_user`
   ADD PRIMARY KEY (`user_id`);
 
---
--- Indexes for table `quest_user_entity`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `quest_user_entity`
   ADD PRIMARY KEY (`entity_id`);
 
---
--- Indexes for table `reward`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `reward`
   ADD PRIMARY KEY (`reward_id`);
 
---
--- Indexes for table `server`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `server`
   ADD PRIMARY KEY (`server_id`);
 
---
--- Indexes for table `server_app`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `server_app`
   ADD PRIMARY KEY (`server_app_id`);
 
---
--- Indexes for table `task`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `task`
   ADD PRIMARY KEY (`task_id`);
 
---
--- Indexes for table `tutorial_step`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `tutorial_step`
   ADD PRIMARY KEY (`step_id`);
 
---
--- Indexes for table `user`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
 
---
--- Indexes for table `user_mission`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `user_mission`
   ADD PRIMARY KEY (`user_mission_id`);
 
---
--- AUTO_INCREMENT for dumped tables
---
+-- --------------------------------------------------------
 
---
--- AUTO_INCREMENT for table `analytics`
---
 ALTER TABLE `analytics`
   MODIFY `analytic_id` bigint(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `conversation`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `conversation`
   MODIFY `conversation_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `email_queue`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `email_queue`
   MODIFY `queue_id` bigint(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `feedback`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `feedback`
   MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `group_application`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `group_application`
   MODIFY `application_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `hacker_group`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `hacker_group`
   MODIFY `hacker_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `hacker_group_application`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `hacker_group_application`
   MODIFY `hacker_group_application_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `hacker_quote`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `hacker_quote`
   MODIFY `quote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=597;
---
--- AUTO_INCREMENT for table `quest`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `quest`
   MODIFY `quest_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
---
--- AUTO_INCREMENT for table `quest_group`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `quest_group`
   MODIFY `quest_group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `quest_objective`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `quest_objective`
   MODIFY `objective_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
---
--- AUTO_INCREMENT for table `quest_server`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `quest_server`
   MODIFY `quest_server_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
---
--- AUTO_INCREMENT for table `quest_server_service`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `quest_server_service`
   MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
---
--- AUTO_INCREMENT for table `quest_service_user`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `quest_service_user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `quest_user_entity`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `quest_user_entity`
   MODIFY `entity_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
---
--- AUTO_INCREMENT for table `reward`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `reward`
   MODIFY `reward_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `server`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `server`
   MODIFY `server_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `server_app`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `server_app`
   MODIFY `server_app_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
---
--- AUTO_INCREMENT for table `task`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `task`
   MODIFY `task_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tutorial_step`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `tutorial_step`
   MODIFY `step_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `user`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `user`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `user_mission`
---
+-- --------------------------------------------------------
+
 ALTER TABLE `user_mission`
   MODIFY `user_mission_id` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

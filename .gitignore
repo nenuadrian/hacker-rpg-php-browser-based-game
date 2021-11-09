@@ -6,7 +6,6 @@ stats/**
 public_shtml/**
 fuel/vendor
 fuel/app/config/db.php
-fuel/app/config/config.php
 fuel/app/tmp/**
 fuel/app/logs/**
 fuel/app/cache/**

@@ -1,10 +1,12 @@
 <?php
+namespace Model;
+
+
 use \Model\Task;
 use \Model\Skills;
 use \Model\Servers;
 use \Model\DBMock;
 
-namespace Model;
 
 class Missions extends \Model {
     public static $shortcode = false;

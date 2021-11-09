@@ -1,10 +1,10 @@
 <?php
+namespace Model;
 
 use \Model\Conversation;
 use \Model\Knowledge;
 use \Model\Apps;
 use \Model\Servers;
-namespace Model;
 
 class Task extends \Model {
 

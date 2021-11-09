@@ -36,8 +36,9 @@ class Hacker {
       throw new \Exception('password_invalid');
     }
     \Model\Analytics::record('register', array('headers' => \Input::headers()));
-    \DB::insert('user')->set(array('username' => $username, 'password' => static::encrypt_password($password), 'email' => $email))->execute();
-    $id =\DB::select('user_id')->from('user')->where('username', $username)->execute()->as_array()[0]['user_id'];
+    \DB::insert('user')->set(array('username' => $username, 'password' => static::encrypt_password($password), 'email' => $email,
+      'email_confirmed' => \Config::get('email_confirmation_enabled') ? 0 : 1))->execute();
+    $id = \DB::select('user_id')->from('user')->where('username', $username)->execute()->as_array()[0]['user_id'];
     return $id;
   }
 
@@ -160,7 +161,6 @@ class Hacker {
 
   public static function logout() {
     \Session::destroy();
-    session_destroy();
   }
 
   public static function unread_conversations() {

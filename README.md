@@ -1,6 +1,5 @@
 # Secret Republic - Browser Based PHP Hacker Themed RPG - Alpha V4
 
-
 ![Cover](images/cover.jpg)
 
 # Live Demo
@@ -17,11 +16,13 @@ Hosted on [DreamHost](https://mbsy.co/dreamhost/92571715)
 
 Audio trailer on Youtube: https://www.youtube.com/watch?v=6thfiGb-b7c
 
-A lot of work has gone into this, but it (and more in its previous version) are not a documented (as of yet) project.
+A lot of work has gone into this, but it not a fully documented project.
 
-It's been through years of development with this being its 3rd full do-over.
+It's been through years of development with this being its 3rd itteration.
 
 The project is not under active development with milestones in-place.
+
+It is built upon the https://fuelphp.com MVC framework.
 
 # Main Features
 
@@ -38,21 +39,20 @@ The project is not under active development with milestones in-place.
 6. Rewards system
 
 
-# Setting up
+# Simple Setup
 
-You need a webserver (e.g. MAMP/WAMP) able to run PHP (tested with 7.3) and an MySQL database (LAMP stack).
+You need a webserver (e.g. MAMP/WAMP/XAMPP) able to run PHP (tested with 7.3) and an MySQL database (LAMP stack).
 
-1. Import db.sql into a fresh MySQL db.
+1. Install `composer` (the PHP dependency management system - `brew install composer` for MacOS) and run `composer install`
 
-2. cp fuel/app/config/db.template fuel/app/config/db.php and add your DB details.
+2. You will need to create an empty Database in MySQL - it's name is not relevant but you will need it in the next step. For MAMP, you would go to `http://localhost:8888/phpMyAdmin5`
 
-3. cp fuel/app/config/config.template fuel/app/config/config.php and configure it if you want.
+3. Visit `http://localhost/public_html` - this may be different if you are using another port or directory structure, e.g. `http://localhost:8888/sr/public_html` and follow the setup process
 
-4. cp fuel/app/config/email.template fuel/app/config/email.php and configure it if you want to setup email sending.
 
-5. Run 'composer install' (you may need to install the composer PHP deppendency management tool).
+![Screenshot](images/setup.png)
 
-6. Create an account through the signup form and set your group to 2 in the 'user' DB table in order to become a Cardinal (admin).
+
 
 # Cron jobs
 
@@ -68,13 +68,18 @@ e.g.
 
 https://en.wikipedia.org/wiki/Cron
 
+# Linting
+
+Checking PHP syntax
+```
+./fuel/vendor/bin/phplint ./ --exclude=vendor
+```
+
 # Mobile app
 
 One approach is to use these repositories: 
  * iOS: https://github.com/nenuadrian/iOS-website-elegant-rendering-swift-app
  * Android: https://github.com/nenuadrian/android-website-elegant-rendering
-
-To render the website within a published application
 
 # Screenshots
 
@@ -123,7 +128,7 @@ To render the website within a published application
 Please link and contribute back to this repository if using the code or assets :)
 
 
-# SecretAlpha V3 (MORE FEATURES)
+# Secret Republic V3 (OLDER W/ MORE FEATURES & bugs)
 
 V3 is much older, less organized and not respecting of any patterns what-so-ever in code, mostly based on a framework written from scratch, but I've refactored some dependency management into it.
 

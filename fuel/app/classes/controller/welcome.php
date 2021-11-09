@@ -1,17 +1,23 @@
 <?php
 
 class Controller_Welcome extends Controller {
+	public function __construct() {
+		if (!File::exists(APPPATH . '/config/db.php')) {
+			Response::redirect(Uri::create('setup'));
+		} 
+	}
+
 	public function action_index() {
 		if (Hacker::check()) Response::redirect(Uri::create('dashboard'));
 
-    if (Input::post('connect')) {
-        if (Hacker::login(Input::post('username'), Input::post('password'))) {
-            Response::redirect_back('dashboard');
-        } else {
-            Messages::voice('accessdenied');
-            Messages::error("Access Denied");
-        }
-    }
+		if (Input::post('connect')) {
+			if (Hacker::login(Input::post('username'), Input::post('password'))) {
+				Response::redirect_back('dashboard');
+			} else {
+				Messages::voice('accessdenied');
+				Messages::error("Access Denied");
+			}
+		}
 
 		if (Input::post('register')) {
 			try {
@@ -20,9 +26,7 @@ class Controller_Welcome extends Controller {
 					if (Config::get('email_confirmation_enabled')) {
 						\Model\Emails::send(Input::post('email'), Input::post('username'), 'welcome', ['USERNAME' => Input::post('username')]);
 						$this->send_confirmation_email($id, Input::post('email'), Input::post('username'));
-					} else {
-						Hacker::update(array('email_confirmed' => 1), $id);
-					}
+					} 
 
 					Response::redirect(Uri::create('pages/view/story'));
 				} catch (Exception $e) {
@@ -104,17 +108,15 @@ class Controller_Welcome extends Controller {
 		\Model\Emails::send($target, $username, 'confirm', ['USERNAME' => $username, 'CONFIRM_URL' => $confirm_url]);
 	}
 
+	public function action_logout() {
+		if (!Hacker::check()) Response::redirect(Uri::base());
+		Hacker::logout();
 
-
-public function action_logout() {
-	if (!Hacker::check()) Response::redirect(Uri::base());
-	Hacker::logout();
-
-	if (Hacker::get('emergency_logout')) {
-			return Response::redirect(Hacker::get('emergency_logout'));
+		if (Hacker::get('emergency_logout')) {
+				return Response::redirect(Hacker::get('emergency_logout'));
+		}
+		Response::redirect(Uri::base());
 	}
-	Response::redirect(Uri::base());
-}
 
 	public function action_404() {
 		return View::forge('welcome/404');
