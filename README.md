@@ -10,7 +10,7 @@ Live demo: http://secretrepublic.nenuadrian.com
 
 Hosted on [DreamHost](https://mbsy.co/dreamhost/92571715)
 
-# Read about the journey
+# Read about the journey 
 
 [Read article on Medium](https://adriannenu.medium.com/secret-republic-update-hacker-themed-browser-based-php-game-855299b4cdea)
 
