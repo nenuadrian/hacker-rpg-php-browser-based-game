@@ -3,8 +3,6 @@
 
 ![Cover](images/cover.jpg)
 
-[![CircleCI](https://circleci.com/gh/nenuadrian/hacker-rpg-php-browser-based-game/tree/master.svg?style=svg)](https://circleci.com/gh/nenuadrian/hacker-rpg-php-browser-based-game/tree/master)
-
 # Live Demo
 
 Live demo: http://secretrepublic.nenuadrian.com
