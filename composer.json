@@ -4,6 +4,7 @@
     "description" : "Hacker Simulation Futuristic Browser Based Role Playing Game",
     "keywords": ["browser", "game" , "hacking", "application", "website", "development", "framework", "PHP", "PHP7"],
     "license": "MIT",
+    "homepage": "https://secretrepublic.nenuadrian.com/", 
     "require": {
         "php": ">=5.3.3",
         "composer/installers": "~1.0",
