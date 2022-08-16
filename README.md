@@ -129,10 +129,8 @@ One approach is to use these repositories:
 Please link and contribute back to this repository if using the code or assets :)
 
 
-# Secret Republic V3 (OLDER W/ MORE FEATURES & bugs)
+# Secret Republic V3 (OLDER W/ MORE FEATURES)
 
-V3 is much older, less organized and not respecting of any patterns what-so-ever in code, mostly based on a framework written from scratch, but I've refactored some dependency management into it.
+V3 is much older, less organized and not respecting of any patterns what-so-ever in code, mostly based on a framework written from scratch.
 
 Find version 3 here: https://github.com/nenuadrian/Secret-Republic-Hacking-Browser-Game-V3
-
-The repository you are on now, V4, is much more easy to setup.
