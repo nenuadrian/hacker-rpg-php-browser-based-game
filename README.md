@@ -1,5 +1,4 @@
 # Secret Republic - Browser Based PHP Hacker Themed RPG - Alpha V4
-## NOT ACTIVELY MAINTAINED - PLEASE SUBMIT PULL REQUESTS
 
 ![Cover](images/cover.jpg)
 
