@@ -112,13 +112,17 @@ One approach is to use these repositories:
 ## Edit account
 ![Screenshot](images/11.png)
 
+# Tests
+
+```
+./fuel/vendor/phpunit/phpunit/phpunit tests
+```
 
 # Travelling through time - V1
 
 ![Screenshot](images/original1.jpg)
 
 ![Screenshot](images/original2.png)
-
 
 
 # License
