@@ -1,5 +1,7 @@
 # Secret Republic - Browser Based PHP Hacker Themed RPG - Alpha V4
 
+[![PHP Composer](https://github.com/nenuadrian/hacker-rpg-php-browser-based-game/actions/workflows/php.yml/badge.svg)](https://github.com/nenuadrian/hacker-rpg-php-browser-based-game/actions/workflows/php.yml)
+
 ![Cover](images/cover.jpg)
 
 # Live Demo
