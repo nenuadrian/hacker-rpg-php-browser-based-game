@@ -1,20 +1,39 @@
 # Secret Republic - Browser Based PHP Hacker Themed RPG - Alpha V4
 
+
 [![PHP Composer](https://github.com/nenuadrian/hacker-rpg-php-browser-based-game/actions/workflows/php.yml/badge.svg)](https://github.com/nenuadrian/hacker-rpg-php-browser-based-game/actions/workflows/php.yml)
 
 ![Cover](images/cover.jpg)
 
-# Live Demo
+## Table of Contents
 
-Live demo: http://secretrepublic.nenuadrian.com
+- [Secret Republic - Browser Based PHP Hacker Themed RPG - Alpha V4](#secret-republic---browser-based-php-hacker-themed-rpg---alpha-v4)
+  - [Table of Contents](#table-of-contents)
+  - [Read about the journey](#read-about-the-journey)
+  - [Overview](#overview)
+  - [Main Features](#main-features)
+  - [Simple Setup](#simple-setup)
+  - [Cron jobs](#cron-jobs)
+  - [Linting](#linting)
+  - [Mobile app](#mobile-app)
+  - [Screenshots](#screenshots)
+    - [Skills](#skills)
+    - [Knowledge base](#knowledge-base)
+    - [Missions (there are email, database and file based servers which can be used to design different puzzles)](#missions-there-are-email-database-and-file-based-servers-which-can-be-used-to-design-different-puzzles)
+    - [Simple rankings](#simple-rankings)
+    - [Mission designer](#mission-designer)
+    - [Rewards](#rewards)
+    - [Edit account](#edit-account)
+  - [Tests](#tests)
+  - [Travelling through time - V1](#travelling-through-time---v1)
+  - [License](#license)
+  - [Secret Republic V3 (OLDER W/ MORE FEATURES)](#secret-republic-v3-older-w-more-features)
 
-Hosted on [DreamHost](https://mbsy.co/dreamhost/92571715)
-
-# Read about the journey 
+## Read about the journey
 
 [Read article on Medium](https://adriannenu.medium.com/secret-republic-update-hacker-themed-browser-based-php-game-855299b4cdea)
 
-# Overview
+## Overview
 
 Audio trailer on Youtube: https://www.youtube.com/watch?v=6thfiGb-b7c
 
@@ -26,7 +45,7 @@ The project is not under active development with milestones in-place.
 
 It is built upon the https://fuelphp.com MVC framework.
 
-# Main Features
+## Main Features
 
 1. Audio AI (woman, same as trailer) voice speaks when interacting with the game
 
@@ -41,7 +60,7 @@ It is built upon the https://fuelphp.com MVC framework.
 6. Rewards system
 
 
-# Simple Setup
+## Simple Setup
 
 You need a webserver (e.g. MAMP/WAMP/XAMPP) able to run PHP (tested with 7.3) and an MySQL database (LAMP stack).
 
@@ -56,7 +75,7 @@ You need a webserver (e.g. MAMP/WAMP/XAMPP) able to run PHP (tested with 7.3) an
 
 
 
-# Cron jobs
+## Cron jobs
 
 You may want to setup cron tasks to run the following pages once in a while
 
@@ -70,71 +89,71 @@ e.g.
 
 https://en.wikipedia.org/wiki/Cron
 
-# Linting
+## Linting
 
 Checking PHP syntax
 ```
 ./fuel/vendor/bin/phplint ./ --exclude=vendor
 ```
 
-# Mobile app
+## Mobile app
 
 One approach is to use these repositories: 
  * iOS: https://github.com/nenuadrian/iOS-website-elegant-rendering-swift-app
  * Android: https://github.com/nenuadrian/android-website-elegant-rendering
 
-# Screenshots
+## Screenshots
 
 ![Screenshot](images/1.png)
 
 ![Screenshot](images/2.png)
 
-## Skills
+### Skills
 ![Screenshot](images/3.png)
 
-## Knowledge base
+### Knowledge base
 ![Screenshot](images/4.png)
 
-## Missions (there are email, database and file based servers which can be used to design different puzzles)
+### Missions (there are email, database and file based servers which can be used to design different puzzles)
 ![Screenshot](images/5.png)
 
 ![Screenshot](images/6.png)
 
-## Simple rankings
+### Simple rankings
 ![Screenshot](images/7.png)
 
-## Mission designer
+### Mission designer
 ![Screenshot](images/8.png)
 
 ![Screenshot](images/9.png)
 
-## Rewards
+### Rewards
 ![Screenshot](images/10.png)
 
-## Edit account
+### Edit account
 ![Screenshot](images/11.png)
 
-# Tests
+## Tests
 
 ```
 ./fuel/vendor/phpunit/phpunit/phpunit tests
 ```
 
-# Travelling through time - V1
+## Travelling through time - V1
 
 ![Screenshot](images/original1.jpg)
 
 ![Screenshot](images/original2.png)
 
 
-# License
+## License
 
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
 
 Please link and contribute back to this repository if using the code or assets :)
 
 
-# Secret Republic V3 (OLDER W/ MORE FEATURES)
+## Secret Republic V3 (OLDER W/ MORE FEATURES)
 
 V3 is much older, less organized and not respecting of any patterns what-so-ever in code, mostly based on a framework written from scratch.
 
