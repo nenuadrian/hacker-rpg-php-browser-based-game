@@ -1,3 +1,4 @@
+<a id="secret-republic---browser-based-php-hacker-themed-rpg---alpha-v4"></a>
 # Secret Republic - Browser Based PHP Hacker Themed RPG - Alpha V4
 
 
@@ -168,6 +169,7 @@ One approach is to use these repositories:
 ./fuel/vendor/phpunit/phpunit/phpunit tests
 ```
 
+<a id="travelling-through-time---v1"></a>
 ## Travelling through time - V1
 
 ![Screenshot](images/original1.jpg)

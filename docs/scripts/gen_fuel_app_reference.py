@@ -24,11 +24,12 @@ def copy_readme_images() -> None:
     for image_path in sorted(IMAGES_ROOT.rglob("*")):
         if not image_path.is_file():
             continue
+        if image_path.name.startswith("."):
+            continue
 
         output_path = image_path.relative_to(REPO_ROOT).as_posix()
         with mkdocs_gen_files.open(output_path, "wb") as image_file:
             image_file.write(image_path.read_bytes())
-        mkdocs_gen_files.set_edit_path(output_path, output_path)
 
 
 def write_fuel_app_reference() -> None:
