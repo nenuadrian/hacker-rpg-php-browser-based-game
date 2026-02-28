@@ -1,0 +1,49 @@
+site_name: Secret Republic
+site_description: Developer documentation for the Secret Republic FuelPHP game.
+repo_url: https://github.com/nenuadrian/hacker-rpg-php-browser-based-game
+repo_name: nenuadrian/hacker-rpg-php-browser-based-game
+edit_uri: edit/main/
+docs_dir: docs
+
+theme:
+  name: material
+  features:
+    - navigation.expand
+    - navigation.sections
+    - navigation.indexes
+    - content.code.copy
+    - content.action.edit
+  palette:
+    - scheme: default
+      primary: teal
+      accent: cyan
+
+plugins:
+  - search
+  - gen-files:
+      scripts:
+        - docs/scripts/gen_fuel_app_reference.py
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.snippets:
+      base_path:
+        - .
+
+watch:
+  - README.md
+  - fuel/app
+  - images
+
+nav:
+  - Home: index.md
+  - Fuel App Code:
+      - Overview: reference/fuel-app/index.md

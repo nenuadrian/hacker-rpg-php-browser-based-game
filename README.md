@@ -15,6 +15,7 @@
   - [Simple Setup](#simple-setup)
   - [Cron jobs](#cron-jobs)
   - [Linting](#linting)
+  - [Documentation](#documentation)
   - [Mobile app](#mobile-app)
   - [Screenshots](#screenshots)
     - [Skills](#skills)
@@ -95,6 +96,33 @@ Checking PHP syntax
 ```
 ./fuel/vendor/bin/phplint ./ --exclude=vendor
 ```
+
+## Documentation
+
+This repository includes MkDocs Material documentation with:
+
+1. The root `README.md` rendered as the docs home page.
+2. Auto-generated code-reference pages for all `fuel/app/**/*.php` files.
+
+Build it locally:
+
+```
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements-docs.txt
+mkdocs serve
+```
+
+Create a static site:
+
+```
+mkdocs build
+```
+
+Deploy to GitHub Pages:
+
+1. The workflow at `.github/workflows/docs-pages.yml` runs on pushes to `master` (and manual dispatch).
+2. In GitHub repository settings, set **Pages** source to **GitHub Actions**.
 
 ## Mobile app
 

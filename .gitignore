@@ -10,3 +10,4 @@ fuel/app/tmp/**
 fuel/app/logs/**
 fuel/app/cache/**
 fuel/core/**
+site/
