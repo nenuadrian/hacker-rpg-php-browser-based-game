@@ -2,6 +2,7 @@
 
 
 [![PHP Composer](https://github.com/nenuadrian/hacker-rpg-php-browser-based-game/actions/workflows/php.yml/badge.svg)](https://github.com/nenuadrian/hacker-rpg-php-browser-based-game/actions/workflows/php.yml)
+[![Docs - Build and Deploy](https://github.com/nenuadrian/hacker-rpg-php-browser-based-game/actions/workflows/docs-pages.yml/badge.svg)](https://github.com/nenuadrian/hacker-rpg-php-browser-based-game/actions/workflows/docs-pages.yml)
 
 ![Cover](images/cover.jpg)
 
@@ -63,11 +64,11 @@ It is built upon the https://fuelphp.com MVC framework.
 
 ## Simple Setup
 
-You need a webserver (e.g. MAMP/WAMP/XAMPP) able to run PHP (tested with 7.3) and an MySQL database (LAMP stack).
+You need a webserver (e.g. MAMP/WAMP/XAMPP) able to run PHP (tested with 7.3) and a MySQL database (LAMP stack).
 
 1. Install `composer` (the PHP dependency management system - `brew install composer` for MacOS) and run `composer install`
 
-2. You will need to create an empty Database in MySQL - it's name is not relevant but you will need it in the next step. For MAMP, you would go to `http://localhost:8888/phpMyAdmin5`
+2. You will need to create an empty Database in MySQL - its name is not relevant, but you will need it in the next step. For MAMP, you would go to `http://localhost:8888/phpMyAdmin5`
 
 3. Visit `http://localhost/public_html` - this may be different if you are using another port or directory structure, e.g. `http://localhost:8888/sr/public_html` and follow the setup process
 
