@@ -12,7 +12,7 @@
         "fuel/email": "1.8.*",
         "fuel/parser": "1.8.*",
         "fuelphp/upload": "2.0.6",
-        "monolog/monolog": "1.5.*",
+        "monolog/monolog": "^1.18",
         "phpseclib/phpseclib": "2.0.47",
         "michelf/php-markdown": "1.4.0",
         "thunderer/shortcode": "*",
