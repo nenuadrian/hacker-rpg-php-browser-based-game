@@ -25,6 +25,9 @@
     },
     "config": {
         "vendor-dir": "fuel/vendor",
+        "platform": {
+            "php": "8.2.0"
+        },
         "allow-plugins": {
             "composer/installers": true
         },
