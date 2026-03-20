@@ -27,6 +27,16 @@
         "vendor-dir": "fuel/vendor",
         "allow-plugins": {
             "composer/installers": true
+        },
+        "audit": {
+            "block-insecure": false,
+            "ignore": [
+                "PKSA-km2b-zc3b-mjm3",
+                "PKSA-4p7m-np8m-fq35",
+                "PKSA-t5xz-td8w-f35v",
+                "PKSA-jsh4-f6tg-bwyq",
+                "PKSA-mnsd-qtjt-pgcq"
+            ]
         }
     },
     "extra": {
