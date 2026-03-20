@@ -4,6 +4,7 @@
 
 [![PHP Composer](https://github.com/nenuadrian/hacker-rpg-php-browser-based-game/actions/workflows/php.yml/badge.svg)](https://github.com/nenuadrian/hacker-rpg-php-browser-based-game/actions/workflows/php.yml)
 [![Docs - Build and Deploy](https://github.com/nenuadrian/hacker-rpg-php-browser-based-game/actions/workflows/docs-pages.yml/badge.svg)](https://github.com/nenuadrian/hacker-rpg-php-browser-based-game/actions/workflows/docs-pages.yml)
+[![Docker Build](https://github.com/nenuadrian/hacker-rpg-php-browser-based-game/actions/workflows/docker.yml/badge.svg)](https://github.com/nenuadrian/hacker-rpg-php-browser-based-game/actions/workflows/docker.yml)
 
 ![Cover](images/cover.jpg)
 
