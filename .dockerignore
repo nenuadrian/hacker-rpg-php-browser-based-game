@@ -1,0 +1,8 @@
+.git
+.github
+docs
+images
+tests
+*.md
+mkdocs.yml
+.gitignore
