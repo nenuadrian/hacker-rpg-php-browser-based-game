@@ -180,7 +180,7 @@ One approach is to use these repositories:
 
 ## License
 
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a>
+MIT License. See [LICENSE](LICENSE) for details.
 
 Please link and contribute back to this repository if using the code or assets :)
 
